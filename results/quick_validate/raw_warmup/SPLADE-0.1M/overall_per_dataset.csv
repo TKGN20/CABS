@@ -1,0 +1,1 @@
+dataset,method,recall@50,qps,avg_verified_candidates,build_time_sec,index_size_bytes,speedup_vs_linearscan,notes

@@ -1,0 +1,44 @@
+{
+  "output_dir": "results/multidataset_round1_tmp",
+  "topk": 50,
+  "random_seed": 42,
+  "methods": {
+    "LinearScan": true,
+    "SOSIA": true,
+    "WAND": false,
+    "BinSketch": false,
+    "CABS": true
+  },
+  "datasets": [
+    {
+      "name": "SPLADE-0.1M",
+      "base_path": "datasets/MS MARCO v1/SPLADE/0.1M/base_small.csr",
+      "query_path": "datasets/MS MARCO v1/SPLADE/0.1M/queries.dev.csr",
+      "groundtruth_path": "datasets/MS MARCO v1/SPLADE/0.1M/base_small_all.ben"
+    },
+    {
+      "name": "SPLADE-1M",
+      "base_path": "datasets/MS MARCO v1/SPLADE/1M/base_1M.csr",
+      "query_path": "datasets/MS MARCO v1/SPLADE/1M/queries.dev.csr",
+      "groundtruth_path": "datasets/MS MARCO v1/SPLADE/1M/base_1M_all.ben"
+    },
+    {
+      "name": "SPLADE-10M",
+      "base_path": "datasets/MS MARCO v1/SPLADE/10M/base_full.csr",
+      "query_path": "datasets/MS MARCO v1/SPLADE/10M/queries.dev.csr",
+      "groundtruth_path": "datasets/MS MARCO v1/SPLADE/10M/base_full_all.ben"
+    },
+    {
+      "name": "RANDOM-1M",
+      "base_path": "datasets/RANDM/1M/base.csr",
+      "query_path": "datasets/RANDM/1M/queries.dev.csr",
+      "groundtruth_path": "datasets/RANDM/1M/base_all.ben"
+    },
+    {
+      "name": "RANDOM-5M",
+      "base_path": "datasets/RANDM/5M/base.csr",
+      "query_path": "datasets/RANDM/5M/queries.dev.csr",
+      "groundtruth_path": "datasets/RANDM/5M/base_all.ben"
+    }
+  ]
+}

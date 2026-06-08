@@ -1,0 +1,10 @@
+{
+  "dataset": "Rand1M",
+  "method": "SOSIA",
+  "config_id": "T2000",
+  "topk": 50,
+  "seed": 42,
+  "query_subset_size": 8,
+  "wall_time_sec": 4267.154187917709,
+  "T": 2000
+}

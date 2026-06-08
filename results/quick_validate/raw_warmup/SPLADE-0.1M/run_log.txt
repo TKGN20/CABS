@@ -1,0 +1,2 @@
+[exp4] seed=42 topk=50 output_dir=/home/songyang/TKGN/CABS/results/quick_validate/raw_warmup/SPLADE-0.1M query_subset_size=8 cabs_eta_override=-1
+[skip dataset] missing files: SPLADE-0.1M base=/home/songyang/TKGN/CABS/datasets/MS MARCO v1/SPLADE/0.1M/base_small.csr query=/home/songyang/TKGN/CABS/datasets/MS MARCO v1/SPLADE/0.1M/queries.dev.csr ben=/home/songyang/TKGN/CABS/datasets/MS MARCO v1/SPLADE/0.1M/base_small_all.ben

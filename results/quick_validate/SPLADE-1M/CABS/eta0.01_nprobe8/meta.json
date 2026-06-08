@@ -1,0 +1,14 @@
+{
+  "dataset": "SPLADE-1M",
+  "method": "CABS",
+  "config_id": "eta0.01_nprobe8",
+  "topk": 50,
+  "seed": 42,
+  "query_count": 200,
+  "effective_params": {
+    "eta": 0.01,
+    "nprobe": 8
+  },
+  "truth_source": "/home/songyang/TKGN/CABS/datasets/MS MARCO v1/SPLADE/1M/base_1M_all.ben",
+  "wall_time_sec": 0.0
+}

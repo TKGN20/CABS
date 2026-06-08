@@ -1,0 +1,11 @@
+{
+  "dataset": "Rand1M",
+  "method": "CABS",
+  "config_id": "eta0.005_nprobe8",
+  "topk": 50,
+  "seed": 42,
+  "query_subset_size": 8,
+  "wall_time_sec": 4279.553649425507,
+  "eta": 0.005,
+  "nprobe": 8
+}

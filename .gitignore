@@ -1,0 +1,64 @@
+# Visual Studio / IDE cache
+.vs/
+*.ipch
+*.suo
+*.user
+
+# Build files
+build/
+cmake-build-*/
+*.o
+*.so
+*.a
+*.exe
+*.out
+
+# Dataset files
+datasets/
+data/
+dataset/
+*.csr
+*.bin
+*.npy
+*.npz
+*.pt
+*.pth
+*.pkl
+
+# Large experiment outputs and caches
+results/archive/
+results/**/raw/
+results/**/cache/
+results/**/cluster_cache*
+results/**/spill_cache*
+*.log
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+# Python cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.bcf
+*.fdb_latexmk
+*.fls
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+
+# OS files
+.DS_Store
+Thumbs.db
