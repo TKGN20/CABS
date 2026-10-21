@@ -1,0 +1,25 @@
+{
+  "format": "Little-endian CSR64: uint64 n,d,nnz; uint64 indptr[n+1]; int32 indices[nnz]; float32 values[nnz]",
+  "source": "https://github.com/harsha-simhadri/big-ann-benchmarks/blob/main/benchmark/datasets.py",
+  "files": {
+    "base_1M.csr": {
+      "url": "https://storage.googleapis.com/ann-challenge-sparse-vectors/csr/base_1M.csr.gz",
+      "rows": 1000000, "dimensions": 30109, "nnz": 126320094,
+      "bytes": 1018560784,
+      "sha256": "d0727fcc10e18151ca693a0896dfa70c2dce6b8111a95d245fea58be389fa9dc"
+    },
+    "base_small.csr": {
+      "url": "https://storage.googleapis.com/ann-challenge-sparse-vectors/csr/base_small.csr.gz",
+      "rows": 100000, "dimensions": 30109,
+      "nnz": 12729954,
+      "bytes": 102639664,
+      "sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be"
+    },
+    "queries.dev.csr": {
+      "url": "https://storage.googleapis.com/ann-challenge-sparse-vectors/csr/queries.dev.csr.gz",
+      "rows": 6980, "dimensions": 30109, "nnz": 342696,
+      "bytes": 2797440,
+      "sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5"
+    }
+  }
+}

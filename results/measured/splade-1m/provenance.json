@@ -1,0 +1,72 @@
+{
+  "status": "measured",
+  "measurement_platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "CPU": "AMD Ryzen 7 8845H; WSL exposes six logical CPUs",
+  "build_threads": 4,
+  "query_threads": 1,
+  "compiler": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "measurement_git_commit": "1c5091d8a9e2e7b913da4e2ceb6ccbff5c6bb655",
+  "measurement_source_hash": "f39e79ecbf28b932fdd6de312c94f53c5e005a7627dc9a770a0e6052eba49a0d",
+  "measured_source_sha256": {
+    "include/cabs/calibration/configuration.hpp": "ed380e7730c7ced49f8697be385f7c89c2d636192c38eb81751a58325451836f",
+    "include/cabs/clustering/spherical_partition.hpp": "b03d900157197a579e83b05f24924a70ad676a5a6da2a93b27d4e0ca0b32494e",
+    "include/cabs/common.hpp": "c088f900a7b6afe94efbf452faf5a80fa9f5b670bad811e674e287492cfbb994",
+    "include/cabs/io/dataset_loader.hpp": "0ac62f6a515b9bf90cd883397bbe38a00c31b8c9636d72485e6a8e2e75002f88",
+    "include/cabs/io/ground_truth.hpp": "286ee1e24d2925bbb04c0d2903df3e942b8d290c9ba4c5587ce5341f3a38017d",
+    "include/cabs/minhash/local_index.hpp": "10c70c5f829b466b702a9912288489966fd29acdabd6e01d209701536e4ec4c1",
+    "include/cabs/reporting.hpp": "eae3572616bedaf0385bc1134c9bb393cffba3e95023841866bdb841fece8d14",
+    "include/cabs/search/epoch_index.hpp": "b6900c5c2480b8e3800588e0e3cb5946a591e120cdb6a4e8e7bbec4b84c5a4c7",
+    "include/cabs/search/query_workspace.hpp": "503c3262a689b4ea0a8056f445a43deeb90780a17c32f2d3709f98a46445af0e",
+    "include/cabs/search/working_pool.hpp": "5d8cdd3b0907b7f0483d6d3032b65eb8d510d307964891211d6ed383af4b6171",
+    "include/cabs/sketch/adaptive_sos.hpp": "9735d161c6331df1077f8bcc959b092c6966aba50a3ff8f60e94b8a586e174cb",
+    "include/cabs.hpp": "dc22d81d1f13768013ecd7b4fd37f03f5f4fcb2ea5aedd0ea78c835710dc22e1",
+    "include/final_equivalence.hpp": "85a2e771e379d78ea95bc1cdbc66f4431bf37031780ce2a7120b84326985a310",
+    "src/main.cpp": "8e1e3c4ca5cd20d6bb83a4c13e96c72e92c4fd9c9fd991a26e33c65fbd17c9f8"
+  },
+  "published_source_sha256": {
+    "include/cabs/calibration/configuration.hpp": "ed380e7730c7ced49f8697be385f7c89c2d636192c38eb81751a58325451836f",
+    "include/cabs/clustering/spherical_partition.hpp": "b03d900157197a579e83b05f24924a70ad676a5a6da2a93b27d4e0ca0b32494e",
+    "include/cabs/common.hpp": "c088f900a7b6afe94efbf452faf5a80fa9f5b670bad811e674e287492cfbb994",
+    "include/cabs/io/dataset_loader.hpp": "0ac62f6a515b9bf90cd883397bbe38a00c31b8c9636d72485e6a8e2e75002f88",
+    "include/cabs/io/ground_truth.hpp": "286ee1e24d2925bbb04c0d2903df3e942b8d290c9ba4c5587ce5341f3a38017d",
+    "include/cabs/minhash/local_index.hpp": "10c70c5f829b466b702a9912288489966fd29acdabd6e01d209701536e4ec4c1",
+    "include/cabs/reporting.hpp": "eae3572616bedaf0385bc1134c9bb393cffba3e95023841866bdb841fece8d14",
+    "include/cabs/search/epoch_index.hpp": "b6900c5c2480b8e3800588e0e3cb5946a591e120cdb6a4e8e7bbec4b84c5a4c7",
+    "include/cabs/search/query_workspace.hpp": "503c3262a689b4ea0a8056f445a43deeb90780a17c32f2d3709f98a46445af0e",
+    "include/cabs/search/working_pool.hpp": "5d8cdd3b0907b7f0483d6d3032b65eb8d510d307964891211d6ed383af4b6171",
+    "include/cabs/sketch/adaptive_sos.hpp": "9735d161c6331df1077f8bcc959b092c6966aba50a3ff8f60e94b8a586e174cb",
+    "include/cabs.hpp": "5aeda6734aac0d72951c7ab29b556ca75427167fd23ef94477833598291f118d",
+    "include/final_equivalence.hpp": "85a2e771e379d78ea95bc1cdbc66f4431bf37031780ce2a7120b84326985a310",
+    "src/main.cpp": "8e1e3c4ca5cd20d6bb83a4c13e96c72e92c4fd9c9fd991a26e33c65fbd17c9f8"
+  },
+  "CRLF_to_LF_only_files": [
+    "include/cabs.hpp"
+  ],
+  "binary_sha256": "32085fbbb20e710a71f4a58d43ea8e262e422ff086415a17f595ce8e2b6f8265",
+  "input_documents": {
+    "sha256": "d0727fcc10e18151ca693a0896dfa70c2dce6b8111a95d245fea58be389fa9dc",
+    "bytes": 1018560784
+  },
+  "input_queries": {
+    "sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "bytes": 2797440
+  },
+  "pipeline_sha256_at_measurement": {
+    "scripts/evaluate.py": "0232995a5963ed50d6c2bee3cabb3a403e6b67f14837413ca3cdac67a2ef125b",
+    "scripts/prepare_data.py": "dd7c3d9fc40099500ad013adf1a22e377f9c4e158c23bf3becc6e446d99611e7",
+    "scripts/reproduce.py": "326632b640c02e76a9e974c2797055d70f26ce87b21c1b46e2d1b2db05c366a2",
+    "scripts/download_data.sh": "b2aca51a9880d9366e0eb330efa41e4a816493c3a234b632dfa39ffe7360a803",
+    "scripts/reproduce.sh": "50305cff2bdca04defdcd7eb0ec7385d7e35c06e816815220dba5a9f9ae70041",
+    "configs/datasets.json": "dadb2d3db1d48b9b750856f3c23fa3a0c9cca5ab2d82e48a1675b4e52e4f3bc7",
+    "configs/splade_0.1m.json": "97acdb73351c0f66f1cff6dd03dc36c08eb262aab873583bbe6021607b3f0a0a",
+    "configs/splade_1m.json": "65acd50c186f2f1c723626f84c64556a9f98416d813a98fab01a4e343997d6f0",
+    "CMakeLists.txt": "355d91ef1c99d644f682cbb7c6825787de47925f05abc74f92f1bb95e5f2c77a"
+  },
+  "peak_RSS_KiB": 4101612,
+  "raw_record_sha256": {
+    "ground_truth.csv": "d594716fc00f247179a85074350bbe08f142a416bfcd02f9860a59b057120746",
+    "retrieved.csv": "0bf3616f54421adc367dbdcb498d7310096db35eebdac96b98f5223278f0574b",
+    "queries.csv": "46bd44af27e708068671d34826d356eacc935d5ff4524b0dbcea183270621ba4"
+  },
+  "note": "Source is equivalent after Git line-ending normalization. The 0.1M run began before the feature commit; its actual core hashes are preserved. Timings and returned IDs are not altered. Numerical agreement with manuscript estimates is unverified."
+}

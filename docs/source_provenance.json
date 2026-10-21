@@ -1,0 +1,23 @@
+{
+  "github_base_commit": "b6fe9e2e6460a660a15d20edf932918877880226",
+  "core_source_sha256": {
+    "include\\cabs.hpp": "dc22d81d1f13768013ecd7b4fd37f03f5f4fcb2ea5aedd0ea78c835710dc22e1",
+    "include\\final_equivalence.hpp": "85a2e771e379d78ea95bc1cdbc66f4431bf37031780ce2a7120b84326985a310",
+    "include\\cabs\\common.hpp": "c088f900a7b6afe94efbf452faf5a80fa9f5b670bad811e674e287492cfbb994",
+    "include\\cabs\\calibration\\configuration.hpp": "b556203d31b2ab3e07d66710132daa3a86a4907c671cbecb75749668fb40196c",
+    "include\\cabs\\clustering\\spherical_partition.hpp": "b03d900157197a579e83b05f24924a70ad676a5a6da2a93b27d4e0ca0b32494e",
+    "include\\cabs\\io\\dataset_loader.hpp": "a5f7bc97ab846e6528577c91e6c6e08da582f14c18637d6093433b8899e5cb07",
+    "include\\cabs\\io\\ground_truth.hpp": "286ee1e24d2925bbb04c0d2903df3e942b8d290c9ba4c5587ce5341f3a38017d",
+    "include\\cabs\\minhash\\local_index.hpp": "10c70c5f829b466b702a9912288489966fd29acdabd6e01d209701536e4ec4c1",
+    "include\\cabs\\search\\epoch_index.hpp": "b6900c5c2480b8e3800588e0e3cb5946a591e120cdb6a4e8e7bbec4b84c5a4c7",
+    "include\\cabs\\search\\query_workspace.hpp": "503c3262a689b4ea0a8056f445a43deeb90780a17c32f2d3709f98a46445af0e",
+    "include\\cabs\\search\\working_pool.hpp": "5d8cdd3b0907b7f0483d6d3032b65eb8d510d307964891211d6ed383af4b6171",
+    "include\\cabs\\sketch\\adaptive_sos.hpp": "9735d161c6331df1077f8bcc959b092c6966aba50a3ff8f60e94b8a586e174cb",
+    "src\\main.cpp": "718f310fb2859df3bf44ef6b5ecb0c8b141ad3edf5b02d690708abceebc8c3aa"
+  },
+  "notes": [
+    "Reuses the previously audited modular CABS implementation.",
+    "Subsequent changes concern CLI defaults, reporting, build and reproduction only.",
+    "Old fixed-K/nprobe/global-m sources and old experimental outputs remain in Git history."
+  ]
+}

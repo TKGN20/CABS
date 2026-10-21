@@ -1,0 +1,60 @@
+{
+  "external": {
+    "dataset": "SPLADE-0.1M",
+    "scale": "0.1M",
+    "base_file": "base_small.csr",
+    "algorithm": "CABS",
+    "k": 50,
+    "k_max": 100,
+    "ell": 24,
+    "delta_h": 0.2,
+    "query_threads": 1,
+    "build_threads": 4,
+    "auto_configuration": true,
+    "seed": 20261007,
+    "calibration_queries": 4,
+    "evaluation_queries": 6976,
+    "timing_repeats": 3,
+    "warmup_queries": 5,
+    "lloyd_iterations": 10,
+    "max_index_gib": 9,
+    "protocol_source": "Execution settings inherited from the prior audited CABS source package; ell/delta_h follow the current reproduction request. This is a public reproduction protocol, not proof of equivalence to every manuscript experiment.",
+    "full_query_run": true
+  },
+  "automatic": {
+    "K": 1,
+    "B": 13976,
+    "stage_seconds": {
+      "B_calibration": 0.015107540000030895,
+      "K_calibration_including_partitions_hashes": 177.779134585,
+      "K_candidate_cost_measurement": 0.42289148199998294,
+      "allocation": 0.003269729000010102,
+      "calibration_including_partitions": 181.944690052,
+      "final_Minhash_construction": 4.2334971660000065,
+      "local_m_calibration_all_candidates": 0.0039500690000124905,
+      "partition_all_candidates": 31.129231934000018,
+      "scaling": 0.008299067999999465,
+      "selected_temporary_hash_construction": 4.1501640189999875,
+      "sketch_construction": 0.33339478100000974,
+      "spherical_all_candidates": 30.452758655999986,
+      "spillover_all_candidates": 0.6603283589999762,
+      "temporary_hash_construction_all_candidates": 146.03247869800003,
+      "df_statistics": 0.03198156699998833,
+      "dataset_loading_validation": 0.4760093070000124
+    },
+    "clusters": [
+      {
+        "id": 0,
+        "primary_size": 100000,
+        "expanded_size": 100000,
+        "m": 205,
+        "floor": 0.00784313725490196,
+        "construction_radius": 1.531973004433675,
+        "norm_bound": 13.369238695975689
+      }
+    ]
+  },
+  "source_hash": "f39e79ecbf28b932fdd6de312c94f53c5e005a7627dc9a770a0e6052eba49a0d",
+  "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+  "query_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5"
+}
