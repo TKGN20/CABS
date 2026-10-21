@@ -197,5 +197,5 @@ boundaries are recorded in [`docs/METHOD.md`](docs/METHOD.md).
 
 The manuscript title, author list and publication identifier will be added when
 the authors finalize the citation. No publication metadata is fabricated here.
-The source-license choice is pending author confirmation; the previous public
-repository did not contain a license. Dataset terms are separate.
+The source code is distributed under the [MIT License](LICENSE).
+Dataset terms are separate.

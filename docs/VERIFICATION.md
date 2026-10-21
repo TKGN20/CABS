@@ -48,7 +48,7 @@ document nnz=127.29954. Exact input slices, query/calibration IDs, hardware and
 metric boundaries must match for a paper comparison. No target metric is
 hardcoded or substituted.
 
-The source license awaits author selection. The author has requested updating
-the original GitHub repository with the new implementation and actual results.
+The author selected the MIT License and approved updating the original GitHub
+repository with the new implementation and actual results.
 Manuscript numerical agreement remains unverified and is not implied by code
 publication or successful execution of these two commands.
