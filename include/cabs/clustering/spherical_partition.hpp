@@ -42,7 +42,7 @@ struct Partition {
                 }
             }
             std::vector<size_t> counts(K,0);for(Id id:ids)++counts[primary[id]];
-            // Repair empty clusters deterministically, then recompute unit centroids.
+
             for(int c=0;c<K;++c) if(!counts[c]) {
                 Id pick=null_slot;double worst=INFINITY;
                 for(Id id:ids) if(counts[primary[id]]>1) {
@@ -59,7 +59,7 @@ struct Partition {
             for(auto& c:clusters){double z=std::sqrt(std::inner_product(c.mu.begin(),c.mu.end(),c.mu.begin(),0.0));for(double& v:c.mu)v/=z;}
             if(!changes)break;
         }
-        // Final assignments use the final centroids, not a stale Lloyd iteration.
+
         auto matrix=transposed_centroids(data.dim);
         #pragma omp parallel
         {
@@ -97,4 +97,4 @@ struct Partition {
     }
 };
 
-} // namespace cabs_index
+}

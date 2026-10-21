@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reject incomplete or tampered result records; fixture is synthetic test data."""
+
 import csv
 import gzip
 import hashlib
@@ -39,6 +39,7 @@ class ReportingTests(unittest.TestCase):
     def test_recompute(self):
         self.assertEqual(audit(self.root)['QPS'],2)
         self.assertEqual(audit(self.root)['IS_bytes'],192)
+        self.assertEqual(audit(self.root)['Recall@2'],1)
     def test_duplicate_repeat(self):
         self.csv('queries.csv','k,repeat,query_id,recall,seconds,pool_peak,verified',[[2,0,1,1,.5,3,3]]*2)
         with self.assertRaisesRegex(ValueError,'Duplicate timing'):

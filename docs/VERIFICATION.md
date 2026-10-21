@@ -1,54 +1,63 @@
-# Verification of the static reproduction package
+# Verification and measured source revisions
 
-Verification date: 2026-10-21. These are **actual local Linux-in-WSL measurements**,
-not the manuscript's estimated performance targets or measurements on its server.
-Hardware: AMD Ryzen 7 8845H, WSL exposing six logical CPUs; GCC 11.4.0, C++17
-Release build. Construction/GT use four threads; search is sequential.
+Review date: 2026-10-21. Test platform: AMD Ryzen 7 8845H, Linux in WSL,
+six exposed logical CPUs, GCC 11.4, C++17 Release. Search is sequential.
 
 | Check | Result |
 | --- | --- |
-| Release build and all three CTest suites | PASS |
-| ASan/UBSan build and the same suites | PASS |
-| Fresh source-only archive extraction, build and CTest | PASS |
-| Fresh public 0.1M/query download and checksums | PASS |
-| Existing public 1M corpus, exact size/header/SHA-256 | PASS |
-| Full default 0.1M and 1M production pipelines | PASS |
-| Disjoint query sets, complete records, independent metric arithmetic | PASS |
+| Release: semantic, production-path and reporting CTest suites | PASS |
+| ASan/UBSan: the same three suites | PASS |
+| Synthetic exact scores and GT checked independently in Python | PASS |
+| Public 0.1M/1M and query input size/header/SHA-256 checks | PASS |
+| Two completed full-query result directories independently re-evaluated | PASS |
+| Comment-only cleanup: compiled Release binary SHA-256 unchanged | PASS |
+| New full 0.1M run: all 6,976 queries x three repeats | PASS |
+| Old/new full 0.1M GT, ranked outputs, split and non-timing query fields | Identical |
+| Scoring diagnostic: 960,000 actual 1M corpus/query vector pairs | Exact scores equal |
+| Paired complete-query diagnostic: 200 queries x 4 repeats, one 0.1M index | IDs, scores, counters and complete candidate states equal |
 
-Both real-data runs use ell=24, delta_h=0.2, k=50, k_max=100, seed=20261007,
-four calibration queries and **all 6,976 remaining queries x three repeats**.
-Each constructs a fresh automatically calibrated index. Independent synthetic
-production-path tests check C++ exact GT and returned scores against Python
-sparse inner products; they are not performance measurements.
+## Full-query records
 
-| Dataset | Recall@50 | QPS | IT (s) | IS incl. vectors (GB) | Structure only (GB) | K | B |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| SPLADE-0.1M | 0.995407 | 124.73 | 187.04 | 0.392970 | 0.290331 | 1 | 13976 |
-| SPLADE-1M | 0.995717 | 12.04 | 751.13 | 3.461449 | 2.442889 | 8 | 51385 |
+The 0.1M full run was repeated on the reviewed scoring version; the 1M record
+retains the earlier published version. Each uses
+ell=24, delta_h=0.2, k=50, k_max=100, seed=20261007, four calibration queries
+and all 6,976 remaining queries over three timing repeats. Both inputs and raw
+measurement records remain available under `results/measured/`.
 
-IS follows manuscript VI-A by including original CSR required for exact scoring.
-The separate structure-only column follows the narrower excluding-CSR scope in
-the preparation proposal. Both are capacity-based payload inventories, not
-allocator-level peak RSS. IT includes calibration-target exact search and all
-automatic configuration construction; evaluation GT is excluded.
+| Dataset | Source | Recall@50 | QPS | IT (s) | IS (GB) | K | B |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| SPLADE-0.1M | `80b25cf` | 0.995407 | 158.12 | 164.71 | 0.392970 | 1 | 13976 |
+| SPLADE-1M | `ac17836` | 0.995717 | 12.04 | 751.13 | 3.461449 | 8 | 51385 |
 
-Full precision, resolved hash counts, input/source/binary hashes, raw-record
-hashes and arithmetic audits are in
-[`verification/measured_defaults.json`](verification/measured_defaults.json).
-Ranked IDs, GT and query timing records are also published losslessly compressed
-under `results/measured/`; the evaluator reads these directly and checks the
-artifact checksums. Original vectors and private execution paths/logs are not
-bundled. Fresh reproduction never reads the published results as search inputs.
-The 0.1M derived metrics were independently re-evaluated to
-apply the final VI-A IS convention; original timing/search records were unchanged.
+IS includes required original CSR plus retained index payload. Structure-only
+bytes are recorded separately. IT includes exact calibration targets; evaluation
+GT is excluded. These are local hardware measurements, with actual source and
+binary hashes, not measurements on the manuscript's server.
 
-These measurements describe the stated local protocol; numerical reproduction
-of manuscript claims is not established. Public base_small.csr has average
-document nnz=127.29954. Exact input slices, query/calibration IDs, hardware and
-metric boundaries must match for a paper comparison. No target metric is
-hardcoded or substituted.
+## Scoring revision
 
-The author selected the MIT License and approved updating the original GitHub
-repository with the new implementation and actual results.
-Manuscript numerical agreement remains unverified and is not implied by code
-publication or successful execution of these two commands.
+The production workspace stores query values as doubles and accumulates products
+without a per-coordinate nonzero branch. Input weights are finite nonnegative
+float32 values. Float32-to-double conversion is exact; the document-coordinate
+accumulation order is retained, and adding zero does not alter the finite score.
+No approximate dot product, fast-math or new retrieval parameter is introduced.
+The extra query workspace belongs to query scratch and is excluded from IS.
+
+On the paired 0.1M index, the realized configuration was K=16 and B=7772.
+Across 800 timed queries per implementation, previous throughput was 118.0254
+QPS and revised throughput was 133.1980 QPS: a measured 1.1286x speedup.
+The raw [paired record](../results/engineering/scoring_20261021/) and
+[reproduction instructions](../benchmarks/README.md) are public. This diagnostic
+does not overwrite earlier full-query metrics or establish the same speedup
+on other indexes, datasets or hardware.
+
+The reviewed version's full 0.1M run measured Recall@50=0.995407, QPS=158.1189,
+IT=164.7133 s and IS=0.392970 GB. It independently selected K=1 and B=13976.
+All GT and retrieved-ID/score CSV bytes match the earlier full 0.1M run; all
+20,928 query records have identical non-timing fields. The
+[equivalence audit](../results/engineering/scoring_20261021/full_0.1m_equivalence.json)
+records this check. The paired experiment, rather than the difference between
+separate full runs, is used to isolate the scoring-kernel benefit.
+
+Source comments were removed separately before this revision; recompilation at
+that step produced the same executable SHA-256. The MIT license is retained.

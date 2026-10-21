@@ -66,4 +66,4 @@ inline double angle(double cosine) { return std::acos(std::clamp(cosine,-1.0,1.0
 inline double outward(double v) { return std::nextafter(v+1e-12, INFINITY); }
 
 
-} // namespace cabs_index
+}

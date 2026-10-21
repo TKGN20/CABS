@@ -15,6 +15,12 @@ static OwnedRow copy_row(Row x,double factor=1) {
 }
 static void check(bool ok,const std::string& message){if(!ok)throw std::runtime_error("TEST FAILED: "+message);}
 static void selftest() {
+    QueryWorkspace scoring;
+    for(auto q:{owned({}),owned({{0,0.f},{3,1.f}}),owned({{1,std::numeric_limits<float>::denorm_min()},{5,std::numeric_limits<float>::max()}})}) {
+        scoring.prepare_query(q.row(),8);
+        for(auto x:{owned({}),owned({{0,1.f},{2,3.f},{3,4.f},{7,5.f}}),owned({{1,std::numeric_limits<float>::denorm_min()},{5,std::numeric_limits<float>::max()}})})
+            check(scoring.exact_dense_dot(x.row())==dot(q.row(),x.row()),"dense scoring preserves original double accumulation");
+    }
     Expansion a;a.allocate({5,4,3,2,1,1},5,3);
     check(a.lengths==std::vector<uint32_t>({2,2,3,3,4,4}),"Fig.1 largest-remainder allocation");
     for(auto rule:{"idf","uniform","inverse"}){
@@ -46,7 +52,7 @@ static void selftest() {
             for(auto target:idx.calibration.targets[z])if(touched.count(target.id) && jaccard(idx.calibration.sketches[z],idx.sketches.sets[target.id])>0)success &= seen.count(target.id)>0;
         }return success;
     };
-    // Rebuild retained TEMPORARY tables to validate the prefix-rank optimization exactly.
+
     idx.build_tables(derive(0,0x54454d504f524152ULL,mix(idx.epoch)^mix(idx.partition.clusters.size())));
     check(admitted(idx.B),"calibration B admits all touched positive targets");
     if(idx.B>size_t(o.kmax))check(!admitted(idx.B-1),"calibration chooses minimum B");
@@ -66,7 +72,7 @@ static void selftest() {
     idx.erase(delta);QueryStats deleted;out=idx.search(queries[0].row(),0,2,deleted);for(auto h:out)check(h.id!=delta && h.id!=in && h.id!=0,"tombstone filtering");
     idx.refresh(cal);for(auto& cluster:idx.partition.clusters)for(Id id:cluster.ids)check(data.records[id].active,"refresh removes bucket tombstones");
     OwnedRow zero=owned({{0,0}});QueryStats empty;out=idx.search(zero.row(),999,2,empty);check(empty.empty && empty.verified==data.active,"empty sketch exact fallback");
-    // Safe stopping may not repair hash/pool misses in visited clusters; compare the same realized query with stopping off.
+
     for(size_t i=0;i<queries.size();++i){QueryStats s1,s2;auto r1=idx.search(queries[i].row(),i,2,s1,true),r2=idx.search(queries[i].row(),i,2,s2,false);
         check(r1.size()==r2.size(),"stop/no-stop size");for(size_t j=0;j<r1.size();++j)check(r1[j].id==r2[j].id,"stopping preserves reached-pool top-k in toy case");}
     std::mt19937_64 test_rng(713);
@@ -149,7 +155,7 @@ static int experiment(const std::string& command,const Args& args) {
     }
     double ground_truth_seconds=seconds()-gt_start;std::cerr<<"exact_ground_truth_s="<<ground_truth_seconds<<"\n";
     std::string outdir=args.get("--out","results/current");
-    if(access(outdir.c_str(),W_OK)!=0)throw std::runtime_error("Output directory must exist and be writable; use scripts/run_splade.py");
+    if(access(outdir.c_str(),W_OK)!=0)throw std::runtime_error("Output directory must exist and be writable; use scripts/reproduce.sh");
     std::ofstream split(outdir+"/query_split.csv");split<<"role,query_id\n";
     std::ofstream gt(outdir+"/ground_truth.csv");gt<<std::setprecision(17)<<"query_id,rank,identifier,score\n";
     for(size_t z=0;z<query_ids.size();++z){split<<(z<size_t(nc)?"calibration":"evaluation")<<','<<query_ids[z]<<'\n';for(size_t p=0;p<truth[z].size();++p)gt<<query_ids[z]<<','<<p+1<<','<<truth[z][p].id<<','<<truth[z][p].score<<'\n';}
@@ -179,7 +185,7 @@ static int experiment(const std::string& command,const Args& args) {
             elapsed+=time;linear<<current_k<<','<<r<<','<<query_ids[nc+i]<<','<<time<<'\n';}
         overview<<"ExactScan,"<<current_k<<','<<ne<<','<<repeats<<",1,"<<ne*repeats/elapsed<<','<<collection.active<<'\n';
     }
-    // Untimed warm-up, followed by sequential queries with configured build parallelism.
+
     double total=0,recall_total=0,verification_total=0;
     for(int current_k:ks){
     for(int i=0;i<std::min(ne,args.integer("--warmup-queries",5));++i){QueryStats s;index.search(queries.row(query_ids[nc+i]),query_ids[nc+i],current_k,s);}
@@ -201,7 +207,7 @@ static int experiment(const std::string& command,const Args& args) {
     if(current_k==k){total=current_time;recall_total=current_recall;verification_total=current_verification;}
     overview<<"CABS,"<<current_k<<','<<ne<<','<<repeats<<','<<current_recall/(ne*repeats)<<','<<ne*repeats/current_time<<','<<current_verification/(ne*repeats)<<'\n';
     }
-    // Diagnostics are excluded from QPS timing and cover a specified reached-candidate set.
+
     std::ofstream diagnostics(outdir+"/candidate_diagnostics.csv");diagnostics<<std::setprecision(17)<<"query_id,identifier,max_proxy,exact_score,verified,topk_target\n";
     for(int i=0;i<std::min(ne,args.integer("--diagnostic-queries",10));++i){size_t z=nc+i;QueryStats s;QueryDiagnostics d;
         index.search(queries.row(query_ids[z]),query_ids[z],k,s,true,&d);std::unordered_set<Id> targets;for(int p=0;p<k;++p)targets.insert(truth[z][p].id);

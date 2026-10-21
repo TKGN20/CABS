@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One static default CABS configuration; every result is measured, never preset."""
+
 import argparse
 import datetime as dt
 import hashlib
@@ -27,7 +27,7 @@ def capture(command):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__)
+    parser=argparse.ArgumentParser(description='Run one static CABS dataset configuration.')
     parser.add_argument('dataset',choices=['splade-0.1m','splade-1m'])
     parser.add_argument('--data-directory',type=Path,default=ROOT/'datasets/SPLADE')
     parser.add_argument('--offline',action='store_true')
@@ -75,8 +75,8 @@ def main():
     clock=time.monotonic()
     try:
         with (output/'build.log').open('w') as log:
-            for command in (['cmake','-S',str(ROOT),'-B',str(ROOT/'build'),'-DCMAKE_BUILD_TYPE=Release'],
-                            ['cmake','--build',str(ROOT/'build'),'-j']):
+            for command in (['cmake','-S',str(ROOT),'-B',str(ROOT/'build'),'-DCMAKE_BUILD_TYPE=Release','-DCABS_SANITIZE=OFF'],
+                            ['cmake','--build',str(ROOT/'build'),'--clean-first','-j',str(config['build_threads'])]):
                 subprocess.run(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True)
         binary=ROOT/'build/cabs'
         manifest['binary_sha256']=sha256(binary)
@@ -104,6 +104,10 @@ def main():
             subprocess.run(measured,cwd=ROOT,env=environment,stdout=log,stderr=log,check=True)
         if any(sha256(ROOT/name)!=value for name,value in sources.items()):
             raise RuntimeError('Core source changed during measurement; run is not accepted')
+        if any(sha256(ROOT/name)!=value for name,value in manifest['pipeline_sha256'].items()):
+            raise RuntimeError('Pipeline or configuration changed during measurement; run is not accepted')
+        if sha256(binary)!=manifest['binary_sha256']:
+            raise RuntimeError('Executable changed during measurement; run is not accepted')
         if sha256(docs)!=manifest['data']['sha256'] or sha256(queries)!=manifest['queries']['sha256']:
             raise RuntimeError('Input data changed during measurement; run is not accepted')
         metrics=audit(output)

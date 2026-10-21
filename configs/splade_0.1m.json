@@ -17,5 +17,5 @@
   "warmup_queries": 5,
   "lloyd_iterations": 10,
   "max_index_gib": 9,
-  "protocol_source": "Execution settings inherited from the prior audited CABS source package; ell/delta_h follow the current reproduction request. This is a public reproduction protocol, not proof of equivalence to every manuscript experiment."
+  "protocol_source": "SPLADE CSR benchmark with a disjoint seeded calibration/evaluation split; all execution settings are recorded in this file."
 }

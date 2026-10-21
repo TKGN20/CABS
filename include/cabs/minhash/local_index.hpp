@@ -1,8 +1,8 @@
 #pragma once
 #include "cabs/clustering/spherical_partition.hpp"
 namespace cabs_index {
-// Practical keyed pseudo-random ranks, NOT an assertion of exact minwise independence.
-// mix is a bijection; distinct slots cannot collide within a function.
+
+
 inline Slot signature(const std::vector<Slot>& sketch,uint64_t seed) {
     Slot winner=null_slot;uint64_t best=UINT64_MAX;
     for(Slot slot:sketch){uint64_t rank=mix(uint64_t(slot)^seed);if(winner==null_slot || rank<best){best=rank;winner=slot;}}
@@ -34,4 +34,4 @@ struct Table {
     uint64_t bytes() const{return keys.capacity()*4+offsets.capacity()*4+ids.capacity()*4;}
 };
 
-} // namespace cabs_index
+}

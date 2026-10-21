@@ -5,7 +5,7 @@ struct WorkspaceTimes {
     double sos=0,routing=0,minhash=0,lookup=0,scan=0,pool=0,verification=0,dot_only=0,ordering=0,fallback=0,diagnostic=0;
     size_t checks=0;
 };
-// Largest full (-proxy,ID) pair at root. Dense positions eliminate lookups.
+
 struct IndexedPoolHeap {
     using Value=std::pair<double,Id>;
     std::vector<Value> values;std::vector<size_t> position;
@@ -27,7 +27,7 @@ struct QueryWorkspace {
     std::vector<uint64_t> observed_stamp,verified_stamp,member_stamp,count_stamp;
     std::vector<double> proxy;
     std::vector<uint32_t> collisions;
-    std::vector<float> query_values;std::vector<int> query_coordinates;int query_max=-1;
+    std::vector<double> query_values;std::vector<int> query_coordinates;int query_max=-1;
     std::vector<Id> counted,touched,verified,admissions;
     IndexedPoolHeap pool;std::set<std::pair<double,Id>> top;
     void begin(size_t n){
@@ -44,7 +44,7 @@ struct QueryWorkspace {
     double exact_dense_dot(Row document)const{
         double score=0;
         for(size_t p=0;p<document.size;++p){int coordinate=document.indices[p];if(coordinate>query_max)break;
-            float value=query_values[coordinate];if(value!=0)score+=double(value)*document.values[p];}
+            score+=query_values[coordinate]*double(document.values[p]);}
         return score;
     }
     void cluster(){counted.clear();admissions.clear();if(++cluster_generation==0){std::fill(count_stamp.begin(),count_stamp.end(),0);cluster_generation=1;}}
@@ -69,8 +69,8 @@ struct NoWorkspaceTrace {
     void operator()(const std::vector<int>&,size_t,int,double,double,bool,const QueryWorkspace&)const{}
 };
 inline QueryWorkspace& thread_workspace(){static thread_local QueryWorkspace workspace;return workspace;}
-// One independent workspace per OS thread. No data/query pointers are cached.
-// Query generation isolates indexes, repeated IDs, refresh and growing fresh IDs.
+
+
 template<bool Profile=false,bool Dense=false,class IndexType,class Hook=NoWorkspaceTrace>
 std::vector<Hit> workspace_search(const IndexType& idx,Row q,uint64_t qid,size_t k,QueryStats& s,
     bool stopping=true,QueryDiagnostics* diagnostics=nullptr,Hook hook={},WorkspaceTimes* timing=nullptr){
@@ -119,7 +119,7 @@ std::vector<Hit> workspace_search(const IndexType& idx,Row q,uint64_t qid,size_t
     if(w.verified.size()<k){s.fallback=true;a=tick();for(Id id=0;id<idx.data.records.size();++id)if(idx.data.records[id].active)verify(id);if constexpr(Profile)tm.fallback+=seconds()-a;}
     s.verified=w.verified.size();a=tick();std::vector<Hit> out;for(auto kv:w.top)out.push_back({kv.second,-kv.first});if constexpr(Profile)tm.ordering+=seconds()-a;
     if(diagnostics){a=tick();diagnostics->proxies.clear();diagnostics->verified.clear();for(Id id:w.touched)diagnostics->proxies.emplace(id,w.proxy[id]);diagnostics->verified.insert(w.verified.begin(),w.verified.end());if constexpr(Profile)tm.diagnostic+=seconds()-a;}
-    // Charge tree destruction to this query; retained arrays contain no pointers.
+
     w.pool.clear();w.top.clear();s.time=seconds()-start;return out;
 }
-} // namespace cabs_index
+}

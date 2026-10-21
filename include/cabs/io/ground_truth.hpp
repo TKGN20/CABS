@@ -14,4 +14,4 @@ inline std::vector<Hit> exact(const Collection& data,Row q,size_t k) {
     std::vector<Hit> out;while(!heap.empty()){out.push_back(heap.top());heap.pop();}std::sort(out.begin(),out.end(),better);return out;
 }
 
-} // namespace cabs_index
+}

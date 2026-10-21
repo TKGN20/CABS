@@ -4,8 +4,8 @@
   "documents": 100000,
   "k": 50,
   "Recall@50": 0.9954071100916889,
-  "QPS": 124.72687214716996,
-  "IT_seconds": 187.040980375,
+  "QPS": 158.11887373599666,
+  "IT_seconds": 164.713281045,
   "IS_bytes": 392970289,
   "IS_GB": 0.392970289,
   "IS_definition": "retained index payload plus required original CSR vector storage; excludes allocator/node overhead and query scratch",
@@ -19,8 +19,8 @@
   "repeats": 3,
   "measured_queries": 20928,
   "repeat_QPS": {
-    "0": 125.61133566410486,
-    "1": 124.50259778379971,
-    "2": 124.07672147097581
+    "0": 156.35878690685595,
+    "1": 158.954606346608,
+    "2": 159.07315956811158
   }
 }

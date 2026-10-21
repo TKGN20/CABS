@@ -6,10 +6,10 @@ struct QueryDiagnostics {std::unordered_map<Id,double> proxies;std::unordered_se
 struct Pool {
     size_t capacity;
     std::unordered_map<Id,double> observed;
-    std::set<std::pair<double,Id>> ordered; // (-proxy, identifier), deterministic tie order
+    std::set<std::pair<double,Id>> ordered;
     explicit Pool(size_t b):capacity(b){}
-    // Output only IDs absent from the previous pool and retained after this whole
-    // cluster update. Exact verification must wait until the final capacity trim.
+
+
     void update(const std::unordered_map<Id,uint32_t>& collisions,size_t m,size_t query_size,const std::vector<uint32_t>& cardinal,
                 std::unordered_set<Id>* admissions=nullptr) {
         if(admissions)admissions->clear();
@@ -30,8 +30,8 @@ struct Pool {
     }
 };
 
-// B: keep only the strict top-B after each monotone proxy improvement.
-// observed still contains every touched ID, including rejected candidates.
+
+
 struct BoundedPool : Pool {
     explicit BoundedPool(size_t b):Pool(b){}
     void update(const std::unordered_map<Id,uint32_t>& collisions,size_t m,size_t query_size,
@@ -55,4 +55,4 @@ struct BoundedPool : Pool {
         }
     }
 };
-} // namespace cabs_index
+}
