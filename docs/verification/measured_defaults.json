@@ -1,0 +1,168 @@
+{
+  "0.1m": {
+    "metrics": {
+      "status": "measured",
+      "dataset": "SPLADE-0.1M",
+      "documents": 100000,
+      "k": 50,
+      "Recall@50": 0.9954071100916889,
+      "QPS": 124.72687214716996,
+      "IT_seconds": 187.040980375,
+      "IS_bytes": 392970289,
+      "IS_GB": 0.392970289,
+      "IS_definition": "retained index payload plus required original CSR vector storage; excludes allocator/node overhead and query scratch",
+      "index_structure_bytes": 290330625,
+      "index_structure_definition": "retained capacity-based structure payload; excludes allocator/node overhead, shared original CSR and query scratch",
+      "original_vector_bytes": 102639664,
+      "index_plus_vectors_bytes": 392970289,
+      "calibration_queries": 4,
+      "evaluation_queries": 6976,
+      "query_threads": 1,
+      "repeats": 3,
+      "measured_queries": 20928,
+      "repeat_QPS": {
+        "0": 125.61133566410486,
+        "1": 124.50259778379971,
+        "2": 124.07672147097581
+      }
+    },
+    "K": 1,
+    "B": 13976,
+    "m_i": [
+      205
+    ],
+    "source_hash": "f39e79ecbf28b932fdd6de312c94f53c5e005a7627dc9a770a0e6052eba49a0d",
+    "binary_sha256": "32085fbbb20e710a71f4a58d43ea8e262e422ff086415a17f595ce8e2b6f8265",
+    "input_sha256": {
+      "documents": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+      "queries": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5"
+    },
+    "raw_result_hashes": {
+      "audit.json": "68c9adcfbbd9eb3707dbe456a4e9a496faf194f003cb11f29c4a9368f5bf0af1",
+      "automatic_configuration.json": "fa315c419b362dc2fc3716742031c5d17d676a26a51c446cc40589737ed767de",
+      "build.log": "15aeec08089dd32e28bd05c39ca3cceb454abe1fbd073618bc7d1e2f9f1a587c",
+      "candidate_configurations.csv": "04f9a44a7ca5f49c0442b6d0afc1f19efaeee33f67dbbc259d7ed0396fb55d11",
+      "candidate_diagnostics.csv": "7addab604b306e2cf1362679f0a13ae3fdf07405f35f9042e3b172fb389701d1",
+      "config.json": "00d27e4abaad994916e1ec0c15be5c5587136b1725927c7a924bb594a75f5ca4",
+      "dataset_statistics.json": "e8096a3e3ca9d4e555f73f2f03a0ac9a05b29a1bd13f21de19acd5c136b2367d",
+      "equivalence.csv": "2c02a0ce280f32ad6c855d965a4a782fe42869b37c08f6ef1d8fea5dc8bac615",
+      "exact_baseline.csv": "5b74db82c378d8a197620b61ecf071865a02754e39bcf5175bc90eada8cf4e64",
+      "ground_truth.csv": "b6bb75426c7541262cbb24f24ba2cc2e93c09dbfa18fabeecbaa434d79113684",
+      "index_space.json": "277c7f64a74dd10d4cbffae4d6fb1bf929d332dc6b27056a6480d1e1c3605628",
+      "manifest.json": "de6d2bf96c6481cbf94417328c4450c04efeee1776ddd421f5f6c985a7369efc",
+      "metrics.csv": "7b79f70249c09ff12e60d9670f2af6edb24775bc5002fa9afc172e9afe9fd98a",
+      "metrics.json": "c4225512bfbb29e24c8ff2e5eedb7bfc55cfa436a2a7484a059319688ebd5319",
+      "queries.csv": "b3854df12e5b0a592d71f3c93555310df40739a136d96967c98e23ba5a164b78",
+      "query_split.csv": "4ee282ae1b87ae32325a3f31137265f88337c8b64967b53d08136e461ef48bf0",
+      "resolved_config.json": "6d3e50ad6f8943dfb8b8cd61f68d8a61bd31d4ba08b450ce646b85b441e336ee",
+      "resource_usage.log": "7ce5b6a9dbfaa26d6525e772b0b2a8f697313439d89eb0880c9037e0eb005df8",
+      "retrieved.csv": "aaf56e10718cbb49760e4d92a6bf6ce5bfa2d18b51710b9dffd4df51bbf738dd",
+      "run.log": "2666b1bfd86d286235d5bff64a3242470783c99683eacee82cd385abe822e2a9",
+      "summary.json": "f7e055e4f852417fc66799251fb7486ccae90b705fc4cef7a94999be629e8e03"
+    },
+    "audit": {
+      "status": "passed",
+      "checks": [
+        "disjoint query sets",
+        "exact-GT recall recomputation",
+        "ranked unique in-range IDs",
+        "complete unique query/repeat records",
+        "QPS recomputed from all query times",
+        "resolved configuration consistency",
+        "IT accounting",
+        "IS component sum"
+      ],
+      "query_measurements": 20928,
+      "evaluation_script_sha256": "0232995a5963ed50d6c2bee3cabb3a403e6b67f14837413ca3cdac67a2ef125b"
+    },
+    "measurement_git_commit": "b6fe9e2e6460a660a15d20edf932918877880226",
+    "full_query_run": true
+  },
+  "1m": {
+    "metrics": {
+      "status": "measured",
+      "dataset": "SPLADE-1M",
+      "documents": 1000000,
+      "k": 50,
+      "Recall@50": 0.9957167431192104,
+      "QPS": 12.040261764554861,
+      "IT_seconds": 751.1278097,
+      "IS_bytes": 3461449469,
+      "IS_GB": 3.461449469,
+      "IS_definition": "retained index payload plus required original CSR vector storage; excludes allocator/node overhead and query scratch",
+      "index_structure_bytes": 2442888685,
+      "index_structure_definition": "retained capacity-based structure payload; excludes allocator/node overhead, shared original CSR and query scratch",
+      "original_vector_bytes": 1018560784,
+      "index_plus_vectors_bytes": 3461449469,
+      "calibration_queries": 4,
+      "evaluation_queries": 6976,
+      "query_threads": 1,
+      "repeats": 3,
+      "measured_queries": 20928,
+      "repeat_QPS": {
+        "0": 12.273111190703636,
+        "1": 12.074752883287491,
+        "2": 11.783052014077347
+      }
+    },
+    "K": 8,
+    "B": 51385,
+    "m_i": [
+      55,
+      47,
+      111,
+      99,
+      111,
+      46,
+      54,
+      54
+    ],
+    "source_hash": "f39e79ecbf28b932fdd6de312c94f53c5e005a7627dc9a770a0e6052eba49a0d",
+    "binary_sha256": "32085fbbb20e710a71f4a58d43ea8e262e422ff086415a17f595ce8e2b6f8265",
+    "input_sha256": {
+      "documents": "d0727fcc10e18151ca693a0896dfa70c2dce6b8111a95d245fea58be389fa9dc",
+      "queries": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5"
+    },
+    "raw_result_hashes": {
+      "audit.json": "34062db962f5029860208e220e189fc9bbc14c9eef131ae9686528d607df8873",
+      "automatic_configuration.json": "2ca096c06b2980dd6676714ac670646f4f482b27bda730006bd1d0c632105cf6",
+      "build.log": "431fd3ade2a151680f1b4e2b453aa1eb22b814b6050816b5c6b5bdb0eb7a8db0",
+      "build_flags.txt": "1a76d7bdd9f5e083725e1a9fb17c7e37714d9be700217dc9cb979232992236dc",
+      "candidate_configurations.csv": "8d5c18ea51fa78aa3e317bfde8246f9a74c5a5419a8873ac877984c025d87bfa",
+      "candidate_diagnostics.csv": "7addab604b306e2cf1362679f0a13ae3fdf07405f35f9042e3b172fb389701d1",
+      "config.json": "ebf3876151fd726bd392980e83fbf57fb9b4539976bc8c31b4bdda4640a46bc9",
+      "dataset_statistics.json": "62423067b2aadeaee5e20f3ef002fae358c7f0860a0a24cf1d35b4a93593c00f",
+      "equivalence.csv": "2c02a0ce280f32ad6c855d965a4a782fe42869b37c08f6ef1d8fea5dc8bac615",
+      "exact_baseline.csv": "5b74db82c378d8a197620b61ecf071865a02754e39bcf5175bc90eada8cf4e64",
+      "ground_truth.csv": "d594716fc00f247179a85074350bbe08f142a416bfcd02f9860a59b057120746",
+      "index_space.json": "d3aef4d58ce9df7d2af5216551c8d7a939ee954e33bf21fd83c39c8d49b6b84c",
+      "manifest.json": "b624b27d9c5fdffb4f1b7266899775b6e2870ac590e07633b3d76d12777d3aa9",
+      "metrics.csv": "cb989e61aa9edcf69758aab6a131d93b191a9714270dba47f132437c16a61230",
+      "metrics.json": "3b0b2cf0d9c98176559df631c38e38d5ba0017e42b4208d5a7ac4a2d3a894e7a",
+      "queries.csv": "46bd44af27e708068671d34826d356eacc935d5ff4524b0dbcea183270621ba4",
+      "query_split.csv": "4ee282ae1b87ae32325a3f31137265f88337c8b64967b53d08136e461ef48bf0",
+      "resolved_config.json": "7a145c8d935e72675b36dd046b2282097b56a8325ea2d081b7d72f54e4298bfc",
+      "resource_usage.log": "382275d736391e060415502fb51e46ded6c60c1681719bbe1dc7f855de514f28",
+      "retrieved.csv": "0bf3616f54421adc367dbdcb498d7310096db35eebdac96b98f5223278f0574b",
+      "run.log": "e05d424f275966efa4f7b66de4a5407aa24e94c55f9cba64ea2df1db86846482",
+      "summary.json": "1157e903025800f5734ed7d0e3eb93602667758e26159f960cb5ef20a834353f"
+    },
+    "audit": {
+      "status": "passed",
+      "checks": [
+        "disjoint query sets",
+        "exact-GT recall recomputation",
+        "ranked unique in-range IDs",
+        "complete unique query/repeat records",
+        "QPS recomputed from all query times",
+        "resolved configuration consistency",
+        "IT accounting",
+        "IS component sum"
+      ],
+      "query_measurements": 20928,
+      "evaluation_script_sha256": "0232995a5963ed50d6c2bee3cabb3a403e6b67f14837413ca3cdac67a2ef125b"
+    },
+    "measurement_git_commit": "1c5091d8a9e2e7b913da4e2ceb6ccbff5c6bb655",
+    "full_query_run": true
+  }
+}

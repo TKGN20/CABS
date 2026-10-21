@@ -1,0 +1,13 @@
+name: build-and-correctness
+on: [push, pull_request]
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build -j2
+      - run: ctest --test-dir build --output-on-failure
+      - run: cmake -S . -B build-sanitize -DCMAKE_BUILD_TYPE=Debug -DCABS_SANITIZE=ON
+      - run: cmake --build build-sanitize -j2
+      - run: ASAN_OPTIONS=detect_leaks=1 ctest --test-dir build-sanitize --output-on-failure
