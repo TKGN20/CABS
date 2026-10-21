@@ -41,7 +41,7 @@ public:
         for(auto& c:partition.clusters) {
             l.memberships+=c.ids.size();l.min_m=std::min(l.min_m,c.m);l.max_m=std::max(l.max_m,c.m);
             if(c.floor>0)l.floor=l.floor?std::min(l.floor,c.floor):c.floor;
-            // Conservative upper bound including vector growth for occupied bucket keys.
+
             bytes+=uint64_t(c.m)*(uint64_t(c.ids.size())*4+uint64_t(std::min<size_t>(c.ids.size(),expansion.offset.back()))*16+sizeof(Table));
             bytes+=c.mu.capacity()*8+c.ids.capacity()*4;
         }
@@ -67,7 +67,7 @@ public:
             std::unordered_set<Id> pending;
             for(auto h:calibration.targets[z])if(jaccard(calibration.sketches[z],sketches.sets[h.id])>0)pending.insert(h.id);
             if(pending.empty())continue;
-            // Warm-up and measured repetitions share the temporary functions, never test queries.
+
             for(int rep=0;rep<3;++rep) {
                 auto left=pending;double start=seconds();auto order=partition.order(calibration.queries[z]);
                 for(int c:order) {
@@ -189,7 +189,7 @@ public:
     void refresh(Calibration c) {
         for(size_t z=0;z<c.queries.size();++z)c.targets[z]=exact(data,c.queries[z],opts.kmax);
         rebuild(c);
-        // Releasing cached sketches is optional; the benchmark reports their actual resident payload.
+
         for(Id id=0;id<data.records.size();++id)if(!data.records[id].active) {
             sketches.sets[id].clear();sketches.sets[id].shrink_to_fit();
             if(data.records[id].owning){data.records[id].owned={};}
@@ -197,4 +197,4 @@ public:
     }
 };
 
-} // namespace cabs_index
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independently recompute Recall@50/QPS and audit a completed CABS run."""
+
 import argparse
 import csv
 import json
@@ -95,7 +95,7 @@ def audit(directory):
     construction=summary['build_seconds_including_calibration']+summary['calibration_ground_truth_seconds']+stages['df_statistics']+stages['dataset_loading_validation']
     require(math.isfinite(construction) and construction>0 and math.isclose(construction,summary['construction_seconds'],rel_tol=1e-12), 'IT accounting mismatch')
     metrics={'status':'measured','dataset':summary['dataset'],'documents':n,'k':k,
-             'Recall@50':recall,'QPS':qps,'IT_seconds':construction,
+             f'Recall@{k}':recall,'QPS':qps,'IT_seconds':construction,
              'IS_bytes':memory['index_plus_vectors_bytes'],'IS_GB':memory['index_plus_vectors_bytes']/1e9,
              'IS_definition':'retained index payload plus required original CSR vector storage; excludes allocator/node overhead and query scratch',
              'index_structure_bytes':memory['index_structure_bytes'],
@@ -115,6 +115,6 @@ def audit(directory):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__)
+    parser=argparse.ArgumentParser(description='Evaluate and validate a completed CABS result directory.')
     parser.add_argument('directory',type=Path)
     print(json.dumps(audit(parser.parse_args().directory),indent=2))

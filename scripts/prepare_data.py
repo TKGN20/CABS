@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download/decompress public benchmark CSR files, without changing vector values."""
+
 import argparse
 import gzip
 import hashlib
@@ -52,7 +52,7 @@ def prepare(scale, directory, offline=False):
             print(f'DOWNLOAD {spec["url"]}', flush=True)
             temporary = directory/(name+'.part')
             request = urllib.request.Request(spec['url'], headers={'User-Agent':'CABS-reproducibility'})
-            # Gzip CRC is checked while reading; the uncompressed CSR is checked before rename.
+
             with urllib.request.urlopen(request, timeout=120) as response:
                 with gzip.GzipFile(fileobj=response) as stream, temporary.open('wb') as output:
                     shutil.copyfileobj(stream, output, 1024*1024)
@@ -65,7 +65,7 @@ def prepare(scale, directory, offline=False):
     return directory/names[0], directory/names[1]
 
 def main():
-    p = argparse.ArgumentParser(description=__doc__)
+    p = argparse.ArgumentParser(description='Download and verify public SPLADE CSR files.')
     p.add_argument('--scale',choices=['0.1M','1M'],default='1M')
     p.add_argument('--directory',type=Path,default=ROOT/'datasets/SPLADE')
     p.add_argument('--offline',action='store_true',help='Verify supplied CSR files without downloading')

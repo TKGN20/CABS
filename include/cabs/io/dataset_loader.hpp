@@ -1,7 +1,7 @@
 #pragma once
 #include "cabs/common.hpp"
 namespace cabs_index {
-// Little-endian CSR64: uint64(n,d,nnz), uint64 indptr, int32 indices, float32 values.
+
 struct CSR {
     int fd=-1; void* mapping=MAP_FAILED; size_t bytes=0;
     uint64_t n=0,d=0,nnz=0; const uint64_t* ptr=nullptr;
@@ -77,4 +77,4 @@ struct Collection {
     }
 };
 
-} // namespace cabs_index
+}

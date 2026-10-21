@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the production CSR/build/search path with independent exact scores."""
+
 import argparse
 import csv
 import json
@@ -62,7 +62,7 @@ def check(binary):
                 expected=sum(value*q.get(j,0) for j,value in x.items())
                 if expected!=float(row['score']):
                     raise ValueError('Returned score differs from independent original inner product')
-        # Invalid binary inputs must fail explicitly rather than produce results.
+
         malformed=directory/'truncated.csr';malformed.write_bytes(b'bad csr')
         bad=subprocess.run([str(binary),'inspect','--data',str(malformed),'--queries',str(directory/'queries.csr')],capture_output=True)
         if bad.returncode==0:
@@ -72,6 +72,6 @@ def check(binary):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__)
+    parser=argparse.ArgumentParser(description='Test the production CSR, build and search pipeline.')
     parser.add_argument('--binary',type=Path,default=ROOT/'build/cabs')
     check(parser.parse_args().binary.resolve())

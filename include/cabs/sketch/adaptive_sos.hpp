@@ -53,4 +53,4 @@ inline double jaccard(const std::vector<Slot>& a,const std::vector<Slot>& b) {
     size_t z=overlap(a,b);return z?double(z)/(a.size()+b.size()-z):0;
 }
 
-} // namespace cabs_index
+}

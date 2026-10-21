@@ -3,7 +3,7 @@
 #include <memory>
 using namespace cabs_index;
 static void require(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
-// Frozen pre-A Pool::update, independent of the admissions implementation.
+
 static void reference_update(Pool& p,const std::unordered_map<Id,uint32_t>& counts,size_t m,size_t size,const std::vector<uint32_t>& cardinal){
     for(auto kv:counts){double j=double(kv.second)/m,v=j/(1+j)*(size+cardinal[kv.first]);auto it=p.observed.find(kv.first);
         if(it!=p.observed.end() && it->second>=v)continue;
@@ -13,8 +13,8 @@ static void reference_update(Pool& p,const std::unordered_map<Id,uint32_t>& coun
 }
 struct Step {int cluster;double gamma,suffix;bool stop;std::vector<std::pair<double,Id>> pool;std::vector<Id> C;};
 struct Trace {std::vector<int> order;std::vector<Step> steps;size_t verification_checks=0;};
-// Frozen search body, with optional untimed trace. incremental=true is a traced
-// mirror only; measured after queries call the actual production Index::search.
+
+
 template<class PoolType=Pool>
 static std::vector<Hit> reference_search(const Index& idx,Row q,uint64_t qid,size_t k,QueryStats& s,
     QueryDiagnostics* diagnostics=nullptr,Trace* trace=nullptr,bool incremental=false,bool stopping=true){

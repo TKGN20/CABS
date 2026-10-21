@@ -2,9 +2,9 @@
 #include "cabs.hpp"
 
 namespace cabs_index {
-// A reproducible capacity-based payload inventory, not allocator-level RSS.
-// Object headers and owned vector capacities are counted once. Build-only
-// calibration buffers are itemized separately. CSR values are shared input.
+
+
+
 inline std::map<std::string,uint64_t> retained_index_bytes(const Index& index) {
     std::map<std::string,uint64_t> out;
     out["index_object_headers"] = sizeof(Index);
@@ -39,7 +39,7 @@ inline std::map<std::string,uint64_t> retained_index_bytes(const Index& index) {
     for(const auto& sketch:index.calibration.sketches) calibration += sketch.capacity()*sizeof(Slot);
     for(const auto& target:index.calibration.targets) calibration += target.capacity()*sizeof(Hit);
     out["retained_calibration_buffers"] = calibration;
-    // Node allocation overhead is implementation-specific and not claimed here.
+
     auto external_string_bytes=[](const std::string& value) -> uint64_t {
         auto start=reinterpret_cast<uintptr_t>(&value);
         auto buffer=reinterpret_cast<uintptr_t>(value.data());
@@ -51,4 +51,4 @@ inline std::map<std::string,uint64_t> retained_index_bytes(const Index& index) {
     out["retained_labels_payload"] = labels;
     return out;
 }
-} // namespace cabs_index
+}

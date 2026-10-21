@@ -5,6 +5,8 @@
 !/results/README.md
 !/results/measured/
 !/results/measured/**
+!/results/engineering/
+!/results/engineering/**
 __pycache__/
 *.py[cod]
 *.csr

@@ -58,5 +58,6 @@
     "retrieved.csv": "aaf56e10718cbb49760e4d92a6bf6ce5bfa2d18b51710b9dffd4df51bbf738dd",
     "queries.csv": "b3854df12e5b0a592d71f3c93555310df40739a136d96967c98e23ba5a164b78"
   },
-  "note": "Source is equivalent after Git line-ending normalization. The 0.1M run began before the feature commit; its actual core hashes are preserved. Timings and returned IDs are not altered. Numerical agreement with manuscript estimates is unverified."
+  "note": "Completed measurement. Original measured source/binary hashes and raw query records are retained. Published source hashes identify the measured code after Git line-ending normalization; later revisions are documented separately.",
+  "published_source_commit": "ac178368b0c9da94e75331b5d124cc66a4bb408a"
 }
