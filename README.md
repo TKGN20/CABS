@@ -117,15 +117,15 @@ runs: it records the configuration, environment and file hashes automatically.
 
 All numerical results in [results/measured/](results/measured/) are actual
 measurements with raw query times, ranked IDs, exact GT and configuration hashes.
-The full-run records below were collected from source version `ac17836` on an
-AMD Ryzen 7 8845H under WSL, GCC 11.4, using the protocol above. Search was
+Each full-run record identifies its measured source version. Both were collected
+on an AMD Ryzen 7 8845H under WSL, GCC 11.4, using the protocol above. Search was
 single-threaded. Later source revisions and their validation are recorded in
 [docs/VERIFICATION.md](docs/VERIFICATION.md).
 
-| Dataset | Recall@50 | QPS | IT (s) | IS (GB) |
-| --- | ---: | ---: | ---: | ---: |
-| SPLADE-0.1M | 0.995407 | 124.73 | 187.04 | 0.392970 |
-| SPLADE-1M | 0.995717 | 12.04 | 751.13 | 3.461449 |
+| Dataset | Source | Recall@50 | QPS | IT (s) | IS (GB) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| SPLADE-0.1M | `80b25cf` | 0.995407 | 158.12 | 164.71 | 0.392970 |
+| SPLADE-1M | `ac17836` | 0.995717 | 12.04 | 751.13 | 3.461449 |
 
 Hardware and software are part of each measurement. These local observations
 are not server measurements. The [server execution procedure](docs/EXPERIMENTS.md)

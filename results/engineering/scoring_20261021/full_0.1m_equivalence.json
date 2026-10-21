@@ -1,0 +1,9 @@
+{
+  "hash_equal": {
+    "retrieved.csv": true,
+    "ground_truth.csv": true,
+    "query_split.csv": true
+  },
+  "non_timing_query_fields_equal": true,
+  "query_measurements": 20928
+}

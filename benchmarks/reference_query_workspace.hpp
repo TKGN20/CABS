@@ -5,7 +5,7 @@ struct WorkspaceTimes {
     double sos=0,routing=0,minhash=0,lookup=0,scan=0,pool=0,verification=0,dot_only=0,ordering=0,fallback=0,diagnostic=0;
     size_t checks=0;
 };
-                                                                            
+
 struct IndexedPoolHeap {
     using Value=std::pair<double,Id>;
     std::vector<Value> values;std::vector<size_t> position;
@@ -69,8 +69,8 @@ struct NoWorkspaceTrace {
     void operator()(const std::vector<int>&,size_t,int,double,double,bool,const QueryWorkspace&)const{}
 };
 inline QueryWorkspace& thread_workspace(){static thread_local QueryWorkspace workspace;return workspace;}
-                                                                              
-                                                                                  
+
+
 template<bool Profile=false,bool Dense=false,class IndexType,class Hook=NoWorkspaceTrace>
 std::vector<Hit> workspace_search(const IndexType& idx,Row q,uint64_t qid,size_t k,QueryStats& s,
     bool stopping=true,QueryDiagnostics* diagnostics=nullptr,Hook hook={},WorkspaceTimes* timing=nullptr){
@@ -119,9 +119,9 @@ std::vector<Hit> workspace_search(const IndexType& idx,Row q,uint64_t qid,size_t
     if(w.verified.size()<k){s.fallback=true;a=tick();for(Id id=0;id<idx.data.records.size();++id)if(idx.data.records[id].active)verify(id);if constexpr(Profile)tm.fallback+=seconds()-a;}
     s.verified=w.verified.size();a=tick();std::vector<Hit> out;for(auto kv:w.top)out.push_back({kv.second,-kv.first});if constexpr(Profile)tm.ordering+=seconds()-a;
     if(diagnostics){a=tick();diagnostics->proxies.clear();diagnostics->verified.clear();for(Id id:w.touched)diagnostics->proxies.emplace(id,w.proxy[id]);diagnostics->verified.insert(w.verified.begin(),w.verified.end());if constexpr(Profile)tm.diagnostic+=seconds()-a;}
-                                                                                  
+
     w.pool.clear();w.top.clear();s.time=seconds()-start;return out;
 }
-}                        
+}
 
 }

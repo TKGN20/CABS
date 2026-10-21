@@ -25,22 +25,22 @@
     "K": 1,
     "B": 13976,
     "stage_seconds": {
-      "B_calibration": 0.015107540000030895,
-      "K_calibration_including_partitions_hashes": 177.779134585,
-      "K_candidate_cost_measurement": 0.42289148199998294,
-      "allocation": 0.003269729000010102,
-      "calibration_including_partitions": 181.944690052,
-      "final_Minhash_construction": 4.2334971660000065,
-      "local_m_calibration_all_candidates": 0.0039500690000124905,
-      "partition_all_candidates": 31.129231934000018,
-      "scaling": 0.008299067999999465,
-      "selected_temporary_hash_construction": 4.1501640189999875,
-      "sketch_construction": 0.33339478100000974,
-      "spherical_all_candidates": 30.452758655999986,
-      "spillover_all_candidates": 0.6603283589999762,
-      "temporary_hash_construction_all_candidates": 146.03247869800003,
-      "df_statistics": 0.03198156699998833,
-      "dataset_loading_validation": 0.4760093070000124
+      "B_calibration": 0.012974068000005445,
+      "K_calibration_including_partitions_hashes": 156.74165835399998,
+      "K_candidate_cost_measurement": 0.36970890799997846,
+      "allocation": 0.0031955970000012712,
+      "calibration_including_partitions": 160.32959136300002,
+      "final_Minhash_construction": 3.5370689940000375,
+      "local_m_calibration_all_candidates": 0.004003036000028715,
+      "partition_all_candidates": 29.172282497000054,
+      "scaling": 0.007439228999999159,
+      "selected_temporary_hash_construction": 3.5747112440000137,
+      "sketch_construction": 0.3423835199999985,
+      "spherical_all_candidates": 28.554381140000004,
+      "spillover_all_candidates": 0.6016928250000433,
+      "temporary_hash_construction_all_candidates": 127.02696394700001,
+      "df_statistics": 0.030087578999996367,
+      "dataset_loading_validation": 0.4538826960000222
     },
     "clusters": [
       {
@@ -54,7 +54,7 @@
       }
     ]
   },
-  "source_hash": "f39e79ecbf28b932fdd6de312c94f53c5e005a7627dc9a770a0e6052eba49a0d",
+  "source_hash": "55ca4782bc218b6951780d952b9a93fc017387105d3b7bf251d149ff4ac27d39",
   "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
   "query_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5"
 }

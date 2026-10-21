@@ -2,24 +2,6 @@
   "status": "measured",
   "date": "2026-10-21",
   "hardware": "AMD Ryzen 7 8845H; WSL; GCC 11.4; portable -O3 C++17 OpenMP",
-  "source_sha256_LF": {
-    "include/cabs.hpp": "5aeda6734aac0d72951c7ab29b556ca75427167fd23ef94477833598291f118d",
-    "include/final_equivalence.hpp": "ae290a758d2b76d2032364abb80a454d82004c71aea6f926687fa47c7633f3be",
-    "include/cabs/common.hpp": "21d93c378d3ca342997e30f36318ec195d426b9482e93ee60b056d58b3670d07",
-    "include/cabs/reporting.hpp": "414b562cd88724252869ccc373b50438cd9c4a699bf5c119069c7cbf13d7f2f0",
-    "include/cabs/calibration/configuration.hpp": "a7b84b0819c94001ce160e03e10438fb10d233b5fb6b8f08dff2c2dfd5479ae7",
-    "include/cabs/clustering/spherical_partition.hpp": "20a03e33bfc9adcf911f3eb4e11db3f344086ea80588a78fbbc21951be48c0cd",
-    "include/cabs/io/dataset_loader.hpp": "a91f438a765410dbff51e068a1304127c9f8e3f5ae88e988bacddc8ec4f1018c",
-    "include/cabs/io/ground_truth.hpp": "771b114d0c9cf779c509a5ff4f93447203f5b6252cab6890850edc9db087fc00",
-    "include/cabs/minhash/local_index.hpp": "1377609bd3fd7ebf12a36da1079ab24b2030dc86438f1af4bf12cd510fbcf775",
-    "include/cabs/search/epoch_index.hpp": "f79602c647a5fa35981c775d6bd50874467b906b787289ce5e197a36fdff3024",
-    "include/cabs/search/query_workspace.hpp": "0b365f5bec50e682a1faf5240ec5cd2d225850b2ba31d9e691f3549cf9768e3a",
-    "include/cabs/search/working_pool.hpp": "04f8b0d48d15e12401ff0a256bbd7d7f9b904ca29b7e12a700caf0e1caace45c",
-    "include/cabs/sketch/adaptive_sos.hpp": "6fef7e3818179b5db6c13bdbe4985280458a82eb376a55ed1ed512f1c014a6b9",
-    "src/main.cpp": "b44a8fe14c834c761fd09306b73c9ca7d7dd73e2598262834331ac6bfebb479a",
-    "benchmarks/scoring_pair.cpp": "af5406963c75db05e927fa1c6e7badef06a160310ecb5c6591c6be6704c32d5b",
-    "benchmarks/reference_query_workspace.hpp": "eddc1db6eeb552b3e664003e347664746cc25c5da602a49be806dae59bed4b41"
-  },
   "paired_csv_sha256": "50e2c9351580a9da1431d9ff67aee407d544e0edc89f953f321fb6372026868d",
   "trial_binary_sha256": "8cf6ab4aa146b6dedf0215e335371c60b85513038104c43581a6735a353fe2be",
   "command": [
@@ -36,5 +18,23 @@
     "ratio": 1.1704391319509255,
     "checksum": 3460910.404731924
   },
-  "notes": "Diagnostic source filenames were renamed for publication. Production scoring and the frozen reference body are unchanged from the measured trial. No timing or result value was changed."
+  "notes": "Diagnostic source filenames were renamed for publication. Production scoring and the frozen reference body are unchanged from the measured trial. No timing or result value was changed.",
+  "published_source_sha256_LF": {
+    "include/cabs.hpp": "5aeda6734aac0d72951c7ab29b556ca75427167fd23ef94477833598291f118d",
+    "include/final_equivalence.hpp": "ae290a758d2b76d2032364abb80a454d82004c71aea6f926687fa47c7633f3be",
+    "include/cabs/common.hpp": "21d93c378d3ca342997e30f36318ec195d426b9482e93ee60b056d58b3670d07",
+    "include/cabs/reporting.hpp": "414b562cd88724252869ccc373b50438cd9c4a699bf5c119069c7cbf13d7f2f0",
+    "include/cabs/calibration/configuration.hpp": "a7b84b0819c94001ce160e03e10438fb10d233b5fb6b8f08dff2c2dfd5479ae7",
+    "include/cabs/clustering/spherical_partition.hpp": "20a03e33bfc9adcf911f3eb4e11db3f344086ea80588a78fbbc21951be48c0cd",
+    "include/cabs/io/dataset_loader.hpp": "a91f438a765410dbff51e068a1304127c9f8e3f5ae88e988bacddc8ec4f1018c",
+    "include/cabs/io/ground_truth.hpp": "771b114d0c9cf779c509a5ff4f93447203f5b6252cab6890850edc9db087fc00",
+    "include/cabs/minhash/local_index.hpp": "1377609bd3fd7ebf12a36da1079ab24b2030dc86438f1af4bf12cd510fbcf775",
+    "include/cabs/search/epoch_index.hpp": "f79602c647a5fa35981c775d6bd50874467b906b787289ce5e197a36fdff3024",
+    "include/cabs/search/query_workspace.hpp": "0b365f5bec50e682a1faf5240ec5cd2d225850b2ba31d9e691f3549cf9768e3a",
+    "include/cabs/search/working_pool.hpp": "04f8b0d48d15e12401ff0a256bbd7d7f9b904ca29b7e12a700caf0e1caace45c",
+    "include/cabs/sketch/adaptive_sos.hpp": "6fef7e3818179b5db6c13bdbe4985280458a82eb376a55ed1ed512f1c014a6b9",
+    "src/main.cpp": "b44a8fe14c834c761fd09306b73c9ca7d7dd73e2598262834331ac6bfebb479a",
+    "benchmarks/scoring_pair.cpp": "af5406963c75db05e927fa1c6e7badef06a160310ecb5c6591c6be6704c32d5b",
+    "benchmarks/reference_query_workspace.hpp": "986d9aa2abc79a85c1e6b9858c97c31afbcc9de93aa0159cb6c0c2cf31140da4"
+  }
 }

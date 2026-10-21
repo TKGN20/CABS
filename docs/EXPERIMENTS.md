@@ -17,6 +17,11 @@ using the same portable Release configuration and original input checksums.
 Record its actual OS, compiler, topology and memory rather than copying the WSL
 environment into a result manifest.
 
+The recorded local compiler is GCC 11.4. Use the same C++ standard-library
+implementation when matching the seeded calibration split across machines, and
+verify the saved `query_split.csv` IDs. A fixed seed alone does not establish
+identical `std::shuffle` results across different standard-library versions.
+
 ```bash
 lscpu
 lscpu -e=CPU,CORE,SOCKET,NODE
