@@ -91,6 +91,14 @@ def audit(directory):
     memory=json.loads((directory/'index_space.json').read_text())
     require(sum(memory['components_bytes'].values())==memory['index_structure_bytes']==summary['index_structure_bytes'], 'IS component sum mismatch')
     require(memory['index_plus_vectors_bytes']==memory['index_structure_bytes']+summary['original_vector_bytes'], 'Vector/index accounting mismatch')
+    cache_receipt=directory/'sketch_cache_release.json'
+    if cache_receipt.exists():
+        released=json.loads(cache_receipt.read_text())
+        require(released['retained_sketch_payload_bytes']==memory['components_bytes']['cached_sketches']==summary['cached_sketch_bytes']==0, 'Sketch cache was not fully released')
+        require(released['after_IS_bytes']==memory['index_plus_vectors_bytes'], 'Released-cache IS inventory mismatch')
+        require(released['bucket_payload_before']==released['bucket_payload_after']==summary['bucket_payload_bytes'], 'Cache release changed MinHash buckets')
+        require(released['K']==summary['K'] and released['B']==summary['B'] and released['cardinality_count']==n, 'Cache release changed configuration/cardinalities')
+        require(released['release_included_in_IT'] is True and math.isfinite(released['release_seconds']) and released['release_seconds']>=0, 'Invalid cache-release timing')
     stages=automatic['stage_seconds']
     construction=summary['build_seconds_including_calibration']+summary['calibration_ground_truth_seconds']+stages['df_statistics']+stages['dataset_loading_validation']
     require(math.isfinite(construction) and construction>0 and math.isclose(construction,summary['construction_seconds'],rel_tol=1e-12), 'IT accounting mismatch')

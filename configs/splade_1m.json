@@ -17,5 +17,6 @@
   "warmup_queries": 5,
   "lloyd_iterations": 10,
   "max_index_gib": 9,
-  "protocol_source": "SPLADE CSR benchmark with a disjoint seeded calibration/evaluation split; all execution settings are recorded in this file."
+  "protocol_source": "SPLADE CSR benchmark with a disjoint seeded calibration/evaluation split; all execution settings are recorded in this file.",
+  "retain_sketch_cache": false
 }

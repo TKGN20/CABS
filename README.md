@@ -95,6 +95,7 @@ runs. No prebuilt index or checked-in result is used to answer queries.
 | Lloyd iterations | 10 |
 | Build and GT threads / search threads | 4 / 1 |
 | Timing repeats / warm-up queries | 3 / 5 |
+| Static document-sketch cache retention | disabled in this candidate |
 
 These settings are recorded in [configs/](configs/). Internal `K`, local `m_i`,
 and global candidate-pool capacity `B` are automatically calibrated. The memory
@@ -180,6 +181,14 @@ ablation, other encoders and dynamic benchmark tables are outside their scope.
 Indexes are built in memory; disk save/load and service deployment are not
 implemented. See [the repository comparison](docs/REPOSITORY_COMPARISON.md) and
 [implementation details](docs/METHOD.md).
+
+This review candidate releases per-document construction sketches after final
+hash-table construction for static tasks. Cardinalities and final tables remain
+available for search. The release cost is included in IT and a same-index byte
+inventory is saved as `sketch_cache_release.json`. `--keep-sketch-cache 1` on the
+core executable retains them; dataset task files use `retain_sketch_cache=false`.
+The existing full-run table remains versioned and is not relabeled as a new
+measurement of this candidate. IS payload reduction is separate from peak RSS.
 
 ## License
 
