@@ -15,9 +15,10 @@ from smoke_test import write_csr
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 from audit_calibration import summarize
+from evaluate import audit, read_csv
 
 
-def main(binary):
+def main(binary,core):
     rng=random.Random(84691)
     with tempfile.TemporaryDirectory(prefix='cabs-calibration-audit-') as temporary:
         directory=Path(temporary)
@@ -40,11 +41,44 @@ def main(binary):
             for key,value in row.items():
                 if key not in ('K','query_id') and (not math.isfinite(float(value)) or float(value)<0):
                     raise ValueError('Invalid profile time')
+        complete=directory/'complete';complete.mkdir()
+        command=[str(core),'run','--data',str(directory/'base.csr'),'--queries',str(directory/'queries.csr'),
+                 '--out',str(complete),'--ell','24','--delta-h','0.2','--k','50','--kmax','100',
+                 '--calibration-queries','4','--eval-queries','3','--seed','20261007',
+                 '--threads','4','--iterations','10','--repeats','2','--max-index-gib','9',
+                 '--keep-sketch-cache','0','--benchmark-exact','0','--diagnostic-queries','0','--equivalence-queries','3']
+        run=subprocess.run(command,capture_output=True,text=True)
+        if run.returncode:
+            raise RuntimeError(run.stdout+run.stderr)
+        audit(complete)
+        selected=json.loads((complete/'automatic_configuration.json').read_text())
+        replay=directory/'replay';replay.mkdir()
+        run=subprocess.run([str(binary),str(directory/'base.csr'),str(directory/'queries.csr'),str(replay),'3',str(selected['K']),str(selected['B'])],capture_output=True,text=True)
+        if run.returncode:
+            raise RuntimeError(run.stdout+run.stderr)
+        summarize(replay,3)
+        expected={}
+        for row in read_csv(complete/'retrieved.csv'):
+            expected.setdefault(int(row['query_id']),[]).append((int(row['identifier']),float(row['score'])))
+        observed={}
+        for row in read_csv(replay/'full_results.csv'):
+            observed.setdefault(int(row['query_id']),[]).append((int(row['identifier']),float(row['score'])))
+        if observed!=expected:
+            raise ValueError('Selected-index audit differs from the full production result')
+        records={int(r['query_id']):r for r in read_csv(complete/'queries.csv') if int(r['repeat'])==0}
+        for row in read_csv(replay/'full_queries.csv'):
+            if row['split']=='evaluation':
+                for key in ('verified','touched','probed','bucket_accesses','entries','pool_peak'):
+                    if int(row[key])!=int(records[int(row['query_id'])][key]):
+                        raise ValueError('Selected-index audit counter mismatch')
         print(json.dumps({'status':'PASS','candidate_configurations':len(observation['candidates']),
-                          'profile_queries':len(profiles),'B_and_query_records_recomputed':True}))
+                          'profile_queries':len(profiles),'B_and_query_records_recomputed':True,
+                          'selected_final_index_production_results_equal':True}))
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--binary',type=Path,required=True)
-    main(parser.parse_args().binary.resolve())
+    parser.add_argument('--core-binary',type=Path,required=True)
+    args=parser.parse_args()
+    main(args.binary.resolve(),args.core_binary.resolve())
