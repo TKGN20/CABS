@@ -14,6 +14,13 @@ from reproduce import capture, save
 from evaluate import audit, read_csv
 
 
+def match_recorded_counters(observed,recorded):
+    for key in ('verified','touched','probed','bucket_accesses','entries','pool_peak'):
+        original_key='matched_entries' if key=='entries' else key
+        if int(observed[key])!=int(recorded[original_key]):
+            raise ValueError('Selected final-index replay counter mismatch: '+key)
+
+
 def summarize(output, evaluation):
     with (output/'candidates_full_cost.csv').open() as stream:
         candidates=list(csv.DictReader(stream))
@@ -130,9 +137,7 @@ def main():
             for row in read_csv(output/'full_queries.csv'):
                 if row['split']=='evaluation':
                     reference=original_queries[int(row['query_id'])]
-                    for key in ('verified','touched','probed','bucket_accesses','entries','pool_peak'):
-                        if int(row[key])!=int(reference[key]):
-                            raise ValueError('Selected final-index replay counter mismatch: '+key)
+                    match_recorded_counters(row,reference)
                     checked+=1
             result.update(scope='reconstructed recorded selected final index; B recalibrated; fresh final seed domain; cache released; subset only',
                           selected_record_results_equal=True,selected_record_queries=len(observed),selected_record_counter_checks=checked,

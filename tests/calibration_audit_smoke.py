@@ -14,7 +14,7 @@ from smoke_test import write_csr
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
-from audit_calibration import summarize
+from audit_calibration import summarize, match_recorded_counters
 from evaluate import audit, read_csv
 
 
@@ -68,9 +68,7 @@ def main(binary,core):
         records={int(r['query_id']):r for r in read_csv(complete/'queries.csv') if int(r['repeat'])==0}
         for row in read_csv(replay/'full_queries.csv'):
             if row['split']=='evaluation':
-                for key in ('verified','touched','probed','bucket_accesses','entries','pool_peak'):
-                    if int(row[key])!=int(records[int(row['query_id'])][key]):
-                        raise ValueError('Selected-index audit counter mismatch')
+                match_recorded_counters(row,records[int(row['query_id'])])
         print(json.dumps({'status':'PASS','candidate_configurations':len(observation['candidates']),
                           'profile_queries':len(profiles),'B_and_query_records_recomputed':True,
                           'selected_final_index_production_results_equal':True}))
