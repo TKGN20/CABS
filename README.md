@@ -188,6 +188,9 @@ documents dense per-thread ID arrays, dense centroids, bucket lookup and the
 actual original-vector scorer. The [review response](docs/REVIEW_RESPONSE.md)
 separates algorithm validation from performance reproduction. GitHub Actions runs
 Release and ASan/UBSan checks; local reproduction does not require Actions.
+The optional [calibration audit](docs/CALIBRATION_AUDIT.md) measures the specified K
+objective and full query costs on the same temporary candidate indexes. Its
+instrumented subset diagnostics are kept separate from default QPS records.
 
 This review candidate releases per-document construction sketches after final
 hash-table construction for static tasks. Cardinalities and final tables remain
