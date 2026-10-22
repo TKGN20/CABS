@@ -182,6 +182,13 @@ Indexes are built in memory; disk save/load and service deployment are not
 implemented. See [the repository comparison](docs/REPOSITORY_COMPARISON.md) and
 [implementation details](docs/METHOD.md).
 
+The [paper-to-code contract](docs/PAPER_IMPLEMENTATION.md) maps each mechanism to
+source and executable checks. [Implementation complexity](docs/COMPLEXITY.md)
+documents dense per-thread ID arrays, dense centroids, bucket lookup and the
+actual original-vector scorer. The [review response](docs/REVIEW_RESPONSE.md)
+separates algorithm validation from performance reproduction. GitHub Actions runs
+Release and ASan/UBSan checks; local reproduction does not require Actions.
+
 This review candidate releases per-document construction sketches after final
 hash-table construction for static tasks. Cardinalities and final tables remain
 available for search. The release cost is included in IT and a same-index byte
