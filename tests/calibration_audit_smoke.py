@@ -53,10 +53,18 @@ def main(binary,core):
         audit(complete)
         selected=json.loads((complete/'automatic_configuration.json').read_text())
         replay=directory/'replay';replay.mkdir()
-        run=subprocess.run([str(binary),str(directory/'base.csr'),str(directory/'queries.csr'),str(replay),'3',str(selected['K']),str(selected['B'])],capture_output=True,text=True)
+        run=subprocess.run([str(binary),str(directory/'base.csr'),str(directory/'queries.csr'),str(replay),'3',str(selected['K']),str(selected['B']),'routing'],capture_output=True,text=True)
         if run.returncode:
             raise RuntimeError(run.stdout+run.stderr)
         summarize(replay,3)
+        traced=read_csv(replay/'routing_bounds.csv')
+        if {int(r['query_id']) for r in traced}!={int(r['query_id']) for r in read_csv(replay/'full_results.csv')}:
+            raise ValueError('Routing trace omitted queries')
+        for row in traced:
+            if float(row['cluster_exact_max'])>float(row['cluster_upper']):
+                raise ValueError('Routing bound below exact cluster maximum')
+            if int(row['stopped']) and not float(row['suffix_upper'])<float(row['gamma_before']):
+                raise ValueError('Invalid strict stopping trace')
         expected={}
         for row in read_csv(complete/'retrieved.csv'):
             expected.setdefault(int(row['query_id']),[]).append((int(row['identifier']),float(row['score'])))

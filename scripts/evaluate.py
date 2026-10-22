@@ -23,7 +23,7 @@ def read_csv(path):
         return list(csv.DictReader(stream))
 
 
-def audit(directory):
+def audit(directory, write_outputs=True):
     directory = Path(directory)
     published_manifest=directory/'artifact_manifest.json'
     if published_manifest.exists():
@@ -112,13 +112,15 @@ def audit(directory):
              'calibration_queries':len(calibration),'evaluation_queries':len(evaluation),
              'query_threads':1,'repeats':summary['repeats'],'measured_queries':len(records),
              'repeat_QPS':{str(r):len(t)/sum(t) for r,t in repeats.items()}}
-    (directory/'metrics.json').write_text(json.dumps(metrics,indent=2,allow_nan=False)+'\n')
+    if write_outputs:
+        (directory/'metrics.json').write_text(json.dumps(metrics,indent=2,allow_nan=False)+'\n')
     report={'status':'passed','checks':['disjoint query sets','exact-GT recall recomputation',
              'ranked unique in-range IDs','complete unique query/repeat records',
              'QPS recomputed from all query times','resolved configuration consistency',
              'IT accounting','IS component sum'],'query_measurements':len(records),
              'evaluation_script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
-    (directory/'audit.json').write_text(json.dumps(report,indent=2)+'\n')
+    if write_outputs:
+        (directory/'audit.json').write_text(json.dumps(report,indent=2)+'\n')
     return metrics
 
 

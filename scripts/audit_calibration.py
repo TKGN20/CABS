@@ -73,7 +73,10 @@ def main():
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--eval-queries',type=int,default=8)
     parser.add_argument('--selected-from',type=Path,help='Reconstruct the recorded selected final index and verify ranked results/counters before accepting its profile')
+    parser.add_argument('--routing-diagnostics',action='store_true',help='Trace cluster bounds outside timing; scan exact maxima for the first four diagnostic queries')
     args=parser.parse_args()
+    if args.routing_diagnostics and not args.selected_from:
+        parser.error('Routing diagnostics require a completed selected index')
     config=json.loads((ROOT/'configs'/('splade_0.1m.json' if args.dataset=='splade-0.1m' else 'splade_1m.json')).read_text())
     expected={'ell':24,'delta_h':.2,'k':50,'k_max':100,'calibration_queries':4,
               'seed':20261007,'build_threads':4,'lloyd_iterations':10,'max_index_gib':9}
@@ -84,7 +87,7 @@ def main():
     docs,queries=prepare(config['scale'],args.data_directory,args.offline)
     recorded=None
     if args.selected_from:
-        directory=args.selected_from.resolve();audit(directory)
+        directory=args.selected_from.resolve();audit(directory,write_outputs=False)
         original=json.loads((directory/'manifest.json').read_text())
         original_config=json.loads((directory/'config.json').read_text())
         if original['status']!='completed' or original['data']['sha256']!=sha256(docs) or original['queries']['sha256']!=sha256(queries):
@@ -115,6 +118,8 @@ def main():
         command=[str(binary),str(docs),str(queries),str(output),str(args.eval_queries)]
         if recorded:
             command.extend([str(recorded['automatic']['K']),str(recorded['automatic']['B'])])
+            if args.routing_diagnostics:
+                command.append('routing')
         manifest['command']=command;save(output/'manifest.json',manifest)
         with (output/'run.log').open('w') as log:
             subprocess.run(command,env=dict(os.environ,OMP_NUM_THREADS='4'),stdout=log,stderr=log,check=True)

@@ -3,7 +3,7 @@
 using namespace cabs_index;
 
 int main(int argc,char** argv) {
-    if(argc!=5 && argc!=7){std::cerr<<"usage: cabs_calibration_audit BASE_CSR QUERIES_CSR OUTPUT_DIRECTORY EVALUATION_QUERIES [RECORDED_K RECORDED_B]\n";return 2;}
+    if(argc!=5 && argc!=7 && argc!=8){std::cerr<<"usage: cabs_calibration_audit BASE_CSR QUERIES_CSR OUTPUT_DIRECTORY EVALUATION_QUERIES [RECORDED_K RECORDED_B [routing]]\n";return 2;}
     CSR docs(argv[1]),queries(argv[2]);Collection data(docs);
     if(docs.d!=queries.d)throw std::runtime_error("data/query dimensions differ");
     int count=std::stoi(argv[4]);
@@ -27,7 +27,8 @@ int main(int argc,char** argv) {
     }
     std::vector<int> candidates{1};
     if(!distinct.empty()){for(size_t k=2;k<distinct.size();k*=2)candidates.push_back(k);if(distinct.size()>1)candidates.push_back(distinct.size());}
-    bool replay=argc==7;
+    bool replay=argc>=7,routing=argc==8;
+    if(routing && std::string(argv[7])!="routing")throw std::runtime_error("unknown diagnostic mode");
     if(replay){int selected=std::stoi(argv[5]);if(std::find(candidates.begin(),candidates.end(),selected)==candidates.end())throw std::runtime_error("recorded K outside candidate set");candidates={selected};}
     std::string out=argv[3];
     std::ofstream candidate(out+"/candidates_full_cost.csv"),times(out+"/full_queries.csv"),profile(out+"/profile.csv"),targets(out+"/pool_targets.csv");
@@ -39,6 +40,8 @@ int main(int argc,char** argv) {
     profile<<"K,query_id,sos,routing,minhash,lookup,scan,pool,verification,dot_only_nested,ordering,fallback,diagnostic,instrumented_search_seconds\n";
     targets<<"K,query_id,target_id,positive_overlap,touched,minimum_prefix_rank\n";
     results<<"K,query_id,rank,identifier,score\n";
+    std::ofstream bounds;
+    if(routing){bounds.open(out+"/routing_bounds.csv");if(!bounds)throw std::runtime_error("cannot open bounds output");bounds<<std::setprecision(17)<<"query_id,route_position,cluster_id,stopped,gamma_before,suffix_upper,cluster_upper,centroid_angle,cover_radius,norm_cap,angular_factor,cluster_exact_max,cluster_memberships,verified_after\n";}
     for(int K:candidates) {
         omp_set_num_threads(options.threads);
         std::cerr<<"audit_K="<<K<<"\n";
@@ -79,6 +82,23 @@ int main(int argc,char** argv) {
             auto instrumented=workspace_search<true,true>(idx,queries.row(qid),qid,50,profile_stats,true,nullptr,NoWorkspaceTrace{},&tm);
             same_hits(normal,instrumented);same_stats(normal_stats,profile_stats);
             profile<<K<<','<<qid<<','<<tm.sos<<','<<tm.routing<<','<<tm.minhash<<','<<tm.lookup<<','<<tm.scan<<','<<tm.pool<<','<<tm.verification<<','<<tm.dot_only<<','<<tm.ordering<<','<<tm.fallback<<','<<tm.diagnostic<<','<<profile_stats.time<<'\n';
+        }
+        if(routing)for(int z=0;z<count;++z) {
+            Id qid=ids[4+z];Row q=queries.row(qid);double nq=norm(q);
+            std::vector<double> maxima(K,-INFINITY);
+            if(z<4)for(int c=0;c<K;++c)for(Id id:idx.partition.clusters[c].ids)if(data.records[id].active)maxima[c]=std::max(maxima[c],dot(q,data.row(id)));
+            auto hook=[&](const std::vector<int>&,size_t position,int c,double gamma,double suffix,bool stop,const QueryWorkspace& w){
+                const auto& cl=idx.partition.clusters[c];double theta=angle(dense_dot(q,cl.mu)/nq),cap=nq*cl.norm_bound;
+                double upper=idx.partition.upper(q,c),factor=std::cos(std::max(0.0,theta-cl.cover));
+                if(z<4)require(maxima[c]<=upper,"exact cluster maximum exceeds bound");
+                bounds<<qid<<','<<position<<','<<c<<','<<stop<<',';if(std::isfinite(gamma))bounds<<gamma;
+                bounds<<','<<suffix<<','<<upper<<','<<theta<<','<<cl.cover<<','<<cap<<','<<factor<<',';
+                if(z<4){bounds<<maxima[c];}
+                bounds<<','<<cl.ids.size()<<','<<w.verified.size()<<'\n';
+            };
+            QueryStats normal_stats,traced_stats;auto normal=idx.search(q,qid,50,normal_stats);
+            auto traced=workspace_search<false,true>(idx,q,qid,50,traced_stats,true,nullptr,hook);
+            same_hits(normal,traced);same_stats(normal_stats,traced_stats);
         }
         auto log=idx.estimate();double n=2*count;
         candidate<<K<<','<<idx.B<<','<<log.min_m<<','<<log.max_m<<','<<proxy<<','<<cal_seconds/8<<','<<eval_seconds/n<<','<<recall/n<<','<<verified/n<<','<<probed/n<<','<<entries/n<<'\n';

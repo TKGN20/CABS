@@ -40,6 +40,27 @@ static bool coverage(const Index& idx,size_t capacity) {
     return true;
 }
 
+static void check_effective_stopping() {
+    Collection data(6);
+    for(int g=0;g<3;++g)for(int v=0;v<6;++v){OwnedRow row;row.ix={2*g,2*g+1};row.values={1,1};data.append(std::move(row));}
+    Options options;options.ell=4;options.kmax=3;options.threads=2;options.max_index_gib=1;
+    Index idx(data,options);idx.epoch=1;idx.expansion.seed=123;idx.expansion.scale=1;
+    idx.expansion.allocate(data.df,data.active,4);idx.sketches.build(data,idx.expansion);
+    for(const auto& sketch:idx.sketches.sets)idx.cardinal.push_back(sketch.size());
+    idx.partition.build(data,3,147,30);
+    idx.calibration.query_ids={918};idx.calibration.queries={data.row(0)};
+    idx.calibration.targets={exact(data,data.row(0),3)};idx.calibration.sketches={idx.expansion.encode(data.row(0),918,true)};
+    idx.configure_floors(idx.partition,1);idx.B=3;idx.build_tables(153);
+    for(int g=0;g<3;++g) {
+        QueryStats stopped,complete;size_t stop_events=0;
+        auto hook=[&](const std::vector<int>&,size_t,int,double gamma,double suffix,bool stop,const QueryWorkspace&){if(stop){require(suffix<gamma,"strict stopping certificate");++stop_events;}};
+        auto result=workspace_search<false,true>(idx,data.row(6*g),918+g,3,stopped,true,nullptr,hook);
+        auto full=idx.search(data.row(6*g),918+g,3,complete,false);
+        same_hits(result,full);same_hits(result,exact(data,data.row(6*g),3));
+        require(stopped.probed==1 && complete.probed==3 && stop_events==1,"separated fixture must actually stop after one cluster");
+    }
+}
+
 int main() {
     omp_set_num_threads(2);
     Collection data(12);
@@ -136,6 +157,7 @@ int main() {
     }
     idx.refresh(idx.calibration);
     for(const auto& cluster:idx.partition.clusters)for(Id id:cluster.ids)require(data.records[id].active,"refresh retains only active bucket memberships");
+    check_effective_stopping();
     std::cout<<"{\"status\":\"PASS\",\"fixture_clusters\":3,\"fallback_clusters\":"<<fallback_clusters
              <<",\"secondary_memberships\":"<<secondary_memberships<<",\"direct_signatures_checked\":"<<checked_signatures
              <<",\"query_reference_checks\":"<<2*checked_queries+6<<",\"exhaustive_B\":"<<brute<<"}\n";
