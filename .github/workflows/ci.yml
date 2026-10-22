@@ -44,3 +44,4 @@ jobs:
           python3 scripts/evaluate.py results/measured/splade-1m
           python3 scripts/evaluate.py results/engineering/cache_20261022
           python3 scripts/evaluate.py results/engineering/review_1m_20261022
+          python3 scripts/verify_artifacts.py
