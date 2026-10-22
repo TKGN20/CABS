@@ -1,0 +1,14 @@
+{
+  "status": "candidate_for_review",
+  "criterion": "overall speedup >=1.02 and at least 3/4 repeats faster; semantic checks pass",
+  "overall_speedup": 1.0258957279530083,
+  "repeat_speedup": {
+    "0": 1.0179168353962285,
+    "1": 1.0268193160208507,
+    "2": 1.0236971780083193,
+    "3": 1.0334684361883586
+  },
+  "faster_repeats": 4,
+  "paired_sha256": "1da5258b5ba129a33adef3125f564a3fdb79a8fa568d73de26389608bed9448a",
+  "scope": "observed engineering result on one index; no statistical or cross-workload guarantee"
+}

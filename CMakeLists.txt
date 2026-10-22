@@ -26,3 +26,8 @@ add_executable(cabs_scoring_pair EXCLUDE_FROM_ALL benchmarks/scoring_pair.cpp)
 target_include_directories(cabs_scoring_pair PRIVATE include)
 target_link_libraries(cabs_scoring_pair PRIVATE OpenMP::OpenMP_CXX)
 target_compile_options(cabs_scoring_pair PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+
+add_executable(cabs_order_pair EXCLUDE_FROM_ALL benchmarks/order_pair.cpp)
+target_include_directories(cabs_order_pair PRIVATE include)
+target_link_libraries(cabs_order_pair PRIVATE OpenMP::OpenMP_CXX)
+target_compile_options(cabs_order_pair PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)

@@ -111,7 +111,7 @@ std::vector<Hit> workspace_search(const IndexType& idx,Row q,uint64_t qid,size_t
         }
         a=tick();w.update(idx.B,idx.partition.clusters[c].m,qs.size(),idx.cardinal);if constexpr(Profile)tm.pool+=seconds()-a;
         s.pool_peak=std::max(s.pool_peak,w.pool.size());
-        a=tick();for(Id id:w.admissions)if(w.member_stamp[id]==w.generation){++w.admission_checks;if constexpr(Profile)++tm.checks;verify(id);}if constexpr(Profile)tm.verification+=seconds()-a;
+        a=tick();std::sort(w.admissions.begin(),w.admissions.end());for(Id id:w.admissions)if(w.member_stamp[id]==w.generation){++w.admission_checks;if constexpr(Profile)++tm.checks;verify(id);}if constexpr(Profile)tm.verification+=seconds()-a;
         hook(order,t,c,gamma,suffix[t],false,w);
     }
     w.admitted_unique=w.verified.size()-s.delta;
