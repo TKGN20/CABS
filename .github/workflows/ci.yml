@@ -1,0 +1,45 @@
+name: build-and-correctness
+
+on:
+  push:
+    branches: [main, "codex/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: correctness-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - build_type: Release
+            sanitize: "OFF"
+          - build_type: Debug
+            sanitize: "ON"
+    env:
+      OMP_NUM_THREADS: "2"
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCABS_SANITIZE=${{ matrix.sanitize }}
+      - name: Build
+        run: cmake --build build --parallel 2
+      - name: Semantic, production-path and reporting checks
+        run: ctest --test-dir build --output-on-failure --timeout 180
+      - name: Audit published measurements
+        if: matrix.sanitize == 'OFF'
+        run: |
+          python3 scripts/evaluate.py results/measured/splade-0.1m
+          python3 scripts/evaluate.py results/measured/splade-1m
+          python3 scripts/evaluate.py results/engineering/cache_20261022
