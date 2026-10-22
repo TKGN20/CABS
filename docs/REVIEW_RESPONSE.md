@@ -13,7 +13,7 @@ either quantity can be inspected without relabeling measurements.
 
 | Review item | Disposition |
 | --- | --- |
-| Complete candidate 1M task at PR head b327ec35 | Execute in a clean, detached b327ec35 worktree; publish the actual source/version and all 6,976 queries over three repeats, without relabeling older records |
+| Complete candidate 1M task at PR head b327ec35 | Completed in a detached b327ec35 snapshot, identified independently by source/pipeline hashes; all 6,976 queries over three repeats are published separately |
 | K objective differs from full query cost | Valid performance concern, not a missing step relative to current IV-D; retain the specified objective and diagnose the cost gap separately |
 | B and verification overhead | Report actual B, touched IDs, cumulative verified IDs and cluster visits; no manual cap or silent change to k_max/calibration queries |
 | Repeated offline K calibration | Count all necessary work in IT; nested stage labels remain non-additive; do not replace it with final-table build time |
@@ -30,6 +30,21 @@ comparison needs the realized configuration and seeds as well as hardware.
 Environment difference alone does not establish a paper speedup or explain a
 different space definition. The repository publishes measurements, not target
 numbers substituted for execution.
+
+The complete 1M run measured Recall@50 0.9957167431, 17.4717273 QPS,
+747.4427805 s IT and 1.746098882 GB IS. Its original WSL Git metadata capture was
+null because the Windows-created worktree used an absolute Windows gitdir.
+The snapshot attestation checks all source and pipeline hashes without editing
+that original metadata. All GT, ranked results and non-timing fields match the
+previous full 1M record. This closes the missing full candidate-run evidence;
+it does not establish the manuscript's server speedups.
+
+New diagnostics found B=51385 is driven by query 45's target 242252, exact rank
+88, whose best temporary proxy-prefix rank is 51385. This follows the declared
+top-100 calibration target, rather than a manually chosen cap. Every full 1M query
+probed all eight clusters on this realization. Stopping is implemented but no
+early-stopping speedup is evidenced by this run. The 0.1M all-K sample has matching
+proxy/full-cost minima at K=1; a cost-objective error is not demonstrated there.
 
 ## Artifact expectations
 

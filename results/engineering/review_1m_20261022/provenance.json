@@ -1,0 +1,84 @@
+{
+  "status": "measured",
+  "measurement_git_commit": null,
+  "published_source_commit": "b327ec35d79b703f7513ec8acffc3a71d1682b3e",
+  "source_commit_identification": "detached snapshot independently verified by content hashes; see source_attestation.json",
+  "measurement_platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "CPU": "AMD Ryzen 7 8845H; six WSL logical CPUs",
+  "compiler": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "build_threads": 4,
+  "query_threads": 1,
+  "binary_sha256": "13a453ac3987194579667136e118e5b48ac92b08283146379a64142ced5d2804",
+  "measurement_source_hash": "bc0b22f1d4cba1b20b5f3939f318959747a9e2f4ccac6c4b5fa94d96aadd698b",
+  "measured_source_sha256": {
+    "include/cabs/calibration/configuration.hpp": "a7b84b0819c94001ce160e03e10438fb10d233b5fb6b8f08dff2c2dfd5479ae7",
+    "include/cabs/clustering/spherical_partition.hpp": "20a03e33bfc9adcf911f3eb4e11db3f344086ea80588a78fbbc21951be48c0cd",
+    "include/cabs/common.hpp": "21d93c378d3ca342997e30f36318ec195d426b9482e93ee60b056d58b3670d07",
+    "include/cabs/io/dataset_loader.hpp": "a91f438a765410dbff51e068a1304127c9f8e3f5ae88e988bacddc8ec4f1018c",
+    "include/cabs/io/ground_truth.hpp": "771b114d0c9cf779c509a5ff4f93447203f5b6252cab6890850edc9db087fc00",
+    "include/cabs/minhash/local_index.hpp": "1377609bd3fd7ebf12a36da1079ab24b2030dc86438f1af4bf12cd510fbcf775",
+    "include/cabs/reporting.hpp": "414b562cd88724252869ccc373b50438cd9c4a699bf5c119069c7cbf13d7f2f0",
+    "include/cabs/search/epoch_index.hpp": "0efc32526c9b13cd6d768b5a58c65a11acac2cb4577ed2c84da8a0957fa7cb1d",
+    "include/cabs/search/query_workspace.hpp": "53ea83c0c03e49566a544777d561350a088ded287617c17a4881d45f109ee0e8",
+    "include/cabs/search/working_pool.hpp": "04f8b0d48d15e12401ff0a256bbd7d7f9b904ca29b7e12a700caf0e1caace45c",
+    "include/cabs/sketch/adaptive_sos.hpp": "6fef7e3818179b5db6c13bdbe4985280458a82eb376a55ed1ed512f1c014a6b9",
+    "include/cabs.hpp": "5aeda6734aac0d72951c7ab29b556ca75427167fd23ef94477833598291f118d",
+    "include/final_equivalence.hpp": "ae290a758d2b76d2032364abb80a454d82004c71aea6f926687fa47c7633f3be",
+    "src/main.cpp": "02953da60ea90046f16e073660015d206d1b440ffa0d755e2b446b06eafb52ef"
+  },
+  "published_source_sha256": {
+    "include/cabs/calibration/configuration.hpp": "a7b84b0819c94001ce160e03e10438fb10d233b5fb6b8f08dff2c2dfd5479ae7",
+    "include/cabs/clustering/spherical_partition.hpp": "20a03e33bfc9adcf911f3eb4e11db3f344086ea80588a78fbbc21951be48c0cd",
+    "include/cabs/common.hpp": "21d93c378d3ca342997e30f36318ec195d426b9482e93ee60b056d58b3670d07",
+    "include/cabs/io/dataset_loader.hpp": "a91f438a765410dbff51e068a1304127c9f8e3f5ae88e988bacddc8ec4f1018c",
+    "include/cabs/io/ground_truth.hpp": "771b114d0c9cf779c509a5ff4f93447203f5b6252cab6890850edc9db087fc00",
+    "include/cabs/minhash/local_index.hpp": "1377609bd3fd7ebf12a36da1079ab24b2030dc86438f1af4bf12cd510fbcf775",
+    "include/cabs/reporting.hpp": "414b562cd88724252869ccc373b50438cd9c4a699bf5c119069c7cbf13d7f2f0",
+    "include/cabs/search/epoch_index.hpp": "0efc32526c9b13cd6d768b5a58c65a11acac2cb4577ed2c84da8a0957fa7cb1d",
+    "include/cabs/search/query_workspace.hpp": "53ea83c0c03e49566a544777d561350a088ded287617c17a4881d45f109ee0e8",
+    "include/cabs/search/working_pool.hpp": "04f8b0d48d15e12401ff0a256bbd7d7f9b904ca29b7e12a700caf0e1caace45c",
+    "include/cabs/sketch/adaptive_sos.hpp": "6fef7e3818179b5db6c13bdbe4985280458a82eb376a55ed1ed512f1c014a6b9",
+    "include/cabs.hpp": "5aeda6734aac0d72951c7ab29b556ca75427167fd23ef94477833598291f118d",
+    "include/final_equivalence.hpp": "ae290a758d2b76d2032364abb80a454d82004c71aea6f926687fa47c7633f3be",
+    "src/main.cpp": "02953da60ea90046f16e073660015d206d1b440ffa0d755e2b446b06eafb52ef"
+  },
+  "pipeline_sha256_at_measurement": {
+    "scripts/evaluate.py": "bdeb43ab92141bc9361288638965c32d1fb757a65ed0fd1649da9cee82de2ad9",
+    "scripts/prepare_data.py": "9072cb4bd1c5bb67e15d59a0804a244f79d950f555423619647c3bf778721195",
+    "scripts/reproduce.py": "18e1329f3bb1e3df5a645ecd71f39fefdd62b51e8cc57a3498a08d7438e0664b",
+    "scripts/download_data.sh": "b2aca51a9880d9366e0eb330efa41e4a816493c3a234b632dfa39ffe7360a803",
+    "scripts/reproduce.sh": "50305cff2bdca04defdcd7eb0ec7385d7e35c06e816815220dba5a9f9ae70041",
+    "scripts/reproduce_server.sh": "220d3b2fd5cef2c6907e9add57cf2f809531496a1a2bc17a8b7f386b740dea1e",
+    "configs/datasets.json": "dadb2d3db1d48b9b750856f3c23fa3a0c9cca5ab2d82e48a1675b4e52e4f3bc7",
+    "configs/splade_0.1m.json": "cb78e72b2b90baa21e4c9d1eb255b9d20beae95d90c5b97d9866de1b0d02f3ef",
+    "configs/splade_1m.json": "db745d0073d8658655434f774f2fc61c0b7217e5f0fc3390ed1d5c023777c3bb",
+    "CMakeLists.txt": "b69340ec6179517d5ad6fc415486086c42c82c01ce9ce99148d6a83d516c1078"
+  },
+  "published_pipeline_sha256": {
+    "scripts/evaluate.py": "bdeb43ab92141bc9361288638965c32d1fb757a65ed0fd1649da9cee82de2ad9",
+    "scripts/prepare_data.py": "9072cb4bd1c5bb67e15d59a0804a244f79d950f555423619647c3bf778721195",
+    "scripts/reproduce.py": "18e1329f3bb1e3df5a645ecd71f39fefdd62b51e8cc57a3498a08d7438e0664b",
+    "scripts/download_data.sh": "b2aca51a9880d9366e0eb330efa41e4a816493c3a234b632dfa39ffe7360a803",
+    "scripts/reproduce.sh": "50305cff2bdca04defdcd7eb0ec7385d7e35c06e816815220dba5a9f9ae70041",
+    "scripts/reproduce_server.sh": "220d3b2fd5cef2c6907e9add57cf2f809531496a1a2bc17a8b7f386b740dea1e",
+    "configs/datasets.json": "dadb2d3db1d48b9b750856f3c23fa3a0c9cca5ab2d82e48a1675b4e52e4f3bc7",
+    "configs/splade_0.1m.json": "cb78e72b2b90baa21e4c9d1eb255b9d20beae95d90c5b97d9866de1b0d02f3ef",
+    "configs/splade_1m.json": "db745d0073d8658655434f774f2fc61c0b7217e5f0fc3390ed1d5c023777c3bb",
+    "CMakeLists.txt": "b69340ec6179517d5ad6fc415486086c42c82c01ce9ce99148d6a83d516c1078"
+  },
+  "input_documents": {
+    "sha256": "d0727fcc10e18151ca693a0896dfa70c2dce6b8111a95d245fea58be389fa9dc",
+    "bytes": 1018560784
+  },
+  "input_queries": {
+    "sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "bytes": 2797440
+  },
+  "peak_RSS_KiB": 4102200,
+  "raw_record_sha256": {
+    "ground_truth.csv": "d594716fc00f247179a85074350bbe08f142a416bfcd02f9860a59b057120746",
+    "retrieved.csv": "0bf3616f54421adc367dbdcb498d7310096db35eebdac96b98f5223278f0574b",
+    "queries.csv": "5ffcfd95940b4425960f070a75157b56c50473f64d87a943e8f4b5a80665d475"
+  },
+  "note": "Completed full 1M candidate run. Source is identified by preserved byte hashes; missing WSL Git metadata is disclosed rather than rewritten. Does not replace historical versioned records or establish paper-server performance."
+}

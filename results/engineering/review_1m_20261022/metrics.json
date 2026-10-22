@@ -1,0 +1,26 @@
+{
+  "status": "measured",
+  "dataset": "SPLADE-1M",
+  "documents": 1000000,
+  "k": 50,
+  "Recall@50": 0.9957167431192104,
+  "QPS": 17.471727307186487,
+  "IT_seconds": 747.4427805080002,
+  "IS_bytes": 1746098882,
+  "IS_GB": 1.746098882,
+  "IS_definition": "retained index payload plus required original CSR vector storage; excludes allocator/node overhead and query scratch",
+  "index_structure_bytes": 727538098,
+  "index_structure_definition": "retained capacity-based structure payload; excludes allocator/node overhead, shared original CSR and query scratch",
+  "original_vector_bytes": 1018560784,
+  "index_plus_vectors_bytes": 1746098882,
+  "calibration_queries": 4,
+  "evaluation_queries": 6976,
+  "query_threads": 1,
+  "repeats": 3,
+  "measured_queries": 20928,
+  "repeat_QPS": {
+    "0": 17.491263973709522,
+    "1": 17.48794311109097,
+    "2": 17.436084554945772
+  }
+}

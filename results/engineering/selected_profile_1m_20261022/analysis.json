@@ -1,0 +1,190 @@
+{
+  "selected_1m_source": "0fb6b48a7430727bb1747907c1f04f70f23cdc5e",
+  "replayed_measurement_source_by_content": "b327ec35d79b703f7513ec8acffc3a71d1682b3e",
+  "query_subset": 16,
+  "selected_record_results_equal": true,
+  "selected_record_counter_checks": 32,
+  "profile_instrumented_seconds": 1.0971897420004098,
+  "profile_stage_seconds": {
+    "sos": 0.0001702130002740887,
+    "routing": 0.00012614300158020342,
+    "minhash": 0.002188734989886143,
+    "lookup": 0.006138067016763671,
+    "scan": 0.09151634802128683,
+    "pool": 0.24322886399977506,
+    "verification": 0.7528128069975537,
+    "ordering": 7.071100026223576e-05,
+    "fallback": 0.0,
+    "diagnostic": 0.0
+  },
+  "profile_stage_share": {
+    "sos": 0.00015513542804707075,
+    "routing": 0.00011496917693581236,
+    "minhash": 0.00199485549864476,
+    "lookup": 0.005594353266165861,
+    "scan": 0.0834097736408227,
+    "pool": 0.22168350166701087,
+    "verification": 0.6861281856545762,
+    "ordering": 6.444737637932578e-05,
+    "fallback": 0.0,
+    "diagnostic": 0.0
+  },
+  "dot_only_nested_share": 0.5448003824033839,
+  "profile_note": "instrumented timings have overhead; dot_only_nested overlaps verification/fallback and must not be added to them",
+  "selected_candidate": {
+    "K": "8",
+    "B": "51385",
+    "min_m": "46",
+    "max_m": "111",
+    "proxy_calibration_seconds": "0.0081489386249700146",
+    "full_calibration_mean_seconds": "0.051426954375074274",
+    "full_evaluation_mean_seconds": "0.059743094281259346",
+    "evaluation_recall": "0.99625000000000019",
+    "mean_verified": "80924.75",
+    "mean_probed": "8",
+    "mean_entries": "199873.3125",
+    "B_driver_targets": [
+      {
+        "K": "8",
+        "query_id": "45",
+        "target_id": "242252",
+        "positive_overlap": "1",
+        "touched": "1",
+        "minimum_prefix_rank": "51385",
+        "exact_target_rank": 88
+      },
+      {
+        "K": "8",
+        "query_id": "45",
+        "target_id": "44061",
+        "positive_overlap": "1",
+        "touched": "1",
+        "minimum_prefix_rank": "31011",
+        "exact_target_rank": 74
+      },
+      {
+        "K": "8",
+        "query_id": "6279",
+        "target_id": "445286",
+        "positive_overlap": "1",
+        "touched": "1",
+        "minimum_prefix_rank": "30568",
+        "exact_target_rank": 66
+      },
+      {
+        "K": "8",
+        "query_id": "45",
+        "target_id": "950496",
+        "positive_overlap": "1",
+        "touched": "1",
+        "minimum_prefix_rank": "28844",
+        "exact_target_rank": 24
+      }
+    ]
+  },
+  "complete_1m_query_statistics": {
+    "records": 20928,
+    "mean_probed": 8.0,
+    "fraction_all_eight_clusters_probed": 1.0,
+    "mean_verified": 80657.12614678899,
+    "mean_matched_entries": 203461.58629587156
+  },
+  "all_K_small": {
+    "selected_by_proxy_K": 1,
+    "lowest_full_calibration_mean_K": 1,
+    "lowest_full_evaluation_mean_K": 1,
+    "not_matched_recall": true,
+    "candidates": [
+      {
+        "K": "1",
+        "B": "13976",
+        "proxy_calibration_seconds": "0.00095387187508322313",
+        "full_calibration_mean_seconds": "0.0055620533749447532",
+        "full_evaluation_mean_seconds": "0.0056579698749317231",
+        "evaluation_recall": "1.0000000000000002",
+        "mean_verified": "12584"
+      },
+      {
+        "K": "2",
+        "B": "7238",
+        "proxy_calibration_seconds": "0.0010273317499809309",
+        "full_calibration_mean_seconds": "0.0059404286249673532",
+        "full_evaluation_mean_seconds": "0.0063294201873986822",
+        "evaluation_recall": "0.99750000000000016",
+        "mean_verified": "8992.25"
+      },
+      {
+        "K": "4",
+        "B": "9870",
+        "proxy_calibration_seconds": "0.0011172509999823887",
+        "full_calibration_mean_seconds": "0.0078662797499760018",
+        "full_evaluation_mean_seconds": "0.0085119769999550954",
+        "evaluation_recall": "1.0000000000000002",
+        "mean_verified": "13039.625"
+      },
+      {
+        "K": "8",
+        "B": "7948",
+        "proxy_calibration_seconds": "0.0012755587499668763",
+        "full_calibration_mean_seconds": "0.008941528249977182",
+        "full_evaluation_mean_seconds": "0.0097302806874495218",
+        "evaluation_recall": "1.0000000000000002",
+        "mean_verified": "12450.375"
+      },
+      {
+        "K": "16",
+        "B": "7772",
+        "proxy_calibration_seconds": "0.0013207226250528947",
+        "full_calibration_mean_seconds": "0.0082455943749550897",
+        "full_evaluation_mean_seconds": "0.0089445917499517691",
+        "evaluation_recall": "0.99250000000000027",
+        "mean_verified": "11227.875"
+      },
+      {
+        "K": "32",
+        "B": "4479",
+        "proxy_calibration_seconds": "0.0012078493750209418",
+        "full_calibration_mean_seconds": "0.007779128500033039",
+        "full_evaluation_mean_seconds": "0.0074456239374853794",
+        "evaluation_recall": "0.99000000000000032",
+        "mean_verified": "7789.75"
+      },
+      {
+        "K": "64",
+        "B": "8513",
+        "proxy_calibration_seconds": "0.0023551288750240928",
+        "full_calibration_mean_seconds": "0.0098595746250680349",
+        "full_evaluation_mean_seconds": "0.010188577874941984",
+        "evaluation_recall": "0.99500000000000022",
+        "mean_verified": "11416.625"
+      },
+      {
+        "K": "128",
+        "B": "6805",
+        "proxy_calibration_seconds": "0.0031192621249829244",
+        "full_calibration_mean_seconds": "0.015092011374861158",
+        "full_evaluation_mean_seconds": "0.016158628437580091",
+        "evaluation_recall": "0.99000000000000032",
+        "mean_verified": "10706.625"
+      },
+      {
+        "K": "256",
+        "B": "6353",
+        "proxy_calibration_seconds": "0.0065651524999452704",
+        "full_calibration_mean_seconds": "0.022134842874947935",
+        "full_evaluation_mean_seconds": "0.022275351500042007",
+        "evaluation_recall": "0.97250000000000048",
+        "mean_verified": "10676.75"
+      },
+      {
+        "K": "399",
+        "B": "2704",
+        "proxy_calibration_seconds": "0.010243256249907517",
+        "full_calibration_mean_seconds": "0.029153667625053004",
+        "full_evaluation_mean_seconds": "0.029066701624998359",
+        "evaluation_recall": "0.98000000000000032",
+        "mean_verified": "6214.75"
+      }
+    ]
+  }
+}

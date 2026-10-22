@@ -1,0 +1,484 @@
+{
+  "status": "audited",
+  "selected_by_proxy_K": 1,
+  "lowest_full_calibration_mean_K": 1,
+  "lowest_full_evaluation_mean_K": 1,
+  "candidates": [
+    {
+      "K": "1",
+      "B": "13976",
+      "min_m": "205",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.00095387187508322313",
+      "full_calibration_mean_seconds": "0.0055620533749447532",
+      "full_evaluation_mean_seconds": "0.0056579698749317231",
+      "evaluation_recall": "1.0000000000000002",
+      "mean_verified": "12584",
+      "mean_probed": "1",
+      "mean_entries": "26407.75",
+      "B_driver_targets": [
+        {
+          "K": "1",
+          "query_id": "6279",
+          "target_id": "30390",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "13976"
+        },
+        {
+          "K": "1",
+          "query_id": "6279",
+          "target_id": "68532",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "10217"
+        },
+        {
+          "K": "1",
+          "query_id": "5293",
+          "target_id": "24862",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "8047"
+        },
+        {
+          "K": "1",
+          "query_id": "45",
+          "target_id": "44066",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "7834"
+        }
+      ]
+    },
+    {
+      "K": "2",
+      "B": "7238",
+      "min_m": "205",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0010273317499809309",
+      "full_calibration_mean_seconds": "0.0059404286249673532",
+      "full_evaluation_mean_seconds": "0.0063294201873986822",
+      "evaluation_recall": "0.99750000000000016",
+      "mean_verified": "8992.25",
+      "mean_probed": "2",
+      "mean_entries": "49606.25",
+      "B_driver_targets": [
+        {
+          "K": "2",
+          "query_id": "3157",
+          "target_id": "50561",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "7238"
+        },
+        {
+          "K": "2",
+          "query_id": "3157",
+          "target_id": "7674",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "5587"
+        },
+        {
+          "K": "2",
+          "query_id": "45",
+          "target_id": "67736",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "4371"
+        },
+        {
+          "K": "2",
+          "query_id": "3157",
+          "target_id": "55372",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3989"
+        }
+      ]
+    },
+    {
+      "K": "4",
+      "B": "9870",
+      "min_m": "111",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0011172509999823887",
+      "full_calibration_mean_seconds": "0.0078662797499760018",
+      "full_evaluation_mean_seconds": "0.0085119769999550954",
+      "evaluation_recall": "1.0000000000000002",
+      "mean_verified": "13039.625",
+      "mean_probed": "4",
+      "mean_entries": "41257.5",
+      "B_driver_targets": [
+        {
+          "K": "4",
+          "query_id": "6279",
+          "target_id": "7605",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "9870"
+        },
+        {
+          "K": "4",
+          "query_id": "6279",
+          "target_id": "49528",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "9596"
+        },
+        {
+          "K": "4",
+          "query_id": "45",
+          "target_id": "96927",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "5986"
+        },
+        {
+          "K": "4",
+          "query_id": "6279",
+          "target_id": "31087",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "5868"
+        }
+      ]
+    },
+    {
+      "K": "8",
+      "B": "7948",
+      "min_m": "92",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0012755587499668763",
+      "full_calibration_mean_seconds": "0.008941528249977182",
+      "full_evaluation_mean_seconds": "0.0097302806874495218",
+      "evaluation_recall": "1.0000000000000002",
+      "mean_verified": "12450.375",
+      "mean_probed": "8",
+      "mean_entries": "41019.625",
+      "B_driver_targets": [
+        {
+          "K": "8",
+          "query_id": "6279",
+          "target_id": "67012",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "7948"
+        },
+        {
+          "K": "8",
+          "query_id": "3157",
+          "target_id": "50561",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "7003"
+        },
+        {
+          "K": "8",
+          "query_id": "5293",
+          "target_id": "24862",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "5742"
+        },
+        {
+          "K": "8",
+          "query_id": "6279",
+          "target_id": "99566",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "5311"
+        }
+      ]
+    },
+    {
+      "K": "16",
+      "B": "7772",
+      "min_m": "45",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0013207226250528947",
+      "full_calibration_mean_seconds": "0.0082455943749550897",
+      "full_evaluation_mean_seconds": "0.0089445917499517691",
+      "evaluation_recall": "0.99250000000000027",
+      "mean_verified": "11227.875",
+      "mean_probed": "16",
+      "mean_entries": "27358.125",
+      "B_driver_targets": [
+        {
+          "K": "16",
+          "query_id": "6279",
+          "target_id": "67012",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "7772"
+        },
+        {
+          "K": "16",
+          "query_id": "5293",
+          "target_id": "2859",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "7597"
+        },
+        {
+          "K": "16",
+          "query_id": "6279",
+          "target_id": "55837",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "4792"
+        },
+        {
+          "K": "16",
+          "query_id": "5293",
+          "target_id": "24862",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "4027"
+        }
+      ]
+    },
+    {
+      "K": "32",
+      "B": "4479",
+      "min_m": "24",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0012078493750209418",
+      "full_calibration_mean_seconds": "0.007779128500033039",
+      "full_evaluation_mean_seconds": "0.0074456239374853794",
+      "evaluation_recall": "0.99000000000000032",
+      "mean_verified": "7789.75",
+      "mean_probed": "32",
+      "mean_entries": "24610.5",
+      "B_driver_targets": [
+        {
+          "K": "32",
+          "query_id": "3157",
+          "target_id": "82604",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "4479"
+        },
+        {
+          "K": "32",
+          "query_id": "6279",
+          "target_id": "58834",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3967"
+        },
+        {
+          "K": "32",
+          "query_id": "45",
+          "target_id": "36445",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3241"
+        },
+        {
+          "K": "32",
+          "query_id": "6279",
+          "target_id": "49528",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "2904"
+        }
+      ]
+    },
+    {
+      "K": "64",
+      "B": "8513",
+      "min_m": "24",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0023551288750240928",
+      "full_calibration_mean_seconds": "0.0098595746250680349",
+      "full_evaluation_mean_seconds": "0.010188577874941984",
+      "evaluation_recall": "0.99500000000000022",
+      "mean_verified": "11416.625",
+      "mean_probed": "64",
+      "mean_entries": "25047.75",
+      "B_driver_targets": [
+        {
+          "K": "64",
+          "query_id": "6279",
+          "target_id": "98942",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "8513"
+        },
+        {
+          "K": "64",
+          "query_id": "6279",
+          "target_id": "58837",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "7946"
+        },
+        {
+          "K": "64",
+          "query_id": "6279",
+          "target_id": "78227",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3641"
+        },
+        {
+          "K": "64",
+          "query_id": "5293",
+          "target_id": "61402",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3104"
+        }
+      ]
+    },
+    {
+      "K": "128",
+      "B": "6805",
+      "min_m": "14",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0031192621249829244",
+      "full_calibration_mean_seconds": "0.015092011374861158",
+      "full_evaluation_mean_seconds": "0.016158628437580091",
+      "evaluation_recall": "0.99000000000000032",
+      "mean_verified": "10706.625",
+      "mean_probed": "128",
+      "mean_entries": "29234",
+      "B_driver_targets": [
+        {
+          "K": "128",
+          "query_id": "6279",
+          "target_id": "32949",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "6805"
+        },
+        {
+          "K": "128",
+          "query_id": "5293",
+          "target_id": "61402",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3627"
+        },
+        {
+          "K": "128",
+          "query_id": "6279",
+          "target_id": "84721",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3576"
+        },
+        {
+          "K": "128",
+          "query_id": "3157",
+          "target_id": "62332",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3022"
+        }
+      ]
+    },
+    {
+      "K": "256",
+      "B": "6353",
+      "min_m": "14",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.0065651524999452704",
+      "full_calibration_mean_seconds": "0.022134842874947935",
+      "full_evaluation_mean_seconds": "0.022275351500042007",
+      "evaluation_recall": "0.97250000000000048",
+      "mean_verified": "10676.75",
+      "mean_probed": "256",
+      "mean_entries": "34275",
+      "B_driver_targets": [
+        {
+          "K": "256",
+          "query_id": "6279",
+          "target_id": "67012",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "6353"
+        },
+        {
+          "K": "256",
+          "query_id": "6279",
+          "target_id": "32943",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "4382"
+        },
+        {
+          "K": "256",
+          "query_id": "6279",
+          "target_id": "99562",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "4016"
+        },
+        {
+          "K": "256",
+          "query_id": "6279",
+          "target_id": "20582",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "3918"
+        }
+      ]
+    },
+    {
+      "K": "399",
+      "B": "2704",
+      "min_m": "14",
+      "max_m": "205",
+      "proxy_calibration_seconds": "0.010243256249907517",
+      "full_calibration_mean_seconds": "0.029153667625053004",
+      "full_evaluation_mean_seconds": "0.029066701624998359",
+      "evaluation_recall": "0.98000000000000032",
+      "mean_verified": "6214.75",
+      "mean_probed": "399",
+      "mean_entries": "37962.25",
+      "B_driver_targets": [
+        {
+          "K": "399",
+          "query_id": "6279",
+          "target_id": "7605",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "2704"
+        },
+        {
+          "K": "399",
+          "query_id": "3157",
+          "target_id": "50561",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "2358"
+        },
+        {
+          "K": "399",
+          "query_id": "6279",
+          "target_id": "93174",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "2142"
+        },
+        {
+          "K": "399",
+          "query_id": "6279",
+          "target_id": "99566",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "1568"
+        }
+      ]
+    }
+  ],
+  "scope": "temporary calibration indexes; all candidates; four calibration queries; disjoint evaluation subset; two timing repeats",
+  "not_a_default_QPS_result": true,
+  "not_matched_recall": true,
+  "profile_timing_included_in_full_query_measurements": false,
+  "profile_note": "instrumented timings have overhead; dot_only_nested overlaps verification/fallback and must not be added to them",
+  "method_unchanged": true
+}

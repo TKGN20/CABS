@@ -1,7 +1,8 @@
 # Performance review candidate
 
 This branch is a review candidate based on stable main d091458. It has not
-replaced that release. No new full 1M or server performance is claimed.
+replaced that release. A completed full 1M review run is now available below;
+no new paper-server performance is claimed.
 
 ## Ordered exact verification
 
@@ -40,3 +41,25 @@ retroactively change its source hash or timings.
 A separate in-place heap candidate passed state tests but measured only 1.0194x
 on one index, below the predeclared 1.02x engineering gate. It is not included in
 this branch. That result does not rule out benefits on other datasets.
+
+## Completed 1M review run
+
+The fixed b327ec35 production snapshot completed all 6,976 queries over three
+repeats: Recall@50 0.9957167431, QPS 17.4717273, IT 747.4427805 s,
+IS 1.746098882 GB including required CSR. K=8 and B=51385. Same-index retained
+payload falls from 3,461,449,477 to 1,746,098,882 bytes; buckets remain 617,067,852
+bytes. This is not an RSS or build-peak reduction claim.
+
+All GT, ranked outputs, query split and non-timing fields of 20,928 records match
+the earlier full 1M run. The raw bundle is
+[review_1m_20261022](../results/engineering/review_1m_20261022/).
+Its source identity is attested by every measured source/pipeline content hash.
+The Windows-created worktree's absolute gitdir was unavailable to WSL Git;
+the original null Git capture is explicitly preserved rather than rewritten.
+
+A separate reconstruction of the selected final index matches all sampled
+ranked results and counters. Its 16-query instrumented profile attributes about
+68.6% to verification, 22.2% to pool updates and 8.3% to collision scans;
+dot-only's 54.5% is nested inside verification, not additional time.
+These subset observations are not full-workload QPS or significance estimates.
+See [CALIBRATION_AUDIT.md](CALIBRATION_AUDIT.md) and the saved diagnostic records.

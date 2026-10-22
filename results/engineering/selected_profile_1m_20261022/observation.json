@@ -1,0 +1,65 @@
+{
+  "status": "audited",
+  "selected_by_proxy_K": 8,
+  "lowest_full_calibration_mean_K": 8,
+  "lowest_full_evaluation_mean_K": 8,
+  "candidates": [
+    {
+      "K": "8",
+      "B": "51385",
+      "min_m": "46",
+      "max_m": "111",
+      "proxy_calibration_seconds": "0.0081489386249700146",
+      "full_calibration_mean_seconds": "0.051426954375074274",
+      "full_evaluation_mean_seconds": "0.059743094281259346",
+      "evaluation_recall": "0.99625000000000019",
+      "mean_verified": "80924.75",
+      "mean_probed": "8",
+      "mean_entries": "199873.3125",
+      "B_driver_targets": [
+        {
+          "K": "8",
+          "query_id": "45",
+          "target_id": "242252",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "51385"
+        },
+        {
+          "K": "8",
+          "query_id": "45",
+          "target_id": "44061",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "31011"
+        },
+        {
+          "K": "8",
+          "query_id": "6279",
+          "target_id": "445286",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "30568"
+        },
+        {
+          "K": "8",
+          "query_id": "45",
+          "target_id": "950496",
+          "positive_overlap": "1",
+          "touched": "1",
+          "minimum_prefix_rank": "28844"
+        }
+      ]
+    }
+  ],
+  "scope": "reconstructed recorded selected final index; B recalibrated; fresh final seed domain; cache released; subset only",
+  "not_a_default_QPS_result": true,
+  "not_matched_recall": true,
+  "profile_timing_included_in_full_query_measurements": false,
+  "profile_note": "instrumented timings have overhead; dot_only_nested overlaps verification/fallback and must not be added to them",
+  "method_unchanged": true,
+  "selected_record_results_equal": true,
+  "selected_record_queries": 16,
+  "selected_record_counter_checks": 32,
+  "selected_record_source_commit": null
+}

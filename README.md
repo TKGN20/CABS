@@ -132,6 +132,23 @@ Hardware and software are part of each measurement. These local observations
 are not server measurements. The [server execution procedure](docs/EXPERIMENTS.md)
 uses the same algorithm, input checksums and metric definitions.
 
+The review branch additionally provides completed full-query candidate records:
+
+| Dataset | Source | Recall@50 | QPS | IT (s) | IS (GB) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| SPLADE-0.1M | `fd470db` | 0.995407 | 185.54 | 178.50 | 0.209247 |
+| SPLADE-1M | `b327ec35`, content-attested | 0.995717 | 17.47 | 747.44 | 1.746099 |
+
+Raw records are under [the cache candidate](results/engineering/cache_20261022/)
+and [the completed 1M review run](results/engineering/review_1m_20261022/).
+The latter's complete GT, ranked outputs, split and all 20,928 non-timing query
+records match the prior K=8/B=51385 realization. Its source/pipeline hashes match
+the detached b327ec35 snapshot; WSL could not resolve the Windows-created
+worktree's Git metadata path, so the original null Git field and the independent
+content attestation are both preserved. Later documentation/test revisions do
+not change the production source files. These separate full runs do not isolate
+the speedup of individual optimizations.
+
 New runs are saved in `results/DATASET/TIMESTAMP/`:
 
 | File | Contents |

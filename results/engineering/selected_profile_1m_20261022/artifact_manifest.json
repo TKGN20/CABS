@@ -1,0 +1,13 @@
+{
+  "sha256": {
+    "analysis.json": "d404906562a012a00183bf6ce5316e118ae01c989aa278626ffcfad7c5951d74",
+    "candidates_full_cost.csv": "2e63d49974ea16878bc28dcfb36692de39aba22f492eecf2430d424ad10e1303",
+    "full_queries.csv": "67726bf6887fa768bb499ef45122d55f5ae07d920a8a2c021c5a9d82e003632e",
+    "full_results.csv": "46d5bd8693c29d7f5dbad235894716f6bfa561eff953bb781a464f9f0e4d915f",
+    "manifest.json": "1ed4dbe60410c407cc265dfb06cccdd78ce3c88b2084aff965bd3fc4c5b4ef8e",
+    "observation.json": "b1c1e84af82d51164abc66a62f0d7f1da010900e35a6025ad7266e8deb43bdc8",
+    "pool_targets.csv": "a506ca35266c2bd73e2687c5c54fb39121cf093a8dbda264991cc6cc753dfdf7",
+    "profile.csv": "e8a22da06694461e64a4762aa81a85ad7d4e9e2936e341e3dbb982aab76358f9",
+    "source_attestation.json": "cc19244030b5a09076cacee1ac4722d2d63c94befaef4f04cffcf992e643b8c2"
+  }
+}
