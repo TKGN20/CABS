@@ -1,0 +1,84 @@
+{
+  "status": "measured",
+  "measurement_git_commit": "fd470db6010ccc5aa3c2b73564debb2073c699ed",
+  "published_source_commit": "fd470db6010ccc5aa3c2b73564debb2073c699ed",
+  "measurement_platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "CPU": "AMD Ryzen 7 8845H; WSL exposes six logical CPUs",
+  "compiler": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "build_threads": 4,
+  "query_threads": 1,
+  "binary_sha256": "342ff92f150639f6f41214c36cf82a593ddd1f0a9905575dc3bcb32b6c3471c5",
+  "measurement_source_hash": "9b732fc2f79330fb77c442a0948fbf6d862853d0ec54b1934ccc99ff21608343",
+  "measured_source_sha256": {
+    "include/cabs/calibration/configuration.hpp": "a7b84b0819c94001ce160e03e10438fb10d233b5fb6b8f08dff2c2dfd5479ae7",
+    "include/cabs/clustering/spherical_partition.hpp": "20a03e33bfc9adcf911f3eb4e11db3f344086ea80588a78fbbc21951be48c0cd",
+    "include/cabs/common.hpp": "21d93c378d3ca342997e30f36318ec195d426b9482e93ee60b056d58b3670d07",
+    "include/cabs/io/dataset_loader.hpp": "a91f438a765410dbff51e068a1304127c9f8e3f5ae88e988bacddc8ec4f1018c",
+    "include/cabs/io/ground_truth.hpp": "771b114d0c9cf779c509a5ff4f93447203f5b6252cab6890850edc9db087fc00",
+    "include/cabs/minhash/local_index.hpp": "1377609bd3fd7ebf12a36da1079ab24b2030dc86438f1af4bf12cd510fbcf775",
+    "include/cabs/reporting.hpp": "414b562cd88724252869ccc373b50438cd9c4a699bf5c119069c7cbf13d7f2f0",
+    "include/cabs/search/epoch_index.hpp": "c55f72c2076ddd81fa5ce5e2f0fdebdaf6a910fe4bdc511f966a33cb8d5fadff",
+    "include/cabs/search/query_workspace.hpp": "53ea83c0c03e49566a544777d561350a088ded287617c17a4881d45f109ee0e8",
+    "include/cabs/search/working_pool.hpp": "04f8b0d48d15e12401ff0a256bbd7d7f9b904ca29b7e12a700caf0e1caace45c",
+    "include/cabs/sketch/adaptive_sos.hpp": "6fef7e3818179b5db6c13bdbe4985280458a82eb376a55ed1ed512f1c014a6b9",
+    "include/cabs.hpp": "dc22d81d1f13768013ecd7b4fd37f03f5f4fcb2ea5aedd0ea78c835710dc22e1",
+    "include/final_equivalence.hpp": "ae290a758d2b76d2032364abb80a454d82004c71aea6f926687fa47c7633f3be",
+    "src/main.cpp": "eb33d098844a5902012f2bd28d391380167b2e4cd8433e80d67c59c9cf3c4b0b"
+  },
+  "published_source_sha256": {
+    "include/cabs/calibration/configuration.hpp": "a7b84b0819c94001ce160e03e10438fb10d233b5fb6b8f08dff2c2dfd5479ae7",
+    "include/cabs/clustering/spherical_partition.hpp": "20a03e33bfc9adcf911f3eb4e11db3f344086ea80588a78fbbc21951be48c0cd",
+    "include/cabs/common.hpp": "21d93c378d3ca342997e30f36318ec195d426b9482e93ee60b056d58b3670d07",
+    "include/cabs/io/dataset_loader.hpp": "a91f438a765410dbff51e068a1304127c9f8e3f5ae88e988bacddc8ec4f1018c",
+    "include/cabs/io/ground_truth.hpp": "771b114d0c9cf779c509a5ff4f93447203f5b6252cab6890850edc9db087fc00",
+    "include/cabs/minhash/local_index.hpp": "1377609bd3fd7ebf12a36da1079ab24b2030dc86438f1af4bf12cd510fbcf775",
+    "include/cabs/reporting.hpp": "414b562cd88724252869ccc373b50438cd9c4a699bf5c119069c7cbf13d7f2f0",
+    "include/cabs/search/epoch_index.hpp": "c55f72c2076ddd81fa5ce5e2f0fdebdaf6a910fe4bdc511f966a33cb8d5fadff",
+    "include/cabs/search/query_workspace.hpp": "53ea83c0c03e49566a544777d561350a088ded287617c17a4881d45f109ee0e8",
+    "include/cabs/search/working_pool.hpp": "04f8b0d48d15e12401ff0a256bbd7d7f9b904ca29b7e12a700caf0e1caace45c",
+    "include/cabs/sketch/adaptive_sos.hpp": "6fef7e3818179b5db6c13bdbe4985280458a82eb376a55ed1ed512f1c014a6b9",
+    "include/cabs.hpp": "5aeda6734aac0d72951c7ab29b556ca75427167fd23ef94477833598291f118d",
+    "include/final_equivalence.hpp": "ae290a758d2b76d2032364abb80a454d82004c71aea6f926687fa47c7633f3be",
+    "src/main.cpp": "eb33d098844a5902012f2bd28d391380167b2e4cd8433e80d67c59c9cf3c4b0b"
+  },
+  "pipeline_sha256_at_measurement": {
+    "scripts/evaluate.py": "bdeb43ab92141bc9361288638965c32d1fb757a65ed0fd1649da9cee82de2ad9",
+    "scripts/prepare_data.py": "9072cb4bd1c5bb67e15d59a0804a244f79d950f555423619647c3bf778721195",
+    "scripts/reproduce.py": "18e1329f3bb1e3df5a645ecd71f39fefdd62b51e8cc57a3498a08d7438e0664b",
+    "scripts/download_data.sh": "b2aca51a9880d9366e0eb330efa41e4a816493c3a234b632dfa39ffe7360a803",
+    "scripts/reproduce.sh": "50305cff2bdca04defdcd7eb0ec7385d7e35c06e816815220dba5a9f9ae70041",
+    "scripts/reproduce_server.sh": "220d3b2fd5cef2c6907e9add57cf2f809531496a1a2bc17a8b7f386b740dea1e",
+    "configs/datasets.json": "dadb2d3db1d48b9b750856f3c23fa3a0c9cca5ab2d82e48a1675b4e52e4f3bc7",
+    "configs/splade_0.1m.json": "cb78e72b2b90baa21e4c9d1eb255b9d20beae95d90c5b97d9866de1b0d02f3ef",
+    "configs/splade_1m.json": "db745d0073d8658655434f774f2fc61c0b7217e5f0fc3390ed1d5c023777c3bb",
+    "CMakeLists.txt": "b69340ec6179517d5ad6fc415486086c42c82c01ce9ce99148d6a83d516c1078"
+  },
+  "input_documents": {
+    "sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+    "bytes": 102639664
+  },
+  "input_queries": {
+    "sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "bytes": 2797440
+  },
+  "peak_RSS_KiB": 773792,
+  "raw_record_sha256": {
+    "ground_truth.csv": "b6bb75426c7541262cbb24f24ba2cc2e93c09dbfa18fabeecbaa434d79113684",
+    "retrieved.csv": "aaf56e10718cbb49760e4d92a6bf6ce5bfa2d18b51710b9dffd4df51bbf738dd",
+    "queries.csv": "cf06a75f1b99a3e42b36c557e6f942f6518e4336e816b9572779dd2fadbfe2a4"
+  },
+  "note": "Completed full 0.1M candidate run with ordered exact verification and static document-sketch-cache release. Does not replace versioned stable full-run records.",
+  "published_pipeline_sha256": {
+    "scripts/evaluate.py": "bdeb43ab92141bc9361288638965c32d1fb757a65ed0fd1649da9cee82de2ad9",
+    "scripts/prepare_data.py": "9072cb4bd1c5bb67e15d59a0804a244f79d950f555423619647c3bf778721195",
+    "scripts/reproduce.py": "18e1329f3bb1e3df5a645ecd71f39fefdd62b51e8cc57a3498a08d7438e0664b",
+    "scripts/download_data.sh": "b2aca51a9880d9366e0eb330efa41e4a816493c3a234b632dfa39ffe7360a803",
+    "scripts/reproduce.sh": "50305cff2bdca04defdcd7eb0ec7385d7e35c06e816815220dba5a9f9ae70041",
+    "scripts/reproduce_server.sh": "220d3b2fd5cef2c6907e9add57cf2f809531496a1a2bc17a8b7f386b740dea1e",
+    "configs/datasets.json": "dadb2d3db1d48b9b750856f3c23fa3a0c9cca5ab2d82e48a1675b4e52e4f3bc7",
+    "configs/splade_0.1m.json": "cb78e72b2b90baa21e4c9d1eb255b9d20beae95d90c5b97d9866de1b0d02f3ef",
+    "configs/splade_1m.json": "db745d0073d8658655434f774f2fc61c0b7217e5f0fc3390ed1d5c023777c3bb",
+    "CMakeLists.txt": "b69340ec6179517d5ad6fc415486086c42c82c01ce9ce99148d6a83d516c1078"
+  },
+  "pipeline_line_ending_note": "Measurement byte hashes and published Git byte hashes are recorded separately; Git normalizes text to LF."
+}

@@ -10,5 +10,6 @@
   },
   "faster_repeats": 4,
   "paired_sha256": "1da5258b5ba129a33adef3125f564a3fdb79a8fa568d73de26389608bed9448a",
-  "scope": "observed engineering result on one index; no statistical or cross-workload guarantee"
+  "scope": "observed engineering result on one index; no statistical or cross-workload guarantee",
+  "passes_predeclared_gate": true
 }

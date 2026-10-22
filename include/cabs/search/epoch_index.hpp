@@ -21,6 +21,7 @@ public:
         return counts;
     }
     void configure_floors(Partition& p,double global) const {
+        if(!sketch_cache_complete)throw std::runtime_error("Full sketch cache required for floor calibration; use rebuild or refresh");
         for(size_t z=0;z<calibration.queries.size();++z)for(auto h:calibration.targets[z]) {
             double j=jaccard(calibration.sketches[z],sketches.sets[h.id]);if(j<=0)continue;
             for(int c:{p.primary[h.id],p.secondary[h.id]})if(c>=0) {
@@ -84,6 +85,7 @@ public:
         }return queries?total/(2*queries):0;
     }
     size_t calibrate_pool() const {
+        if(!sketch_cache_complete)throw std::runtime_error("Full sketch cache required for pool calibration; use rebuild or refresh");
         size_t capacity=opts.kmax;
         for(size_t z=0;z<calibration.queries.size();++z) {
             std::unordered_set<Id> positives;for(auto h:calibration.targets[z])if(jaccard(calibration.sketches[z],sketches.sets[h.id])>0)positives.insert(h.id);

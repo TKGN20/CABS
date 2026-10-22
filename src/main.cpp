@@ -67,6 +67,8 @@ static void selftest() {
     QueryStats released;auto released_result=idx.search(queries[0].row(),0,2,released);same_hits(result,released_result);same_stats(before,released);
     check_query(idx,queries[0].row(),0,2,true);
     bool stale_rebuild_rejected=false;try{idx.build_tables(123);}catch(const std::runtime_error&){stale_rebuild_rejected=true;}check(stale_rebuild_rejected,"partial hash reconstruction requires a full sketch cache");
+    bool stale_floor_rejected=false;try{idx.configure_floors(idx.partition,.5);}catch(const std::runtime_error&){stale_floor_rejected=true;}check(stale_floor_rejected,"floor calibration requires a full sketch cache");
+    bool stale_pool_rejected=false;try{idx.calibrate_pool();}catch(const std::runtime_error&){stale_pool_rejected=true;}check(stale_pool_rejected,"pool calibration requires a full sketch cache");
     auto saved_norm=idx.partition.clusters[0].norm_bound,saved_cover=idx.partition.clusters[0].cover;
     idx.erase(0);check(idx.partition.clusters[0].norm_bound==saved_norm && idx.partition.clusters[0].cover==saved_cover,"deletion cannot shrink bounds");
     Id in=idx.insert(owned({{0,.5},{2,.25}}));check(!data.records[in].delta,"in-range insertion");
