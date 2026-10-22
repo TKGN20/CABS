@@ -3,7 +3,7 @@
 using namespace cabs_index;
 
 int main(int argc,char** argv) {
-    if(argc!=5){std::cerr<<"usage: cabs_calibration_audit BASE_CSR QUERIES_CSR OUTPUT_DIRECTORY EVALUATION_QUERIES\n";return 2;}
+    if(argc!=5 && argc!=7){std::cerr<<"usage: cabs_calibration_audit BASE_CSR QUERIES_CSR OUTPUT_DIRECTORY EVALUATION_QUERIES [RECORDED_K RECORDED_B]\n";return 2;}
     CSR docs(argv[1]),queries(argv[2]);Collection data(docs);
     if(docs.d!=queries.d)throw std::runtime_error("data/query dimensions differ");
     int count=std::stoi(argv[4]);
@@ -27,14 +27,18 @@ int main(int argc,char** argv) {
     }
     std::vector<int> candidates{1};
     if(!distinct.empty()){for(size_t k=2;k<distinct.size();k*=2)candidates.push_back(k);if(distinct.size()>1)candidates.push_back(distinct.size());}
+    bool replay=argc==7;
+    if(replay){int selected=std::stoi(argv[5]);if(std::find(candidates.begin(),candidates.end(),selected)==candidates.end())throw std::runtime_error("recorded K outside candidate set");candidates={selected};}
     std::string out=argv[3];
     std::ofstream candidate(out+"/candidates_full_cost.csv"),times(out+"/full_queries.csv"),profile(out+"/profile.csv"),targets(out+"/pool_targets.csv");
-    if(!candidate || !times || !profile || !targets)throw std::runtime_error("cannot open audit output");
-    for(auto stream:{&candidate,&times,&profile,&targets})*stream<<std::setprecision(17);
+    std::ofstream results(out+"/full_results.csv");
+    if(!candidate || !times || !profile || !targets || !results)throw std::runtime_error("cannot open audit output");
+    for(auto stream:{&candidate,&times,&profile,&targets,&results})*stream<<std::setprecision(17);
     candidate<<"K,B,min_m,max_m,proxy_calibration_seconds,full_calibration_mean_seconds,full_evaluation_mean_seconds,evaluation_recall,mean_verified,mean_probed,mean_entries\n";
     times<<"K,split,repeat,query_id,seconds,verified,touched,probed,bucket_accesses,entries,pool_peak,recall\n";
     profile<<"K,query_id,sos,routing,minhash,lookup,scan,pool,verification,dot_only_nested,ordering,fallback,diagnostic,instrumented_search_seconds\n";
     targets<<"K,query_id,target_id,positive_overlap,touched,minimum_prefix_rank\n";
+    results<<"K,query_id,rank,identifier,score\n";
     for(int K:candidates) {
         omp_set_num_threads(options.threads);
         std::cerr<<"audit_K="<<K<<"\n";
@@ -42,6 +46,7 @@ int main(int argc,char** argv) {
         idx.configure_floors(idx.partition,global);
         idx.build_tables(derive(0,0x54454d504f524152ULL,mix(idx.epoch)^mix(K)));
         double proxy=idx.candidate_cost();idx.B=global?idx.calibrate_pool():options.kmax;
+        if(replay && idx.B!=std::stoull(argv[6]))throw std::runtime_error("replayed B differs from measurement");
         for(size_t z=0;z<4;++z) {
             std::map<Id,double> all;std::map<Id,size_t> min_rank;
             for(int c:idx.partition.order(idx.calibration.queries[z])) {
@@ -52,6 +57,7 @@ int main(int argc,char** argv) {
             }
             for(auto target:idx.calibration.targets[z])targets<<K<<','<<ids[z]<<','<<target.id<<','<<(jaccard(idx.calibration.sketches[z],idx.sketches.sets[target.id])>0)<<','<<all.count(target.id)<<','<<(min_rank.count(target.id)?min_rank.at(target.id):0)<<'\n';
         }
+        if(replay){idx.build_tables(derive(0,0x46494e414cULL,idx.epoch));idx.release_sketch_cache();}
         omp_set_num_threads(1);
         for(int z=0;z<count+4;++z){QueryStats stats;idx.search(queries.row(ids[z]),ids[z],50,stats);}
         double cal_seconds=0,eval_seconds=0,recall=0,verified=0,probed=0,entries=0;
@@ -64,6 +70,7 @@ int main(int argc,char** argv) {
             if(z>=4) {
                 eval_seconds+=elapsed;recall+=overlap;verified+=stats.verified;probed+=stats.probed;entries+=stats.entries;
             }else cal_seconds+=elapsed;
+            if(rep==0 && z>=4)for(size_t p=0;p<hits.size();++p)results<<K<<','<<qid<<','<<p+1<<','<<hits[p].id<<','<<hits[p].score<<'\n';
             times<<K<<','<<(z<4?"calibration":"evaluation")<<','<<rep<<','<<qid<<','<<elapsed<<','<<stats.verified<<','<<stats.touched<<','<<stats.probed<<','<<stats.bucket_accesses<<','<<stats.entries<<','<<stats.pool_peak<<','<<overlap<<'\n';
         }
         for(int z=0;z<count;++z) {
@@ -75,7 +82,7 @@ int main(int argc,char** argv) {
         }
         auto log=idx.estimate();double n=2*count;
         candidate<<K<<','<<idx.B<<','<<log.min_m<<','<<log.max_m<<','<<proxy<<','<<cal_seconds/8<<','<<eval_seconds/n<<','<<recall/n<<','<<verified/n<<','<<probed/n<<','<<entries/n<<'\n';
-        candidate.flush();times.flush();profile.flush();targets.flush();idx.tables.clear();
+        candidate.flush();times.flush();profile.flush();targets.flush();results.flush();idx.tables.clear();
     }
-    std::cout<<"audit_completed temporary_indexes_only=true profile_timing_excluded_from_full_queries=true\n";
+    std::cout<<"audit_completed temporary_indexes_only="<<(!replay)<<" profile_timing_excluded_from_full_queries=true\n";
 }

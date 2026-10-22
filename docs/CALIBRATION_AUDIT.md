@@ -31,3 +31,16 @@ is not a fair matched-recall winner or a new default result. A discrepancy betwe
 proxy and full-search minima diagnoses the model's scope; it does not establish
 that production omitted a paper step. Revising the objective requires a separate
 method/configuration proposal and new full measurements.
+
+For profiling an already completed default measurement, use:
+
+```bash
+python3 scripts/audit_calibration.py splade-1m --offline --eval-queries 8 --selected-from results/COMPLETED_1M_RUN --out results/selected-1m-profile
+```
+
+This mode checks the original production source and input hashes and protocol,
+uses the recorded automatically selected K, recalibrates B and requires it to
+match, then builds the final seed domain and releases the cache. It verifies
+every sampled ranked ID/score and semantic counter against the completed run.
+It is a fixed-realization diagnostic, not a new K selection policy. It does not
+measure complete IT or full-workload QPS, and cannot compare cost minima across K.
