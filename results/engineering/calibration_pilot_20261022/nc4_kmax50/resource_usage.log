@@ -1,0 +1,23 @@
+	Command being timed: "/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-pilot/cabs run --data /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr --queries /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr --out /mnt/d/Obsidian/知识库/Agent学习/CABS_approval_review_20261022/calibration_pilot/nc4_kmax50 --ell 24 --delta-h 0.2 --k 50 --kmax 50 --calibration-queries 4 --eval-queries 68 --seed 20261007 --threads 4 --iterations 10 --repeats 3 --max-index-gib 9 --warmup-queries 9 --keep-sketch-cache 0 --benchmark-exact 0 --diagnostic-queries 0 --equivalence-queries 12"
+	User time (seconds): 379.41
+	System time (seconds): 3.60
+	Percent of CPU this job got: 375%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:41.94
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 631648
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1733
+	Minor (reclaiming a frame) page faults: 1007905
+	Voluntary context switches: 2852
+	Involuntary context switches: 671
+	Swaps: 0
+	File system inputs: 206560
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

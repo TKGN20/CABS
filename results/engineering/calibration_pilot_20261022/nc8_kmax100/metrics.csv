@@ -1,0 +1,2 @@
+method,k,queries,repeats,recall,qps,mean_verified
+CABS,50,64,3,0.9987499999999998,142.87845556011487,10482.109375

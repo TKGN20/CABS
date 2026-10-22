@@ -1,0 +1,23 @@
+{
+  "audit.json": "2d0b856fcdc0045318d70c753212142ecfee9d2889b393a85b10d55b1af8c17e",
+  "automatic_configuration.json": "cbd5e1a71f927a468180a7da75a8f297998486990e7d3b9c14f7db9c55e0dc46",
+  "candidate_configurations.csv": "7da01759bd17f97bfd6d4590d3ca294e6f36a694d43e215846fa50a5dc67bb1e",
+  "candidate_diagnostics.csv": "7addab604b306e2cf1362679f0a13ae3fdf07405f35f9042e3b172fb389701d1",
+  "common_metrics.json": "8ba8c60ae539d5894e547cc8e8373dae612d9a7e3dee3c215fc8dafbfba4243f",
+  "config.json": "6149f1070feb93a2d5d9bad64af09c529be6795cd93da677393fad2d06f40409",
+  "dataset_statistics.json": "e8096a3e3ca9d4e555f73f2f03a0ac9a05b29a1bd13f21de19acd5c136b2367d",
+  "equivalence.csv": "a8c483095c5a859b643cf6ee86156d2189c70a1e2f3ae0f43d559dd8ac409d66",
+  "exact_baseline.csv": "5b74db82c378d8a197620b61ecf071865a02754e39bcf5175bc90eada8cf4e64",
+  "ground_truth.csv": "b033f9eb7f26710d3d854321f948c204eeec7780f696f97f83e658a9d3c36518",
+  "index_space.json": "422c3465a3dadcad43cd1b7529ba293f5479ef0bf201c526c77bf1de2401c743",
+  "manifest.json": "a99c800a857dff04de7f07a8f4c35a8f6fb4dd4dfc22e3cf1e7b7fc12297a395",
+  "metrics.csv": "929acd06e26f2663e7c677e400f73981b3bab104bdc4ac2bf34ff99738e38a80",
+  "metrics.json": "efddb8e59fa422601c060eb2645cf03e8cd994940be67ad27cb56b1f653e33b3",
+  "queries.csv": "34fa7e4d8054fd3aa630aec30f8b2e6c0d1ca00499d24fae00d925bba1797356",
+  "query_split.csv": "1964d85825dfa4368c21cb328f271376088acee19ac7ebb0d7b87856ca7457a0",
+  "resource_usage.log": "7cd60042bbe920a0be9e40b61776587f30315b18f5bae88a81d1d89fe7663efa",
+  "retrieved.csv": "ffea70c8da4e9507ca57ead5451531dd8b27c4c20e6e8913491d0d0ae67865c6",
+  "run.log": "b2b7fbcc55ef99beb62ed85344c4db9c6f40ce0ade1d8232b9b7cc6bb8671946",
+  "sketch_cache_release.json": "7d432ea380be34a8a3f3b11bd7d037bd7020707abbc261758049e441f72c7d71",
+  "summary.json": "84b27e5a8cdb6c49ba0e11b0803af0352b1e6beb4a9bb08422ece5f31f2acb2b"
+}

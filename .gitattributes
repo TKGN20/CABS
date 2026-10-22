@@ -5,3 +5,6 @@
 *.cpp text eol=lf
 *.hpp text eol=lf
 Makefile text eol=lf
+results/engineering/calibration_pilot_20261022/** -text
+results/engineering/routing_bounds_1m_20261022/** -text
+results/engineering/frozen_B_20261022/** -text

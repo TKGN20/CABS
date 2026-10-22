@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "checks": [
+    "disjoint query sets",
+    "exact-GT recall recomputation",
+    "ranked unique in-range IDs",
+    "complete unique query/repeat records",
+    "QPS recomputed from all query times",
+    "resolved configuration consistency",
+    "IT accounting",
+    "IS component sum"
+  ],
+  "query_measurements": 192,
+  "evaluation_script_sha256": "cf92361227fed02a9a5c4aee43f17bcb6ea244976d1ff24c2f1f61a65c8e7f16"
+}

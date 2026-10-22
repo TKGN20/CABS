@@ -209,6 +209,21 @@ The optional [calibration audit](docs/CALIBRATION_AUDIT.md) measures the specifi
 objective and full query costs on the same temporary candidate indexes. Its
 instrumented subset diagnostics are kept separate from default QPS records.
 
+The [approval review](docs/APPROVAL_REVIEW_ZH.md) reports routing-bound diagnostics,
+the four-case full-recalibration pilot, and the remaining server validation scope.
+All evidence is available in this repository; no local handoff ZIP is required.
+Verify saved records without downloading the vector datasets:
+
+```bash
+python3 scripts/verify_artifacts.py
+```
+
+For canonical historical source checks, use a full Git clone and add
+`--source-check`. A source archive without Git history supports the first command.
+This is saved-record verification, not a new whole-corpus retrieval experiment.
+The [server comparison proposal](docs/SERVER_VALIDATION_PROPOSAL.md) is a pending
+experiment plan, not a completed benchmark.
+
 This review candidate releases per-document construction sketches after final
 hash-table construction for static tasks. Cardinalities and final tables remain
 available for search. The release cost is included in IT and a same-index byte
