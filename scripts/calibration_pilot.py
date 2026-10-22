@@ -60,13 +60,13 @@ def main():
         for nc,kmax in cases:
             case=output/('nc'+str(nc)+'_kmax'+str(kmax));case.mkdir()
             config=dict(base,calibration_queries=nc,k_max=kmax,evaluation_queries=args.common_queries+8-nc,
-                        experimental=True,full_query_run=False,common_validation_queries=args.common_queries)
+                        experimental=True,full_query_run=False,common_validation_queries=args.common_queries,warmup_queries=5+8-nc)
             save(case/'config.json',config)
             command=[str(binary),'run','--data',str(docs),'--queries',str(queries),'--out',str(case),
                      '--ell','24','--delta-h','0.2','--k','50','--kmax',str(kmax),'--calibration-queries',str(nc),
                      '--eval-queries',str(args.common_queries+8-nc),'--seed','20261007','--threads','4',
-                     '--iterations','10','--repeats','3','--max-index-gib','9','--warmup-queries','5',
-                     '--keep-sketch-cache','0','--benchmark-exact','0','--diagnostic-queries','0','--equivalence-queries','8']
+                     '--iterations','10','--repeats','3','--max-index-gib','9','--warmup-queries',str(5+8-nc),
+                     '--keep-sketch-cache','0','--benchmark-exact','0','--diagnostic-queries','0','--equivalence-queries',str(8+8-nc)]
             save(case/'manifest.json',dict(status='running',command=command,source_commit=manifest['git_commit'],binary_sha256=manifest['binary_sha256']))
             with (case/'run.log').open('w') as log:
                 subprocess.run(['/usr/bin/time','-v','-o',str(case/'resource_usage.log'),*command],env=dict(os.environ,OMP_NUM_THREADS='4'),stdout=log,stderr=log,check=True)
