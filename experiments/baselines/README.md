@@ -68,9 +68,63 @@ same-seed determinism. Small-fixture Recall is not a throughput result.
 
 **Not complete:** retained IS inventory is explicitly `NOT_YET_VALIDATED`; common
 three-way lock integration, preregistered grids, broader parity tests and real
-validation are pending. SINDI and SEISMIC are pinned/downloaded candidates only.
+validation are pending. No complete four-method comparison is accepted yet.
 The selected SEISMIC commit is v0.5.4 (Rust 2024/nightly), whereas a local historical
 archive was v0.4.0; old patches/build receipts cannot be transplanted as evidence.
 
 All original archives and failed build attempts remain separate. No new server
 run is performed: the owner confirmed the server is not ready on 2026-10-23.
+
+## SEISMIC candidate adapter — bounded validation
+
+The v0.5.4 pin requires a newer Rust toolchain than the local system installation.
+The helper installs an explicitly dated nightly into a fresh project-local
+directory, without changing shell profiles or global toolchains. Upstream has no
+Cargo.lock at this pin; the registered lock records the initial dependency
+resolution. Subsequent builds use `--locked`. The source archive, lock, toolchain,
+patch, adapter and binary have separate hashes in build receipts.
+
+```bash
+python3 experiments/baselines/bootstrap_rust.py --nightly-date 2026-10-23 --out build-mission/rust-nightly
+python3 experiments/baselines/build_seismic.py --upstreams build-mission/upstreams --toolchain build-mission/rust-nightly --out build-mission/seismic-adapter --adapter
+python3 experiments/baselines/test_seismic.py --binary build-mission/seismic-adapter/target/release/cabs_fixed_queries --out build-mission/seismic-adapter/parity.json
+```
+
+Without `--adapter`, the builder compiles the original native build/search CLIs.
+The adapter uses explicit u32 components and float32 values, not the native CLI's
+quantized defaults. A reviewable source diff exposes the visited candidate-offset
+set from a duplicate of upstream search. The original search method remains
+available. Both paths retain native float pruning/scoring; untimed checks require
+identical native ranked outputs and native returned IDs within the candidate set.
+Original CSR offsets map candidates back to original document IDs. The timed
+tail scores all visited candidates in binary64 and applies the common ID tie rule;
+it does not exactly scan the collection to repair underfilled results.
+
+The three native construction RNG sites consume `CABS_BENCH_INDEX_SEED` when set,
+otherwise retaining upstream defaults. The adapter requires that value to equal
+its explicit seed argument and `RAYON_NUM_THREADS=1`. This is an experimental seed
+and scoring adaptation, not evidence of paper-version or native-default parity.
+The small fixture verifies IDs, scores, native/candidate agreement, same-seed
+repeatability, invalid IDs and seed mismatch rejection. It does not certify
+index-space accounting, real-data performance or the common validation lock.
+
+## SINDI native build — dependency repair, acceptance pending
+
+```bash
+python3 experiments/baselines/fetch_upstreams.py --method ThreadPool --out build-mission/upstreams
+python3 experiments/baselines/build_sindi.py --upstreams build-mission/upstreams --out build-mission/sindi-native
+```
+
+The native project references a floating ThreadPool archive whose current bytes
+fail its original MD5. The builder substitutes a commit-pinned official archive
+with a registered SHA-256. `-Ofast` is replaced with `-O3`; the reviewed diff,
+configure/build logs and compile command hash are retained. No native search
+algorithm is changed by this build helper. Successful compilation alone is not
+ID/score/IS acceptance. In particular, upstream hard-codes an AVX-512 flag and
+its `GetMemoryUsage()` returns zero; host ISA suitability and retained-space
+accounting remain explicit audit items before real comparisons.
+
+The CABS repository license does not replace upstream licenses or attribution.
+SINDI/VSAG preserves its Apache notices; SEISMIC's upstream citation requirements
+also remain applicable. Downloaded third-party sources and dependency caches
+stay outside tracked source files.

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "queries": 4,
+  "k": 50,
+  "repeats": 3,
+  "Recall": 1.0,
+  "QPS": 19084.303319555525,
+  "scope": "SEISMIC fixed-source small-fixture correctness only; no performance/IS/paper-parity acceptance",
+  "input_sha256": {
+    "/tmp/seismic-parity-n3ob3gaa/base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+    "/tmp/seismic-parity-n3ob3gaa/queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+    "/tmp/seismic-parity-n3ob3gaa/run/retrieved.csv": "6d02563131d9bade0c7320c84b37f6725a6f964906254065dfffa6ddc0baf51c",
+    "/tmp/seismic-parity-n3ob3gaa/run/queries.csv": "b46cce0e94e0cf56866394bb25665558d3c3687d986c17b8cfa1a6597e8a9af8"
+  },
+  "same_seed_ranked_outputs_equal": true,
+  "native_candidate_rankings_checked": true
+}

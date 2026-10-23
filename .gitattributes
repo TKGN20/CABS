@@ -8,3 +8,6 @@ Makefile text eol=lf
 results/engineering/calibration_pilot_20261022/** -text
 results/engineering/routing_bounds_1m_20261022/** -text
 results/engineering/frozen_B_20261022/** -text
+experiments/delivery/receipts/** -text
+experiments/delivery/fixtures/** -text
+experiments/delivery/fixtures/**/*.log whitespace=-blank-at-eof

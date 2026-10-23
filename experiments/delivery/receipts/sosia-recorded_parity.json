@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "queries": 4,
+  "k": 50,
+  "repeats": 3,
+  "Recall": 0.95,
+  "QPS": 77018.85663833968,
+  "scope": "SOSIA fixed-source small-fixture correctness only; no performance/IS/paper-parity acceptance",
+  "input_sha256": {
+    "/tmp/sosia-parity-vm491jk1/base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+    "/tmp/sosia-parity-vm491jk1/queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+    "/tmp/sosia-parity-vm491jk1/run/retrieved.csv": "ce00993a761cebc3fb0856f88a054a99b8c7fa91499916ec8887fd2410344b90",
+    "/tmp/sosia-parity-vm491jk1/run/queries.csv": "26e3e4a352cb9b7f14db2714b2b86c352cd18bbadfaf86715eee7030ef121dfc"
+  },
+  "same_seed_ranked_outputs_equal": true
+}

@@ -15,8 +15,8 @@ def digest(path):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--method',choices=['SOSIA','SINDI','SEISMIC'],nargs='+',default=['SOSIA','SINDI','SEISMIC']);a=p.parse_args()
-    pins=json.loads(Path(__file__).with_name('sources.json').read_text())['methods']
+    p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--method',choices=['SOSIA','SINDI','SEISMIC','ThreadPool'],nargs='+',default=['SOSIA','SINDI','SEISMIC']);a=p.parse_args()
+    registry=json.loads(Path(__file__).with_name('sources.json').read_text());pins=dict(registry['methods'],**registry.get('dependencies',{}))
     a.out.mkdir(parents=True,exist_ok=True)
     for name in a.method:
         pin=pins[name];commit=pin['commit'];repo=pin['repository']
@@ -29,6 +29,7 @@ def main():
             with urllib.request.urlopen(request,timeout=120) as remote,archive.with_suffix('.part').open('xb') as out:
                 for block in iter(lambda:remote.read(1024*1024),b''):out.write(block)
             archive.with_suffix('.part').rename(archive)
+        if pin.get('archive_sha256') and digest(archive)!=pin['archive_sha256']:raise ValueError('Pinned archive checksum mismatch')
         target.mkdir();count=0;roots=set()
         with tarfile.open(archive,'r:gz') as tar:
             for member in tar:

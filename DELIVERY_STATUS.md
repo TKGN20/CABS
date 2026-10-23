@@ -9,7 +9,7 @@ Last initial assessment: 2026-10-23; later milestones are appended to the eviden
 | Preflight | Frozen algorithm/default contract | PASS | PR #4 head e26de385fe78d3589d6d861c3560c443e254f9cc; 19-file historical freeze check; no merges authorized |
 | Preflight | Existing CABS experiment driver | PASS (bounded scope) | PR #5 f77586337535d85757ba7ed907b91247dd905d97; synthetic original-ID and split/seed/lock tests; not full server delivery |
 | Preflight | Local two-scale inputs / query identity | PASS (header/size/hash) | 100,000 / 1,000,000 rows and 6,980 queries; WSL symlink target verified; [receipt](experiments/delivery/receipts/preflight_20261023.json) |
-| A | All four methods build and independently checked IDs/scores | FAIL / incomplete | CABS and bounded SOSIA fixtures pass; 9 oracle tests pass; SOSIA IS/common-lock audit pending; SINDI and SEISMIC only source-pinned/downloaded |
+| A | All four methods build and independently checked IDs/scores | FAIL / incomplete | CABS, bounded SOSIA and SEISMIC fixtures pass; 9 oracle tests pass; two saved synthetic fixtures independently recompute; SINDI native build and all-baseline IS/common-lock audit pending |
 | B | Common adapters, registered grids and real validation-only selection | FAIL / incomplete | CABS-only three-way driver exists; four-method protocol and real-data locks pending |
 | C | Confirmed paper hardware and 3 builds × 3 timings | BLOCKED | Owner explicitly confirmed on 2026-10-23 that server is not ready; no target-server runs performed |
 | D | Crossed 3 calibration × 3 index seeds and mechanism diagnostics | FAIL / incomplete | Existing diagnostic subsets do not satisfy the required complete experiment |
@@ -46,3 +46,10 @@ Execution events: [append-only evidence log](experiments/delivery/evidence.jsonl
 Raw environment/data receipts are created by the command; a written plan is not
 a receipt of execution. Source changes remain on the independent experimental
 branch. PR #4 and historical result bundles are preserved.
+
+The [baseline integration notes](experiments/baselines/README.md) distinguish
+native builds, disclosed seed/scoring adaptations and bounded fixture acceptance.
+Run `python3 experiments/delivery/verify_receipts.py` to check the saved receipts
+and independently recompute both synthetic fixtures without native binaries.
+The full local milestone and remaining gaps are summarized in the
+[2026-10-23 checkpoint](docs/DELIVERY_CHECKPOINT_20261023.md).

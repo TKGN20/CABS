@@ -2,6 +2,7 @@ import argparse
 import json
 from pathlib import Path
 import random
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -23,6 +24,7 @@ def main():
         command=[str(a.binary.resolve()),str(root/'base.csr'),str(root/'queries.csr'),str(root/'ids.txt'),str(out),'20261007','4','16','160','50','3']
         result=subprocess.run(command,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
         if result.returncode:raise RuntimeError(result.stdout+result.stderr)
+        (out/'stdout.log').write_text(result.stdout);(out/'stderr.log').write_text(result.stderr)
         proof=audit(root/'base.csr',root/'queries.csr',out/'retrieved.csv',out/'queries.csv',selected,50,3)
         again=root/'again';again.mkdir();command[4]=str(again)
         subprocess.run(command,stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True)
@@ -31,6 +33,9 @@ def main():
         bad=root/'invalid_ids.txt';bad.write_text('12\n');badout=root/'bad';badout.mkdir();command[3]=str(bad);command[4]=str(badout)
         if subprocess.run(command,stdout=subprocess.PIPE,stderr=subprocess.PIPE).returncode==0:raise ValueError('Out-of-range query ID was accepted')
         if a.out:
+            artifacts=a.out.parent/'fixture_artifacts';artifacts.mkdir(exist_ok=False)
+            for name in ('base.csr','queries.csr','ids.txt'):shutil.copyfile(root/name,artifacts/name)
+            shutil.copytree(out,artifacts/'run')
             with a.out.open('x') as f:json.dump(proof,f,indent=2)
         print(json.dumps({k:v for k,v in proof.items() if k not in ('input_sha256','QPS')},indent=2))
 

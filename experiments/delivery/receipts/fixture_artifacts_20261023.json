@@ -1,0 +1,33 @@
+{
+  "scope": "Synthetic fixture original CSR, ranked outputs and raw timing only; no paper performance acceptance",
+  "methods": {
+    "SEISMIC": {
+      "path": "experiments/delivery/fixtures/seismic",
+      "Recall": 1.0,
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/queries.csv": "b46cce0e94e0cf56866394bb25665558d3c3687d986c17b8cfa1a6597e8a9af8",
+        "run/retrieved.csv": "6d02563131d9bade0c7320c84b37f6725a6f964906254065dfffa6ddc0baf51c",
+        "run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/stdout.log": "26e576ccc30938e18e98daa52cf3c0ea326d6e0460e13dbabcd7bf2567b4e827",
+        "run/summary.json": "08a8a87b7dc5e2f5463b84ef465e8f9a91352a97c9fd81054e6ba7c102a19896"
+      }
+    },
+    "SOSIA": {
+      "path": "experiments/delivery/fixtures/sosia",
+      "Recall": 0.95,
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/queries.csv": "26e3e4a352cb9b7f14db2714b2b86c352cd18bbadfaf86715eee7030ef121dfc",
+        "run/retrieved.csv": "ce00993a761cebc3fb0856f88a054a99b8c7fa91499916ec8887fd2410344b90",
+        "run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/stdout.log": "d2ad5d9f08497c4db05157aa3f3b595fef887732117b3264cb8259d082e7670a",
+        "run/summary.json": "f817e04ee92518a649ad31dcd2228894b05f9368f3098206d365d47775c9b9aa"
+      }
+    }
+  }
+}
