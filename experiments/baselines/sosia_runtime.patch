@@ -1,0 +1,285 @@
+--- a/src/fastL2_ip.h
++++ b/src/fastL2_ip.h
+@@ -7,8 +7,7 @@
+ 
+ #ifdef USE_FAST
+ 
+-#define __SSE__
+-#define __AVX__
++// Use the compiler's actual ISA feature macros; do not spoof AVX support.
+ 
+ #ifdef __SSE__
+ #define USE_SSE
+--- a/src/method.h
++++ b/src/method.h
+@@ -7,6 +7,7 @@
+ #include <vector>
+ #include <queue>
+ #include <cfloat>
++#include <cstdint>
+ #include <random>
+ #include <ctime>
+ #include <algorithm>
+@@ -21,8 +22,7 @@
+ 	size_t n = 0;
+ 	int dim = 0;
+ 	float maxv = -FLT_MAX;
+-	static std::mt19937 rng;
+-	static std::uniform_real_distribution<float> ur;
++	static std::uint64_t seed;
+ 
+ 	trans_set transSets = nullptr;
+ public:
+@@ -46,19 +46,37 @@
+ 		}
+ 	}
+ 
++	static std::uint64_t mixSeed(std::uint64_t value) {
++		value += 0x9e3779b97f4a7c15ULL;
++		value = (value ^ (value >> 30U)) * 0xbf58476d1ce4e5b9ULL;
++		value = (value ^ (value >> 27U)) * 0x94d049bb133111ebULL;
++		return value ^ (value >> 31U);
++	}
++
++	static void setSeed(std::uint64_t value) { seed = value; }
++
++	std::size_t logicalIndexBytes() const {
++		std::size_t bytes = sizeof(*this) + n * sizeof(std::vector<int>);
++		for (std::size_t i = 0; i < n; ++i) bytes += transSets[i].size() * sizeof(int);
++		return bytes;
++	}
++
+ 	void getSets(SparseData* data) {
+ 		transSets = new std::vector<int>[n];
+ 
+ 		lsh::progress_display pd(n);
+ #pragma omp parallel for
+ 		for (int i = 0; i < n; ++i) {
++			std::mt19937 local_rng(static_cast<std::uint32_t>(mixSeed(seed ^ static_cast<std::uint64_t>(i))));
++			std::uniform_real_distribution<float> distribution(0.0f, 1.0f);
+ 			auto point = data->generateSV(i);
+ 			for (int j = 0; j < point->nnz; ++j) {
+ 				float pthred = point->val[j] / maxv;
+ 				for (int r = point->indices[j] * l; r < point->indices[j] * l + l; ++r) {
+-					if (ur(rng) < pthred) transSets[i].push_back(r);
+-				}
+-			}
++					if (distribution(local_rng) < pthred) transSets[i].push_back(r);
++				}
++			}
++			delete point;
+ 			++pd;
+ 		}
+ 	}
+@@ -66,10 +84,12 @@
+ 	static void getQuerySet(Query& q, std::vector<int>& qset) {
+ 		auto point = &(q.queryPoint);
+ 		float qmaxv = point->getMax();
++		std::mt19937 local_rng(static_cast<std::uint32_t>(mixSeed(seed ^ 0xd1b54a32d192ed03ULL ^ static_cast<std::uint64_t>(q.qid))));
++		std::uniform_real_distribution<float> distribution(0.0f, 1.0f);
+ 		for (int j = 0; j < point->nnz; ++j) {
+ 			float pthred = point->val[j] / qmaxv;
+ 			for (int r = point->indices[j] * l; r < point->indices[j] * l + l; ++r) {
+-				if (ur(rng) < pthred) qset.push_back(r);
++				if (distribution(local_rng) < pthred) qset.push_back(r);
+ 			}
+ 		}
+ 	}
+@@ -549,9 +569,8 @@
+ #pragma omp parallel for
+ 		for (int i = 0; i < s; ++i) {
+ 			hashFuns[i] = new int[len];
+-			unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+ 			for (int j = 0; j < len; ++j) hashFuns[i][j] = j;
+-			std::shuffle(hashFuns[i], hashFuns[i] + len, std::default_random_engine(seed));
++			std::shuffle(hashFuns[i], hashFuns[i] + len, std::mt19937(static_cast<std::uint32_t>(mips2set::mixSeed(mips2set::seed ^ 0x94d049bb133111ebULL ^ static_cast<std::uint64_t>(i)))));
+ 			++pd;
+ 		}
+ 	}
+@@ -570,6 +589,15 @@
+ 			}
+ 			++pd;
+ 		}
++	}
++
++	std::size_t logicalIndexBytes() const {
++		std::size_t bytes = sizeof(*this) + mysets->logicalIndexBytes();
++		bytes += static_cast<std::size_t>(s) * static_cast<std::size_t>(len) * sizeof(int);
++		bytes += static_cast<std::size_t>(s) * sizeof(int*);
++		bytes += static_cast<std::size_t>(n) * static_cast<std::size_t>(s) * sizeof(int);
++		bytes += static_cast<std::size_t>(n) * sizeof(int*);
++		return bytes;
+ 	}
+ 
+ 	//virtual void knnSearch2(Query& q) = 0;
+--- a/src/Preprocess.cpp
++++ b/src/Preprocess.cpp
+@@ -21,7 +21,8 @@
+ 
+ #define min(a,b)            (((a) < (b)) ? (a) : (b))
+ 
+-Preprocess::Preprocess(const std::string& path, const std::string& qpath, const std::string& ben_file_)
++Preprocess::Preprocess(const std::string& path, const std::string& qpath,
++                       const std::string& ben_file_, bool create_benchmark)
+ {
+ 	lsh::timer timer;
+ 	std::cout << "LOADING DATA..." << std::endl;
+@@ -35,7 +36,7 @@
+ 
+ 	dataFile = path;
+ 	benFile = ben_file_;
+-	ben_create();
++	if (create_benchmark) ben_create();
+ }
+ 
+ //Load Sparse Data
+--- a/src/Preprocess.h
++++ b/src/Preprocess.h
+@@ -10,12 +10,13 @@
+ 	SparseData* data = nullptr;
+ 	SparseData* queries = nullptr;
+ 	float* squareLen = nullptr;
+-	Ben benchmark;
++	Ben benchmark{};
+ 	float maxLen;
+ 	std::string dataFile;
+ 	std::string benFile;
+ public:
+-	Preprocess(const std::string& path, const std::string& qpath, const std::string& ben_file_);
++	Preprocess(const std::string& path, const std::string& qpath,
++	           const std::string& ben_file_, bool create_benchmark = true);
+ 	void load_data(const std::string& path, SparseData* sd);
+ 	//void load_query(const std::string& path);
+ 	void calSquareLen();
+--- a/src/sosia.h
++++ b/src/sosia.h
+@@ -93,6 +93,17 @@
+ 		}
+ 	}
+ 
++	std::size_t logicalIndexBytes() const {
++		std::size_t bytes = myMinHashBase::logicalIndexBytes();
++		bytes += sortedNorms.size() * sizeof(Res);
++		bytes += myIndexes.size() * sizeof(std::vector<std::vector<int>>);
++		for (const auto& table : myIndexes) {
++			bytes += table.size() * sizeof(std::vector<int>);
++			for (const auto& posting : table) bytes += posting.size() * sizeof(int);
++		}
++		return bytes;
++	}
++
+ 	void knnSearch2(Query& q) {
+ 		lsh::timer timer, timer1;
+ 		std::vector<int> qset;
+@@ -118,7 +129,7 @@
+ 
+ 		//int ub = 2e3;
+ 		int ub = q.k + q.ub;
+-		Res* cands = new Res[ub + 1];
++		std::vector<Res> cands(static_cast<std::size_t>(ub) + 1);
+ 		int size = 0;
+ 		for (int i = 0; i < n; ++i) {
+ 			if (candRes[i] > 0) {
+@@ -128,17 +139,17 @@
+ 				float overlap = qset.size() + sortedNorms[i].inp;
+ 				float L = overlap;
+ 				overlap /= 1 + jaccord_inv;
+-				cands[size] = Res(sortedNorms[i].id, overlap);
++				cands[static_cast<std::size_t>(size)] = Res(sortedNorms[i].id, overlap);
+ 				//cands[size] = Res(sortedNorms[i].id, candRes[i] * L);
+ 				//cands[size] = Res(sortedNorms[i].id, candRes[i]);
+ 				if (size < ub) {
+ 					size++;
+-					std::push_heap(cands, cands + size);
+-				}
+-				else if (cands[0].inp < cands[size].inp) {
+-					size++;
+-					std::push_heap(cands, cands + size);
+-					std::pop_heap(cands, cands + size);
++					std::push_heap(cands.begin(), cands.begin() + size);
++				}
++				else if (cands[0].inp < cands[static_cast<std::size_t>(size)].inp) {
++					size++;
++					std::push_heap(cands.begin(), cands.begin() + size);
++					std::pop_heap(cands.begin(), cands.begin() + size);
+ 					size--;
+ 				}
+ 			}
+@@ -148,7 +159,7 @@
+ 		q.time_sift = timer1.elapsed();
+ 		timer1.restart();
+ 		q.cost += ub;
+-		for (int i = 0; i < ub; ++i) q.res[i] = Res(cands[i].id, data->dotProduct2SV(cands[i].id, q.qvec));
++		for (int i = 0; i < ub; ++i) q.res[i] = Res(cands[static_cast<std::size_t>(i)].id, data->dotProduct2SV(cands[static_cast<std::size_t>(i)].id, q.qvec));
+ 		if (q.res.size() > q.k) {
+ 			std::partial_sort(q.res.begin(), q.res.begin() + q.k, q.res.end());
+ 			q.res.resize(q.k);
+@@ -162,4 +173,68 @@
+ 		return;
+ 
+ 	}
++	void candidateSearch(Query& q) {
++		lsh::timer timer, timer1;
++		std::vector<int> qset;
++		mips2set::getQuerySet(q, qset); // the reason why it is random
++		std::vector<int> qhash(s, len);
++		std::vector<bool> unseen(n, true);
++		for (auto& id : qset) {
++			for (int j = 0; j < s; ++j) if (qhash[j] > hashFuns[j][id]) qhash[j] = hashFuns[j][id];
++		}
++
++		std::vector<int> candRes(n, 0);
++		size_t cnt = 0;
++		int qm=q.qm;
++		if(q.qm<0) qm=r;
++		for (int j = 0; j < qm; ++j) {
++			//std::unordered_set<int> cands;
++				int key = qhash[j * b];
++				for (auto& id : myIndexes[j][key]) candRes[id]++, cnt++;
++		}
++		q.cnt = cnt;
++		q.time_hash = timer1.elapsed();
++		timer1.restart();
++
++		//int ub = 2e3;
++		int ub = q.k + q.ub;
++		std::vector<Res> cands(static_cast<std::size_t>(ub) + 1);
++		int size = 0;
++		for (int i = 0; i < n; ++i) {
++			if (candRes[i] > 0) {
++				//if((qset.size() + sortedNorms[i].inp)*candRes[i]>ptau*m*)
++				float jaccord_inv = (float)qm / candRes[i];
++				//float jaccord_inv = 1.0 / (1 - std::pow(1 - candRes[i] / (float)r, 1.0 / b));
++				float overlap = qset.size() + sortedNorms[i].inp;
++				float L = overlap;
++				overlap /= 1 + jaccord_inv;
++				cands[static_cast<std::size_t>(size)] = Res(sortedNorms[i].id, overlap);
++				//cands[size] = Res(sortedNorms[i].id, candRes[i] * L);
++				//cands[size] = Res(sortedNorms[i].id, candRes[i]);
++				if (size < ub) {
++					size++;
++					std::push_heap(cands.begin(), cands.begin() + size);
++				}
++				else if (cands[0].inp < cands[static_cast<std::size_t>(size)].inp) {
++					size++;
++					std::push_heap(cands.begin(), cands.begin() + size);
++					std::pop_heap(cands.begin(), cands.begin() + size);
++					size--;
++				}
++			}
++		}
++		if (size < ub) ub = size;
++		q.res.resize(ub);
++		q.time_sift = timer1.elapsed();
++		timer1.restart();
++		q.cost += ub;
++		for (int i = 0; i < ub; ++i) q.res[i] = Res(cands[static_cast<std::size_t>(i)].id, 0);
++
++		q.time_verify = timer1.elapsed();
++		timer1.restart();
++
++		q.time_total = timer.elapsed();
++		return;
++
++	}
+ };

@@ -1,0 +1,89 @@
+{
+  "timestamp_utc": "2026-10-23T09:41:20.607632+00:00",
+  "host": {
+    "system": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "cpu": {
+      "exit_code": 0,
+      "output": "Architecture:                         x86_64\nCPU op-mode(s):                       32-bit, 64-bit\nAddress sizes:                        48 bits physical, 48 bits virtual\nByte Order:                           Little Endian\nCPU(s):                               6\nOn-line CPU(s) list:                  0-5\nVendor ID:                            AuthenticAMD\nModel name:                           AMD Ryzen 7 8845H w/ Radeon 780M Graphics\nCPU family:                           25\nModel:                                117\nThread(s) per core:                   2\nCore(s) per socket:                   3\nSocket(s):                            1\nStepping:                             2\nBogoMIPS:                             7585.30\nFlags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl tsc_reliable nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512_bf16 clzero xsaveerptr arat avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm\nHypervisor vendor:                    Microsoft\nVirtualization type:                  full\nL1d cache:                            96 KiB (3 instances)\nL1i cache:                            96 KiB (3 instances)\nL2 cache:                             3 MiB (3 instances)\nL3 cache:                             16 MiB (1 instance)\nNUMA node(s):                         1\nNUMA node0 CPU(s):                    0-5\nVulnerability Gather data sampling:   Not affected\nVulnerability Itlb multihit:          Not affected\nVulnerability L1tf:                   Not affected\nVulnerability Mds:                    Not affected\nVulnerability Meltdown:               Not affected\nVulnerability Mmio stale data:        Not affected\nVulnerability Reg file data sampling: Not affected\nVulnerability Retbleed:               Not affected\nVulnerability Spec rstack overflow:   Vulnerable: Safe RET, no microcode\nVulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:             Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP always-on; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                  Not affected\nVulnerability Tsx async abort:        Not affected\n"
+    }
+  },
+  "commit": {
+    "exit_code": 0,
+    "output": "f77586337535d85757ba7ed907b91247dd905d97\n"
+  },
+  "branch": {
+    "exit_code": 0,
+    "output": "codex/server-driver-20261023\n"
+  },
+  "worktree": {
+    "exit_code": 0,
+    "output": "?? DELIVERY_STATUS.md\n?? experiments/delivery/\n"
+  },
+  "freeze": {
+    "approval_baseline_commit": "fa2455ed83de47fec1de60563949e32eb1d34c6c",
+    "files_checked": 19,
+    "historical_baseline_files_checked": 19,
+    "normalization": "CRLF to LF only; no whitespace or code normalization"
+  },
+  "inputs": [
+    {
+      "file": "base_small.csr",
+      "symlink": false,
+      "status": "PASS",
+      "n": 100000,
+      "d": 30109,
+      "nnz": 12729954,
+      "bytes": 102639664,
+      "sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+      "scope": "header/size/hash; full row validation is separate"
+    },
+    {
+      "file": "base_1M.csr",
+      "symlink": true,
+      "status": "PASS",
+      "n": 1000000,
+      "d": 30109,
+      "nnz": 126320094,
+      "bytes": 1018560784,
+      "sha256": "d0727fcc10e18151ca693a0896dfa70c2dce6b8111a95d245fea58be389fa9dc",
+      "scope": "header/size/hash; full row validation is separate"
+    },
+    {
+      "file": "queries.dev.csr",
+      "symlink": false,
+      "status": "PASS",
+      "n": 6980,
+      "d": 30109,
+      "nnz": 342696,
+      "bytes": 2797440,
+      "sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+      "scope": "header/size/hash; full row validation is separate"
+    }
+  ],
+  "server": {
+    "status": "BLOCKED",
+    "reason": "Owner confirmed 2026-10-23: server is not ready; no remote measurement authorized or performed"
+  },
+  "resources": {
+    "memory": {
+      "exit_code": 0,
+      "output": "               total        used        free      shared  buff/cache   available\nMem:     12543823872   858652672 10144350208     3657728  1540820992 11503120384\nSwap:    25769803776           0 25769803776\n"
+    },
+    "disk": {
+      "exit_code": 0,
+      "output": "Filesystem        1B-blocks         Used    Available Use% Mounted on\nD:\\            644246474752 488631398400 155615076352  76% /mnt/d\n"
+    },
+    "compiler": {
+      "exit_code": 0,
+      "output": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+    },
+    "rust": {
+      "exit_code": 0,
+      "output": "rustc 1.75.0 (82e1608df 2023-12-21) (built from a source tarball)\n"
+    },
+    "cargo": {
+      "exit_code": 0,
+      "output": "cargo 1.75.0\n"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scope": "Concrete upstream candidates; build/parity and paper-lineage acceptance remain separate gates",
+  "methods": {
+    "SOSIA": {"repository": "Jacyhust/SOSIA", "commit": "55433a618f39e3fbc98dc34a1ffa1433d9b631b9"},
+    "SINDI": {"repository": "Roxanne0321/vsag", "commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa", "lineage": "sparse branch candidate"},
+    "SEISMIC": {"repository": "tusKANNy/seismic", "commit": "492de11c9b6fd0c46c2c7c274c30836353b882f0", "lineage": "Candidate version, not yet asserted to be original paper implementation"}
+  }
+}
