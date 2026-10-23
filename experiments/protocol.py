@@ -75,6 +75,8 @@ def run(args):
     p=checked_plan(args.plan,args.queries)
     config=load(args.config)
     require(set(config)=={'ell','delta_h','kmax','k','threads','iterations'},'Unsupported/missing configuration key')
+    require(all(type(config[k]) is int and config[k]>0 for k in ('ell','kmax','k','threads','iterations')),'Configuration requires positive integers')
+    require(type(config['delta_h']) in (int,float) and math.isfinite(config['delta_h']) and 0<config['delta_h']<1 and config['k']<=config['kmax'],'Invalid delta_h or k range')
     datahash=sha(args.data);binaryhash=sha(args.binary);source=code_hashes()
     binding=dict(plan_sha256=sha(args.plan),data_sha256=datahash,queries_sha256=sha(args.queries),
                  binary_sha256=binaryhash,source_sha256=source,config=config,calibration_seed=args.calibration_seed)

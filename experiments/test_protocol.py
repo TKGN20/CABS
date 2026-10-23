@@ -49,6 +49,7 @@ def check(binary):
         summary=json.loads(subprocess.check_output(report));assert summary['status']=='matched' and not summary['minimum_three_builds_met']
         assert subprocess.run(report+[str(d/'final')],stdout=subprocess.PIPE,stderr=subprocess.PIPE).returncode!=0
         config['ell']=8;(d/'config.json').write_text(json.dumps(config));reject(lambda:run(args('changed',role='evaluation',lock=d/'lock.json')))
+        config['ell']=4.5;(d/'config.json').write_text(json.dumps(config));reject(lambda:run(args('fractional-config')))
         for name in ('validation','other-index','other-cal','final'):
             with (d/name/'ground_truth.csv').open() as f:truth=list(csv.DictReader(f))
             grouped={}
