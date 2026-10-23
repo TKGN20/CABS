@@ -35,7 +35,9 @@ def check(binary):
         m,s=checked_run(d/'validation');m2,_=checked_run(d/'other-index')
         assert m['calibration_ids']==m2['calibration_ids'] and m['query_ids']==p['selection']
         run(args('other-cal',cal=42));m3,_=checked_run(d/'other-cal');assert m3['calibration_ids']!=m['calibration_ids'] and m3['index_seed']==m['index_seed']
-        lock_runs([d/'validation',d/'other-index'],d/'lock.json',0,1)
+        selected=lock_runs([d/'validation',d/'other-index'],d/'lock.json',0,1)
+        assert len(selected['all_candidates'])==1 and len(selected['selected']['index_seeds'])==2
+        reject(lambda:lock_runs([d/'validation',d/'validation'],d/'duplicate-lock.json',0,1))
         run(args('final',role='evaluation',index=51,lock=d/'lock.json'))
         mf,_=checked_run(d/'final');assert mf['query_ids']==p['evaluation'] and mf['calibration_ids']==m['calibration_ids']
         assert set(mf['query_ids']).isdisjoint(m['query_ids']+m['calibration_ids'])

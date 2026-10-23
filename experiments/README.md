@@ -33,7 +33,11 @@ python3 experiments/protocol.py report --lock selected.json --runs evaluation-1
 
 Run every predeclared candidate configuration on selection queries before `lock`.
 The lock chooses the fastest eligible recorded selection point in `[r,r+0.002]`;
-no eligible point creates an unmatched lock and evaluation is refused. It binds
+no eligible point creates an unmatched lock and evaluation is refused.
+Repeated selection builds of the same configuration are grouped: Recall is
+averaged across builds and QPS is pooled across their timed calls. Individual
+best-seed QPS is not used for configuration selection; duplicate seeds for a
+configuration are rejected. The lock binds
 configuration, inputs, plan, calibration seed, source and binary hashes. Final
 evaluation requires the lock and rejects a changed binding. A different index
 seed is permitted for independent builds; calibration IDs remain fixed. Locks and

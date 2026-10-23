@@ -106,13 +106,21 @@ def run(args):
 
 def lock_runs(runs,out,target,tolerance):
     require(math.isfinite(target) and math.isfinite(tolerance) and 0<=target<=1 and 0<=tolerance<=1-target,'Invalid recall band')
-    candidates=[];context=None
+    groups={};context=None
     for path in runs:
         m,s=checked_run(path);require(m['role']=='selection','Cannot select parameters from evaluation')
         b=m['binding'];current={k:v for k,v in b.items() if k!='config'}
         require(context is None or context==current,'Candidates use different inputs, seeds or code');context=current
-        candidates.append(dict(binding=b,recall=s['recall'],qps=s['qps'],validation_receipt_sha256=sha(path/'complete.json')))
-    require(candidates,'No validation records')
+        key=json.dumps(b['config'],sort_keys=True)
+        group=groups.setdefault(key,dict(binding=b,records=[],index_seeds=[],validation_receipt_sha256=[]))
+        require(m['index_seed'] not in group['index_seeds'],'Repeated selection build seed for a configuration')
+        group['index_seeds'].append(m['index_seed']);group['records'].append(s);group['validation_receipt_sha256'].append(sha(path/'complete.json'))
+    require(groups,'No validation records')
+    candidates=[]
+    for group in groups.values():
+        records=group.pop('records');count=sum(r['queries']*r['repeats'] for r in records)
+        group.update(recall=sum(r['recall'] for r in records)/len(records),qps=count/sum(r['queries']*r['repeats']/r['qps'] for r in records))
+        candidates.append(group)
     eligible=[c for c in candidates if target<=c['recall']<=target+tolerance]
     eligible.sort(key=lambda c:(-c['qps'],json.dumps(c['binding']['config'],sort_keys=True)))
     value=dict(target=target,tolerance=tolerance,selected=eligible[0] if eligible else None,all_candidates=candidates)
