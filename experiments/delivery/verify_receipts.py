@@ -25,7 +25,13 @@ def main():
             if hashlib.sha256((folder/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Fixture changed: '+name)
         actual=audit(folder/'base.csr',folder/'queries.csr',folder/'run/retrieved.csv',folder/'run/queries.csv',[int(v) for v in (folder/'ids.txt').read_text().split()],50,3)
         if actual['Recall']!=record['Recall']:raise ValueError('Fixture recall differs: '+method)
-    print(json.dumps(dict(status='PASS',receipts=len(registry),fixtures_recomputed=len(fixtures['methods']),scope='Saved receipt integrity and small-fixture recomputation only; not independent performance reproduction')))
+    for record in fixtures.get('native_smokes',{}).values():
+        folder=repository/record['path']
+        if not folder.resolve().is_relative_to(repository.resolve()):raise ValueError('Unsafe native artifact path')
+        for name,wanted in record['sha256'].items():
+            if not (folder/name).resolve().is_relative_to(folder.resolve()):raise ValueError('Unsafe native artifact entry')
+            if hashlib.sha256((folder/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Native artifact changed: '+name)
+    print(json.dumps(dict(status='PASS',receipts=len(registry),fixtures_recomputed=len(fixtures['methods']),native_smoke_bundles_hash_checked=len(fixtures.get('native_smokes',{})),scope='Saved receipt integrity and small-fixture recomputation only; native smokes hash-only; not independent performance reproduction')))
 
 
 if __name__=='__main__':main()

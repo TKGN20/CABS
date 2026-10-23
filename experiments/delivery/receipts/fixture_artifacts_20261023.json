@@ -29,5 +29,20 @@
         "run/summary.json": "f817e04ee92518a649ad31dcd2228894b05f9368f3098206d365d47775c9b9aa"
       }
     }
+  },
+  "native_smokes": {
+    "SINDI": {
+      "path": "experiments/delivery/native_smoke/sindi",
+      "sha256": {
+        "gt.bin": "e9a37b305a604552245ee120ec27fee1a0ec9aba9a4c5de5c27071ce459cce14",
+        "index.bin": "1fcd56353de84f6b62b277a20d39c0f725a12be27e7deae5a83af936ed2f1a4e",
+        "receipt.json": "1f35632809a17f92b2f361a2332ca0e1be52c890a0f0438a9a42644ed857d34a",
+        "sindi_index_build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sindi_index_build.stdout.log": "baec111838c80c4acaa9ad51a5a065c46aa9ec387e86d91f6f9a10bb042b8b6a",
+        "sindi_index_search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sindi_index_search.stdout.log": "1916a13b980eac03cfb65ec6964e8cf236c59e851cf928de1eb085e07cd5cbaf"
+      },
+      "scope": "Saved native CLI artifacts only; candidate/ID/score acceptance pending"
+    }
   }
 }

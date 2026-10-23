@@ -1,10 +1,12 @@
 {
-  "fixture_artifacts_20261023.json": "b5e038fbf07775fbb0d6b2d805358d555d45b524b92af4ed4469d34b1482c395",
+  "fixture_artifacts_20261023.json": "7f51dacd6338320efc6af8e1adf7f5ed208c46c2cebe3bfe14351dbfc9e7cf63",
   "preflight_20261023.json": "61928c677f6bbfee4add907a71df07105ca5dad7dfbceab815939724e08a1f96",
   "rust-toolchain_20261023.json": "33601353752372f8878db845ce9cce716d35419545b855c2336a93f9a6efe593",
   "seismic-adapter-v1_build_receipt.json": "dee738baa9ca355b088c534b118a8b135ddf43712e6e4236c92f7c93015f6770",
   "seismic-native_build_receipt.json": "3d2f0e345dfa05b6b720198b28026dc800e8c2e2c1e422f53e676b7422d6f009",
   "seismic-recorded_parity.json": "e1039b740d9ba86ed07eb7a541bdda214582c8b6ddda9c4ec486718f03391001",
+  "sindi-native_build_receipt.json": "56a2e199168ecd094323d5e0a4efe6e379b8fc40781870fb4db80179df0a209d",
+  "sindi-native_smoke_receipt.json": "1f35632809a17f92b2f361a2332ca0e1be52c890a0f0438a9a42644ed857d34a",
   "sosia-asan-v2_build_receipt.json": "a034f59f580de20d3e91825c23ae1c14325d23c527bfd967f6295311de132fe6",
   "sosia-asan-v2_parity.json": "9fc079bfab34d7b57e91cc83fcd7b89a3819561bd7b2f26843fdf10f41e0c95c",
   "sosia-recorded_parity.json": "4745566ff090c6558f977aa3b613d06bb10c0af496b5a0177e865426b268b043",

@@ -113,6 +113,7 @@ index-space accounting, real-data performance or the common validation lock.
 ```bash
 python3 experiments/baselines/fetch_upstreams.py --method ThreadPool --out build-mission/upstreams
 python3 experiments/baselines/build_sindi.py --upstreams build-mission/upstreams --out build-mission/sindi-native
+python3 experiments/baselines/test_sindi_native.py --native build-mission/sindi-native --out build-mission/sindi-smoke
 ```
 
 The native project references a floating ThreadPool archive whose current bytes
@@ -123,6 +124,14 @@ algorithm is changed by this build helper. Successful compilation alone is not
 ID/score/IS acceptance. In particular, upstream hard-codes an AVX-512 flag and
 its `GetMemoryUsage()` returns zero; host ISA suitability and retained-space
 accounting remain explicit audit items before real comparisons.
+
+The native CLI smoke performs build/serialize/reload/search with independently
+generated synthetic GT. It saves native stdout/stderr and exact executable/library
+hashes, but the CLI does not export per-query IDs for this test. Its printed
+aggregate Recall/QPS is not accepted as independently audited four-method evidence.
+On the first local smoke it reported Recall 0.343333 with alpha=1, beta=1,
+gamma=160 and 160 documents. Candidate integrity, duplicates and underfill must be
+investigated before accepting SINDI integration; no exact fallback repairs it.
 
 The CABS repository license does not replace upstream licenses or attribution.
 SINDI/VSAG preserves its Apache notices; SEISMIC's upstream citation requirements

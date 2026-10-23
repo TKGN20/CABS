@@ -11,3 +11,5 @@ results/engineering/frozen_B_20261022/** -text
 experiments/delivery/receipts/** -text
 experiments/delivery/fixtures/** -text
 experiments/delivery/fixtures/**/*.log whitespace=-blank-at-eof
+experiments/delivery/native_smoke/** -text
+experiments/delivery/native_smoke/**/*.log whitespace=-blank-at-eof
