@@ -19,6 +19,27 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def check_approval_baseline(root=ROOT,source_check=False):
+    proof=json.loads((root/'docs/approval_baseline.json').read_text(encoding='utf-8'))
+    commit=proof['approval_baseline_commit']
+    require(re.fullmatch('[0-9a-f]{40}',commit) is not None,'Invalid approval baseline commit')
+    names={p.relative_to(root).as_posix() for directory in ('include','src','configs')
+           for p in (root/directory).rglob('*') if p.is_file()}
+    names.update(('CMakeLists.txt','Makefile'))
+    require(names==set(proof['sha256_lf']),'Frozen production/default file inventory changed')
+    for name,value in proof['sha256_lf'].items():
+        require(digest((root/name).read_bytes().replace(b'\r\n',b'\n'))==value,'Frozen production/default checksum: '+name)
+        if source_check:
+            try:
+                blob=subprocess.check_output(['git','-c','safe.directory='+str(root),'show',commit+':'+name],cwd=root,stderr=subprocess.PIPE)
+            except subprocess.CalledProcessError as error:
+                raise ValueError('Approval baseline history unavailable; use a full Git clone') from error
+            require(digest(blob.replace(b'\r\n',b'\n'))==value,'Frozen baseline source mismatch: '+name)
+    return {'approval_baseline_commit':commit,'files_checked':len(names),
+            'historical_baseline_files_checked':len(names) if source_check else 0,
+            'normalization':'CRLF to LF only; no whitespace or code normalization'}
+
+
 def check_sources(directory):
     attestation=directory/'source_attestation.json'
     provenance=directory/'provenance.json'
@@ -99,6 +120,7 @@ def verify_approval_evidence(recorded_queries,complete_directory):
 
 
 def verify(source_check=False):
+    baseline=check_approval_baseline(source_check=source_check)
     checked=0;sources=0
     for manifest in sorted((ROOT/'results').rglob('artifact_manifest.json')):
         directory=manifest.parent
@@ -134,6 +156,7 @@ def verify(source_check=False):
         if row['split']=='evaluation':match_recorded_counters(row,recorded[int(row['query_id'])])
     approval=verify_approval_evidence(recorded,new)
     return {'status':'PASS','artifact_members_checked':checked,'canonical_source_files_checked':sources,
+            'approval_baseline':baseline,
             'full_runs':{name:{k:v for k,v in metrics.items() if k in ('Recall@50','QPS','IS_bytes','measured_queries')} for name,metrics in full.items()},
             'complete_1m_non_timing_equivalence':True,'diagnostics':diagnostics,'selected_final_index_query_matches':len(actual),
             'approval_evidence':approval,

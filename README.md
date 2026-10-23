@@ -224,6 +224,14 @@ This is saved-record verification, not a new whole-corpus retrieval experiment.
 The [server comparison proposal](docs/SERVER_VALIDATION_PROPOSAL.md) is a pending
 experiment plan, not a completed benchmark.
 
+The [review index](docs/REVIEW_INDEX.md) separates production changes, tests,
+reproducibility scripts, diagnostics and evidence. The immutable approval baseline
+is `fa2455ed83de47fec1de60563949e32eb1d34c6c`; the current verifier also checks the
+[19-file production/default freeze](docs/approval_baseline.json). Local
+`--source-check` includes historical Git-source verification; Release CI omits
+that option. Neither audit independently rebuilds the complete 1M index or
+reproduces paper-server QPS.
+
 This review candidate releases per-document construction sketches after final
 hash-table construction for static tasks. Cardinalities and final tables remain
 available for search. The release cost is included in IT and a same-index byte
