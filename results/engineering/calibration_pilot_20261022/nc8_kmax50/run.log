@@ -1,0 +1,29 @@
+validated n=100000 dim=30109 nnz=12729954
+exact_ground_truth_s=0.19887
+encoding_done slots=722616 sketch_GiB=0.171106 positive_targets=400
+calibrate_K=1
+K=1 floor=0.00903614 m=178:178 build_bound_GiB=0.546463 cost_s=0.000904751
+calibrate_K=2
+K=2 floor=0.00903614 m=178:178 build_bound_GiB=0.838098 cost_s=0.000949544
+calibrate_K=4
+K=4 floor=0.00903614 m=99:178 build_bound_GiB=0.703144 cost_s=0.000959778
+calibrate_K=8
+K=8 floor=0.00903614 m=70:178 build_bound_GiB=0.687163 cost_s=0.000873391
+calibrate_K=16
+K=16 floor=0.00903614 m=47:178 build_bound_GiB=0.526257 cost_s=0.000610941
+calibrate_K=32
+K=32 floor=0.00903614 m=42:178 build_bound_GiB=0.513808 cost_s=0.00070808
+calibrate_K=64
+K=64 floor=0.00903614 m=14:178 build_bound_GiB=0.501607 cost_s=0.000949109
+calibrate_K=128
+K=128 floor=0.00903614 m=14:178 build_bound_GiB=0.564684 cost_s=0.00179017
+calibrate_K=256
+K=256 floor=0.00903614 m=14:178 build_bound_GiB=0.656954 cost_s=0.00351288
+calibrate_K=400
+K=400 floor=0.00903614 m=14:178 build_bound_GiB=0.742097 cost_s=0.00435005
+final_ready K=16 B=3782 bytes=108719876 build_s=160.046
+UNTIMED_EQUIVALENCE_PASS queries=8 original_vs_final full_Pool_C_proxies_routes_stops
+QUERY_PROGRESS k=50 repeat=0 completed=64/64
+QUERY_PROGRESS k=50 repeat=1 completed=64/64
+QUERY_PROGRESS k=50 repeat=2 completed=64/64
+MEASURED recall=0.978125 QPS=140.683 mean_verified=6788.64

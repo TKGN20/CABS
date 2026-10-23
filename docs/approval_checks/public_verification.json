@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "artifact_members_checked": 185,
+  "canonical_source_files_checked": 164,
+  "full_runs": {
+    "measured/splade-0.1m": {
+      "Recall@50": 0.9954071100916889,
+      "QPS": 158.11887373599666,
+      "IS_bytes": 392970289,
+      "measured_queries": 20928
+    },
+    "measured/splade-1m": {
+      "Recall@50": 0.9957167431192104,
+      "QPS": 12.040261764554861,
+      "IS_bytes": 3461449469,
+      "measured_queries": 20928
+    },
+    "engineering/cache_20261022": {
+      "Recall@50": 0.9954071100916889,
+      "QPS": 185.5433190801514,
+      "IS_bytes": 209246838,
+      "measured_queries": 20928
+    },
+    "engineering/review_1m_20261022": {
+      "Recall@50": 0.9957167431192104,
+      "QPS": 17.471727307186487,
+      "IS_bytes": 1746098882,
+      "measured_queries": 20928
+    }
+  },
+  "complete_1m_non_timing_equivalence": true,
+  "diagnostics": {
+    "calibration_audit_small_20261022": {
+      "candidates": 10
+    },
+    "selected_profile_1m_20261022": {
+      "candidates": 1
+    }
+  },
+  "selected_final_index_query_matches": 16,
+  "approval_evidence": {
+    "pilot_cases": 4,
+    "common_queries_per_case": 64,
+    "common_timing_records_per_case": 192,
+    "routing": {
+      "queries": 16,
+      "trace_rows": 128,
+      "stop_events": 0,
+      "angular_factor_min": 0.9990278559362407,
+      "angular_factor_median": 0.9999683372354129,
+      "fraction_angular_factor_one": 0.359375,
+      "suffix_over_gamma_min": 4.097129363756321,
+      "suffix_over_gamma_median": 5.445249070171126,
+      "exact_cluster_maximum_checks": 32,
+      "upper_over_exact_max_min": 3.3258493977877115,
+      "upper_over_exact_max_median": 4.36041901136772,
+      "cover_radius_min": 1.5158551931858988,
+      "cover_radius_max": 1.5344948290132117,
+      "scope": "selected-index subset diagnostic; exact cluster scans and traces excluded from QPS"
+    },
+    "frozen_budget_combinations": 30
+  },
+  "scope": "read-only saved-record and optional historical-source verification; no new retrieval run or independent whole-corpus GT computation"
+}

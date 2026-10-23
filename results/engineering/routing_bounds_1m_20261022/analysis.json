@@ -1,0 +1,16 @@
+{
+  "queries": 16,
+  "trace_rows": 128,
+  "stop_events": 0,
+  "angular_factor_min": 0.9990278559362407,
+  "angular_factor_median": 0.9999683372354129,
+  "fraction_angular_factor_one": 0.359375,
+  "suffix_over_gamma_min": 4.097129363756321,
+  "suffix_over_gamma_median": 5.445249070171126,
+  "exact_cluster_maximum_checks": 32,
+  "upper_over_exact_max_min": 3.3258493977877115,
+  "upper_over_exact_max_median": 4.36041901136772,
+  "cover_radius_min": 1.5158551931858988,
+  "cover_radius_max": 1.5344948290132117,
+  "scope": "selected-index subset diagnostic; exact cluster scans and traces excluded from QPS"
+}

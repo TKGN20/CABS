@@ -1,0 +1,8 @@
+{
+  "sha256": {
+    "frozen_B_analysis.json": "1b05de271d22c810e259d37837533f30a196d7cd262127622674209b2d2683e5",
+    "frozen_B_subsets.csv": "b457a1741f50930685097e4387a1dc6d4509f630ec213bc13f83d2dd96e48bf5",
+    "POSTHOC_B_PLAN.md": "92af6968ee125e56ff5e503b5cdc23ad71ad3622d153cf1088ca36362010058a"
+  },
+  "raw_uncompressed_csv_sha256": {}
+}

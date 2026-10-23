@@ -61,3 +61,28 @@ separate full runs, is used to isolate the scoring-kernel benefit.
 
 Source comments were removed separately before this revision; recompilation at
 that step produced the same executable SHA-256. The MIT license is retained.
+
+## 2026-10-22 review follow-up
+
+Five CTest suites now pass locally in Release and ASan/UBSan: semantic,
+end_to_end, reporting_validation, mechanism_contract and calibration_audit.
+The latter two deterministically exercise multiple clusters, positive-floor
+fallback, spillover, minimum B, fresh final hashes and reconstruction of formal
+production outputs. The same matrix has an actual successful
+[GitHub Actions run](https://github.com/TKGN20/CABS/actions/runs/39766748200)
+at diagnostic/test source 0fb6b48; CI is enabled rather than just templated.
+
+The completed b327ec35 1M production source is independently matched by content
+hashes, with all 20,928 timed records and full GT available under
+results/engineering/review_1m_20261022. Git identity capture in that WSL run was
+null because its worktree metadata contained a Windows absolute path. The raw
+metadata is preserved and source_attestation.json supplies a complete independent
+snapshot-content correspondence. Later changes add tests, diagnostics and docs;
+the production include/src files remain unchanged.
+
+The selected-final-index 1M diagnostic matches 16 ranked query results and 32
+repeat/counter records against the complete task. The small all-K audit checks
+ten candidates: proxy, full calibration and sampled full evaluation costs all
+have their observed minimum at K=1. This sample therefore does not demonstrate
+a wrong K selection, and its recalls are not matched. Theory/representation
+boundaries are documented in PAPER_IMPLEMENTATION.md and COMPLEXITY.md.

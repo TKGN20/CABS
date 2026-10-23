@@ -1,0 +1,62 @@
+{
+  "external": {
+    "dataset": "SPLADE-0.1M",
+    "scale": "0.1M",
+    "base_file": "base_small.csr",
+    "algorithm": "CABS",
+    "k": 50,
+    "k_max": 100,
+    "ell": 24,
+    "delta_h": 0.2,
+    "query_threads": 1,
+    "build_threads": 4,
+    "auto_configuration": true,
+    "seed": 20261007,
+    "calibration_queries": 4,
+    "evaluation_queries": 6976,
+    "timing_repeats": 3,
+    "warmup_queries": 5,
+    "lloyd_iterations": 10,
+    "max_index_gib": 9,
+    "protocol_source": "SPLADE CSR benchmark with a disjoint seeded calibration/evaluation split; all execution settings are recorded in this file.",
+    "retain_sketch_cache": false,
+    "full_query_run": true
+  },
+  "automatic": {
+    "K": 1,
+    "B": 13976,
+    "stage_seconds": {
+      "B_calibration": 0.014910595000003468,
+      "K_calibration_including_partitions_hashes": 169.643112099,
+      "K_candidate_cost_measurement": 0.3883726019999969,
+      "allocation": 0.003268673000000888,
+      "calibration_including_partitions": 173.658723818,
+      "final_Minhash_construction": 4.002072848999973,
+      "local_m_calibration_all_candidates": 0.003788638999999705,
+      "partition_all_candidates": 30.192528153999994,
+      "scaling": 0.007357114000001275,
+      "selected_temporary_hash_construction": 4.000374799000014,
+      "sketch_cache_release": 0.008126129000004312,
+      "sketch_construction": 0.3393657550000029,
+      "spherical_all_candidates": 29.554067429000035,
+      "spillover_all_candidates": 0.6225914710000069,
+      "temporary_hash_construction_all_candidates": 138.87695659499997,
+      "df_statistics": 0.03005749500000121,
+      "dataset_loading_validation": 0.44355994200000026
+    },
+    "clusters": [
+      {
+        "id": 0,
+        "primary_size": 100000,
+        "expanded_size": 100000,
+        "m": 205,
+        "floor": 0.00784313725490196,
+        "construction_radius": 1.531973004433675,
+        "norm_bound": 13.369238695975689
+      }
+    ]
+  },
+  "source_hash": "9b732fc2f79330fb77c442a0948fbf6d862853d0ec54b1934ccc99ff21608343",
+  "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+  "query_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5"
+}

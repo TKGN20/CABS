@@ -1,0 +1,29 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-sanitize
+gmake: Warning: File 'Makefile' has modification time 1.1 s in the future
+gmake[1]: Warning: File 'CMakeFiles/Makefile2' has modification time 1.2 s in the future
+gmake[2]: Warning: File 'CMakeFiles/cabs_mechanism_contract.dir/flags.make' has modification time 0.65 s in the future
+gmake[2]: Warning: File 'CMakeFiles/cabs.dir/progress.make' has modification time 1.1 s in the future
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[2]: Warning: File 'CMakeFiles/cabs_mechanism_contract.dir/flags.make' has modification time 0.55 s in the future
+[ 16%] Building CXX object CMakeFiles/cabs_mechanism_contract.dir/tests/mechanism_contract.cpp.o
+Consolidate compiler generated dependencies of target cabs
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[2]: Warning: File 'CMakeFiles/cabs.dir/progress.make' has modification time 0.6 s in the future
+[ 33%] Building CXX object CMakeFiles/cabs.dir/src/main.cpp.o
+[ 50%] Linking CXX executable cabs_mechanism_contract
+[ 66%] Linking CXX executable cabs
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+[ 66%] Built target cabs_mechanism_contract
+[ 83%] Building CXX object CMakeFiles/cabs_calibration_audit.dir/benchmarks/calibration_audit.cpp.o
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+[ 83%] Built target cabs
+In file included from /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/benchmarks/calibration_audit.cpp:1:
+/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/include/final_equivalence.hpp:63:13: warning: ‘void check_query(const cabs_index::Index&, cabs_index::Row, cabs_index::Id, size_t, bool, Trace*, Trace*)’ defined but not used [-Wunused-function]
+   63 | static void check_query(const Index& idx,Row q,Id qid,size_t k,bool stop,Trace* before_out=nullptr,Trace* after_out=nullptr){
+      |             ^~~~~~~~~~~
+[100%] Linking CXX executable cabs_calibration_audit
+[100%] Built target cabs_calibration_audit
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake: warning:  Clock skew detected.  Your build may be incomplete.

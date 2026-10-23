@@ -1,0 +1,173 @@
+{
+  "status": "completed",
+  "started_utc": "2026-10-22T15:37:26.301835+00:00",
+  "git_commit": "5b830dc035ea8824b2fc9d622ce6db78a93ab37e",
+  "git_worktree_status": "M include/cabs.hpp",
+  "source_sha256": {
+    "include/cabs/calibration/configuration.hpp": "a7b84b0819c94001ce160e03e10438fb10d233b5fb6b8f08dff2c2dfd5479ae7",
+    "include/cabs/clustering/spherical_partition.hpp": "20a03e33bfc9adcf911f3eb4e11db3f344086ea80588a78fbbc21951be48c0cd",
+    "include/cabs/common.hpp": "21d93c378d3ca342997e30f36318ec195d426b9482e93ee60b056d58b3670d07",
+    "include/cabs/io/dataset_loader.hpp": "a91f438a765410dbff51e068a1304127c9f8e3f5ae88e988bacddc8ec4f1018c",
+    "include/cabs/io/ground_truth.hpp": "771b114d0c9cf779c509a5ff4f93447203f5b6252cab6890850edc9db087fc00",
+    "include/cabs/minhash/local_index.hpp": "1377609bd3fd7ebf12a36da1079ab24b2030dc86438f1af4bf12cd510fbcf775",
+    "include/cabs/reporting.hpp": "414b562cd88724252869ccc373b50438cd9c4a699bf5c119069c7cbf13d7f2f0",
+    "include/cabs/search/epoch_index.hpp": "0efc32526c9b13cd6d768b5a58c65a11acac2cb4577ed2c84da8a0957fa7cb1d",
+    "include/cabs/search/query_workspace.hpp": "53ea83c0c03e49566a544777d561350a088ded287617c17a4881d45f109ee0e8",
+    "include/cabs/search/working_pool.hpp": "04f8b0d48d15e12401ff0a256bbd7d7f9b904ca29b7e12a700caf0e1caace45c",
+    "include/cabs/sketch/adaptive_sos.hpp": "6fef7e3818179b5db6c13bdbe4985280458a82eb376a55ed1ed512f1c014a6b9",
+    "include/cabs.hpp": "5aeda6734aac0d72951c7ab29b556ca75427167fd23ef94477833598291f118d",
+    "include/final_equivalence.hpp": "ae290a758d2b76d2032364abb80a454d82004c71aea6f926687fa47c7633f3be",
+    "scripts/audit_calibration.py": "34352ac9c6a7deb582bb37d9d3e863e57c793741062dc91d1928af058ed9a2ef",
+    "scripts/calibration_pilot.py": "76a32b88eda6ff8d91c5e98e10a52dd9700596c4b7f96d9995eb798383699866",
+    "scripts/evaluate.py": "cf92361227fed02a9a5c4aee43f17bcb6ea244976d1ff24c2f1f61a65c8e7f16",
+    "scripts/prepare_data.py": "9072cb4bd1c5bb67e15d59a0804a244f79d950f555423619647c3bf778721195",
+    "scripts/reproduce.py": "18e1329f3bb1e3df5a645ecd71f39fefdd62b51e8cc57a3498a08d7438e0664b",
+    "scripts/verify_artifacts.py": "e29a0aee98e18d9940e9d670bcd2f345fc127da100ec95fd3b6bccb44eb8dd49",
+    "configs/datasets.json": "dadb2d3db1d48b9b750856f3c23fa3a0c9cca5ab2d82e48a1675b4e52e4f3bc7",
+    "configs/splade_0.1m.json": "cb78e72b2b90baa21e4c9d1eb255b9d20beae95d90c5b97d9866de1b0d02f3ef",
+    "configs/splade_1m.json": "db745d0073d8658655434f774f2fc61c0b7217e5f0fc3390ed1d5c023777c3bb",
+    "benchmarks/calibration_audit.cpp": "94861d28ca6023ab21c3c8511498763d7fbb3197f4809d923a502cab112eb275",
+    "CMakeLists.txt": "0ec392afabd0e7a9c218929a9ded7e7e114d9e4c8911632f94ad6b31623c9275"
+  },
+  "config": {
+    "dataset": "SPLADE-1M",
+    "scale": "1M",
+    "base_file": "base_1M.csr",
+    "algorithm": "CABS",
+    "k": 50,
+    "k_max": 100,
+    "ell": 24,
+    "delta_h": 0.2,
+    "query_threads": 1,
+    "build_threads": 4,
+    "auto_configuration": true,
+    "seed": 20261007,
+    "calibration_queries": 4,
+    "evaluation_queries": "all_non_calibration",
+    "timing_repeats": 3,
+    "warmup_queries": 5,
+    "lloyd_iterations": 10,
+    "max_index_gib": 9,
+    "protocol_source": "SPLADE CSR benchmark with a disjoint seeded calibration/evaluation split; all execution settings are recorded in this file.",
+    "retain_sketch_cache": false
+  },
+  "evaluation_subset": 16,
+  "data_sha256": "d0727fcc10e18151ca693a0896dfa70c2dce6b8111a95d245fea58be389fa9dc",
+  "queries_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+  "cpu": "Architecture:                         x86_64\nCPU op-mode(s):                       32-bit, 64-bit\nAddress sizes:                        48 bits physical, 48 bits virtual\nByte Order:                           Little Endian\nCPU(s):                               6\nOn-line CPU(s) list:                  0-5\nVendor ID:                            AuthenticAMD\nModel name:                           AMD Ryzen 7 8845H w/ Radeon 780M Graphics\nCPU family:                           25\nModel:                                117\nThread(s) per core:                   2\nCore(s) per socket:                   3\nSocket(s):                            1\nStepping:                             2\nBogoMIPS:                             7585.29\nFlags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl tsc_reliable nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512_bf16 clzero xsaveerptr arat avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm\nHypervisor vendor:                    Microsoft\nVirtualization type:                  full\nL1d cache:                            96 KiB (3 instances)\nL1i cache:                            96 KiB (3 instances)\nL2 cache:                             3 MiB (3 instances)\nL3 cache:                             16 MiB (1 instance)\nNUMA node(s):                         1\nNUMA node0 CPU(s):                    0-5\nVulnerability Gather data sampling:   Not affected\nVulnerability Itlb multihit:          Not affected\nVulnerability L1tf:                   Not affected\nVulnerability Mds:                    Not affected\nVulnerability Meltdown:               Not affected\nVulnerability Mmio stale data:        Not affected\nVulnerability Reg file data sampling: Not affected\nVulnerability Retbleed:               Not affected\nVulnerability Spec rstack overflow:   Vulnerable: Safe RET, no microcode\nVulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:             Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP always-on; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                  Not affected\nVulnerability Tsx async abort:        Not affected",
+  "compiler": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "selected_record": {
+    "directory": "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS_review_remediation_20261022/full1m_b327",
+    "automatic": {
+      "K": 8,
+      "B": 51385,
+      "stage_seconds": {
+        "B_calibration": 0.3703604209999867,
+        "K_calibration_including_partitions_hashes": 683.474441595,
+        "K_candidate_cost_measurement": 1.6121972500001789,
+        "allocation": 0.003399578000028214,
+        "calibration_including_partitions": 714.022858368,
+        "final_Minhash_construction": 29.504767317000073,
+        "local_m_calibration_all_candidates": 0.006722703999969326,
+        "partition_all_candidates": 328.04456792900015,
+        "scaling": 0.07312310899999375,
+        "selected_temporary_hash_construction": 30.176760841000032,
+        "sketch_cache_release": 0.08869064700002127,
+        "sketch_construction": 3.1511421280000036,
+        "spherical_all_candidates": 319.11632724399993,
+        "spillover_all_candidates": 8.918488924999792,
+        "temporary_hash_construction_all_candidates": 353.28371636600025,
+        "df_statistics": 0.29470748200000685,
+        "dataset_loading_validation": 0.17214228500000672
+      },
+      "clusters": [
+        {
+          "id": 0,
+          "primary_size": 97342,
+          "expanded_size": 178421,
+          "m": 55,
+          "floor": 0.028925619834710745,
+          "construction_radius": 1.5158551931858988,
+          "norm_bound": 13.369238695975689
+        },
+        {
+          "id": 1,
+          "primary_size": 79906,
+          "expanded_size": 101220,
+          "m": 47,
+          "floor": 0.03424657534246575,
+          "construction_radius": 1.521006555270581,
+          "norm_bound": 12.861909943530737
+        },
+        {
+          "id": 2,
+          "primary_size": 121248,
+          "expanded_size": 245304,
+          "m": 111,
+          "floor": 0.01447178002894356,
+          "construction_radius": 1.533953854615142,
+          "norm_bound": 14.860589560737846
+        },
+        {
+          "id": 3,
+          "primary_size": 114058,
+          "expanded_size": 202729,
+          "m": 99,
+          "floor": 0.01615508885298869,
+          "construction_radius": 1.5344948290132117,
+          "norm_bound": 14.399188533824175
+        },
+        {
+          "id": 4,
+          "primary_size": 89531,
+          "expanded_size": 175249,
+          "m": 111,
+          "floor": 0.01447178002894356,
+          "construction_radius": 1.5277986037934752,
+          "norm_bound": 14.860589560737846
+        },
+        {
+          "id": 5,
+          "primary_size": 122178,
+          "expanded_size": 266647,
+          "m": 46,
+          "floor": 0.034739454094292806,
+          "construction_radius": 1.5278737947260448,
+          "norm_bound": 13.0795620974758
+        },
+        {
+          "id": 6,
+          "primary_size": 179184,
+          "expanded_size": 278824,
+          "m": 54,
+          "floor": 0.029411764705882353,
+          "construction_radius": 1.5324981377197495,
+          "norm_bound": 14.399188533824175
+        },
+        {
+          "id": 7,
+          "primary_size": 196553,
+          "expanded_size": 541760,
+          "m": 54,
+          "floor": 0.029411764705882353,
+          "construction_radius": 1.5338558971587313,
+          "norm_bound": 14.129049431466761
+        }
+      ]
+    },
+    "manifest_sha256": "9494479ba2258c3c999a2b11f3504b72c23348aafeffff8b83eed4a067e63e31",
+    "source_commit": null
+  },
+  "binary_sha256": "37953e388bb54a696522f859398fed3b2854a72790a84a67d9d381bc298d9bbe",
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-audit/cabs_calibration_audit",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_1M.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS_approval_review_20261022/routing_1m",
+    "16",
+    "8",
+    "51385",
+    "routing"
+  ],
+  "finished_utc": "2026-10-22T15:40:14.748428+00:00"
+}

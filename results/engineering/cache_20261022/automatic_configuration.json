@@ -1,0 +1,5 @@
+{
+"K":1,
+"B":13976,
+"stage_seconds":{"B_calibration":0.014910595000003468,"K_calibration_including_partitions_hashes":169.64311209900001,"K_candidate_cost_measurement":0.3883726019999969,"allocation":0.0032686730000008879,"calibration_including_partitions":173.658723818,"final_Minhash_construction":4.0020728489999726,"local_m_calibration_all_candidates":0.003788638999999705,"partition_all_candidates":30.192528153999994,"scaling":0.0073571140000012747,"selected_temporary_hash_construction":4.0003747990000136,"sketch_cache_release":0.0081261290000043118,"sketch_construction":0.33936575500000288,"spherical_all_candidates":29.554067429000035,"spillover_all_candidates":0.62259147100000689,"temporary_hash_construction_all_candidates":138.87695659499997,"df_statistics":0.030057495000001211,"dataset_loading_validation":0.44355994200000026},
+"clusters":[{"id":0,"primary_size":100000,"expanded_size":100000,"m":205,"floor":0.0078431372549019607,"construction_radius":1.531973004433675,"norm_bound":13.369238695975689}]}

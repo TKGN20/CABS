@@ -1,0 +1,1 @@
+{"documents":100000,"K":16,"B":7772,"queries":200,"repeats":4,"before_seconds":6.4692202389997533,"after_seconds":6.3059237529996608,"before_QPS":123.6625080681583,"after_QPS":126.86483873507804,"speedup":1.0258957279530083,"checksum":82529656,"ranked_hits_scores_counters_complete_candidates_equal":true}

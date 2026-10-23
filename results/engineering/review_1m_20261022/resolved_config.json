@@ -1,0 +1,125 @@
+{
+  "external": {
+    "dataset": "SPLADE-1M",
+    "scale": "1M",
+    "base_file": "base_1M.csr",
+    "algorithm": "CABS",
+    "k": 50,
+    "k_max": 100,
+    "ell": 24,
+    "delta_h": 0.2,
+    "query_threads": 1,
+    "build_threads": 4,
+    "auto_configuration": true,
+    "seed": 20261007,
+    "calibration_queries": 4,
+    "evaluation_queries": 6976,
+    "timing_repeats": 3,
+    "warmup_queries": 5,
+    "lloyd_iterations": 10,
+    "max_index_gib": 9,
+    "protocol_source": "SPLADE CSR benchmark with a disjoint seeded calibration/evaluation split; all execution settings are recorded in this file.",
+    "retain_sketch_cache": false,
+    "full_query_run": true
+  },
+  "automatic": {
+    "K": 8,
+    "B": 51385,
+    "stage_seconds": {
+      "B_calibration": 0.3703604209999867,
+      "K_calibration_including_partitions_hashes": 683.474441595,
+      "K_candidate_cost_measurement": 1.6121972500001789,
+      "allocation": 0.003399578000028214,
+      "calibration_including_partitions": 714.022858368,
+      "final_Minhash_construction": 29.504767317000073,
+      "local_m_calibration_all_candidates": 0.006722703999969326,
+      "partition_all_candidates": 328.04456792900015,
+      "scaling": 0.07312310899999375,
+      "selected_temporary_hash_construction": 30.176760841000032,
+      "sketch_cache_release": 0.08869064700002127,
+      "sketch_construction": 3.1511421280000036,
+      "spherical_all_candidates": 319.11632724399993,
+      "spillover_all_candidates": 8.918488924999792,
+      "temporary_hash_construction_all_candidates": 353.28371636600025,
+      "df_statistics": 0.29470748200000685,
+      "dataset_loading_validation": 0.17214228500000672
+    },
+    "clusters": [
+      {
+        "id": 0,
+        "primary_size": 97342,
+        "expanded_size": 178421,
+        "m": 55,
+        "floor": 0.028925619834710745,
+        "construction_radius": 1.5158551931858988,
+        "norm_bound": 13.369238695975689
+      },
+      {
+        "id": 1,
+        "primary_size": 79906,
+        "expanded_size": 101220,
+        "m": 47,
+        "floor": 0.03424657534246575,
+        "construction_radius": 1.521006555270581,
+        "norm_bound": 12.861909943530737
+      },
+      {
+        "id": 2,
+        "primary_size": 121248,
+        "expanded_size": 245304,
+        "m": 111,
+        "floor": 0.01447178002894356,
+        "construction_radius": 1.533953854615142,
+        "norm_bound": 14.860589560737846
+      },
+      {
+        "id": 3,
+        "primary_size": 114058,
+        "expanded_size": 202729,
+        "m": 99,
+        "floor": 0.01615508885298869,
+        "construction_radius": 1.5344948290132117,
+        "norm_bound": 14.399188533824175
+      },
+      {
+        "id": 4,
+        "primary_size": 89531,
+        "expanded_size": 175249,
+        "m": 111,
+        "floor": 0.01447178002894356,
+        "construction_radius": 1.5277986037934752,
+        "norm_bound": 14.860589560737846
+      },
+      {
+        "id": 5,
+        "primary_size": 122178,
+        "expanded_size": 266647,
+        "m": 46,
+        "floor": 0.034739454094292806,
+        "construction_radius": 1.5278737947260448,
+        "norm_bound": 13.0795620974758
+      },
+      {
+        "id": 6,
+        "primary_size": 179184,
+        "expanded_size": 278824,
+        "m": 54,
+        "floor": 0.029411764705882353,
+        "construction_radius": 1.5324981377197495,
+        "norm_bound": 14.399188533824175
+      },
+      {
+        "id": 7,
+        "primary_size": 196553,
+        "expanded_size": 541760,
+        "m": 54,
+        "floor": 0.029411764705882353,
+        "construction_radius": 1.5338558971587313,
+        "norm_bound": 14.129049431466761
+      }
+    ]
+  },
+  "source_hash": "bc0b22f1d4cba1b20b5f3939f318959747a9e2f4ccac6c4b5fa94d96aadd698b",
+  "data_sha256": "d0727fcc10e18151ca693a0896dfa70c2dce6b8111a95d245fea58be389fa9dc",
+  "query_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5"
+}

@@ -9,6 +9,7 @@ public:
     std::set<Id> delta_ids;
     std::map<std::string,double> stage_seconds;
     double build_seconds=0,final_seconds=0;uint64_t epoch=0;
+    bool sketch_cache_complete=true;
     Index(Collection& d,Options o):data(d),opts(std::move(o)){}
     std::unordered_map<Id,uint32_t> probe(int cluster,const std::vector<Slot>& q,QueryStats* stats=nullptr) const {
         std::unordered_map<Id,uint32_t> counts;
@@ -20,6 +21,7 @@ public:
         return counts;
     }
     void configure_floors(Partition& p,double global) const {
+        if(!sketch_cache_complete)throw std::runtime_error("Full sketch cache required for floor calibration; use rebuild or refresh");
         for(size_t z=0;z<calibration.queries.size();++z)for(auto h:calibration.targets[z]) {
             double j=jaccard(calibration.sketches[z],sketches.sets[h.id]);if(j<=0)continue;
             for(int c:{p.primary[h.id],p.secondary[h.id]})if(c>=0) {
@@ -49,6 +51,7 @@ public:
         l.estimated_gib=double(bytes)/(1ULL<<30);return l;
     }
     void build_tables(uint64_t domain) {
+        if(!sketch_cache_complete)throw std::runtime_error("Full sketch cache required for table reconstruction; use rebuild or refresh");
         auto l=estimate();
         if(l.estimated_gib>opts.max_index_gib)throw std::runtime_error("Resource guard: K="+std::to_string(l.K)+", m_max="+std::to_string(l.max_m)+", conservative build bound="+std::to_string(l.estimated_gib)+" GiB exceeds --max-index-gib; configuration NOT capped or skipped");
         tables.clear();tables.resize(partition.clusters.size());
@@ -82,6 +85,7 @@ public:
         }return queries?total/(2*queries):0;
     }
     size_t calibrate_pool() const {
+        if(!sketch_cache_complete)throw std::runtime_error("Full sketch cache required for pool calibration; use rebuild or refresh");
         size_t capacity=opts.kmax;
         for(size_t z=0;z<calibration.queries.size();++z) {
             std::unordered_set<Id> positives;for(auto h:calibration.targets[z])if(jaccard(calibration.sketches[z],sketches.sets[h.id])>0)positives.insert(h.id);
@@ -110,6 +114,7 @@ public:
         expansion.allocate(data.df,data.active,opts.ell,opts.allocation);
         stage_seconds["allocation"]=seconds()-stage;stage=seconds();
         sketches.build(data,expansion);cardinal.assign(data.records.size(),0);
+        sketch_cache_complete=true;
         for(size_t i=0;i<cardinal.size();++i)cardinal[i]=sketches.sets[i].size();
         calibration.sketches.clear();for(size_t z=0;z<calibration.queries.size();++z)
             calibration.sketches.push_back(expansion.encode(calibration.queries[z],calibration.query_ids[z],true));
@@ -163,6 +168,7 @@ public:
         std::cerr<<"final_ready K="<<tables.size()<<" B="<<B<<" bytes="<<table_bytes()<<" build_s="<<build_seconds<<"\n";
     }
     uint64_t table_bytes() const {uint64_t b=0;for(auto& c:tables)for(auto& t:c)b+=t.bytes();return b;}
+    void release_sketch_cache(){std::vector<std::vector<Slot>>().swap(sketches.sets);sketch_cache_complete=false;}
     std::vector<Hit> search(Row q,uint64_t query_id,size_t k,QueryStats& stats,bool stopping=true,QueryDiagnostics* diagnostics=nullptr) const {
         return workspace_search<false,true>(*this,q,query_id,k,stats,stopping,diagnostics);
     }

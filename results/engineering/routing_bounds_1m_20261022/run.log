@@ -1,0 +1,2 @@
+audit_K=8
+audit_completed temporary_indexes_only=0 profile_timing_excluded_from_full_queries=true

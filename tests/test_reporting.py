@@ -11,6 +11,7 @@ import unittest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from evaluate import audit
+from calibration_pilot import common_metrics
 
 
 class ReportingTests(unittest.TestCase):
@@ -40,6 +41,18 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual(audit(self.root)['QPS'],2)
         self.assertEqual(audit(self.root)['IS_bytes'],192)
         self.assertEqual(audit(self.root)['Recall@2'],1)
+    def test_read_only_audit(self):
+        audit(self.root)
+        before={p.name:p.read_bytes() for p in self.root.iterdir()}
+        self.assertEqual(audit(self.root,write_outputs=False)['QPS'],2)
+        self.assertEqual(before,{p.name:p.read_bytes() for p in self.root.iterdir()})
+    def test_common_validation(self):
+        self.csv('queries.csv','k,repeat,query_id,recall,seconds,pool_peak,verified,probed',[[2,0,1,1,.5,3,3,1],[2,1,1,1,.5,3,3,1]])
+        result=common_metrics(self.root,[1],[0])
+        self.assertEqual(result['QPS'],2)
+        self.assertEqual(result['timed_records'],2)
+        with self.assertRaisesRegex(ValueError,'overlap'):
+            common_metrics(self.root,[1],[1])
     def test_duplicate_repeat(self):
         self.csv('queries.csv','k,repeat,query_id,recall,seconds,pool_peak,verified',[[2,0,1,1,.5,3,3]]*2)
         with self.assertRaisesRegex(ValueError,'Duplicate timing'):

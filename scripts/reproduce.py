@@ -93,6 +93,7 @@ def main():
                  '--seed',str(config['seed']),'--threads',str(config['build_threads']),
                  '--iterations',str(config['lloyd_iterations']),'--repeats',str(config['timing_repeats']),
                  '--max-index-gib',str(guard),'--warmup-queries',str(config['warmup_queries']),
+                 '--keep-sketch-cache',str(int(config['retain_sketch_cache'])),
                  '--benchmark-exact','0','--diagnostic-queries','0','--equivalence-queries','0']
         manifest['command']=command
         save(output/'manifest.json',manifest)
