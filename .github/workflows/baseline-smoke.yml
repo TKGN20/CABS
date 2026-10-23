@@ -1,0 +1,40 @@
+name: baseline-fixture-smoke
+on:
+  push:
+    branches: ["codex/server-driver-*"]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  sosia:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - mode: Release
+            flag: ""
+          - mode: ASan-UBSan
+            flag: "--sanitize"
+    env:
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Independent score and schema adversarial tests
+        run: python3 experiments/baselines/test_oracle.py
+      - name: Fetch commit-pinned SOSIA source anonymously
+        run: python3 experiments/baselines/fetch_upstreams.py --method SOSIA --out build-mission/upstreams
+      - name: Build reproducible adapter
+        run: python3 experiments/baselines/build_sosia.py --upstreams build-mission/upstreams --out build-mission/sosia ${{ matrix.flag }}
+      - name: Validate original IDs, exact scores and native candidate parity
+        run: python3 experiments/baselines/test_sosia.py --binary build-mission/sosia/sosia_fixed --out build-mission/sosia/parity.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sosia-fixture-${{ matrix.mode }}
+          path: |
+            build-mission/sosia/build.log
+            build-mission/sosia/build_receipt.json
+            build-mission/sosia/parity.json
