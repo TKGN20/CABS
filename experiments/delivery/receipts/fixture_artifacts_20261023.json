@@ -28,6 +28,59 @@
         "run/stdout.log": "d2ad5d9f08497c4db05157aa3f3b595fef887732117b3264cb8259d082e7670a",
         "run/summary.json": "f817e04ee92518a649ad31dcd2228894b05f9368f3098206d365d47775c9b9aa"
       }
+    },
+    "SINDI": {
+      "path": "experiments/delivery/fixtures/sindi_repaired",
+      "Recall": 1.0,
+      "candidate_pool_expected": 160,
+      "scope": "Repaired pinned SINDI synthetic fixture, not official unmodified baseline or performance acceptance",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/candidate_counts.csv": "01ad7aeb9c0b8cd597a7eb99630366228850945d03733cfbacf39a27fd648e64",
+        "run/native_candidates.csv": "60ca47a9792d2071f4190c9741076ed0e19abd323bbe34339dec9ba2903700b0",
+        "run/native_reference.csv": "4390392abcada91a20ea93bef51b1916f86fa35d116afed5a7eba606ebdc07c2",
+        "run/queries.csv": "977229bc0cd639d2832ab3bfb6dbaa9615c0cb729188a186a87b328c2bc9ed31",
+        "run/retrieved.csv": "b98cec600ec7964781515ae4f2e55849ab1c90fb88ae55d890e995dfbe767017",
+        "run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/summary.json": "bdbdb54f4d844484a7145274deac7ddf3d699ee9d545120a99fafa112a4b3fef"
+      }
+    },
+    "SINDI_ties": {
+      "path": "experiments/delivery/fixtures/sindi_repaired_ties",
+      "Recall": 1.0,
+      "candidate_pool_expected": 160,
+      "scope": "Repaired pinned SINDI synthetic fixture, not official unmodified baseline or performance acceptance",
+      "sha256": {
+        "base.csr": "c9d0cbe212393f85ebe3b86eb0c777a889ac697724fdcbd50cafb6deab73d562",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "56e05703d4064c1843a426ce233f7e1f271bb0146aba700bc1a59b007ac07a87",
+        "run/candidate_counts.csv": "2b8a767ce026d705cdd75cb5d3605362c5b8ba81a05dcfa511d32991a0970de9",
+        "run/native_candidates.csv": "1b9509abf2e552c272570d74f94c29736ac0688b29d4368cc687649d26ecc9e6",
+        "run/native_reference.csv": "d36852799c542a2d1e71def7b4a15cdde2ab4d635a9ed767e7537d47814a3d2b",
+        "run/queries.csv": "64ffe8e31d0f092b7d733309a53a4bc0f7861eab03d36027500d47c3f51fbdfd",
+        "run/retrieved.csv": "893c099571b0ffe82875db1e83d4587ff94f8906a3f1de367d765d0d488c0138",
+        "run/summary.json": "abb4dec5babf7bddb4d0611e2e010bf6fddd96ca8a83582340f39a732723eda2"
+      }
+    },
+    "SINDI_nonreorder_diagnostic": {
+      "path": "experiments/delivery/fixtures/sindi_repaired_no_reorder",
+      "Recall": 1.0,
+      "candidate_pool_expected": 160,
+      "scope": "Repaired pinned SINDI synthetic fixture, not official unmodified baseline or performance acceptance",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/candidate_counts.csv": "01ad7aeb9c0b8cd597a7eb99630366228850945d03733cfbacf39a27fd648e64",
+        "run/native_candidates.csv": "fc6a496e56fe4d4d2c54da93f4a5e56f326cbdd5f08fc6409f2fc6b38111ed1c",
+        "run/native_reference.csv": "fe64a3fd48b8dd2192bccbe131a2523e6bf0874e2db0e89e8bf306e902405b1a",
+        "run/queries.csv": "439a3599d5e5495ab0436b8655830e6bf7cd6056029c100664ccffb771a32a8c",
+        "run/retrieved.csv": "b98cec600ec7964781515ae4f2e55849ab1c90fb88ae55d890e995dfbe767017",
+        "run/summary.json": "e88d2961b70512dededb02b430b300117fecb3567d96329fdc8698f3fb27f19a"
+      }
     }
   },
   "native_smokes": {
@@ -42,7 +95,83 @@
         "sindi_index_search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "sindi_index_search.stdout.log": "1916a13b980eac03cfb65ec6964e8cf236c59e851cf928de1eb085e07cd5cbaf"
       },
-      "scope": "Saved native CLI artifacts only; candidate/ID/score acceptance pending"
+      "scope": "Saved native CLI artifacts only; candidate/ID/score acceptance pending",
+      "status": "SUPERSEDED_INVALID_GT_DIAGNOSTIC",
+      "ground_truth_valid": false,
+      "gt_inputs": {
+        "base": "experiments/delivery/fixtures/seismic/base.csr",
+        "queries": "experiments/delivery/fixtures/seismic/queries.csr",
+        "k": 50,
+        "query_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "erratum": "docs/SINDI_INTEGRATION_AUDIT_20261023.md"
+    },
+    "SINDI_corrected_GT": {
+      "path": "experiments/delivery/native_smoke/sindi_corrected_gt",
+      "sha256": {
+        "exact_reference/ground_truth.csv": "5b521179bbc6883a4aba3b6453c5b50cb2dedbc0ba473081f68e7e3baa86394d",
+        "exact_reference/ids.txt": "727d1b30a951d734bb37204a380baeb04e54f5dcd4ab3571076ec0b850d01a67",
+        "exact_reference/summary.json": "5b004cfb446989b3f1bbfdd0578da12af1861f35955a5d11f413c321d6d83316",
+        "gt.bin": "0754629e26bdd26e237405424662337836d2bd17d88cd2072ab6f9ea031cf677",
+        "index.bin": "1fcd56353de84f6b62b277a20d39c0f725a12be27e7deae5a83af936ed2f1a4e",
+        "receipt.json": "ce9ce56718678c596958f9b6f5b5777fbaeedbeacbbc40cf727e0cb699df16cd",
+        "sindi_index_build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sindi_index_build.stdout.log": "05b10db915ab3c663b8a4c68ee0eefe98891033335f45d0960049d710fc663ca",
+        "sindi_index_search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sindi_index_search.stdout.log": "6f054807e69805304e478fe4bd9896bd5a69a6ef88da57d57125d29e0bc5fc3e"
+      },
+      "ground_truth_valid": true,
+      "gt_inputs": {
+        "base": "experiments/delivery/fixtures/seismic/base.csr",
+        "queries": "experiments/delivery/fixtures/seismic/queries.csr",
+        "k": 50,
+        "query_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "scope": "Corrected Python GT crosschecked against independent C++ reference; native CLI aggregate still not returned-ID acceptance"
+    }
+  },
+  "diagnostics": {
+    "SINDI_unpatched": {
+      "path": "experiments/delivery/diagnostics/sindi_unpatched",
+      "sha256": {
+        "build_receipt.json": "255fc0a8b82f21824fb7d6daa41f4b5289f9b6922b20f45e0b5f8a5c8c04af38",
+        "candidate_counts.csv": "adb779b87c82837189283ba1452e59fc00dad174e03b6920bfa43e9ba2cdc65a",
+        "native_candidates.csv": "cd71903ebe55bfa184381ad3c21b323582eec86b77946392c6d48669a086d237",
+        "native_reference.csv": "7c79c5c3a407e31d3f959ef7e0952419401069f05c50042a274a760f8a1fd0c6",
+        "queries.csv": "80999d428855c715338f503f698007b3b35fb56ba83f90b922ee0ff24109037d",
+        "receipt.json": "b9b7850a41bf940b67b2124bfa0d2bb23a09178c3e25edcca843ea5c11ae91e8",
+        "retrieved.csv": "2d46fbdfd308b63dd14197b8e10f75f80f1458b2217a69098019363545c9ed4e",
+        "sindi_fixed.cpp": "dcd53fadbe06089ea2972d711e9f30a0ca8162bcc187ccf136979e2570200c53",
+        "stderr.log": "a4f9a001911da13a6c3887e232e04429acce52a3b0fd1fa55ebf4170d900d815",
+        "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "status": "EXPECTED_FAILURE_NATIVE_UNDERFILLED"
     }
   }
 }

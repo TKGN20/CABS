@@ -1,4 +1,5 @@
 import argparse
+from collections.abc import Mapping
 import csv
 import hashlib
 import json
@@ -41,6 +42,7 @@ class CSR:
 
 
 def score(document,query):
+    require(isinstance(query,Mapping),'Query scorer requires a coordinate-to-weight mapping')
     value=0.0
     for coordinate,weight in document:
         if coordinate in query:value+=weight*query[coordinate]

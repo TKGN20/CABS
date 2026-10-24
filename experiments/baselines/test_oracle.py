@@ -7,7 +7,7 @@ import unittest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
 from smoke_test import write_csr
-from oracle import audit,CSR
+from oracle import audit,CSR,score
 
 
 class OracleTests(unittest.TestCase):
@@ -29,6 +29,9 @@ class OracleTests(unittest.TestCase):
     def check(self):return audit(self.d/'base.csr',self.d/'query.csr',self.d/'results.csv',self.d/'timings.csv',[1,2],2,2)
 
     def test_valid_original_ids(self):self.assertEqual(self.check()['Recall'],1)
+    def test_query_row_requires_mapping(self):
+        with self.assertRaisesRegex(ValueError,'coordinate-to-weight mapping'):score([(0,2.0)],[(0,3.0)])
+        self.assertEqual(score([(0,2.0)],{0:3.0}),6.0)
     def test_native_position_not_original_query(self):
         self.results[0]['query_id']=0;self.write()
         with self.assertRaises(ValueError):self.check()

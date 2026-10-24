@@ -1,0 +1,67 @@
+--- a/src/index/sindi.cpp
++++ b/src/index/sindi.cpp
+@@ -133,7 +133,7 @@
+         }
+     }
+ 
+-    this->data_dim_ += 1;
++    this->data_dim_ = std::max<uint32_t>(this->data_dim_ + 1, static_cast<uint32_t>(base->GetDim()));
+ 
+     ivf_mutex = std::vector<std::mutex>(this->data_dim_);
+     std::unordered_map<uint32_t, std::vector<std::pair<uint32_t, float>>> word_map;
+@@ -221,8 +221,10 @@
+     auto dataset_results = Dataset::Make();
+     dataset_results->Dim(query_num * k)->NumElements(1)->Owner(true, allocator_.get());
+     auto* ids = (int64_t*)allocator_->Allocate(sizeof(int64_t) * query_num * k);
++    std::fill_n(ids, query_num * k, int64_t(-1));
+     dataset_results->Ids(ids);
+     auto* dists = (float*)allocator_->Allocate(sizeof(float) * query_num * k);
++    std::fill_n(dists, query_num * k, std::numeric_limits<float>::quiet_NaN());
+     dataset_results->Distances(dists);
+ 
+     omp_set_num_threads(num_threads_);
+@@ -268,6 +270,7 @@
+     if (use_reorder_) {
+         reorder(query_dense, heap, k, res_ids, res_dists);
+     } else {
++        while (heap.size() > static_cast<size_t>(k)) heap.pop();
+         for (auto j = static_cast<int64_t>(heap.size() - 1); j >= 0; --j) {
+             res_dists[j] = -heap.top().first;
+             res_ids[j] = heap.top().second;
+@@ -330,7 +333,7 @@
+              ++doc_id_index) {
+             auto doc_id = list.ids_[doc_id_index];
+             auto temp_id = doc_id - start;
+-            if (dists[temp_id] >= cur_heap_top) [[likely]] {
++            if (dists[temp_id] >= 0.0f || (heap.size() >= static_cast<size_t>(gamma_) && dists[temp_id] >= cur_heap_top)) [[likely]] {
+                 dists[temp_id] = 0;
+                 continue;
+             } else {
+@@ -351,7 +354,7 @@
+                          std::vector<float>& dists,
+                          float& cur_heap_top) const {
+     for (uint32_t i = 0; i < lambda_; ++i) {
+-        if (dists[i] >= cur_heap_top) [[likely]] {
++        if (start + i >= total_count_ || dists[i] >= 0.0f || (heap.size() >= static_cast<size_t>(gamma_) && dists[i] >= cur_heap_top)) [[likely]] {
+             dists[i] = 0;
+             continue;
+         } else {
+--- a/src/index/sindi.h
++++ b/src/index/sindi.h
+@@ -54,6 +54,7 @@
+                     delete[] data_[i].vals_;
+                 }
+             }
++            delete[] data_;
+         }
+ 
+         for (auto& lock : ivf_mutex) {
+@@ -235,7 +236,7 @@
+         uint32_t* offsets_{nullptr};
+     };
+ 
+-    SparseVector* data_;
++    SparseVector* data_{nullptr};
+     uint32_t data_dim_{0};
+     uint32_t total_count_{0};
+     std::shared_ptr<Allocator> allocator_{nullptr};

@@ -1,0 +1,9 @@
+index_path: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-mission/sindi-smoke-crosschecked-gt/index.bin
+queryfile: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/queries.csr
+gtfile: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-mission/sindi-smoke-crosschecked-gt/gt.bin
+beta: 1
+gamma: 160
+topk: 50
+num_threads: 1
+qps: 163086
+recall: 0.971667

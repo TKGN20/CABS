@@ -13,3 +13,7 @@ experiments/delivery/fixtures/** -text
 experiments/delivery/fixtures/**/*.log whitespace=-blank-at-eof
 experiments/delivery/native_smoke/** -text
 experiments/delivery/native_smoke/**/*.log whitespace=-blank-at-eof
+experiments/delivery/diagnostics/** -text
+experiments/delivery/diagnostics/**/*.log whitespace=-blank-at-eof
+experiments/delivery/receipts/** whitespace=cr-at-eol
+experiments/baselines/*.patch whitespace=-blank-at-eol

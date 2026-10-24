@@ -130,8 +130,80 @@ generated synthetic GT. It saves native stdout/stderr and exact executable/libra
 hashes, but the CLI does not export per-query IDs for this test. Its printed
 aggregate Recall/QPS is not accepted as independently audited four-method evidence.
 On the first local smoke it reported Recall 0.343333 with alpha=1, beta=1,
-gamma=160 and 160 documents. Candidate integrity, duplicates and underfill must be
-investigated before accepting SINDI integration; no exact fallback repairs it.
+gamma=160 and 160 documents, but that run used invalid GT due to a query-type
+mistake in the integration script. It is retained and explicitly superseded.
+Corrected GT crosschecked against the independent C++ reference gives 0.971667
+with the unchanged native binaries. A separate trace confirms native candidate
+underfill. See the [audit/erratum](../../docs/SINDI_INTEGRATION_AUDIT_20261023.md).
+No exact fallback repairs insufficient native candidates.
+
+`build_sindi.py --correctness-repairs` creates a separate native version with the
+registered `sindi_correctness.patch`; the two-file before/after hashes are checked.
+This is a disclosed repair of heap warmup, reset/zero admissions, output-slot
+initialization/bounds, trailing dimension and an allocation lifecycle. It is not
+an unmodified official release. The repaired build passed the bounded candidate
+fixture on 2026-10-24; IS, common locks and real-data acceptance remain pending.
+`build_sindi_adapter.py` links a public-API candidate adapter against a verified
+native build without modifying that library. It exposes the gamma pool through
+`KnnSearch(k=gamma)` while retaining the same gamma, then reranks all exposed
+unique original IDs in binary64. Native float scoring and the exact tail are both
+inside timing. Diagnostic allocators make unwritten slots visible; they must
+agree with ordinary native allocation before acceptance. The repaired native
+runtime initializes its own unused result slots. Candidate shortages fail;
+records from the original failed diagnostic remain separate.
+
+```bash
+python3 experiments/baselines/build_sindi.py --upstreams build-mission/upstreams --out build-mission/sindi-repaired --correctness-repairs --portable-isa
+python3 experiments/baselines/build_sindi_adapter.py --native build-mission/sindi-repaired --upstreams build-mission/upstreams --out build-mission/sindi-adapter
+python3 experiments/baselines/test_sindi.py --binary build-mission/sindi-adapter/sindi_fixed --out build-mission/sindi-adapter/parity.json
+```
+
+The local accepted fixture used the supported host's original global AVX-512
+flags. `--portable-isa` removes only the two unconditional library flags while
+retaining upstream per-ISA objects and CPU dispatch. That separate clean build
+must pass before portability is accepted. Tests include all 160 candidates,
+native scores, ordinary versus two diagnostic allocators, original-ID ties,
+non-reranking gamma>k/padded windows, invalid IDs, insufficient candidates and
+trailing dimensions. This is not full-native sanitizer or large-data acceptance.
+
+## Independent exact ground truth
+
+```bash
+cmake -S experiments -B build-experiment -DCMAKE_BUILD_TYPE=Release
+cmake --build build-experiment --parallel 2
+ctest --test-dir build-experiment --output-on-failure
+mkdir build-mission/exact-reference
+build-experiment/independent_exact_gt base.csr queries.csr original_ids.txt 50 build-mission/exact-reference
+```
+
+The standard-C++ tool imports no CABS or baseline scorer. It builds complete
+postings from original float32 CSR values and visits every shared coordinate with
+binary64 accumulation in ascending-coordinate order. There is no term, document,
+block or score pruning. Zero-score ties include the smallest original IDs, even
+for empty/zero queries. It emits original IDs and 17-digit scores and refuses to
+overwrite outputs. Compile with `-ffp-contract=off`, as the experimental CMake does.
+The fixture compares every ranked item against independent Python direct scoring
+for random, tie/empty/zero and rounding cases. `--reference-binary` on the SINDI
+native smoke additionally checks all native-format GT items against this tool.
+
+GT utility time and space are separate from retrieval benchmarks. No large
+corpus run has been performed or certified. `prepare_gt.py` binds generation to
+input/source/binary hashes and the existing three-way query plan. Calibration
+uses its independent seed; selection uses only the plan's selection IDs;
+evaluation generation requires a matching validation lock and sidecar hash,
+including locked k. It refuses reuse of output directories and checks saved
+rank/order/ID/artifact integrity. `test_prepare_gt.py` uses a clearly labeled
+synthetic lock to test this guard; it is not real parameter selection.
+
+```bash
+python3 experiments/baselines/prepare_gt.py --data base.csr --queries queries.csr --plan plan.json --binary build-experiment/independent_exact_gt --out build-mission/selection-gt --role selection --k 50
+python3 experiments/baselines/prepare_gt.py --data base.csr --queries queries.csr --plan plan.json --binary build-experiment/independent_exact_gt --out build-mission/evaluation-gt --role evaluation --k 50 --lock validation-lock.json
+```
+
+Both Release and Debug ASan/UBSan experimental builds passed all five CTests
+locally. This includes the independent GT and role/lock tests, not instrumentation
+of the SINDI native library. Four-method validation drivers, registered grids,
+real-data locks and scalable server execution are still required.
 
 The CABS repository license does not replace upstream licenses or attribution.
 SINDI/VSAG preserves its Apache notices; SEISMIC's upstream citation requirements

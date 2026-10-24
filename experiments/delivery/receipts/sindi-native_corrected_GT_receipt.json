@@ -1,0 +1,54 @@
+{
+  "status": "NATIVE_SMOKE_ONLY",
+  "scope": "Native CLI build/serialize/reload/search smoke on public synthetic fixture; printed QPS/recall not accepted as four-method evidence; no original-ID candidate adapter yet",
+  "ground_truth_crosscheck": {
+    "status": "PASS",
+    "reference_binary_sha256": "991c5181f13ba6c714b1b6cce01a190d5f01b5552b9a2b6870f22bf6744320dc",
+    "rows": 600,
+    "scope": "Exact GT values/IDs only; native returned IDs still require separate candidate audit"
+  },
+  "commands": [
+    {
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-pinned-v2/build/sparse/scripts/sindi_index_build",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/base.csr",
+        "10000",
+        "1",
+        "1",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-smoke-crosschecked-gt/index.bin"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-pinned-v2/build/sparse/scripts/sindi_index_search",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-smoke-crosschecked-gt/index.bin",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/queries.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-smoke-crosschecked-gt/gt.bin",
+        "1",
+        "160",
+        "50",
+        "1"
+      ],
+      "returncode": 0
+    }
+  ],
+  "source_build_receipt_sha256": "56a2e199168ecd094323d5e0a4efe6e379b8fc40781870fb4db80179df0a209d",
+  "binary_sha256": {
+    "sindi_index_build": "74b7720c3a09fdd44f3acf8d66be1d458ea07f764a85a3e920d720fe26b6934a",
+    "sindi_index_search": "3781baf0b9c5117d38d98ada01929f0deafcebf5134acccebb05781e0c3c89ce"
+  },
+  "library_sha256": "c3c1d51fb4b7755447a2e20926b5e1f3a6d3bba576cf8088f1218767cfb2213c",
+  "avx512f_host_flag": true,
+  "artifact_sha256": {
+    "gt.bin": "0754629e26bdd26e237405424662337836d2bd17d88cd2072ab6f9ea031cf677",
+    "index.bin": "1fcd56353de84f6b62b277a20d39c0f725a12be27e7deae5a83af936ed2f1a4e",
+    "sindi_index_build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sindi_index_build.stdout.log": "05b10db915ab3c663b8a4c68ee0eefe98891033335f45d0960049d710fc663ca",
+    "sindi_index_search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sindi_index_search.stdout.log": "6f054807e69805304e478fe4bd9896bd5a69a6ef88da57d57125d29e0bc5fc3e",
+    "exact_reference/ground_truth.csv": "5b521179bbc6883a4aba3b6453c5b50cb2dedbc0ba473081f68e7e3baa86394d",
+    "exact_reference/ids.txt": "727d1b30a951d734bb37204a380baeb04e54f5dcd4ab3571076ec0b850d01a67",
+    "exact_reference/summary.json": "5b004cfb446989b3f1bbfdd0578da12af1861f35955a5d11f413c321d6d83316"
+  }
+}
