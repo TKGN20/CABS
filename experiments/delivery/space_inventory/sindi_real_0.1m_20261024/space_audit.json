@@ -1,0 +1,8 @@
+{
+  "status": "SINDI_COMPONENT_ACCOUNTING_PASS",
+  "index_structure_bytes": 211843908,
+  "original_vector_bytes": 102639664,
+  "index_plus_vectors_bytes": 314483572,
+  "native_forward_copy_bytes": 104239632,
+  "scope": "Analytic component/count/ABI checks only; common IS and server performance acceptance pending"
+}

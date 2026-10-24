@@ -1,0 +1,16 @@
+{
+  "upstream_commit": "492de11c9b6fd0c46c2c7c274c30836353b882f0",
+  "required_adaptation_sha256": "fc6a763763a323a6caa054bf71d46c63ffd4b7bce10d37472a45216f13387920",
+  "patch_sha256": "4736a71d0342d9413732ef643a5ac28f3a8ddf7484801d4853416abcc41702c3",
+  "files": {
+    "src/quantized_summary.rs": {
+      "before_sha256": "44e9b784c2aaf0500c3826f5f6c263ad5380c90f389b217dd09ac833c0f3361a",
+      "after_sha256": "054a7af2d818dae88345b6e289a3f9f83051de94dc37f2c920d3cd4b21f05182"
+    },
+    "src/inverted_index.rs": {
+      "before_sha256": "fca72d27ceecfc2a279e273130238096c1b2e8462e35fee488d226dd22095561",
+      "after_sha256": "dc1c29bffed3972eb65bae3eec8d2457299bddf97ccd497287f2a254c28509d6"
+    }
+  },
+  "scope": "Read-only methods only; no fields, construction, search or serialization changes"
+}

@@ -284,6 +284,148 @@
       },
       "scope": "SOSIA component/ABI and saved synthetic correctness; common IS policy pending",
       "require_unused_bucket_capacity": true
+    },
+    "SINDI_space": {
+      "path": "experiments/delivery/fixtures/sindi_space",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/candidate_counts.csv": "01ad7aeb9c0b8cd597a7eb99630366228850945d03733cfbacf39a27fd648e64",
+        "run/index_space.json": "31215dd9439ce181dfbb457c909ce2397e2b56c00805a20c1b2fb2e211aac091",
+        "run/native_candidates.csv": "60ca47a9792d2071f4190c9741076ed0e19abd323bbe34339dec9ba2903700b0",
+        "run/native_index.bin": "1fcd56353de84f6b62b277a20d39c0f725a12be27e7deae5a83af936ed2f1a4e",
+        "run/native_reference.csv": "4390392abcada91a20ea93bef51b1916f86fa35d116afed5a7eba606ebdc07c2",
+        "run/queries.csv": "71a921cc5a019b8ee6731e84d6cb4efefae884b7e1d80c9250a2d0808be447fb",
+        "run/retrieved.csv": "b98cec600ec7964781515ae4f2e55849ab1c90fb88ae55d890e995dfbe767017",
+        "run/roundtrip.json": "0e077f4c185d8b334e9dba22111a51b7323320116fe4a8cfe4fb63b1e50b192b",
+        "run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/summary.json": "158d5b4a520bb7998c1fe20e53b656b4bf91f696b2090082660d24e28ddc27af"
+      },
+      "Recall": 1.0,
+      "scope": "Saved exact-score and component/serialize/reload fixture; not fair performance or common IS acceptance",
+      "sindi_space": {
+        "lambda": 10000,
+        "native_reordering": true,
+        "postings": 2560
+      },
+      "candidate_pool_expected": 160
+    },
+    "SINDI_space_ties": {
+      "path": "experiments/delivery/fixtures/sindi_space_ties",
+      "sha256": {
+        "base.csr": "c9d0cbe212393f85ebe3b86eb0c777a889ac697724fdcbd50cafb6deab73d562",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "56e05703d4064c1843a426ce233f7e1f271bb0146aba700bc1a59b007ac07a87",
+        "run/candidate_counts.csv": "2b8a767ce026d705cdd75cb5d3605362c5b8ba81a05dcfa511d32991a0970de9",
+        "run/index_space.json": "024db8eb617faf1926db8fd42574796626df996dbee313730e7b50e09028a7ee",
+        "run/native_candidates.csv": "1b9509abf2e552c272570d74f94c29736ac0688b29d4368cc687649d26ecc9e6",
+        "run/native_index.bin": "61fc48f40747628bf60ebd142902080333bfec3a1832345d34e2a54310ba2da3",
+        "run/native_reference.csv": "d36852799c542a2d1e71def7b4a15cdde2ab4d635a9ed767e7537d47814a3d2b",
+        "run/queries.csv": "a893fcc0495dfc23d90efe1c30991a965546c0232134583dd75fe4d09f791189",
+        "run/retrieved.csv": "893c099571b0ffe82875db1e83d4587ff94f8906a3f1de367d765d0d488c0138",
+        "run/roundtrip.json": "5b40d6052e615061e526cc369ce509b381c957629439942e40cecfc0a30e50a8",
+        "run/summary.json": "127c4e87861e2766a97dcc31acf98e0830c20a5256900a36c440f3d02e026e81"
+      },
+      "Recall": 1.0,
+      "scope": "Saved exact-score and component/serialize/reload fixture; not fair performance or common IS acceptance",
+      "sindi_space": {
+        "lambda": 10000,
+        "native_reordering": true,
+        "postings": 320
+      },
+      "candidate_pool_expected": 160
+    },
+    "SINDI_space_no_reorder": {
+      "path": "experiments/delivery/fixtures/sindi_space_no_reorder",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/candidate_counts.csv": "01ad7aeb9c0b8cd597a7eb99630366228850945d03733cfbacf39a27fd648e64",
+        "run/index_space.json": "fac271377a24f36b16c783edbad68d5e2ff1ce936b568b916624c6e71d74cefc",
+        "run/native_candidates.csv": "fc6a496e56fe4d4d2c54da93f4a5e56f326cbdd5f08fc6409f2fc6b38111ed1c",
+        "run/native_index.bin": "6db8286e54ac4cdacd79eb35068f38f39d0e51817acd8b9ac3fc05dc56c5db8f",
+        "run/native_reference.csv": "fe64a3fd48b8dd2192bccbe131a2523e6bf0874e2db0e89e8bf306e902405b1a",
+        "run/queries.csv": "6e7524d8d5590146b0639b2eea96b3466a99e7fd1fae3316ebc4a0a878f90072",
+        "run/retrieved.csv": "b98cec600ec7964781515ae4f2e55849ab1c90fb88ae55d890e995dfbe767017",
+        "run/roundtrip.json": "72bf5df8ba1fa756ea42ab38d2e25b36e7dfd5e6ef86edc8610b454d796b2c1b",
+        "run/summary.json": "5251b4fd5ff18c5d86ae055b24d08048cfb5e4ffa29fc784e34e14cda39c5f82"
+      },
+      "Recall": 1.0,
+      "scope": "Saved exact-score and component/serialize/reload fixture; not fair performance or common IS acceptance",
+      "sindi_space": {
+        "lambda": 10000,
+        "native_reordering": false,
+        "postings": 2560
+      },
+      "candidate_pool_expected": 160
+    },
+    "SINDI_space_windows": {
+      "path": "experiments/delivery/fixtures/sindi_space_windows",
+      "sha256": {
+        "base.csr": "d95e5a6d1acf4dada397b9093c7bbcb953eafce7d6322a755ac4d9cbbdfceb6f",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "e24d496c410771ab6a9c2f11462105ccb49a62189e0e68b9e64615392fe35bac",
+        "run/candidate_counts.csv": "f76cf4395198afbdd49f95cd7f635f5f5bfff1ce43691d2a4c0ed8259f9abb57",
+        "run/index_space.json": "508b95356895e056555e63b2f58a350f2f24ec704aa69abc986716f828a9f046",
+        "run/native_candidates.csv": "35dcf137471bec9b7ac4f1387517ca221e0acb1923aaf65223bc920f38219b6e",
+        "run/native_index.bin": "f8cc5646b4f91a2a6b948c8cc722562b9e9b470295cd30dcf2910de50adac0aa",
+        "run/native_reference.csv": "476d045397a46c8b9fa3d7edf6fe50194d4a731497fb9fb6ae9a97a188ddd8b3",
+        "run/queries.csv": "c34b70a56d780dd3f7a5ba937f6624db509ed4cb052965ed4b562e49be314761",
+        "run/retrieved.csv": "893c099571b0ffe82875db1e83d4587ff94f8906a3f1de367d765d0d488c0138",
+        "run/roundtrip.json": "e237b618e9904c4fa9a21dfdae127fc3feefb6b32028aeb76cf41a74bf3216dc",
+        "run/summary.json": "708b98e045666ca48a0e3544aeda3d3d667c30f7e21e3a71ceef4f8036abef19"
+      },
+      "Recall": 1.0,
+      "scope": "Saved exact-score and component/serialize/reload fixture; not fair performance or common IS acceptance",
+      "sindi_space": {
+        "lambda": 10000,
+        "native_reordering": true,
+        "postings": 20002
+      },
+      "candidate_pool_expected": 10001
+    },
+    "SEISMIC_space": {
+      "path": "experiments/delivery/fixtures/seismic_space",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/index_space.json": "8d0259596b3649d33ba33cf46cbcf5e22af7cadc5edaea1ecf3d48ab50428593",
+        "run/native_index.bin": "942773c57acbff1624593fa508e3f064e24f43560c03a78c64b8be7aa044bf30",
+        "run/queries.csv": "e85dd61096a450a5d7248d45b85170ec1443cf379d3727a99c98a7ddd617d2c3",
+        "run/retrieved.csv": "6d02563131d9bade0c7320c84b37f6725a6f964906254065dfffa6ddc0baf51c",
+        "run/roundtrip.json": "e9093c00d5a28de69ede5411bd5331a586362a821eb5de48cfad5da7135c4f0d",
+        "run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/stdout.log": "26e576ccc30938e18e98daa52cf3c0ea326d6e0460e13dbabcd7bf2567b4e827",
+        "run/summary.json": "522161d515ad38f61e2e49ab37fccf8f5f8a33f799e89531f78a623134bc9b3b"
+      },
+      "Recall": 1.0,
+      "scope": "Saved exact-score and component/serialize/reload fixture; not fair performance or common IS acceptance",
+      "seismic_space": {
+        "postings": 2560
+      }
+    },
+    "SEISMIC_space_trailing": {
+      "path": "experiments/delivery/fixtures/seismic_space_trailing",
+      "sha256": {
+        "base.csr": "54085bd6b9b6cda582c707fd854abf4c567705192abea568a2fbff2b8bd3b638",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "434c4d6927d9baca7808182fa651beccc3568f9eabe1142189d8a0988f8fc686",
+        "run/index_space.json": "971a0706e5d8204cd213466771efdee00cd04ce79d0776960edc351dd2b0e4e3",
+        "run/native_index.bin": "bfa4b2b090f75f23e125cd42ebcb4b0df18dc1652f0e7ad60a4246dcee2bf1ce",
+        "run/queries.csv": "2f2069cb36ae6146152aaa63ec9609e9b4569fc63a7bf1fb10c5882d5bf4db56",
+        "run/retrieved.csv": "6d02563131d9bade0c7320c84b37f6725a6f964906254065dfffa6ddc0baf51c",
+        "run/roundtrip.json": "670bf2af2e836aff3e9cbe7686fcb78d864490cf3d14bf335a9d713bc1efa673",
+        "run/summary.json": "57f95fb0c33b5af18767c2791365be0c00c6f67bccee79c2cc7b056bf24bbd34"
+      },
+      "Recall": 1.0,
+      "scope": "Saved exact-score and component/serialize/reload fixture; not fair performance or common IS acceptance",
+      "seismic_space": {
+        "postings": 2560
+      }
     }
   },
   "native_smokes": {
@@ -514,6 +656,49 @@
       "m": 16,
       "preflight_input": "base_small.csr",
       "scope": "Saved real-data component arithmetic against registered input header/hash; original score re-audit requires dataset"
+    },
+    "SINDI_real_0.1M": {
+      "path": "experiments/delivery/space_inventory/sindi_real_0.1m_20261024",
+      "sha256": {
+        "candidate_counts.csv": "51c9216c648ca69b29e08188d13db7f4679dce45b8f96ac0345b7974f8ffecab",
+        "current_space_audit.json": "6510afc9fb4eebf3045c600c178e0a36c851dea65114869f9e6cb2ea568e6e12",
+        "driver.py": "3f8a92b3665b5e66fe5a88f024e85a19587ee4e86265c0eed818412f80ad2428",
+        "independent_audit.json": "94d973f1c5358b450a76f6f6cab1622b096b80b26d9d7db1e5b5b9466c98ec9d",
+        "index_space.json": "81786a362fa8f2506d1f95e5ac7b1eaa92543cc861b8b60fa561da6ce2feee12",
+        "native_candidates.csv": "2f4fc9501a2930da6e825f4f7d71fd0ed28dfd91f6de2249e1cda4bdd653bf6f",
+        "native_reference.csv": "965270f18d67e244fbffd685174ea384cad83d69439dc88e0147ea95da7ef7df",
+        "queries.csv": "20221140679855ed34618524119745e2722e165f762bca6100468d530a9472eb",
+        "receipt.json": "09f32d2ae61b69de2da278c304fa1f92123889acfa0fcc32f49ea5bd848fb2a6",
+        "resource_usage.log": "c7f8774ddc96d2be61cf3cd9445e369b4020722a1bdddc5cb408b7a40cf1edd8",
+        "retrieved.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+        "run.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "space_audit.json": "53fb63393c2c250b1010041bc969cd34456c1070c074b95bd48508072acec80e",
+        "summary.json": "8932125a9361bbab45263c8175cd950d64b1aca1f6ef20d4bf56a2fe3e7e69d3"
+      },
+      "method": "SINDI",
+      "preflight_input": "base_small.csr",
+      "scope": "One fixed local component sum against registered input; original score re-audit requires dataset",
+      "lambda": 10000,
+      "native_reordering": true
+    },
+    "SEISMIC_real_0.1M": {
+      "path": "experiments/delivery/space_inventory/seismic_real_0.1m_20261024",
+      "sha256": {
+        "current_space_audit.json": "f4290792888e5bd2a54738fb616be9ef5964ae3513fa7b718a4144eaa9e5692b",
+        "driver.py": "3f8a92b3665b5e66fe5a88f024e85a19587ee4e86265c0eed818412f80ad2428",
+        "independent_audit.json": "abf50b7a460a1805f3a1ba5ebd4179f8ea8ef8cdda2d61def5c3de4b8378079e",
+        "index_space.json": "69a1ab6b01fea44d1fb987d7e31e23a0d856cda4c0cbaecc1914a0cc1f117af7",
+        "queries.csv": "5bc653fb551fcf96501a7ad5008efeeb4dbe620ab9188a08e368b077307f1235",
+        "receipt.json": "106585dee66053a345c8fe45ff920ce893c2e03dea07b64659d346ad2fd43578",
+        "resource_usage.log": "e9290df1eea5b32e4168c6f273d5c250cddca4f9826eec55adf89677eb3701d1",
+        "retrieved.csv": "06d0bca07bb793e4ec0a3f05b3faeb91d32ec3d22de77cd4c0c05d5cdd7eb9a4",
+        "run.log": "3ecb0122b217095e5f74d3707e11a75a1a5a9eaee2887e03e875033ec9fe53c1",
+        "space_audit.json": "7934d4ef045fd50fa02cd7c8a8b0dc0c3c344e56fdbaae6c179d9f62e776c366",
+        "summary.json": "27d6f6d6522d702895d8306c7cf4be17e9b634e7ff1fe1ddfdab1dca938ac9a9"
+      },
+      "method": "SEISMIC",
+      "preflight_input": "base_small.csr",
+      "scope": "One fixed local component sum against registered input; original score re-audit requires dataset"
     }
   }
 }

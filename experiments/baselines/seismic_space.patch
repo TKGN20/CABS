@@ -1,0 +1,104 @@
+--- a/src/quantized_summary.rs
++++ b/src/quantized_summary.rs
+@@ -45,6 +45,30 @@
+ }
+ 
+ impl<C: ComponentType> QuantizedSummary<C> {
++    pub(crate) fn retained_heap_inventory(&self) -> (std::collections::BTreeMap<&'static str, usize>, std::collections::BTreeMap<&'static str, usize>) {
++        use std::mem::{size_of, size_of_val};
++        let components = std::collections::BTreeMap::from([
++            ("summary_component_ids", self.component_ids.as_ref().map_or(0, |ids| ids.len() * size_of::<C>())),
++            ("summary_offsets_heap", self.offsets.mem_size(SizeFlags::CAPACITY) - size_of_val(&self.offsets)),
++            ("summary_ids_heap", self.summaries_ids.mem_size(SizeFlags::CAPACITY) - size_of_val(&self.summaries_ids)),
++            ("summary_values", self.values.len() * size_of::<u8>()),
++            ("summary_minimums", self.minimums.len() * size_of::<f32>()),
++            ("summary_quants", self.quants.len() * size_of::<f32>()),
++        ]);
++        let counts = std::collections::BTreeMap::from([
++            ("summary_components", self.component_ids.as_ref().map_or(0, |ids| ids.len())),
++            ("summary_values", self.values.len()),
++            ("summary_minimums", self.minimums.len()),
++            ("summary_quants", self.quants.len()),
++            ("summaries", self.n_summaries),
++            ("sparse_summary_lists", usize::from(self.component_ids.is_some())),
++            ("dense_summary_lists", usize::from(self.component_ids.is_none())),
++            ("summary_offsets_heap_bytes", components["summary_offsets_heap"]),
++            ("summary_ids_heap_bytes", components["summary_ids_heap"]),
++        ]);
++        (components, counts)
++    }
++
+     /// Calculate space usage for sparse offset strategy (with component_ids)
+     fn estimate_sparse_space(num_components: usize, max_offset: usize) -> usize {
+         // Space for component_ids: number of components * size of component type C in bits
+--- a/src/inverted_index.rs
++++ b/src/inverted_index.rs
+@@ -78,6 +78,68 @@
+         };
+ 
+         forward + postings + knn_size
++    }
++}
++
++impl<S> InvertedIndexBase<S>
++where
++    S: SparseData + SpaceUsage,
++    EncoderFor<S>: SparseDataEncoder,
++    ComponentFor<S>: SpaceUsage,
++{
++    pub fn retained_plain_inventory(&self) -> serde_json::Value {
++        use std::collections::BTreeMap;
++        use std::mem::{size_of, size_of_val};
++        let forward_heap = self.forward_index.space_usage_bytes() - size_of_val(&self.forward_index);
++        let mut components = BTreeMap::from([
++            ("native_index_object_headers", size_of::<Self>()),
++            ("forward_store_heap", forward_heap),
++            ("posting_list_object_array", self.posting_lists.len() * size_of::<PostingList<ComponentFor<S>>>()),
++            ("packed_postings", 0), ("block_offsets", 0),
++            ("summary_component_ids", 0), ("summary_offsets_heap", 0),
++            ("summary_ids_heap", 0), ("summary_values", 0),
++            ("summary_minimums", 0), ("summary_quants", 0),
++            ("knn_heap", self.knn.as_ref().map_or(0, |knn| knn.neighbours.mem_size(SizeFlags::CAPACITY) - size_of_val(&knn.neighbours))),
++            ("configuration_path_capacity", self.config.knn.knn_path.as_ref().map_or(0, |path| path.capacity())),
++        ]);
++        let mut counts = BTreeMap::from([
++            ("documents", self.forward_index.len()),
++            ("dimensions", self.forward_index.input_dim()),
++            ("nnz", self.forward_index.nnz()),
++            ("posting_lists", self.posting_lists.len()),
++            ("packed_postings", 0), ("block_offsets", 0),
++            ("summary_components", 0), ("summary_values", 0),
++            ("summary_minimums", 0), ("summary_quants", 0),
++            ("summaries", 0), ("sparse_summary_lists", 0), ("dense_summary_lists", 0),
++            ("summary_offsets_heap_bytes", 0), ("summary_ids_heap_bytes", 0),
++            ("configuration_path_capacity", components["configuration_path_capacity"]),
++        ]);
++        for list in self.posting_lists.iter() {
++            let packed = list.packed_postings().len();
++            let offsets = list.block_offsets().len();
++            *components.get_mut("packed_postings").unwrap() += packed * size_of::<PackedPostingBlock>();
++            *components.get_mut("block_offsets").unwrap() += offsets * size_of::<usize>();
++            *counts.get_mut("packed_postings").unwrap() += packed;
++            *counts.get_mut("block_offsets").unwrap() += offsets;
++            let (summary_components, summary_counts) = list.summaries().retained_heap_inventory();
++            for (name, bytes) in summary_components { *components.get_mut(name).unwrap() += bytes; }
++            for (name, count) in summary_counts { *counts.get_mut(name).unwrap() += count; }
++        }
++        serde_json::json!({
++            "schema": 1, "method": "SEISMIC",
++            "native_payload_bytes": components.values().sum::<usize>(),
++            "native_space_usage_bytes": self.space_usage_bytes(),
++            "components_bytes": components, "counts": counts,
++            "knn_present": self.knn.is_some(),
++            "abi_bytes": {
++                "index": size_of::<Self>(), "forward_store": size_of::<S>(),
++                "PostingList": size_of::<PostingList<ComponentFor<S>>>(),
++                "PackedPostingBlock": size_of::<PackedPostingBlock>(),
++                "component": size_of::<ComponentFor<S>>(),
++                "usize": size_of::<usize>(), "float": size_of::<f32>(),
++            },
++            "scope": "Read-only retained headers and heap payload for the audited plain u32/f32 adapter; mem_dbg CAPACITY for compressed structures; embedded headers counted once"
++        })
+     }
+ }
+ 

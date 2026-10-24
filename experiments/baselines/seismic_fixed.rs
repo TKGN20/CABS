@@ -6,6 +6,8 @@ use std::time::Instant;
 use seismic::{PlainInvertedIndex};
 use seismic::configurations::{Configuration,PruningStrategy,BlockingStrategy,ClusteringAlgorithm,SummarizationStrategy};
 use vectorium::{Dataset,DatasetGrowable,DotProduct,PlainSparseDataset,PlainSparseDatasetGrowable,PlainSparseQuantizer,SparseVectorView};
+#[cfg(cabs_space_inventory)]
+use vectorium::IndexSerializer;
 
 type Data=PlainSparseDataset<u32,f32,DotProduct>;
 fn read_u64(bytes:&[u8],offset:usize)->usize {usize::try_from(u64::from_le_bytes(bytes[offset..offset+8].try_into().unwrap())).unwrap()}
@@ -57,6 +59,45 @@ fn main()->Result<(),Box<dyn std::error::Error>>{
     writeln!(results,"query_id,rank,identifier,score")?;writeln!(timings,"repeat,query_id,seconds")?;
     for repeat in 0..repeats{for &qid in &ids{let start=Instant::now();let hits=search(qid);let elapsed=start.elapsed().as_secs_f64();writeln!(timings,"{repeat},{qid},{elapsed:.17}")?;if repeat==0{for (rank,(id,value)) in hits.iter().enumerate(){writeln!(results,"{qid},{},{id},{value:.17}",rank+1)?;}}}}
     results.flush()?;timings.flush()?;
-    fs::write(format!("{}/summary.json",args[4]),serde_json::to_string_pretty(&serde_json::json!({"method":"SEISMIC","representation":"u32/f32","index_seed":seed,"search_threads":1,"build_seconds_including_loading":build,"exact_binary64_reranking_in_timer":true,"candidate_policy":"upstream visited set; native float pruning and scoring retained","IS_status":"NOT_YET_VALIDATED"}))?)?;
+    let mut summary=serde_json::json!({"method":"SEISMIC","representation":"u32/f32","index_seed":seed,"search_threads":1,"build_seconds_including_loading":build,"exact_binary64_reranking_in_timer":true,"candidate_policy":"upstream visited set; native float pruning and scoring retained","IS_status":"NOT_YET_VALIDATED"});
+    #[cfg(cabs_space_inventory)]
+    {
+        let mut inventory=index.retained_plain_inventory();
+        let forward=inventory["components_bytes"]["forward_store_heap"].as_u64().unwrap();
+        let expected_forward=8*(index.len() as u64+1)+8*index.nnz() as u64;
+        assert_eq!(forward,expected_forward,"Plain forward heap ABI no longer matches audited storage");
+        inventory["components_bytes"]["adapter_offset_map_header"]=serde_json::json!(std::mem::size_of_val(&offsets));
+        inventory["components_bytes"]["adapter_offset_map_capacity"]=serde_json::json!(offsets.capacity()*std::mem::size_of::<usize>());
+        inventory["counts"]["adapter_offset_map_capacity"]=serde_json::json!(offsets.capacity());
+        let total:u64=inventory["components_bytes"].as_object().unwrap().values().map(|v|v.as_u64().unwrap()).sum();
+        inventory["status"]=serde_json::json!("REPORTED_NOT_COMMON_VALIDATED");
+        inventory["original_vector_bytes"]=serde_json::json!(forward);
+        inventory["original_CSR_reference_bytes"]=serde_json::json!(fs::metadata(&args[1])?.len());
+        inventory["index_structure_bytes"]=serde_json::json!(total-forward);
+        inventory["index_plus_vectors_bytes"]=serde_json::json!(total);
+        inventory["policy"]=serde_json::json!("Full original u32/f32 vectors already reside in the native forward heap, counted once; separate adapter offset mapping counted additionally; all object headers and retained capacities included");
+        inventory["excluded"]=serde_json::json!("Query data/scratch, released construction temporaries, allocator bookkeeping/allocation overhead, runtime thread pool and shared library/code");
+        inventory["measurement_boundary"]=serde_json::json!("Read-only traversal after all timed queries; serialized bytes and RSS are separate quantities");
+        fs::write(format!("{}/index_space.json",args[4]),serde_json::to_string_pretty(&inventory)?)?;
+        summary["IS_status"]=inventory["status"].clone();summary["IS_bytes"]=serde_json::json!(total);
+        if env::var_os("CABS_SEISMIC_SPACE_ROUNDTRIP").is_some(){
+            let path=format!("{}/native_index.bin",args[4]);index.save_index(&path).map_err(|error|format!("Native serialization failed: {error:?}"))?;
+            let loaded=PlainInvertedIndex::<u32,f32>::load_index(&path).map_err(|error|format!("Native deserialization failed: {error:?}"))?;
+            assert!(index==loaded,"Native serialize/reload changes index fields");
+            for &qid in &ids{
+                let q=queries.get(qid);let (native,mut candidates)=index.search_with_candidates(q,k,cut,factor,0,false);
+                let (other,mut loaded_candidates)=loaded.search_with_candidates(q,k,cut,factor,0,false);
+                candidates.sort_unstable();loaded_candidates.sort_unstable();
+                assert_eq!(native,other,"Reload changed native ranking");assert_eq!(candidates,loaded_candidates,"Reload changed exposed candidate set");
+                let mut hits:Vec<(u64,f64)>=loaded_candidates.into_iter().map(|start|{let id=offsets.binary_search(&start).unwrap() as u64;(id,score(loaded.dataset().get(id),q))}).collect();
+                hits.sort_by(|a,b|b.1.total_cmp(&a.1).then(a.0.cmp(&b.0)));hits.truncate(k);assert_eq!(hits,search(qid),"Reload changed exact tail");
+            }
+            let roundtrip=serde_json::json!({"before":index.retained_plain_inventory(),"after":loaded.retained_plain_inventory(),"all_index_fields_equal":true,"native_candidates_and_exact_outputs_equal":true,"serialized_bytes":fs::metadata(path)?.len(),"scope":"Untimed optional serialize/reload diagnostic; serialized size is not IS"});
+            fs::write(format!("{}/roundtrip.json",args[4]),serde_json::to_string_pretty(&roundtrip)?)?;
+        }
+    }
+    #[cfg(not(cabs_space_inventory))]
+    assert!(env::var_os("CABS_SEISMIC_SPACE_ROUNDTRIP").is_none(),"Roundtrip diagnostic requires registered space introspection");
+    fs::write(format!("{}/summary.json",args[4]),serde_json::to_string_pretty(&summary)?)?;
     Ok(())
 }

@@ -11,18 +11,21 @@ import sys
 import tempfile
 
 from oracle import audit,CSR,score
+from space_inventory import audit_sindi_inventory,audit_sindi_serialization
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
 from smoke_test import write_csr
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--binary',type=Path,required=True);p.add_argument('--out',type=Path);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--binary',type=Path,required=True);p.add_argument('--out',type=Path);p.add_argument('--require-space',action='store_true');a=p.parse_args()
     with tempfile.TemporaryDirectory(prefix='sindi-parity-') as temporary:
         root=Path(temporary);rng=random.Random(1031)
         row=lambda:{j:rng.uniform(.1,1) for j in sorted(rng.sample(range(32),16))}
         write_csr(root/'base.csr',[row() for _ in range(160)],32);write_csr(root/'queries.csr',[row() for _ in range(12)],32)
         selected=[9,2,11,0];(root/'ids.txt').write_text(''.join(str(q)+'\n' for q in selected));out=root/'run';out.mkdir()
         env=dict(os.environ,OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1');env.pop('CABS_SINDI_SENTINEL_BYTE',None)
+        env.pop('CABS_SINDI_SPACE_ROUNDTRIP',None)
+        if a.require_space:env['CABS_SINDI_SPACE_ROUNDTRIP']='1'
         command=[str(a.binary.resolve()),str(root/'base.csr'),str(root/'queries.csr'),str(root/'ids.txt'),str(out),'10000','1','1','160','50','3','candidate-api-v1']
         result=subprocess.run(command,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
         if result.returncode:raise RuntimeError(result.stdout+result.stderr)
@@ -54,6 +57,16 @@ def main():
             for name in ('retrieved.csv','native_candidates.csv','native_reference.csv','candidate_counts.csv'):
                 if (again/name).read_bytes()!=(out/name).read_bytes():raise ValueError('Native results depend on repeat or unwritten-memory pattern: '+name)
         proof.update(same_build_ranked_outputs_equal=True,two_sentinel_patterns_equal=True,complete_gamma_pool_reranking_checked=True,candidate_counts=counts,scope='SINDI public-API small-fixture correctness only; no performance/IS/paper-parity acceptance')
+        if a.require_space:
+            proof['space_inventory']=audit_sindi_inventory(out,root/'base.csr',10000,True,2560)
+            proof['serialization']=audit_sindi_serialization(out,root/'base.csr')
+            corrupt=root/'corrupt-space';corrupt.mkdir()
+            shutil.copyfile(out/'summary.json',corrupt/'summary.json')
+            changed=json.loads((out/'index_space.json').read_text());changed['counts']['postings']+=1
+            (corrupt/'index_space.json').write_text(json.dumps(changed))
+            try:audit_sindi_inventory(corrupt,root/'base.csr',10000,True,2560)
+            except ValueError:proof['corrupt_space_count_rejected']=True
+            else:raise ValueError('Corrupt SINDI allocation count accepted')
         ties=root/'ties';ties.mkdir();write_csr(ties/'base.csr',[{0:1,2:1} for _ in range(160)],3);write_csr(ties/'queries.csr',[{0:1,2:1}],3);(ties/'ids.txt').write_text('0\n');(ties/'run').mkdir();tie_command=command.copy();tie_command[1:5]=[str(ties/'base.csr'),str(ties/'queries.csr'),str(ties/'ids.txt'),str(ties/'run')]
         subprocess.run(tie_command,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True);tie_proof=audit(ties/'base.csr',ties/'queries.csr',ties/'run/retrieved.csv',ties/'run/queries.csv',[0],50,3)
         if tie_proof['Recall']!=1:raise ValueError('Common original-ID tie rule failed')
@@ -62,6 +75,20 @@ def main():
         subprocess.run(no_reorder_command,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True);no_reorder_proof=audit(root/'base.csr',root/'queries.csr',no_reorder/'retrieved.csv',no_reorder/'queries.csv',selected,50,3)
         if no_reorder_proof['Recall']!=1:raise ValueError('Non-reranking branch gamma>k/padded-window fixture differs from GT')
         proof['non_reranking_gamma_gt_k_and_padded_window_checked']=True
+        if a.require_space:
+            proof['no_reorder_space_inventory']=audit_sindi_inventory(no_reorder,root/'base.csr',10000,False,2560)
+            proof['no_reorder_serialization']=audit_sindi_serialization(no_reorder,root/'base.csr')
+            if proof['no_reorder_space_inventory']['native_forward_copy_bytes']!=0:raise ValueError('Disabled native forward copy still counted')
+            proof['tie_space_inventory']=audit_sindi_inventory(ties/'run',ties/'base.csr',10000,True,320)
+            proof['tie_serialization']=audit_sindi_serialization(ties/'run',ties/'base.csr')
+            windows=root/'windows';windows.mkdir();(windows/'run').mkdir()
+            write_csr(windows/'base.csr',[{0:1,2:1} for _ in range(10001)],4);write_csr(windows/'queries.csr',[{0:1,2:1}],4);(windows/'ids.txt').write_text('0\n')
+            window_command=command.copy();window_command[1:5]=[str(windows/'base.csr'),str(windows/'queries.csr'),str(windows/'ids.txt'),str(windows/'run')];window_command[8]='10001'
+            subprocess.run(window_command,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True)
+            proof['multiwindow_correctness']=audit(windows/'base.csr',windows/'queries.csr',windows/'run/retrieved.csv',windows/'run/queries.csv',[0],50,3)
+            if proof['multiwindow_correctness']['Recall']!=1:raise ValueError('Multiwindow full-budget native fixture differs from GT')
+            proof['multiwindow_space_inventory']=audit_sindi_inventory(windows/'run',windows/'base.csr',10000,True,20002)
+            proof['multiwindow_serialization']=audit_sindi_serialization(windows/'run',windows/'base.csr')
         bad=root/'invalid_ids.txt';bad.write_text('12\n');badout=root/'bad';badout.mkdir();command[3]=str(bad);command[4]=str(badout)
         if subprocess.run(command,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE).returncode==0:raise ValueError('Out-of-range original query ID accepted')
         write_csr(root/'disjoint-base.csr',[{0:1,2:1} for _ in range(160)],3);write_csr(root/'disjoint-query.csr',[{1:1}],3);(root/'one-id.txt').write_text('0\n');under=root/'underfilled';under.mkdir();command[1:5]=[str(root/'disjoint-base.csr'),str(root/'disjoint-query.csr'),str(root/'one-id.txt'),str(under)]
@@ -80,6 +107,8 @@ def main():
             no_reorder_artifacts=a.out.parent/'no_reorder_fixture_artifacts';no_reorder_artifacts.mkdir(exist_ok=False)
             for name in ('base.csr','queries.csr','ids.txt'):shutil.copyfile(root/name,no_reorder_artifacts/name)
             shutil.copytree(no_reorder,no_reorder_artifacts/'run')
+            if a.require_space:
+                shutil.copytree(windows,a.out.parent/'window_fixture_artifacts')
             with a.out.open('x') as f:json.dump(proof,f,indent=2)
         print(json.dumps({k:v for k,v in proof.items() if k not in ('input_sha256','QPS','candidate_counts')},indent=2))
 

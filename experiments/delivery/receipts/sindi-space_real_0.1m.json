@@ -1,0 +1,24 @@
+{
+  "path": "experiments/delivery/space_inventory/sindi_real_0.1m_20261024",
+  "sha256": {
+    "candidate_counts.csv": "51c9216c648ca69b29e08188d13db7f4679dce45b8f96ac0345b7974f8ffecab",
+    "current_space_audit.json": "6510afc9fb4eebf3045c600c178e0a36c851dea65114869f9e6cb2ea568e6e12",
+    "driver.py": "3f8a92b3665b5e66fe5a88f024e85a19587ee4e86265c0eed818412f80ad2428",
+    "independent_audit.json": "94d973f1c5358b450a76f6f6cab1622b096b80b26d9d7db1e5b5b9466c98ec9d",
+    "index_space.json": "81786a362fa8f2506d1f95e5ac7b1eaa92543cc861b8b60fa561da6ce2feee12",
+    "native_candidates.csv": "2f4fc9501a2930da6e825f4f7d71fd0ed28dfd91f6de2249e1cda4bdd653bf6f",
+    "native_reference.csv": "965270f18d67e244fbffd685174ea384cad83d69439dc88e0147ea95da7ef7df",
+    "queries.csv": "20221140679855ed34618524119745e2722e165f762bca6100468d530a9472eb",
+    "receipt.json": "09f32d2ae61b69de2da278c304fa1f92123889acfa0fcc32f49ea5bd848fb2a6",
+    "resource_usage.log": "c7f8774ddc96d2be61cf3cd9445e369b4020722a1bdddc5cb408b7a40cf1edd8",
+    "retrieved.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+    "run.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "space_audit.json": "53fb63393c2c250b1010041bc969cd34456c1070c074b95bd48508072acec80e",
+    "summary.json": "8932125a9361bbab45263c8175cd950d64b1aca1f6ef20d4bf56a2fe3e7e69d3"
+  },
+  "method": "SINDI",
+  "preflight_input": "base_small.csr",
+  "scope": "One fixed local component sum against registered input; original score re-audit requires dataset",
+  "lambda": 10000,
+  "native_reordering": true
+}

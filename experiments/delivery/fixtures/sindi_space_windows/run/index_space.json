@@ -1,0 +1,53 @@
+{
+  "abi_bytes": {
+    "InvertedList": 32,
+    "Sindi": 104,
+    "SparseVector": 24,
+    "float": 4,
+    "mutex": 40,
+    "pointer": 8,
+    "uint32": 4,
+    "uint64": 8,
+    "vector_SparseVector": 24
+  },
+  "components_bytes": {
+    "adapter_row_view_container_header": 24,
+    "adapter_row_view_headers": 240024,
+    "native_forward_ids": 80008,
+    "native_forward_row_headers": 240024,
+    "native_forward_values": 80008,
+    "native_index_object_headers": 104,
+    "native_inverted_list_headers": 128,
+    "native_posting_ids": 80008,
+    "native_posting_values": 80008,
+    "native_retained_mutex_capacity": 160,
+    "native_window_offsets": 24,
+    "original_capacity_slack": 0
+  },
+  "counts": {
+    "adapter_row_view_capacity": 10001,
+    "dimensions": 4,
+    "documents": 10001,
+    "forward_nnz": 20002,
+    "lambda": 10000,
+    "mutex_capacity": 4,
+    "nnz": 20002,
+    "nonempty_lists": 2,
+    "original_coordinate_capacity": 20002,
+    "original_offset_capacity": 10002,
+    "original_value_capacity": 20002,
+    "postings": 20002,
+    "windows": 2
+  },
+  "excluded": "Query data/scratch, released construction temporaries, loader wrappers, shared library/code, allocator bookkeeping and allocation overhead",
+  "index_plus_vectors_bytes": 1040576,
+  "index_structure_bytes": 800520,
+  "measurement_boundary": "Read-only traversal after all timed queries; serialization and process RSS are separate quantities",
+  "method": "SINDI",
+  "native_payload_bytes": 560472,
+  "native_reordering": true,
+  "original_vector_bytes": 240056,
+  "policy": "Logical original CSR bytes counted once; native forward deep copy and adapter row views are additional retained storage; allocated capacities and object headers included",
+  "schema": 1,
+  "status": "REPORTED_NOT_COMMON_VALIDATED"
+}

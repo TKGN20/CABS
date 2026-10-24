@@ -18,6 +18,9 @@
 #ifndef CABS_SINDI_REPAIRED_NATIVE
 #define CABS_SINDI_REPAIRED_NATIVE 0
 #endif
+#ifndef CABS_SINDI_SPACE_INVENTORY
+#define CABS_SINDI_SPACE_INVENTORY 0
+#endif
 
 static void require(bool value,const char* message){if(!value)throw std::runtime_error(message);}
 struct SentinelAllocator:vsag::Allocator{
@@ -40,6 +43,7 @@ struct CSR{
     }
 };
 static double dot(const vsag::SparseVector& a,const vsag::SparseVector& b){size_t i=0,j=0;double total=0;while(i<a.dim_ && j<b.dim_){if(a.ids_[i]==b.ids_[j]){total+=double(a.vals_[i])*double(b.vals_[j]);++i;++j;}else if(a.ids_[i]<b.ids_[j])++i;else ++j;}return total;}
+#include "sindi_space.hpp"
 struct SearchResult{std::vector<std::pair<int64_t,double>> hits;std::vector<std::pair<int64_t,float>> native;size_t unwritten=0,duplicates=0;};
 int main(int argc,char** argv){
     try{
@@ -64,6 +68,24 @@ int main(int argc,char** argv){
         for(int repeat=0;repeat<repeats;++repeat)for(int64_t qid:ids){start=omp_get_wtime();auto hits=search(qid);require(hits.hits.size()>=size_t(k),"SINDI underfilled unique candidate set");hits.hits.resize(k);double elapsed=omp_get_wtime()-start;times<<repeat<<','<<qid<<','<<elapsed<<'\n';if(!repeat)for(size_t rank=0;rank<hits.hits.size();++rank)results<<qid<<','<<rank+1<<','<<hits.hits[rank].first<<','<<hits.hits[rank].second<<'\n';}
         for(auto stream:{&results,&times,&candidates,&references,&counts}){stream->flush();require(bool(*stream),"Output write failed");}
         nlohmann::json summary={{"method","SINDI"},{"build_seconds_including_loading",build},{"search_threads",1},{"native_reranking",native_reorder},{"index_randomness","deterministic native construction; no stochastic seed introduced"},{"candidate_policy","native gamma pool exposed through KnnSearch(k=gamma); native gamma unchanged"},{"exact_binary64_reranking_in_timer",true},{"allocation_policy",custom_allocator?"Diagnostic initialized custom allocator; cost included":"Native allocator and explicit native result initialization"},{"sentinel_byte",allocator.fill},{"disclosed_native_correctness_repairs",bool(CABS_SINDI_REPAIRED_NATIVE)},{"IS_status","NOT_YET_VALIDATED"}};
+#if CABS_SINDI_SPACE_INVENTORY
+        auto inventory=sindi_space_inventory(*index,docs);
+        std::ofstream space(out+"/index_space.json");space<<inventory.dump(2)<<'\n';space.flush();require(bool(space),"Space inventory write failed");
+        summary["IS_status"]=inventory["status"];summary["IS_bytes"]=inventory["index_plus_vectors_bytes"];
+        if(std::getenv("CABS_SINDI_SPACE_ROUNDTRIP")){
+            auto before=nlohmann::json::parse(index->GetStats());
+            std::vector<SearchResult> expected;for(auto qid:ids)expected.push_back(search(qid));
+            {std::ofstream serialized(out+"/native_index.bin",std::ios::binary);require(index->Serialize(serialized).has_value(),"Native serialization failed");serialized.flush();require(bool(serialized),"Native serialization write failed");}
+            auto original=index;
+            index=vsag::Factory::CreateIndex("sindi",build_parameters.dump(),custom_allocator?&allocator:nullptr).value();
+            std::ifstream serialized(out+"/native_index.bin",std::ios::binary);require(index->Deserialize(serialized).has_value() && bool(serialized),"Native deserialization failed");
+            for(size_t q=0;q<ids.size();++q){auto actual=search(ids[q]);require(actual.hits==expected[q].hits && actual.native==expected[q].native && actual.unwritten==expected[q].unwritten && actual.duplicates==expected[q].duplicates,"Native roundtrip changed candidate/ranked output");}
+            auto after=nlohmann::json::parse(index->GetStats());
+            std::ofstream roundtrip(out+"/roundtrip.json");roundtrip<<nlohmann::json{{"before",before},{"after",after},{"ranked_and_native_outputs_equal",true},{"scope","Untimed optional serialize/reload diagnostic; serialized size is not IS"}}.dump(2)<<'\n';roundtrip.flush();require(bool(roundtrip),"Roundtrip proof write failed");index=original;
+        }
+#else
+        require(std::getenv("CABS_SINDI_SPACE_ROUNDTRIP")==nullptr,"Roundtrip diagnostic requires registered space introspection");
+#endif
         std::ofstream meta(out+"/summary.json");meta<<std::setprecision(17)<<summary.dump(2)<<'\n';meta.flush();require(bool(meta),"Summary write failed");return 0;
     }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
 }

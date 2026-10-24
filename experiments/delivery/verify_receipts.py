@@ -34,6 +34,14 @@ def main():
             counts=json.loads((folder/'run/index_space.json').read_text())['counts']
             if 'expected_empty_expansions' in record and counts['expanded_empty_rows']!=record['expected_empty_expansions']:raise ValueError('Empty expanded row fixture differs')
             if record.get('require_unused_bucket_capacity') and counts['bucket_slots_capacity']<=counts['bucket_slots_size']:raise ValueError('Unused capacity fixture differs')
+        if 'sindi_space' in record:
+            from space_inventory import audit_sindi_inventory,audit_sindi_serialization
+            config=record['sindi_space'];audit_sindi_inventory(folder/'run',folder/'base.csr',config['lambda'],config['native_reordering'],config.get('postings'))
+            audit_sindi_serialization(folder/'run',folder/'base.csr')
+        if 'seismic_space' in record:
+            from space_inventory import audit_seismic_inventory,audit_seismic_roundtrip
+            audit_seismic_inventory(folder/'run',folder/'base.csr',record['seismic_space'].get('postings'))
+            audit_seismic_roundtrip(folder/'run')
         if 'candidate_pool_expected' in record:
             docs=CSR(folder/'base.csr');queries=CSR(folder/'queries.csr')
             try:
@@ -100,9 +108,13 @@ def main():
         for name,wanted in record['sha256'].items():
             if not (folder/name).resolve().is_relative_to(folder.resolve()) or hashlib.sha256((folder/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Evidence bundle changed: '+name)
     for record in fixtures.get('space_inventories',{}).values():
-        from space_inventory import audit_sosia_inventory_header
+        from space_inventory import audit_sosia_inventory_header,audit_sindi_inventory_header,audit_seismic_inventory_header
         folder=repository/record['path'];preflight=json.loads((root/'preflight_20261023.json').read_text());header=next(item for item in preflight['inputs'] if item['file']==record['preflight_input'])
-        observed=audit_sosia_inventory_header(folder,header['n'],header['d'],header['nnz'],header['bytes'],record['ell'],record['m'])
+        arguments=(folder,header['n'],header['d'],header['nnz'],header['bytes'])
+        if record['method']=='SOSIA':observed=audit_sosia_inventory_header(*arguments,record['ell'],record['m'])
+        elif record['method']=='SINDI':observed=audit_sindi_inventory_header(*arguments,record['lambda'],record['native_reordering'])
+        elif record['method']=='SEISMIC':observed=audit_seismic_inventory_header(*arguments)
+        else:raise ValueError('Unknown saved component inventory method')
         saved=json.loads((folder/'current_space_audit.json').read_text());audited=json.loads((folder/'independent_audit.json').read_text())
         if observed!=saved or audited['binding']['data_sha256']!=header['sha256']:raise ValueError('Saved real component accounting differs from input receipt')
     real_methods=0

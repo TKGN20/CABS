@@ -14,7 +14,8 @@ def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--upstreams',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--configure-only',action='store_true');p.add_argument('--correctness-repairs',action='store_true');p.add_argument('--portable-isa',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--upstreams',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--configure-only',action='store_true');p.add_argument('--correctness-repairs',action='store_true');p.add_argument('--portable-isa',action='store_true');p.add_argument('--space-inventory',action='store_true');a=p.parse_args()
+    if a.space_inventory and not a.correctness_repairs:raise ValueError('Registered space patch requires the disclosed correctness baseline')
     registry=json.loads((HERE/'sources.json').read_text());pin=registry['methods']['SINDI'];dep=registry['dependencies']['ThreadPool']
     name='SINDI-'+pin['commit'];source=a.upstreams/name;receipt=json.loads((a.upstreams/(name+'.receipt.json')).read_text())
     if receipt['commit']!=pin['commit'] or receipt['repository']!=pin['repository']:raise ValueError('Wrong SINDI source receipt')
@@ -48,11 +49,21 @@ def main():
         subprocess.run(['patch','-p1','--batch','--forward','-i',str(HERE/'sindi_correctness.patch')],cwd=target,check=True)
         for name,values in repairs['files'].items():
             if digest(target/name)!=values['after_sha256']:raise ValueError('Correctness patch output changed: '+name)
+    space=None
+    if a.space_inventory:
+        space=json.loads((HERE/'sindi_space.json').read_text())
+        if space['upstream_commit']!=pin['commit'] or space['required_correctness_patch_sha256']!=repairs['patch_sha256'] or digest(HERE/'sindi_space.patch')!=space['patch_sha256']:raise ValueError('Wrong space introspection patch')
+        for name,values in space['files'].items():
+            if digest(target/name)!=values['before_sha256']:raise ValueError('Space patch preimage changed: '+name)
+        subprocess.run(['patch','-p1','--batch','--forward','-i',str(HERE/'sindi_space.patch')],cwd=target,check=True)
+        for name,values in space['files'].items():
+            if digest(target/name)!=values['after_sha256']:raise ValueError('Space patch output changed: '+name)
     command=['cmake','-S',str(target.resolve()),'-B',str((a.out/'build').resolve()),'-DCMAKE_BUILD_TYPE=Release','-DCMAKE_EXPORT_COMPILE_COMMANDS=ON','-DCMAKE_INSTALL_PREFIX='+str((a.out/'install').resolve()),'-DENABLE_INTEL_MKL=OFF','-DENABLE_TOOLS=OFF','-DENABLE_EXAMPLES=OFF','-DENABLE_TESTS=OFF','-DENABLE_WERROR=OFF','-DNUM_BUILDING_JOBS=2','-DCMAKE_CXX_FLAGS=-ffp-contract=off']
     env=dict(os.environ,GIT_CEILING_DIRECTORIES=str(a.out.resolve()),GIT_TERMINAL_PROMPT='0')
     state=dict(status='running',upstream=pin,thread_pool=dep,command=command,patch_sha256=digest(a.out/'adaptation.patch'))
     state['isa_policy']='No global forced AVX-512; original per-ISA objects and runtime SIMD dispatch retained' if a.portable_isa else 'Upstream global AVX-512 flags retained; host ISA support required'
     if repairs:state['correctness_repairs']=repairs
+    if space:state['space_inventory']=space
     (a.out/'build_receipt.json').write_text(json.dumps(state,indent=2))
     try:
         with (a.out/'configure.log').open('w') as log:subprocess.run(command,env=env,stdout=log,stderr=log,check=True)

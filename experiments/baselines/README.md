@@ -163,9 +163,9 @@ runtime initializes its own unused result slots. Candidate shortages fail;
 records from the original failed diagnostic remain separate.
 
 ```bash
-python3 experiments/baselines/build_sindi.py --upstreams build-mission/upstreams --out build-mission/sindi-repaired --correctness-repairs --portable-isa
+python3 experiments/baselines/build_sindi.py --upstreams build-mission/upstreams --out build-mission/sindi-repaired --correctness-repairs --portable-isa --space-inventory
 python3 experiments/baselines/build_sindi_adapter.py --native build-mission/sindi-repaired --upstreams build-mission/upstreams --out build-mission/sindi-adapter
-python3 experiments/baselines/test_sindi.py --binary build-mission/sindi-adapter/sindi_fixed --out build-mission/sindi-adapter/parity.json
+python3 experiments/baselines/test_sindi.py --binary build-mission/sindi-adapter/sindi_fixed --require-space --out build-mission/sindi-adapter/parity.json
 ```
 
 The local accepted fixture used the supported host's original global AVX-512
@@ -233,6 +233,40 @@ score/timing/method/lock cases. A record audit is narrower than a fresh baseline
 reproduction. The [cost audit](../../docs/BASELINE_COST_AUDIT_20261024.md) identifies
 the remaining retained-space and timing work; native SINDI's zero memory API is
 not used as a measured IS value.
+
+## Read-only retained-space exporters
+
+`--space-inventory` on the SINDI native builder adds the registered `GetStats`
+override after its disclosed correctness patch. The adapter validates the complete
+source/patch chain and exports `index_space.json` after query timing. It counts
+native lists, window offsets, retained mutex capacity and the optional native
+forward copy, plus the common original CSR and adapter row views. The zero
+`GetMemoryUsage()` stub is never used for IS.
+
+For SEISMIC, add `--space-inventory` to `build_seismic.py --adapter`. Two registered
+read-only methods expose object headers, boxed arrays and compressed structures
+using `mem_dbg` capacity traversal. Full vectors already reside in its native
+plain forward store; they are counted once. The retained original-ID offset map
+is additional storage. Native `SpaceUsage`, serialized bytes and the complete
+retained-component sum are reported as distinct quantities.
+
+`test_sindi.py --require-space` and `test_seismic.py --require-space` require the
+exporters and run optional untimed serialize/reload controls. SINDI's serialized
+arrays are independently parsed and checked against original CSR; SEISMIC checks
+all decoded index fields, candidate sets and exact outputs. These controls do not
+change the normal query timer. Native allocator bookkeeping, allocation overhead,
+query data/scratch and released temporaries are explicitly excluded. This is
+component accounting, not RSS or final common-method IS acceptance.
+
+```bash
+python3 experiments/baselines/space_inventory.py --method SINDI --directory method-run --base base.csr --lambda 10000 --out component-audit.json
+python3 experiments/baselines/space_inventory.py --method SEISMIC --directory method-run --base base.csr --out component-audit.json
+```
+
+Add `--no-native-reordering` only for the disclosed SINDI diagnostic branch. Add
+`--roundtrip` only when the run explicitly saved the untimed native index/control.
+The original inputs are required for independently checking SINDI serialized
+postings and forward values. Saved-record audits alone do not rerun native search.
 
 The CABS repository license does not replace upstream licenses or attribution.
 SINDI/VSAG preserves its Apache notices; SEISMIC's upstream citation requirements

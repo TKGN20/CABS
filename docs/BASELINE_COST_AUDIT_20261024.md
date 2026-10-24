@@ -15,8 +15,8 @@ the current CABS inventory before comparing methods.
 | --- | --- | --- |
 | CABS | `retained_index_bytes()` includes explicit headers, allocated capacities, encoding metadata, cardinalities, collection metadata, partition, MinHash tables and retained calibration buffers; fixed driver adds original CSR bytes and releases the sketch cache | Export the component inventory in the common benchmark record, retain the cache-release proof and check that current static-only restrictions hold |
 | SOSIA | Original CSR, expanded SOS vectors, hash permutations, per-vector hash values, norm/cardinality ordering and nested bucket vectors remain alive; 16-component inventory now emitted and checked | Component/ABI/capacity tests and one real smoke passed; finalize common policy and broader acceptance; see the SOSIA space audit |
-| SINDI | `GetMemoryUsage()` calls `cal_serialize_size()`, which returns zero at the pin. Native inverted lists own IDs, values and per-window offsets; `use_reorder=true` also retains copied forward vectors. The adapter retains original CSR for the common exact tail | Do not report the zero API value as IS. Inventory native structures and adapter originals, including real duplicate vector storage and native metadata; use serialization as a separate cross-check only |
-| SEISMIC | Native `SpaceUsage` sums forward data, posting lists and optional kNN data. Posting lists count packed blocks, offsets and summaries. The adapter also retains original document-offset mapping | Audit `SpaceUsage` conventions and vectorium dependencies against CABS capacities/header policy; do not add original vectors again when already included in the forward store; include the retained offset mapping |
+| SINDI | Zero `GetMemoryUsage()` stub preserved. Registered read-only `GetStats()` now inventories lists, windows, native forward copies and retained mutexes; adapter originals/views counted separately | Component and independent serialization/reload checks plus one real control passed; complete common header/capacity and broader acceptance |
+| SEISMIC | Registered read-only traversal adds retained object headers, boxed payloads and compressed-structure capacity accounting; native `SpaceUsage` remains separately reported; forward vectors counted once and adapter offset map added | Component and serialization/reload checks plus one real control passed; finalize common forward-store/header convention and broader acceptance |
 
 Source locations are in the registered pins: SOSIA `src/method.h` and
 `src/sosia.h`; SINDI `src/index/sindi.h` / `sindi.cpp`; SEISMIC
@@ -52,6 +52,7 @@ that build/runtime dependencies are equivalent.
 Status: **OPEN**. No new IS values have been inserted into the manuscript or
 historical tables by this source audit.
 
-Continuation: [SOSIA component accounting](SOSIA_SPACE_AUDIT_20261024.md) now
-provides executed fixture and one-real-configuration evidence. This closes the
-missing SOSIA component exporter, not the common four-method IS gate.
+Continuation: [SOSIA component accounting](SOSIA_SPACE_AUDIT_20261024.md) and
+[three-baseline component checkpoint](BASELINE_SPACE_AUDIT_20261024.md) provide
+executed fixture and one-real-configuration evidence for each baseline. Missing
+baseline exporters are now implemented; the common four-method IS gate is open.

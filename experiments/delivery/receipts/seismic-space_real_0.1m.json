@@ -1,0 +1,19 @@
+{
+  "path": "experiments/delivery/space_inventory/seismic_real_0.1m_20261024",
+  "sha256": {
+    "current_space_audit.json": "f4290792888e5bd2a54738fb616be9ef5964ae3513fa7b718a4144eaa9e5692b",
+    "driver.py": "3f8a92b3665b5e66fe5a88f024e85a19587ee4e86265c0eed818412f80ad2428",
+    "independent_audit.json": "abf50b7a460a1805f3a1ba5ebd4179f8ea8ef8cdda2d61def5c3de4b8378079e",
+    "index_space.json": "69a1ab6b01fea44d1fb987d7e31e23a0d856cda4c0cbaecc1914a0cc1f117af7",
+    "queries.csv": "5bc653fb551fcf96501a7ad5008efeeb4dbe620ab9188a08e368b077307f1235",
+    "receipt.json": "106585dee66053a345c8fe45ff920ce893c2e03dea07b64659d346ad2fd43578",
+    "resource_usage.log": "e9290df1eea5b32e4168c6f273d5c250cddca4f9826eec55adf89677eb3701d1",
+    "retrieved.csv": "06d0bca07bb793e4ec0a3f05b3faeb91d32ec3d22de77cd4c0c05d5cdd7eb9a4",
+    "run.log": "3ecb0122b217095e5f74d3707e11a75a1a5a9eaee2887e03e875033ec9fe53c1",
+    "space_audit.json": "7934d4ef045fd50fa02cd7c8a8b0dc0c3c344e56fdbaae6c179d9f62e776c366",
+    "summary.json": "27d6f6d6522d702895d8306c7cf4be17e9b634e7ff1fe1ddfdab1dca938ac9a9"
+  },
+  "method": "SEISMIC",
+  "preflight_input": "base_small.csr",
+  "scope": "One fixed local component sum against registered input; original score re-audit requires dataset"
+}
