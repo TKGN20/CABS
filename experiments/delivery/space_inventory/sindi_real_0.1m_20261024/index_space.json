@@ -1,0 +1,53 @@
+{
+  "abi_bytes": {
+    "InvertedList": 32,
+    "Sindi": 104,
+    "SparseVector": 24,
+    "float": 4,
+    "mutex": 40,
+    "pointer": 8,
+    "uint32": 4,
+    "uint64": 8,
+    "vector_SparseVector": 24
+  },
+  "components_bytes": {
+    "adapter_row_view_container_header": 24,
+    "adapter_row_view_headers": 2400000,
+    "native_forward_ids": 50919816,
+    "native_forward_row_headers": 2400000,
+    "native_forward_values": 50919816,
+    "native_index_object_headers": 104,
+    "native_inverted_list_headers": 963488,
+    "native_posting_ids": 50919816,
+    "native_posting_values": 50919816,
+    "native_retained_mutex_capacity": 1204360,
+    "native_window_offsets": 1196668,
+    "original_capacity_slack": 0
+  },
+  "counts": {
+    "adapter_row_view_capacity": 100000,
+    "dimensions": 30109,
+    "documents": 100000,
+    "forward_nnz": 12729954,
+    "lambda": 10000,
+    "mutex_capacity": 30109,
+    "nnz": 12729954,
+    "nonempty_lists": 27197,
+    "original_coordinate_capacity": 12729954,
+    "original_offset_capacity": 100001,
+    "original_value_capacity": 12729954,
+    "postings": 12729954,
+    "windows": 10
+  },
+  "excluded": "Query data/scratch, released construction temporaries, loader wrappers, shared library/code, allocator bookkeeping and allocation overhead",
+  "index_plus_vectors_bytes": 314483572,
+  "index_structure_bytes": 211843908,
+  "measurement_boundary": "Read-only traversal after all timed queries; serialization and process RSS are separate quantities",
+  "method": "SINDI",
+  "native_payload_bytes": 209443884,
+  "native_reordering": true,
+  "original_vector_bytes": 102639664,
+  "policy": "Logical original CSR bytes counted once; native forward deep copy and adapter row views are additional retained storage; allocated capacities and object headers included",
+  "schema": 1,
+  "status": "REPORTED_NOT_COMMON_VALIDATED"
+}

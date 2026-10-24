@@ -1,0 +1,37 @@
+name: seismic-fixture-smoke
+on:
+  push:
+    branches: ["codex/server-driver-*"]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  seismic:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recompute saved synthetic records and verify receipt hashes
+        run: python3 experiments/delivery/verify_receipts.py
+      - name: Fetch commit-pinned source anonymously
+        run: python3 experiments/baselines/fetch_upstreams.py --method SEISMIC --out build-mission/upstreams
+      - name: Install isolated dated Rust toolchain
+        run: python3 experiments/baselines/bootstrap_rust.py --nightly-date 2026-10-23 --out build-mission/rust-nightly
+      - name: Build locked candidate adapter
+        run: python3 experiments/baselines/build_seismic.py --upstreams build-mission/upstreams --toolchain build-mission/rust-nightly --out build-mission/seismic --adapter --space-inventory
+      - name: Verify original IDs, scores, native candidates and seed isolation
+        run: python3 experiments/baselines/test_seismic.py --binary build-mission/seismic/target/release/cabs_fixed_queries --require-space --out build-mission/seismic/parity.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seismic-fixture-evidence
+          path: |
+            build-mission/seismic/build.log
+            build-mission/seismic/build_receipt.json
+            build-mission/seismic/adaptation.patch
+            build-mission/seismic/parity.json
+            build-mission/seismic/fixture_artifacts/
+            build-mission/seismic/trailing_fixture_artifacts/
+            build-mission/seismic/source/src/bin/cabs_fixed_queries.rs
+            build-mission/rust-nightly/bootstrap.log
+            build-mission/rust-nightly/toolchain_receipt.json

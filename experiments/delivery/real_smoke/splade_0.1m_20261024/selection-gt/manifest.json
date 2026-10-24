@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "role": "selection",
+  "query_ids": [
+    966,
+    5380,
+    1447,
+    6577
+  ],
+  "k": 50,
+  "documents": 100000,
+  "binding": {
+    "plan_sha256": "0127adddf1279fdcb780ab709bce888f5bc8867f698980e35cf030a9cc48f2ce",
+    "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+    "queries_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "producer_binary_sha256": "991c5181f13ba6c714b1b6cce01a190d5f01b5552b9a2b6870f22bf6744320dc",
+    "producer_sources": {
+      "experiments/baselines/prepare_gt.py": "0df6be938e9f8fdb62ca679b7e16033a5dbaeb750cbd64cd58008476e8629b41",
+      "experiments/baselines/exact_gt.cpp": "dc9f8b01be07617dbabeee94a68b0533abfa67c35600ab6ea334fa8f23b3d5e9",
+      "experiments/protocol.py": "2b49dba3a50c95423ccbb3b60b263c4b20a65a5cca260e5ca3463ac64d289b0d"
+    }
+  },
+  "calibration_seed": null,
+  "lock_sha256": null,
+  "scope": "Independent exact-GT generation; no retrieval-performance claim",
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-experiment/independent_exact_gt",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/selection-gt/measured_ids.txt",
+    "50",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/selection-gt"
+  ]
+}

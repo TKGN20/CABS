@@ -1,0 +1,177 @@
+{
+  "status": "LOCAL_REAL_SMOKE_AUDITED_NOT_FAIR_COMPARISON",
+  "scope": "Local real-data single-configuration smoke only; four selection queries; no parameter selection, matched-recall, IS or server-performance acceptance",
+  "records": {
+    "path": "experiments/delivery/real_smoke/splade_0.1m_20261024",
+    "sha256": {
+      "artifacts.json": "d663c918d808b60b10ece8900b1b36aaa9529f8d9bcf978b5ec004db15bd3afb",
+      "CABS/ground_truth.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+      "CABS/independent_audit.json": "e470acc158f605860067c3227624a232b3fe3ef76cb552cbff0900b5512c5830",
+      "CABS/queries.csv": "e46662930c888aba1c83a3be6db5212bd7d3be201ff014557881d52c7343aea7",
+      "CABS/resource_usage.log": "bbfc27aa2a80620de6e2d243d2b2c4f662a10d8c204dd7a548c4c68b651bfec1",
+      "CABS/retrieved.csv": "504d0c1d4758a8135dfdfdbd9f8bea249d462802a9fc62da785e6932d9212602",
+      "CABS/run.log": "d18cf1d1ce546682b1d10b18e4a2a92e38676ea21fab4c52e0d10480fe84ddcf",
+      "CABS/summary.json": "73dc548f0dfc5e31b46667d82d1edd1fa64f3e2c8794d4609eb31a7ea97fc285",
+      "calibration_ids.txt": "be046714dc735d6b9ccd3b837169901c3193d3866482698cbf8f502dbce53859",
+      "driver.py": "cc9fc1ed241dd3850ef0281732b6b218e945dc6729e6a82c427e9c253eaf5557",
+      "ids.txt": "76a1569e5e41e0b8a6c5911a9ca28c32b1b6f71e1b5a4d159d96a5ebd6c8eeea",
+      "manifest.json": "c7fe991672291aab7669f53d11b35ca3ad25ad368629c92ad94d8d19096db2df",
+      "plan.json": "0127adddf1279fdcb780ab709bce888f5bc8867f698980e35cf030a9cc48f2ce",
+      "SEISMIC/independent_audit.json": "27477ea91160a5c0a4d6618e4fef135d1a5b83505470fdfc48482146173aa38a",
+      "SEISMIC/queries.csv": "35b09e12f50e0e09e677842426337ba38f68a9363fa1a981ef783e63d7b0a3ae",
+      "SEISMIC/resource_usage.log": "ba43a427398180d83d2c1a1ee8f56ad592dbed0b36b0f9431223ffff56487754",
+      "SEISMIC/retrieved.csv": "06d0bca07bb793e4ec0a3f05b3faeb91d32ec3d22de77cd4c0c05d5cdd7eb9a4",
+      "SEISMIC/run.log": "a0c02b5c30ceca6eed085895c77147ed4507869a76231a2b3e76460bb3eb8dd5",
+      "SEISMIC/summary.json": "f27fcad65990735dcbafe67e13aed1167b0a8c7649f8c559c9c25ce2e64896dd",
+      "selection-gt/complete.json": "d2c20ef5bb1974f28aa8eb0e822bf8a853071837f188a06c908d91c8ac440c41",
+      "selection-gt/ground_truth.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+      "selection-gt/manifest.json": "90fab1e50cc5f8391d7a368d71409771b4eefb287ccca2b9a3ae74b585aaac91",
+      "selection-gt/measured_ids.txt": "76a1569e5e41e0b8a6c5911a9ca28c32b1b6f71e1b5a4d159d96a5ebd6c8eeea",
+      "selection-gt/producer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "selection-gt/summary.json": "6f681f8d2d4709e4784032b1672fc86e1899e94c5ac58d0d929a3e0598ce343e",
+      "SINDI/candidate_counts.csv": "51c9216c648ca69b29e08188d13db7f4679dce45b8f96ac0345b7974f8ffecab",
+      "SINDI/independent_audit.json": "42aff5968e67eff7cb3cec44c1ca001b90392bceeb07fd4b057876c9a8e14782",
+      "SINDI/native_candidates.csv": "2f4fc9501a2930da6e825f4f7d71fd0ed28dfd91f6de2249e1cda4bdd653bf6f",
+      "SINDI/native_reference.csv": "965270f18d67e244fbffd685174ea384cad83d69439dc88e0147ea95da7ef7df",
+      "SINDI/queries.csv": "273ee51377ea256b6def9863194834f2325e277bc23cae0275f676ab8b60d06c",
+      "SINDI/resource_usage.log": "d9410a26ba515df94c432a3103f941d2509de9ee2f2b5d865a8e8b7e5e59272e",
+      "SINDI/retrieved.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+      "SINDI/run.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "SINDI/summary.json": "9e126e5e25b55c2162b066fa51a82e548884014e50ce1fc1b30a80ebd6b5560e",
+      "SINDI_original_control/candidate_counts.csv": "51c9216c648ca69b29e08188d13db7f4679dce45b8f96ac0345b7974f8ffecab",
+      "SINDI_original_control/driver.py": "80321e2e209c4c582ac551048a82f612dfd11bbdb309cf29a30978bb5ccb64bc",
+      "SINDI_original_control/independent_audit.json": "2efc88d28b60b6116ecdf9d327b950fbbc63846ceacf4e0a63f14bd081f56219",
+      "SINDI_original_control/native_candidates.csv": "7826884ad3570cdcfc3df1869f09653b68a8239a9bfa20888255f9281855afcc",
+      "SINDI_original_control/native_reference.csv": "895a2d44ab6ea3604dbc30666b7179815beee2b39817eea755ead707b0ccd272",
+      "SINDI_original_control/queries.csv": "1f18b47217f50cccd33fa05eecbbf471e5b7c40fd7f3d3fc2aece9a64addc884",
+      "SINDI_original_control/receipt.json": "0be0da23d75ac298d85be83552058411801ff9933044e4739248c9351f2d682e",
+      "SINDI_original_control/resource_usage.log": "121e28ad287f28e5118e01a03e63f8ca22eac021c706a9c601305abf01125073",
+      "SINDI_original_control/retrieved.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+      "SINDI_original_control/run.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "SINDI_original_control/summary.json": "b5ba8a1becc35ad6b3f68f4ec0e901ceb5fde3d8e9f573161b006beee9ba47f4",
+      "SOSIA/independent_audit.json": "12d7d332ffdededce8ba08da810b3e7720720d432bf5355ca1bbd257b84b2396",
+      "SOSIA/queries.csv": "e561a554ae98967b206cb6217fb7c5b8dc0fb8d2ad8c20a086e8d5fd7149009e",
+      "SOSIA/resource_usage.log": "27b7ab85c54074873877657f7b284f3134b85a836f4dd65d632d34285d5f9f3f",
+      "SOSIA/retrieved.csv": "9dd2194db2a3ec04402d4b73cbab88f1f6c5c62e3f25e15e1d693663020b200b",
+      "SOSIA/run.log": "c0d9f351da318a38e4763e571a58ce8a319ecb52843bfd49243899328632368a",
+      "SOSIA/summary.json": "124f148a927eaa76f82efeadbd4c098a0e417f5421df12b6363248dfd903e8f7"
+    }
+  },
+  "methods": {
+    "CABS": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-experiment/cabs_fixed_queries",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/calibration_ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/CABS",
+        "20261017",
+        "100",
+        "50",
+        "3",
+        "24",
+        "0.2",
+        "1",
+        "10"
+      ],
+      "binary_sha256": "11028d320d3445dd1d394e72ac895deb4a448672da53e3feaf5c13f247b75888",
+      "build_receipt_sha256": null,
+      "Recall": 0.965,
+      "audit_sha256": "e470acc158f605860067c3227624a232b3fe3ef76cb552cbff0900b5512c5830"
+    },
+    "SOSIA": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sosia-release-v3/sosia_fixed",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/SOSIA",
+        "20261017",
+        "4",
+        "16",
+        "1000",
+        "50",
+        "3"
+      ],
+      "binary_sha256": "61e5aac4127ab0de7dde056f9ff142e46c38fcd6c82df01312b0c7ee959a5c5c",
+      "build_receipt_sha256": "d3fd18779b9d6dcf8d53edad4c8a760cb43e9edc406ab45c6ba8e204aa65179d",
+      "Recall": 0.265,
+      "audit_sha256": "12d7d332ffdededce8ba08da810b3e7720720d432bf5355ca1bbd257b84b2396"
+    },
+    "SINDI": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-repaired-adapter-v2/sindi_fixed",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/SINDI",
+        "10000",
+        "1",
+        "1",
+        "1000",
+        "50",
+        "3",
+        "candidate-api-v1"
+      ],
+      "binary_sha256": "f58f9e52458edea3b1bc90670d2f603a2d9376f3fc4324dc329cbae10831d8dd",
+      "build_receipt_sha256": "71835f9eb347683cf5acd819f49785892c56d3d737530dc333328f169ac9c199",
+      "native_library_sha256": "1c01b159e5543f77d9cd15e425dea5c6a8c0524c7a04c19130cbc1cb9ab56a55",
+      "Recall": 1.0,
+      "audit_sha256": "42aff5968e67eff7cb3cec44c1ca001b90392bceeb07fd4b057876c9a8e14782"
+    },
+    "SEISMIC": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/seismic-adapter-v1/target/release/cabs_fixed_queries",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/SEISMIC",
+        "20261017",
+        "50",
+        "3",
+        "1000",
+        "0.1",
+        "1",
+        "20",
+        "0.7"
+      ],
+      "binary_sha256": "2ec33e32e0aa5f4293248e43ce5303c3ff29f651f8c7510135bb8b09a9e24685",
+      "build_receipt_sha256": "dee738baa9ca355b088c534b118a8b135ddf43712e6e4236c92f7c93015f6770",
+      "Recall": 1.0,
+      "audit_sha256": "27477ea91160a5c0a4d6618e4fef135d1a5b83505470fdfc48482146173aa38a"
+    }
+  },
+  "selection_query_ids": [
+    966,
+    5380,
+    1447,
+    6577
+  ],
+  "calibration_query_ids": [
+    5163,
+    1472,
+    6597,
+    4480
+  ],
+  "binding": {
+    "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+    "queries_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "plan_sha256": "0127adddf1279fdcb780ab709bce888f5bc8867f698980e35cf030a9cc48f2ce",
+    "script_sha256": "cc9fc1ed241dd3850ef0281732b6b218e945dc6729e6a82c427e9c253eaf5557"
+  },
+  "original_SINDI_control": {
+    "status": "SMOKE_AUDITED",
+    "Recall": 1.0
+  },
+  "pending": [
+    "more queries/configurations/seeds",
+    "retained IS and timer audit",
+    "registered grid and common selection lock",
+    "target-server comparison"
+  ]
+}

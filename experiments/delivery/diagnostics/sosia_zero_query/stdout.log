@@ -1,0 +1,52 @@
+LOADING DATA...
+Load the sparse data from the file: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-mission/sosia-zero-query-diagnostic/base.csr
+N=     160
+dim=   3
+
+nnz=   320
+
+Spa.=  2
+
+Range= [1,1]
+
+Load the sparse data from the file: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-mission/sosia-zero-query-diagnostic/queries.csr
+N=     1
+dim=   3
+
+nnz=   2
+
+Spa.=  2
+
+Range= [0,0]
+
+LOADING TIME: 0.00355s.
+
+SOS TRANSFORMING ...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+TRANSFORMING TIME: 0.003433 s.
+
+SETTING HASH PARAMETER...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+SETTING TIME: 0.000203s.
+
+COMPUTING HASH...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+COMPUTING TIME: 0.00042s.
+
+
+SOSIA INDEXING...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+BUILDING TIME: 0.000561s.
+

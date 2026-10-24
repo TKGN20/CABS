@@ -1,0 +1,7 @@
+basefile: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/base.csr
+lambda: 10000
+alpha: 1
+use_reorder: 1
+index_path: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-mission/sindi-smoke-crosschecked-gt/index.bin
+Start building sindi index
+After Build(), Index Sindi contains: 160

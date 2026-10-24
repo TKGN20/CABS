@@ -1,0 +1,76 @@
+{
+  "after": {
+    "abi_bytes": {
+      "InvertedList": 32,
+      "Sindi": 104,
+      "SparseVector": 24,
+      "float": 4,
+      "mutex": 40,
+      "uint32": 4
+    },
+    "components_bytes": {
+      "native_forward_ids": 0,
+      "native_forward_row_headers": 0,
+      "native_forward_values": 0,
+      "native_index_object_headers": 104,
+      "native_inverted_list_headers": 1024,
+      "native_posting_ids": 10240,
+      "native_posting_values": 10240,
+      "native_retained_mutex_capacity": 0,
+      "native_window_offsets": 256
+    },
+    "counts": {
+      "dimensions": 32,
+      "documents": 160,
+      "forward_nnz": 0,
+      "lambda": 10000,
+      "mutex_capacity": 0,
+      "nonempty_lists": 32,
+      "postings": 2560,
+      "windows": 1
+    },
+    "method": "SINDI",
+    "native_payload_bytes": 21864,
+    "native_reordering": false,
+    "schema": 1,
+    "scope": "Read-only native retained payload; no serialization, RSS or GetMemoryUsage estimate"
+  },
+  "before": {
+    "abi_bytes": {
+      "InvertedList": 32,
+      "Sindi": 104,
+      "SparseVector": 24,
+      "float": 4,
+      "mutex": 40,
+      "uint32": 4
+    },
+    "components_bytes": {
+      "native_forward_ids": 0,
+      "native_forward_row_headers": 0,
+      "native_forward_values": 0,
+      "native_index_object_headers": 104,
+      "native_inverted_list_headers": 1024,
+      "native_posting_ids": 10240,
+      "native_posting_values": 10240,
+      "native_retained_mutex_capacity": 1280,
+      "native_window_offsets": 256
+    },
+    "counts": {
+      "dimensions": 32,
+      "documents": 160,
+      "forward_nnz": 0,
+      "lambda": 10000,
+      "mutex_capacity": 32,
+      "nonempty_lists": 32,
+      "postings": 2560,
+      "windows": 1
+    },
+    "method": "SINDI",
+    "native_payload_bytes": 23144,
+    "native_reordering": false,
+    "schema": 1,
+    "scope": "Read-only native retained payload; no serialization, RSS or GetMemoryUsage estimate"
+  },
+  "ranked_and_native_outputs_equal": true,
+  "scope": "Untimed optional serialize/reload diagnostic; serialized size is not IS"
+}

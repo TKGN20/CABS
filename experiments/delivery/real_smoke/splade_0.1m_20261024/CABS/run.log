@@ -1,0 +1,22 @@
+encoding_done slots=722616 sketch_GiB=0.170944 positive_targets=399
+calibrate_K=1
+K=1 floor=0.0096 m=167:167 build_bound_GiB=0.493507 cost_s=0.000954432
+calibrate_K=2
+K=2 floor=0.0096 m=167:167 build_bound_GiB=0.765085 cost_s=0.00134433
+calibrate_K=4
+K=4 floor=0.0096 m=97:167 build_bound_GiB=0.726966 cost_s=0.00161225
+calibrate_K=8
+K=8 floor=0.0096 m=87:167 build_bound_GiB=0.624011 cost_s=0.00148718
+calibrate_K=16
+K=16 floor=0.0096 m=70:167 build_bound_GiB=0.606373 cost_s=0.00167361
+calibrate_K=32
+K=32 floor=0.0096 m=45:167 build_bound_GiB=0.542407 cost_s=0.00173094
+calibrate_K=64
+K=64 floor=0.0096 m=41:167 build_bound_GiB=0.510889 cost_s=0.00276085
+calibrate_K=128
+K=128 floor=0.0096 m=29:167 build_bound_GiB=0.540393 cost_s=0.00560756
+calibrate_K=256
+K=256 floor=0.0096 m=28:167 build_bound_GiB=0.628963 cost_s=0.00947618
+calibrate_K=399
+K=399 floor=0.0096 m=21:167 build_bound_GiB=0.681888 cost_s=0.0189655
+final_ready K=1 B=13798 bytes=77744512 build_s=343.024

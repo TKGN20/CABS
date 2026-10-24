@@ -1,0 +1,11 @@
+{
+  "IS_bytes": 76882,
+  "IS_status": "REPORTED_NOT_COMMON_VALIDATED",
+  "build_seconds_including_loading": 0.007173323,
+  "candidate_policy": "upstream visited set; native float pruning and scoring retained",
+  "exact_binary64_reranking_in_timer": true,
+  "index_seed": 20261007,
+  "method": "SEISMIC",
+  "representation": "u32/f32",
+  "search_threads": 1
+}

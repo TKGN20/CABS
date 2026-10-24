@@ -1,0 +1,76 @@
+--- a/src/index/sindi.h
++++ b/src/index/sindi.h
+@@ -160,6 +160,9 @@
+         return this->cal_serialize_size();
+     }
+ 
++    std::string
++    GetStats() const override;
++
+ private:
+     std::vector<int64_t>
+     build(const DatasetPtr& data);
+--- a/src/index/sindi.cpp
++++ b/src/index/sindi.cpp
+@@ -17,6 +17,7 @@
+ #include <cstddef>
+ #include <cstdint>
+ #include <random>
++#include <stdexcept>
+ 
+ namespace vsag {
+ Sindi::Sindi(const SindiParameters& param, const IndexCommonParam& index_common_param) {
+@@ -400,4 +401,53 @@
+         final_heap.pop();
+     }
+ }
++
++std::string
++Sindi::GetStats() const {
++    if (inverted_lists_ == nullptr || lambda_ == 0) {
++        throw std::logic_error("SINDI inventory requires a built or deserialized index");
++    }
++    uint64_t postings = 0, nonempty_lists = 0, forward_nnz = 0;
++    for (uint32_t term = 0; term < data_dim_; ++term) {
++        const auto& list = inverted_lists_[term];
++        if (list.doc_num_ > 0) {
++            if (!list.ids_ || !list.vals_ || !list.offsets_) {
++                throw std::logic_error("Incomplete native SINDI inverted list");
++            }
++            postings += list.doc_num_;
++            ++nonempty_lists;
++        }
++    }
++    if (use_reorder_) {
++        if (data_ == nullptr) throw std::logic_error("Missing native SINDI forward index");
++        for (uint32_t id = 0; id < total_count_; ++id) forward_nnz += data_[id].dim_;
++    }
++    JsonType components = {
++        {"native_index_object_headers", uint64_t(sizeof(*this))},
++        {"native_inverted_list_headers", uint64_t(data_dim_) * sizeof(InvertedList)},
++        {"native_posting_ids", postings * sizeof(uint32_t)},
++        {"native_posting_values", postings * sizeof(float)},
++        {"native_window_offsets", nonempty_lists * (uint64_t(sigma_) + 1) * sizeof(uint32_t)},
++        {"native_forward_row_headers", use_reorder_ ? uint64_t(total_count_) * sizeof(SparseVector) : 0},
++        {"native_forward_ids", forward_nnz * sizeof(uint32_t)},
++        {"native_forward_values", forward_nnz * sizeof(float)},
++        {"native_retained_mutex_capacity", uint64_t(ivf_mutex.capacity()) * sizeof(std::mutex)}
++    };
++    uint64_t payload = 0;
++    for (const auto& item : components.items()) payload += item.value().get<uint64_t>();
++    JsonType result = {
++        {"schema", 1}, {"method", "SINDI"}, {"native_payload_bytes", payload},
++        {"components_bytes", components},
++        {"counts", {{"documents", total_count_}, {"dimensions", data_dim_},
++                    {"lambda", lambda_}, {"windows", sigma_}, {"postings", postings},
++                    {"nonempty_lists", nonempty_lists}, {"forward_nnz", forward_nnz},
++                    {"mutex_capacity", ivf_mutex.capacity()}}},
++        {"native_reordering", use_reorder_},
++        {"abi_bytes", {{"Sindi", sizeof(*this)}, {"InvertedList", sizeof(InvertedList)},
++                       {"SparseVector", sizeof(SparseVector)}, {"mutex", sizeof(std::mutex)},
++                       {"uint32", sizeof(uint32_t)}, {"float", sizeof(float)}}},
++        {"scope", "Read-only native retained payload; no serialization, RSS or GetMemoryUsage estimate"}
++    };
++    return result.dump();
++}
+ }  // namespace vsag

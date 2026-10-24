@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "scope": "Concrete upstream candidates; build/parity and paper-lineage acceptance remain separate gates",
+  "methods": {
+    "SOSIA": {"repository": "Jacyhust/SOSIA", "commit": "55433a618f39e3fbc98dc34a1ffa1433d9b631b9", "archive_sha256": "158e3c9ae6ce15c93d76408d2d7c7ccc8a4328ed128e46a568c8a9e4bb9dad11"},
+    "SINDI": {"repository": "Roxanne0321/vsag", "commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa", "archive_sha256": "3e18d0f46988fbbb04741c4f841935bad5f9f6993487e2e12b5fb50aad38a6e0", "lineage": "sparse branch candidate"},
+    "SEISMIC": {"repository": "tusKANNy/seismic", "commit": "492de11c9b6fd0c46c2c7c274c30836353b882f0", "archive_sha256": "350d576ebed8c2a02b48c3899473c11aecf9392bee9d930ff18b3820ea6b63da", "lineage": "Candidate version, not yet asserted to be original paper implementation"}
+  },
+  "dependencies": {
+    "ThreadPool": {"repository": "log4cplus/ThreadPool", "commit": "3ffb60a33d0f295b11659926b7f52d460a7c8fef", "archive_sha256": "740993b45873e101534a2a4c1d109b32489435fa4b808ec9ef376b21488190b8"}
+  }
+}
