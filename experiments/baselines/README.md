@@ -200,10 +200,27 @@ python3 experiments/baselines/prepare_gt.py --data base.csr --queries queries.cs
 python3 experiments/baselines/prepare_gt.py --data base.csr --queries queries.csr --plan plan.json --binary build-experiment/independent_exact_gt --out build-mission/evaluation-gt --role evaluation --k 50 --lock validation-lock.json
 ```
 
-Both Release and Debug ASan/UBSan experimental builds passed all five CTests
+Both Release and Debug ASan/UBSan experimental builds passed all six CTests
 locally. This includes the independent GT and role/lock tests, not instrumentation
 of the SINDI native library. Four-method validation drivers, registered grids,
 real-data locks and scalable server execution are still required.
+
+## Common record audit and cost boundary
+
+```bash
+python3 experiments/baselines/audit_run.py --data base.csr --queries queries.csr --plan plan.json --ground-truth build-mission/selection-gt --results method-run --method SINDI --repeats 3 --out audited-record.json
+```
+
+The auditor accepts all four current record formats, verifies role/query-plan
+bindings, original IDs, exact scores, ranking, GT recall and complete raw timings,
+and refuses changed records or an unrelated final-evaluation lock. Pass `--lock`
+for evaluation. It does not select configurations, certify binary provenance,
+measure IS or establish fair timer boundaries. The test audits saved baseline
+fixtures and executes CABS freshly against independent GT, including corrupted
+score/timing/method/lock cases. A record audit is narrower than a fresh baseline
+reproduction. The [cost audit](../../docs/BASELINE_COST_AUDIT_20261024.md) identifies
+the remaining retained-space and timing work; native SINDI's zero memory API is
+not used as a measured IS value.
 
 The CABS repository license does not replace upstream licenses or attribution.
 SINDI/VSAG preserves its Apache notices; SEISMIC's upstream citation requirements

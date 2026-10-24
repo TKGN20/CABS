@@ -14,6 +14,7 @@ authoritative.
 | Disclosed repaired SINDI | Fresh native build; candidate adapter passes original IDs, exact scores, 160-candidate counts, ties, allocator controls, non-reranking bounds and error cases | Synthetic fixture only; not unmodified official baseline or performance acceptance |
 | Independent GT producer | Unpruned standard-C++ reference agrees with independent Python scoring on random, rounding, tie/zero/empty cases | No full-corpus run |
 | Role-isolated GT generation | Input/source/binary hashes, explicit original IDs, independent calibration seed, locked evaluation and no-overwrite tests | Synthetic lock tests; common four-method selection still incomplete |
+| Common result audit | Independent role-bound GT audits SOSIA/SEISMIC/repaired SINDI saved outputs and a fresh CABS run; wrong scores, missing timings and wrong method/lock rejected | Small synthetic records; not common parameter selection or fair performance acceptance |
 | Saved evidence | 19 receipt hashes; five fixture bundles recomputed; correct/invalid native GT classifications and original failed trace checked | Saved-record audit is not an independent full-run replication |
 
 The [SINDI audit](SINDI_INTEGRATION_AUDIT_20261023.md) details the integration
@@ -31,7 +32,7 @@ ctest --test-dir build-experiment --output-on-failure
 python3 scripts/verify_artifacts.py --source-check
 ```
 
-The experimental suite contains five tests. Release and Debug ASan/UBSan runs
+The experimental suite contains six tests. Release and Debug ASan/UBSan runs
 pass locally; native baseline instrumentation is separate. Full adapter rebuild
 commands are in the [integration notes](../experiments/baselines/README.md).
 The portable SINDI build removes forced global AVX-512 flags while retaining
@@ -49,6 +50,8 @@ remains a tooling item, separate from algorithm or measured-performance claims.
 
 1. Audit retained index space, timing/thread/precision policies and all third-party
    dependency/build provenance. Extend native/repaired controls on real inputs.
+   The [cost source audit](BASELINE_COST_AUDIT_20261024.md) records the zero SINDI
+   memory stub, native forward-store accounting and remaining inventory work.
 2. Register sourced parameter grids, integrate all methods with validation-only
    selection and immutable final locks, and verify matched/unmatched accounting.
 3. When the owner provides server resources, run the registered pilot, then the
