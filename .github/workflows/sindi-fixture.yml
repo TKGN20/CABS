@@ -27,11 +27,11 @@ jobs:
       - name: Fetch pinned SINDI and ThreadPool archives
         run: python3 experiments/baselines/fetch_upstreams.py --method SINDI ThreadPool --out build-mission/upstreams
       - name: Build disclosed native repairs with runtime SIMD dispatch
-        run: python3 experiments/baselines/build_sindi.py --upstreams build-mission/upstreams --out build-mission/sindi-native --correctness-repairs --portable-isa
+        run: python3 experiments/baselines/build_sindi.py --upstreams build-mission/upstreams --out build-mission/sindi-native --correctness-repairs --portable-isa --space-inventory
       - name: Link public API candidate adapter
         run: python3 experiments/baselines/build_sindi_adapter.py --native build-mission/sindi-native --upstreams build-mission/upstreams --out build-mission/sindi-adapter
       - name: Check candidates, original IDs, scores, ties and errors
-        run: python3 experiments/baselines/test_sindi.py --binary build-mission/sindi-adapter/sindi_fixed --out build-mission/sindi-adapter/parity.json
+        run: python3 experiments/baselines/test_sindi.py --binary build-mission/sindi-adapter/sindi_fixed --require-space --out build-mission/sindi-adapter/parity.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -44,7 +44,9 @@ jobs:
             build-mission/sindi-adapter/build.log
             build-mission/sindi-adapter/build_receipt.json
             build-mission/sindi-adapter/sindi_fixed.cpp
+            build-mission/sindi-adapter/sindi_space.hpp
             build-mission/sindi-adapter/parity.json
             build-mission/sindi-adapter/fixture_artifacts/
             build-mission/sindi-adapter/tie_fixture_artifacts/
             build-mission/sindi-adapter/no_reorder_fixture_artifacts/
+            build-mission/sindi-adapter/window_fixture_artifacts/
