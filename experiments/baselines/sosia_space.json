@@ -1,0 +1,12 @@
+{
+  "upstream_commit": "55433a618f39e3fbc98dc34a1ffa1433d9b631b9",
+  "required_runtime_patch_sha256": "2856e21f1edd0cb19e66c2697065847112bbf68a86173251dd5bec55c4ae1622",
+  "patch_sha256": "b39f24140e29f24175e77022e72546d0c768a52c752165db70255c37078846fa",
+  "files": {
+    "src/sosia.h": {
+      "before_sha256": "77976c9a7c399a2394330cdf12b66a87d6a17a5b6600fc42ed2718112c80f1ca",
+      "after_sha256": "84fba196b5ca86ed1bb1daf8c5ceccf66df0d9b1202616782f9a3f882cbb632a"
+    }
+  },
+  "scope": "Read-only retained-space introspection; no search/build algorithm or object fields changed"
+}

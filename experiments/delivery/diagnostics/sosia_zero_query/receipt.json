@@ -1,0 +1,19 @@
+{
+  "status": "EXPECTED_FAILURE_ZERO_QUERY_NATIVE_BOUNDARY",
+  "returncode": 1,
+  "binary_sha256": "564d5f8c248cb36aad202616e815c603cce13aa82abe0df0a18b02e4f47a4f54",
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sosia-asan-v2/sosia_fixed",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sosia-zero-query-diagnostic/base.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sosia-zero-query-diagnostic/queries.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sosia-zero-query-diagnostic/ids.txt",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sosia-zero-query-diagnostic/run",
+    "20261007",
+    "4",
+    "16",
+    "160",
+    "50",
+    "3"
+  ],
+  "scope": "Pinned SOSIA zero query diagnostic; not an ordinary positive-query benchmark failure"
+}

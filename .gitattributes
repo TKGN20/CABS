@@ -16,9 +16,12 @@ experiments/delivery/native_smoke/**/*.log whitespace=-blank-at-eof
 experiments/delivery/diagnostics/** -text
 experiments/delivery/diagnostics/**/*.log whitespace=-blank-at-eof
 experiments/delivery/receipts/** whitespace=cr-at-eol
-experiments/baselines/*.patch whitespace=-blank-at-eol
+experiments/baselines/*.patch whitespace=-blank-at-eol,-space-before-tab
 experiments/delivery/real_smoke/** -text whitespace=cr-at-eol
 experiments/delivery/real_smoke/**/*.log whitespace=cr-at-eol,-blank-at-eof
 experiments/delivery/ci/** -text whitespace=cr-at-eol
 experiments/delivery/ci/**/*.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 experiments/delivery/ci/**/*.patch whitespace=-blank-at-eol
+experiments/delivery/space_inventory/** -text whitespace=cr-at-eol
+experiments/delivery/space_inventory/**/*.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+experiments/delivery/diagnostics/**/*.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

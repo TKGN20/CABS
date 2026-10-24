@@ -1,0 +1,62 @@
+{
+  "status": "BUILT_NOT_PARITY_ACCEPTED",
+  "upstream": {
+    "repository": "Jacyhust/SOSIA",
+    "commit": "55433a618f39e3fbc98dc34a1ffa1433d9b631b9",
+    "archive_sha256": "158e3c9ae6ce15c93d76408d2d7c7ccc8a4328ed128e46a568c8a9e4bb9dad11"
+  },
+  "archive_sha256": "158e3c9ae6ce15c93d76408d2d7c7ccc8a4328ed128e46a568c8a9e4bb9dad11",
+  "patch_sha256": "2856e21f1edd0cb19e66c2697065847112bbf68a86173251dd5bec55c4ae1622",
+  "adapter_sha256": "7673e2f51cd2a7b6d17ef67d03293272d75dd6126d49d4c59ae0b5bbc608ced8",
+  "binary_sha256": "faabd7cc26156d5bff3e893f3e88a4d8eaab0de96c5f249b28643c49f3050572",
+  "command": [
+    "g++",
+    "-std=c++17",
+    "-O1",
+    "-mavx",
+    "-ffp-contract=off",
+    "-fopenmp",
+    "-Ibuild-mission/sosia-space-asan-v2/source/src",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/baselines/sosia_fixed.cpp",
+    "build-mission/sosia-space-asan-v2/source/src/Preprocess.cpp",
+    "build-mission/sosia-space-asan-v2/source/src/basis.cpp",
+    "build-mission/sosia-space-asan-v2/source/src/distances_simd_avx512.cpp",
+    "-o",
+    "build-mission/sosia-space-asan-v2/sosia_fixed",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer"
+  ],
+  "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "source_sha256": {
+    "src/Preprocess.cpp": "663f1b2308cc5afce28d1abfdaddbdce2c98f660036454d591fef9e4f4c3cdf1",
+    "src/Preprocess.h": "879f0d0d70a028acdb92521b5705c69c5d06ff16851f0bcc782db59a02e4c028",
+    "src/alg.cpp": "17c5339369a6267989efa04de0cdcda9e9becf9b5e5c9896df0a2b1133730d8d",
+    "src/alg.h": "adac4d295cbe0e29a382e7ca87db5e12054b2f1049f88a7692c225c20df3bebc",
+    "src/basis.cpp": "4f5b649665f3422c5e879b48b5a6c740051f2229d29bdf81705bbc9bb9557ac1",
+    "src/basis.h": "aee6ce09b7ef17c2af69327a815a4d9218675425c1f1f9c80cf279daea2c8362",
+    "src/def.h": "b9a62603127583113dc8bfa2dbd6aa2a279be9c0ec3172e0414af4da6f760f28",
+    "src/distances_simd_avx512.cpp": "4872d7fd891ed768700d5dbddb32322cd61c19ea504203550a9385af3dd97403",
+    "src/distances_simd_avx512.h": "176fe93b206b447045741e340bee23cc8058220d6d2c796411e708e45c9abef4",
+    "src/expe.h": "b556af5cacd2357fa300ff84b270c5d42bce7b25f89287bf50653b892b1281a3",
+    "src/fastL2_ip.h": "cb5a72e54d8bb2a6ef263ad22c3348ab8666ba4350a01c9ed6dd75419079eafc",
+    "src/main.cpp": "da400d6c507a866dd5c5c0d49435e45926fc23e57e2def88d9026a45d580f3c6",
+    "src/method.h": "b4dede48b69d2b00f5441bc0849230b7667137c341102da3e7353ff869185955",
+    "src/performance.h": "2ddac8472bd8e101f4ce6f48a5b30b2a23911215abaaee2525f7f0f793b47c76",
+    "src/rd_stdcout.h": "ecb4041da213520b301ea07b6cdfbd51991ff06d7374851c0e92c228c8df9b75",
+    "src/sosia.h": "84fba196b5ca86ed1bb1daf8c5ceccf66df0d9b1202616782f9a3f882cbb632a"
+  },
+  "space_inventory": {
+    "upstream_commit": "55433a618f39e3fbc98dc34a1ffa1433d9b631b9",
+    "required_runtime_patch_sha256": "2856e21f1edd0cb19e66c2697065847112bbf68a86173251dd5bec55c4ae1622",
+    "patch_sha256": "b39f24140e29f24175e77022e72546d0c768a52c752165db70255c37078846fa",
+    "files": {
+      "src/sosia.h": {
+        "before_sha256": "77976c9a7c399a2394330cdf12b66a87d6a17a5b6600fc42ed2718112c80f1ca",
+        "after_sha256": "84fba196b5ca86ed1bb1daf8c5ceccf66df0d9b1202616782f9a3f882cbb632a"
+      }
+    },
+    "scope": "Read-only retained-space introspection; no search/build algorithm or object fields changed"
+  },
+  "space_adapter_sha256": "b9bd96a97442e33ecb461759eb9fbb370bbe77bc5ba005573e9740838e2e4b60"
+}

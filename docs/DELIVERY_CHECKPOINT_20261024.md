@@ -84,6 +84,13 @@ remains a tooling item, separate from algorithm or measured-performance claims.
 
 ## Remaining submission gates
 
+The later [SOSIA space checkpoint](SOSIA_SPACE_AUDIT_20261024.md) adds a checked
+16-component inventory, unchanged ranked-output controls and one real-data
+component sum. Current saved-record verification covers 26 receipts, fourteen
+synthetic bundles, five real method/control records and one real component
+inventory. It also preserves the original SOSIA zero-query sanitizer failure.
+Common IS and four-method selection remain incomplete.
+
 1. Audit retained index space, timing/thread/precision policies and all third-party
    dependency/build provenance. Extend native/repaired controls on real inputs.
    The [cost source audit](BASELINE_COST_AUDIT_20261024.md) records the zero SINDI

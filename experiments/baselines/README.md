@@ -66,9 +66,19 @@ not used. Build/query execution is single threaded in the current adapter.
 The independent fixture checks k=50 at nonconsecutive original query IDs and
 same-seed determinism. Small-fixture Recall is not a throughput result.
 
-**Not complete:** retained IS inventory is explicitly `NOT_YET_VALIDATED`; common
-three-way lock integration, preregistered grids, broader parity tests and real
-validation are pending. No complete four-method comparison is accepted yet.
+`index_space.json` now reports 16 retained components, capacity/count/ABI evidence
+and one logical original CSR store after all timed queries. A separate read-only
+patch is registered; search/build algorithms and object fields are unchanged.
+Release and ASan/UBSan tests compare old rankings, analytic component sums,
+positive ties, unused bucket capacity and partially empty document sketches.
+Input validation rejects zero measured queries and an all-zero collection
+without fallback; the old native zero-query ASan trace is preserved.
+See the [space audit](../../docs/SOSIA_SPACE_AUDIT_20261024.md).
+
+**Not complete:** the common IS policy, three-way lock integration, preregistered
+grids, broader parity tests and representative real validation are pending.
+The runtime status remains `REPORTED_NOT_COMMON_VALIDATED`. No complete
+four-method comparison is accepted yet.
 The selected SEISMIC commit is v0.5.4 (Rust 2024/nightly), whereas a local historical
 archive was v0.4.0; old patches/build receipts cannot be transplanted as evidence.
 

@@ -1,0 +1,21 @@
+{
+  "path": "experiments/delivery/space_inventory/sosia_real_0.1m_20261024",
+  "sha256": {
+    "current_space_audit.json": "8bada852072f23e77af877cb00bb100d3be7b430f813dafa71399cd07c119a7e",
+    "driver.py": "557dae934855538738ea99c6c2a9d166f9e1e7cd8f705f551b3a5ba9c93fc839",
+    "independent_audit.json": "072b28b474a00f21fb6a6bebc42bc19fe674ace939d83d781fe42dc2cfe95802",
+    "index_space.json": "71c6deb62ffaa24de5837107a12ac2645e0a8796fd9d8ddcac8a24bab10153eb",
+    "queries.csv": "8cc333bd607e9a0eeb5fd77fcdc2ff6d8195b4a745bbf956d118ce6aeec20dfd",
+    "receipt.json": "1c532b5c8b601f32cc6a54ef4cd4a9b27431744146364b6639177c85f9e25f84",
+    "resource_usage.log": "897453fd655ee30e7dcd7a5223ad9c38999f15da8af2d11e2bf5fc2cbc0a83fb",
+    "retrieved.csv": "9dd2194db2a3ec04402d4b73cbab88f1f6c5c62e3f25e15e1d693663020b200b",
+    "run.log": "82dd0d2acfae5d2e25c11698410c911c37e808b01cd9a039d5dab7ff9c558360",
+    "space_audit.json": "00d294815a90835b465df1c10c2f560229549bdd654b3b433b5522403943e09f",
+    "summary.json": "d3c6e059510977e87acb62cc30fbace1e0af915fb45c2cb4307944372a155b21"
+  },
+  "method": "SOSIA",
+  "ell": 4,
+  "m": 16,
+  "preflight_input": "base_small.csr",
+  "scope": "Saved real-data component arithmetic against registered input header/hash; original score re-audit requires dataset"
+}

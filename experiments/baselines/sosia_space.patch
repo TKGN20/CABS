@@ -1,0 +1,47 @@
+--- a/src/sosia.h
++++ b/src/sosia.h
+@@ -1,5 +1,7 @@
+ #pragma once
+ #include "method.h"
++#include <map>
++#include <cstdint>
+ 
+ class Sosia :public myMinHashBase
+ {
+@@ -10,6 +12,36 @@
+ 	std::vector<Res> sortedNorms;
+ 
+ public:
++
++	void spaceInventory(std::map<std::string, std::uint64_t>& bytes,
++	                    std::map<std::string, std::uint64_t>& counts) const {
++		bytes["index_object_headers"] = sizeof(*this);
++		bytes["sorted_cardinalities"] = sortedNorms.capacity() * sizeof(Res);
++		bytes["bucket_table_headers"] = myIndexes.capacity() * sizeof(std::vector<std::vector<int>>);
++		bytes["bucket_vector_headers"] = 0;
++		bytes["bucket_slot_capacity"] = 0;
++		counts["bucket_tables"] = myIndexes.size();
++		counts["bucket_table_capacity"] = myIndexes.capacity();
++		counts["buckets"] = 0;
++		counts["bucket_vector_capacity"] = 0;
++		counts["bucket_slots_size"] = 0;
++		counts["bucket_slots_capacity"] = 0;
++		counts["sorted_cardinality_capacity"] = sortedNorms.capacity();
++		for (const auto& table : myIndexes) {
++			bytes["bucket_vector_headers"] += table.capacity() * sizeof(std::vector<int>);
++			counts["buckets"] += table.size();
++			counts["bucket_vector_capacity"] += table.capacity();
++			for (const auto& bucket : table) {
++				bytes["bucket_slot_capacity"] += bucket.capacity() * sizeof(int);
++				counts["bucket_slots_size"] += bucket.size();
++				counts["bucket_slots_capacity"] += bucket.capacity();
++			}
++		}
++		auto start = reinterpret_cast<std::uintptr_t>(&algName);
++		auto buffer = reinterpret_cast<std::uintptr_t>(algName.data());
++		bytes["index_labels_payload"] = buffer >= start && buffer < start + sizeof(algName)
++		    ? 0 : algName.capacity() + 1;
++	}
+ 	Sosia(Preprocess& prep, mips2set& sets, int b_, int r_) :myMinHashBase(prep, sets, b_, r_) {
+ 		bucketSize = len;
+ 		lsh::timer timer;

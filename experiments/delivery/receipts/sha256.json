@@ -1,5 +1,5 @@
 {
-  "fixture_artifacts_20261023.json": "c305540f217a561ce9ff7d3373a4ba85367e4d47bf7172bebb0518f174a8bc1f",
+  "fixture_artifacts_20261023.json": "8167abec46c7a442e3787ab6bbd24c805785b60fa8243345b1236c4581c10fb9",
   "local_real_smoke_20261024.json": "b865bd5f47619aa485e4cef0cf731bc1c714f37a5844d5239f56d9375189d328",
   "preflight_20261023.json": "61928c677f6bbfee4add907a71df07105ca5dad7dfbceab815939724e08a1f96",
   "rust-toolchain_20261023.json": "33601353752372f8878db845ce9cce716d35419545b855c2336a93f9a6efe593",
@@ -19,5 +19,10 @@
   "sosia-recorded_parity.json": "4745566ff090c6558f977aa3b613d06bb10c0af496b5a0177e865426b268b043",
   "sosia-release-v3_build_receipt.json": "d3fd18779b9d6dcf8d53edad4c8a760cb43e9edc406ab45c6ba8e204aa65179d",
   "sosia-release-v3_parity.json": "f1c72c544e7e31aa62a2999a8d9788dc8ac5e70b2c1d9940a5190c93e2d3fdee",
+  "sosia-space_asan_build.json": "a131ab16889eb66ec05ea109b0651e49a81f1ed3ac6e596ea08b327bc29adbbd",
+  "sosia-space_asan_parity.json": "9a46ebc4dc1cbd559ad30f759347b815b5b02d360df5e0b5ed25850ccf71761e",
+  "sosia-space_real_0.1m.json": "5f047bd5b3d561778d2480d7dcc4df6e6cf01598d291fbb04eb4f04fa21cf9af",
+  "sosia-space_release_build.json": "64317375f727938e113c14186609b83b69d210bef38a29ea6bab9035712567a7",
+  "sosia-space_release_parity.json": "088650b7474c0855709bb1f9254c1678697618fba7a2ab898bca78f7c2144429",
   "upstream_archives_20261023.json": "4cbfcc630d3a9bf9b9b48d1137fd26a667f4bb3eb3bedb7124a8f317d344eb78"
 }

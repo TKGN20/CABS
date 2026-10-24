@@ -134,6 +134,156 @@
       "Recall": 1.0,
       "candidate_pool_expected": 160,
       "scope": "Clean CI of disclosed repaired prototype; synthetic fixture only"
+    },
+    "SOSIA_space_release_primary": {
+      "path": "experiments/delivery/fixtures/sosia_space_release",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "positive_ties/base.csr": "c9d0cbe212393f85ebe3b86eb0c777a889ac697724fdcbd50cafb6deab73d562",
+        "positive_ties/ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "positive_ties/queries.csr": "56e05703d4064c1843a426ce233f7e1f271bb0146aba700bc1a59b007ac07a87",
+        "positive_ties/run/index_space.json": "74690e764b2c839aceb5724ac3f21112bedd8846c2b896657092dc2098c3f9a5",
+        "positive_ties/run/queries.csv": "48b48fbb00a8db4b3fcc52f2b152cf5dfd95daab01c8e5c89d83ab0df7bdbec8",
+        "positive_ties/run/retrieved.csv": "893c099571b0ffe82875db1e83d4587ff94f8906a3f1de367d765d0d488c0138",
+        "positive_ties/run/summary.json": "0d5fa12f3b9f29ac0b35668a10927f58d40e10d8088c28b10d304ac2bb38cf83",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/index_space.json": "7104eb8933966875438c6135a44c11b4b25b9398519a33e1e2fe2ed5a4e7cfec",
+        "run/queries.csv": "b51511063eeb4d45173d1b9c6395a31eeeb7bcd1dc96faa9fcd897b3d179548c",
+        "run/retrieved.csv": "ce00993a761cebc3fb0856f88a054a99b8c7fa91499916ec8887fd2410344b90",
+        "run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/stdout.log": "74401e5cc6bdd8155bc1244a60979de002dd2c1259e0a4d8c7e2e9ef5afc40c7",
+        "run/summary.json": "4fc42570bb59f838cbaf866754b818e3657d4c9889ea671c6f9e7003985ef926",
+        "zero_expansion/base.csr": "6758189c08b629868d66cddb4988e75807ae42217fb3fd94e1ee6212f4fb1738",
+        "zero_expansion/ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "zero_expansion/queries.csr": "22147d0ecdc3f5b87e77596980eba0ee88723338ddc4346dcfac8b6a8cfa5c84",
+        "zero_expansion/run/index_space.json": "e19c289f73a144d3d0e27b74548e7f4c7ceae63348dc6cd6c9fef069a627284f",
+        "zero_expansion/run/queries.csv": "9f1a5a5c101a1e7b2499d5c83755d4c7fbc63cb303f37be2356401cd8f7508da",
+        "zero_expansion/run/retrieved.csv": "3f0dfb9d187995be926aa032076a2255871390ed5b20a5bd295158b095b8bbc3",
+        "zero_expansion/run/summary.json": "4ecbad7893084a2c5e80093075ab263ec3354eda3b15e9089791568c8c7dec14"
+      },
+      "k": 50,
+      "Recall": 0.95,
+      "sosia_space": {
+        "ell": 4,
+        "m": 16
+      },
+      "scope": "SOSIA component/ABI and saved synthetic correctness; common IS policy pending"
+    },
+    "SOSIA_space_release_partial_empty": {
+      "path": "experiments/delivery/fixtures/sosia_space_release/zero_expansion",
+      "sha256": {
+        "base.csr": "6758189c08b629868d66cddb4988e75807ae42217fb3fd94e1ee6212f4fb1738",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "22147d0ecdc3f5b87e77596980eba0ee88723338ddc4346dcfac8b6a8cfa5c84",
+        "run/index_space.json": "e19c289f73a144d3d0e27b74548e7f4c7ceae63348dc6cd6c9fef069a627284f",
+        "run/queries.csv": "9f1a5a5c101a1e7b2499d5c83755d4c7fbc63cb303f37be2356401cd8f7508da",
+        "run/retrieved.csv": "3f0dfb9d187995be926aa032076a2255871390ed5b20a5bd295158b095b8bbc3",
+        "run/summary.json": "4ecbad7893084a2c5e80093075ab263ec3354eda3b15e9089791568c8c7dec14"
+      },
+      "k": 1,
+      "Recall": 1.0,
+      "sosia_space": {
+        "ell": 4,
+        "m": 16
+      },
+      "scope": "SOSIA component/ABI and saved synthetic correctness; common IS policy pending",
+      "expected_empty_expansions": 159
+    },
+    "SOSIA_space_release_ties": {
+      "path": "experiments/delivery/fixtures/sosia_space_release/positive_ties",
+      "sha256": {
+        "base.csr": "c9d0cbe212393f85ebe3b86eb0c777a889ac697724fdcbd50cafb6deab73d562",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "56e05703d4064c1843a426ce233f7e1f271bb0146aba700bc1a59b007ac07a87",
+        "run/index_space.json": "74690e764b2c839aceb5724ac3f21112bedd8846c2b896657092dc2098c3f9a5",
+        "run/queries.csv": "48b48fbb00a8db4b3fcc52f2b152cf5dfd95daab01c8e5c89d83ab0df7bdbec8",
+        "run/retrieved.csv": "893c099571b0ffe82875db1e83d4587ff94f8906a3f1de367d765d0d488c0138",
+        "run/summary.json": "0d5fa12f3b9f29ac0b35668a10927f58d40e10d8088c28b10d304ac2bb38cf83"
+      },
+      "k": 50,
+      "Recall": 1.0,
+      "sosia_space": {
+        "ell": 4,
+        "m": 16
+      },
+      "scope": "SOSIA component/ABI and saved synthetic correctness; common IS policy pending",
+      "require_unused_bucket_capacity": true
+    },
+    "SOSIA_space_asan_primary": {
+      "path": "experiments/delivery/fixtures/sosia_space_asan",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "positive_ties/base.csr": "c9d0cbe212393f85ebe3b86eb0c777a889ac697724fdcbd50cafb6deab73d562",
+        "positive_ties/ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "positive_ties/queries.csr": "56e05703d4064c1843a426ce233f7e1f271bb0146aba700bc1a59b007ac07a87",
+        "positive_ties/run/index_space.json": "74690e764b2c839aceb5724ac3f21112bedd8846c2b896657092dc2098c3f9a5",
+        "positive_ties/run/queries.csv": "6543d06191534deea5fcc3cf2add20e0dec040fdde0c0ef34d5c54f917008640",
+        "positive_ties/run/retrieved.csv": "893c099571b0ffe82875db1e83d4587ff94f8906a3f1de367d765d0d488c0138",
+        "positive_ties/run/summary.json": "4e456fc6ec15fa2d23cecb65af549d1c00a74c75e04b8ca2e8f640076f6c0bae",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/index_space.json": "7104eb8933966875438c6135a44c11b4b25b9398519a33e1e2fe2ed5a4e7cfec",
+        "run/queries.csv": "3c1fb66b5d129d952342b3e82223f8bdc9a588db539a7318ea873f85722f4ec5",
+        "run/retrieved.csv": "ce00993a761cebc3fb0856f88a054a99b8c7fa91499916ec8887fd2410344b90",
+        "run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run/stdout.log": "fe01fec8920f3c7f14145ec08dab1c88cd9add54691f3454b6fc6771578ac9df",
+        "run/summary.json": "f9f36b692eb0f1f99746be9fa722a66fa9a0ccbad0dcd3452d88ba67763d91d0",
+        "zero_expansion/base.csr": "6758189c08b629868d66cddb4988e75807ae42217fb3fd94e1ee6212f4fb1738",
+        "zero_expansion/ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "zero_expansion/queries.csr": "22147d0ecdc3f5b87e77596980eba0ee88723338ddc4346dcfac8b6a8cfa5c84",
+        "zero_expansion/run/index_space.json": "e19c289f73a144d3d0e27b74548e7f4c7ceae63348dc6cd6c9fef069a627284f",
+        "zero_expansion/run/queries.csv": "cb5a8f318c0bf7dab753a9a8cd5dec04871d64f26ff8883797af6bbdfde4d027",
+        "zero_expansion/run/retrieved.csv": "3f0dfb9d187995be926aa032076a2255871390ed5b20a5bd295158b095b8bbc3",
+        "zero_expansion/run/summary.json": "a7713045a2c51634f9a31491ab5373f8bb015c07d713c0c29b0fabea847fa9dc"
+      },
+      "k": 50,
+      "Recall": 0.95,
+      "sosia_space": {
+        "ell": 4,
+        "m": 16
+      },
+      "scope": "SOSIA component/ABI and saved synthetic correctness; common IS policy pending"
+    },
+    "SOSIA_space_asan_partial_empty": {
+      "path": "experiments/delivery/fixtures/sosia_space_asan/zero_expansion",
+      "sha256": {
+        "base.csr": "6758189c08b629868d66cddb4988e75807ae42217fb3fd94e1ee6212f4fb1738",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "22147d0ecdc3f5b87e77596980eba0ee88723338ddc4346dcfac8b6a8cfa5c84",
+        "run/index_space.json": "e19c289f73a144d3d0e27b74548e7f4c7ceae63348dc6cd6c9fef069a627284f",
+        "run/queries.csv": "cb5a8f318c0bf7dab753a9a8cd5dec04871d64f26ff8883797af6bbdfde4d027",
+        "run/retrieved.csv": "3f0dfb9d187995be926aa032076a2255871390ed5b20a5bd295158b095b8bbc3",
+        "run/summary.json": "a7713045a2c51634f9a31491ab5373f8bb015c07d713c0c29b0fabea847fa9dc"
+      },
+      "k": 1,
+      "Recall": 1.0,
+      "sosia_space": {
+        "ell": 4,
+        "m": 16
+      },
+      "scope": "SOSIA component/ABI and saved synthetic correctness; common IS policy pending",
+      "expected_empty_expansions": 159
+    },
+    "SOSIA_space_asan_ties": {
+      "path": "experiments/delivery/fixtures/sosia_space_asan/positive_ties",
+      "sha256": {
+        "base.csr": "c9d0cbe212393f85ebe3b86eb0c777a889ac697724fdcbd50cafb6deab73d562",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "56e05703d4064c1843a426ce233f7e1f271bb0146aba700bc1a59b007ac07a87",
+        "run/index_space.json": "74690e764b2c839aceb5724ac3f21112bedd8846c2b896657092dc2098c3f9a5",
+        "run/queries.csv": "6543d06191534deea5fcc3cf2add20e0dec040fdde0c0ef34d5c54f917008640",
+        "run/retrieved.csv": "893c099571b0ffe82875db1e83d4587ff94f8906a3f1de367d765d0d488c0138",
+        "run/summary.json": "4e456fc6ec15fa2d23cecb65af549d1c00a74c75e04b8ca2e8f640076f6c0bae"
+      },
+      "k": 50,
+      "Recall": 1.0,
+      "sosia_space": {
+        "ell": 4,
+        "m": 16
+      },
+      "scope": "SOSIA component/ABI and saved synthetic correctness; common IS policy pending",
+      "require_unused_bucket_capacity": true
     }
   },
   "native_smokes": {
@@ -225,6 +375,20 @@
         "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "status": "EXPECTED_FAILURE_NATIVE_UNDERFILLED"
+    },
+    "SOSIA_zero_query": {
+      "path": "experiments/delivery/diagnostics/sosia_zero_query",
+      "sha256": {
+        "base.csr": "c9d0cbe212393f85ebe3b86eb0c777a889ac697724fdcbd50cafb6deab73d562",
+        "build_receipt.json": "a034f59f580de20d3e91825c23ae1c14325d23c527bfd967f6295311de132fe6",
+        "compiled_driver.cpp": "f72395ed0a98724ccda749b990a3e75860a67783f7b2f4e56971de4dad3f0f9f",
+        "ids.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "queries.csr": "006c70a4010540c8e647304dd295d57cc30309af7f6110919c06072e77adae70",
+        "receipt.json": "91b383e85a9fed0b12daf21c75a2aaa9ffe1df3cfa7a2236bf31a35c31b54550",
+        "stderr.log": "5c0d9e159496d81041da08ef4e4437e8c93c5a9a0a79f06b243fd1af35f75731",
+        "stdout.log": "d54e31684a33a17dac18bd20f274148ee04c600fdf57c3c58f78470c19386b27"
+      },
+      "status": "EXPECTED_FAILURE_ZERO_QUERY_NATIVE_BOUNDARY"
     }
   },
   "real_smokes": {
@@ -327,6 +491,29 @@
         "sindi-native/build_receipt.json": "6bf6edd5368ac5b9a1d44b0085df1aac57b6388c5ec3f87dd60eaf8d1d739a3f",
         "sindi-native/configure.log": "11c8ad4bdde3eb281d2cd725edc511da0d39c79cf14fd272e96057bfef6fb696"
       }
+    }
+  },
+  "space_inventories": {
+    "SOSIA_real_0.1M": {
+      "path": "experiments/delivery/space_inventory/sosia_real_0.1m_20261024",
+      "sha256": {
+        "current_space_audit.json": "8bada852072f23e77af877cb00bb100d3be7b430f813dafa71399cd07c119a7e",
+        "driver.py": "557dae934855538738ea99c6c2a9d166f9e1e7cd8f705f551b3a5ba9c93fc839",
+        "independent_audit.json": "072b28b474a00f21fb6a6bebc42bc19fe674ace939d83d781fe42dc2cfe95802",
+        "index_space.json": "71c6deb62ffaa24de5837107a12ac2645e0a8796fd9d8ddcac8a24bab10153eb",
+        "queries.csv": "8cc333bd607e9a0eeb5fd77fcdc2ff6d8195b4a745bbf956d118ce6aeec20dfd",
+        "receipt.json": "1c532b5c8b601f32cc6a54ef4cd4a9b27431744146364b6639177c85f9e25f84",
+        "resource_usage.log": "897453fd655ee30e7dcd7a5223ad9c38999f15da8af2d11e2bf5fc2cbc0a83fb",
+        "retrieved.csv": "9dd2194db2a3ec04402d4b73cbab88f1f6c5c62e3f25e15e1d693663020b200b",
+        "run.log": "82dd0d2acfae5d2e25c11698410c911c37e808b01cd9a039d5dab7ff9c558360",
+        "space_audit.json": "00d294815a90835b465df1c10c2f560229549bdd654b3b433b5522403943e09f",
+        "summary.json": "d3c6e059510977e87acb62cc30fbace1e0af915fb45c2cb4307944372a155b21"
+      },
+      "method": "SOSIA",
+      "ell": 4,
+      "m": 16,
+      "preflight_input": "base_small.csr",
+      "scope": "Saved real-data component arithmetic against registered input header/hash; original score re-audit requires dataset"
     }
   }
 }
