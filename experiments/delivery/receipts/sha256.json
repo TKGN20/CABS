@@ -1,5 +1,6 @@
 {
-  "fixture_artifacts_20261023.json": "daa5348f3514f5ae7287728323bac08666424372472650ec3cd24597ad2450f9",
+  "fixture_artifacts_20261023.json": "c305540f217a561ce9ff7d3373a4ba85367e4d47bf7172bebb0518f174a8bc1f",
+  "local_real_smoke_20261024.json": "b865bd5f47619aa485e4cef0cf731bc1c714f37a5844d5239f56d9375189d328",
   "preflight_20261023.json": "61928c677f6bbfee4add907a71df07105ca5dad7dfbceab815939724e08a1f96",
   "rust-toolchain_20261023.json": "33601353752372f8878db845ce9cce716d35419545b855c2336a93f9a6efe593",
   "seismic-adapter-v1_build_receipt.json": "dee738baa9ca355b088c534b118a8b135ddf43712e6e4236c92f7c93015f6770",
@@ -8,6 +9,7 @@
   "sindi-native_build_receipt.json": "56a2e199168ecd094323d5e0a4efe6e379b8fc40781870fb4db80179df0a209d",
   "sindi-native_corrected_GT_receipt.json": "ce9ce56718678c596958f9b6f5b5777fbaeedbeacbbc40cf727e0cb699df16cd",
   "sindi-native_smoke_receipt.json": "1f35632809a17f92b2f361a2332ca0e1be52c890a0f0438a9a42644ed857d34a",
+  "sindi-portable_ci_20261024.json": "fd0d31b2afee6160422b4d9658c8d4984d12e044c0f1e88bbbea4641b6503fd5",
   "sindi-repaired_adapter_build.json": "71835f9eb347683cf5acd819f49785892c56d3d737530dc333328f169ac9c199",
   "sindi-repaired_fixture_parity.json": "7670ae781c9a339d67b368dd803c223ce5c14c51c2b3ff2534fb78f9c7ce477b",
   "sindi-repaired_native_build.json": "be2a696f967c7ae06dc56b777e4534d95e029cd84d987ce84e7dce4be79c34fd",

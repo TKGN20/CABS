@@ -1,0 +1,54 @@
+{
+  "status": "BUILT_NOT_PARITY_ACCEPTED",
+  "upstream": {
+    "repository": "Roxanne0321/vsag",
+    "commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+    "archive_sha256": "3e18d0f46988fbbb04741c4f841935bad5f9f6993487e2e12b5fb50aad38a6e0",
+    "lineage": "sparse branch candidate"
+  },
+  "thread_pool": {
+    "repository": "log4cplus/ThreadPool",
+    "commit": "3ffb60a33d0f295b11659926b7f52d460a7c8fef",
+    "archive_sha256": "740993b45873e101534a2a4c1d109b32489435fa4b808ec9ef376b21488190b8"
+  },
+  "command": [
+    "cmake",
+    "-S",
+    "/home/runner/work/CABS/CABS/build-mission/sindi-native/source",
+    "-B",
+    "/home/runner/work/CABS/CABS/build-mission/sindi-native/build",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "-DCMAKE_INSTALL_PREFIX=/home/runner/work/CABS/CABS/build-mission/sindi-native/install",
+    "-DENABLE_INTEL_MKL=OFF",
+    "-DENABLE_TOOLS=OFF",
+    "-DENABLE_EXAMPLES=OFF",
+    "-DENABLE_TESTS=OFF",
+    "-DENABLE_WERROR=OFF",
+    "-DNUM_BUILDING_JOBS=2",
+    "-DCMAKE_CXX_FLAGS=-ffp-contract=off"
+  ],
+  "patch_sha256": "e39529f48b1d55bcd38397642ece306d6a4b4b89745a5c446245e6f400501a45",
+  "isa_policy": "No global forced AVX-512; original per-ISA objects and runtime SIMD dispatch retained",
+  "correctness_repairs": {
+    "upstream_commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+    "patch_sha256": "034505b9757042a3aecf433754800a652541938557c115d604ec2c84c5cf4d7e",
+    "files": {
+      "src/index/sindi.cpp": {
+        "before_sha256": "47bfaddc5e2e4ce5e57be1c353fe691531de26382510f40cd6b6a15632e3abd1",
+        "after_sha256": "0d81f9a3fd4822a422f56d2c16cdf66dab9f199641918dcc1920b8f7b652b941"
+      },
+      "src/index/sindi.h": {
+        "before_sha256": "8ba40a10716ee9ae43f5936caf673a2a3bf8b1636a2cbb1b9ad0e3808b2999f8",
+        "after_sha256": "9174f2eb356cc91e19b8dfc41ac37b9623c77d1550602a9dfaffb36e1c67c957"
+      }
+    },
+    "scope": "Disclosed bounded native prototype repairs; frozen CABS implementation unchanged"
+  },
+  "compile_commands_sha256": "3e7d6ce03abe840a4cca1c0ec0cdd7ed535fb350421b8f96a375ee62405c078b",
+  "binary_sha256": {
+    "sindi_index_build": "4e1c9458ade7d9d27014a4f224df30ca07a5e40b249932f15dd0c34fd7b08d8d",
+    "sindi_index_search": "1c7d0859ce2361e7ede20cf56e6bdfeb302fbc9e8c85ac3f0d7238355efbc64b"
+  },
+  "library_sha256": "2fb308e9dc5c1d506784f9cd2fb1dec6fc1f59053035cc3c2acfe9cca25ddfd0"
+}

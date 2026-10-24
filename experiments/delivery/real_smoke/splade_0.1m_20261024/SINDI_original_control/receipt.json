@@ -1,0 +1,23 @@
+{
+  "scope": "Original pinned SINDI native-control diagnostic on same four selection queries and fixed configuration; diagnostic allocator; no performance acceptance",
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-unpatched-adapter-recorded-v4/sindi_fixed",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-original-real-control-20261024",
+    "10000",
+    "1",
+    "1",
+    "1000",
+    "50",
+    "3",
+    "candidate-api-v1"
+  ],
+  "binary_sha256": "f980750bfddca10cf89c7ee2656e3e054e6f96bc142f8a4b1139b57ea2a3d1dc",
+  "library_sha256": "c3c1d51fb4b7755447a2e20926b5e1f3a6d3bba576cf8088f1218767cfb2213c",
+  "driver_sha256": "80321e2e209c4c582ac551048a82f612dfd11bbdb309cf29a30978bb5ccb64bc",
+  "parent_smoke_manifest_sha256": "c7fe991672291aab7669f53d11b35ca3ad25ad368629c92ad94d8d19096db2df",
+  "status": "SMOKE_AUDITED",
+  "Recall": 1.0
+}

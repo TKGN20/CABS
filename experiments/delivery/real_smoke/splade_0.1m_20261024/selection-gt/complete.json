@@ -1,0 +1,7 @@
+{
+  "manifest.json": "90fab1e50cc5f8391d7a368d71409771b4eefb287ccca2b9a3ae74b585aaac91",
+  "ground_truth.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+  "measured_ids.txt": "76a1569e5e41e0b8a6c5911a9ca28c32b1b6f71e1b5a4d159d96a5ebd6c8eeea",
+  "summary.json": "6f681f8d2d4709e4784032b1672fc86e1899e94c5ac58d0d929a3e0598ce343e",
+  "producer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

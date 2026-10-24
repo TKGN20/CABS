@@ -160,8 +160,10 @@ python3 experiments/baselines/test_sindi.py --binary build-mission/sindi-adapter
 
 The local accepted fixture used the supported host's original global AVX-512
 flags. `--portable-isa` removes only the two unconditional library flags while
-retaining upstream per-ISA objects and CPU dispatch. That separate clean build
-must pass before portability is accepted. Tests include all 160 candidates,
+retaining upstream per-ISA objects and CPU dispatch. The separate
+[clean CI build](https://github.com/TKGN20/CABS/actions/runs/40071609451) passed;
+its artifacts are preserved with a verified archive checksum. This is one tested
+runner, not an all-hardware guarantee. Tests include all 160 candidates,
 native scores, ordinary versus two diagnostic allocators, original-ID ties,
 non-reranking gamma>k/padded windows, invalid IDs, insufficient candidates and
 trailing dimensions. This is not full-native sanitizer or large-data acceptance.

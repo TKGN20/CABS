@@ -91,6 +91,17 @@ Retained IS, fair timing, dependency/ISA portability, broader native/repaired
 controls and common selection/evaluation locks still require acceptance. The
 local build retains upstream global AVX-512 flags on a supported host. The
 separate `--portable-isa` build option removes those global flags while retaining
-the original per-ISA objects and runtime dispatch; its clean-build verification
-is not inferred from the local fixture. Full-native sanitizer coverage is also
-pending. Frozen CABS production sources and defaults remain unchanged.
+the original per-ISA objects and runtime dispatch. Its actual
+[clean CI run](https://github.com/TKGN20/CABS/actions/runs/40071609451) passed on
+2026-10-24; downloaded artifact bytes match GitHub's SHA-256 and the records are
+preserved under `experiments/delivery/ci/sindi_portable_40071609451/`.
+Full-native sanitizer coverage is still pending. Frozen CABS production sources
+and defaults remain unchanged.
+
+The subsequent SPLADE-0.1M control uses four fixed selection query IDs and
+lambda=10000, alpha=beta=1, gamma=1000. Both original and repaired native versions
+expose 1000 unique candidates per query and achieve Recall@50=1.0 against
+independent GT. Thus the boundary failure above is not generalized to all real
+queries. Diagnostic allocation/timing and unmatched configurations do not support
+a native-versus-repaired performance comparison. See the new checkpoint for all
+raw records and the four-method smoke's limits.

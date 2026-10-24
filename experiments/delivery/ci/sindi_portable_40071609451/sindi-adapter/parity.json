@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "queries": 4,
+  "k": 50,
+  "repeats": 3,
+  "Recall": 1.0,
+  "QPS": 14255.455379794957,
+  "scope": "SINDI public-API small-fixture correctness only; no performance/IS/paper-parity acceptance",
+  "input_sha256": {
+    "/tmp/sindi-parity-kilqvx5m/base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+    "/tmp/sindi-parity-kilqvx5m/queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+    "/tmp/sindi-parity-kilqvx5m/run/retrieved.csv": "b98cec600ec7964781515ae4f2e55849ab1c90fb88ae55d890e995dfbe767017",
+    "/tmp/sindi-parity-kilqvx5m/run/queries.csv": "ebddae9cfdb9e393cc0a2cdd926c4ef9963721afcd843baf8c424dc57a8fb38b"
+  },
+  "same_build_ranked_outputs_equal": true,
+  "two_sentinel_patterns_equal": true,
+  "complete_gamma_pool_reranking_checked": true,
+  "candidate_counts": [
+    {
+      "query_id": "9",
+      "exposed_slots": "160",
+      "unique_candidates": "160",
+      "unwritten_slots": "0",
+      "duplicate_slots": "0"
+    },
+    {
+      "query_id": "2",
+      "exposed_slots": "160",
+      "unique_candidates": "160",
+      "unwritten_slots": "0",
+      "duplicate_slots": "0"
+    },
+    {
+      "query_id": "11",
+      "exposed_slots": "160",
+      "unique_candidates": "160",
+      "unwritten_slots": "0",
+      "duplicate_slots": "0"
+    },
+    {
+      "query_id": "0",
+      "exposed_slots": "160",
+      "unique_candidates": "160",
+      "unwritten_slots": "0",
+      "duplicate_slots": "0"
+    }
+  ],
+  "original_id_tie_rule_checked": true,
+  "non_reranking_gamma_gt_k_and_padded_window_checked": true,
+  "underfill_rejected_without_exact_fallback": true,
+  "declared_trailing_dimension_checked": true
+}

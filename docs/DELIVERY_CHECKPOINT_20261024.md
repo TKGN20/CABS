@@ -15,7 +15,7 @@ authoritative.
 | Independent GT producer | Unpruned standard-C++ reference agrees with independent Python scoring on random, rounding, tie/zero/empty cases | No full-corpus run |
 | Role-isolated GT generation | Input/source/binary hashes, explicit original IDs, independent calibration seed, locked evaluation and no-overwrite tests | Synthetic lock tests; common four-method selection still incomplete |
 | Common result audit | Independent role-bound GT audits SOSIA/SEISMIC/repaired SINDI saved outputs and a fresh CABS run; wrong scores, missing timings and wrong method/lock rejected | Small synthetic records; not common parameter selection or fair performance acceptance |
-| Saved evidence | 19 receipt hashes; five fixture bundles recomputed; correct/invalid native GT classifications and original failed trace checked | Saved-record audit is not an independent full-run replication |
+| Saved evidence | 21 receipt hashes; eight synthetic fixture bundles recomputed; five real-smoke method/control records checked against saved independent GT; original failures preserved | Real-vector exact scoring requires original data; saved-record audit is not an independent full-run replication |
 
 The [SINDI audit](SINDI_INTEGRATION_AUDIT_20261023.md) details the integration
 erratum, separate native failure and optional registered source patch. All old
@@ -36,7 +36,43 @@ The experimental suite contains six tests. Release and Debug ASan/UBSan runs
 pass locally; native baseline instrumentation is separate. Full adapter rebuild
 commands are in the [integration notes](../experiments/baselines/README.md).
 The portable SINDI build removes forced global AVX-512 flags while retaining
-native per-ISA dispatch; clean-build verification is pending at this checkpoint.
+native per-ISA dispatch. Its [actual clean-build CI](https://github.com/TKGN20/CABS/actions/runs/40071609451)
+passed at commit `24e03bfc06d519cdbae2177ab10f306ea79d7f05`. The downloaded artifact
+archive matches GitHub's SHA-256; source diff, build logs, receipts, fixture inputs
+and raw ranked outputs are preserved in the repository. Later common-audit CI at
+`44db1055f2c97486be07b53012215f09425b3343` passes production, six experimental
+tests, SOSIA and SEISMIC; its repeated SINDI build is separately tracked.
+
+## Local real-data smoke
+
+One predeclared configuration per method was run against SPLADE-0.1M, using four
+selection query IDs `966, 5380, 1447, 6577`, a separately generated unpruned exact
+GT, one search thread and three timing repeats. CABS uses four disjoint calibration
+IDs, its original automatic K/m/B rules and default ell=24, delta_h=0.2. Each
+method has a 600-second timeout and an 8-GiB address-space limit.
+
+| Method | Recall@50 on four queries | Record audit |
+| --- | ---: | --- |
+| CABS | 0.965 | PASS |
+| SOSIA, ell=4/m=16/budget=1000 | 0.265 | PASS |
+| Disclosed repaired SINDI, alpha=beta=1/gamma=1000 | 1.000 | PASS |
+| SEISMIC, postings=1000/centroid fraction=0.1/energy=1/query cut=20/heap factor=0.7 | 1.000 | PASS |
+| Original SINDI control, same configuration as repaired version | 1.000 | PASS |
+
+PASS means original IDs, original-vector binary64 scores, ranked top-k and timing
+records passed the independent audit. It does not mean target recall or fair
+performance was accepted. The SOSIA smoke configuration is deliberately small and
+is not asserted to be its native default, a tuned configuration or its performance
+frontier. Both SINDI versions expose 1000 unique candidates for each real query;
+the synthetic boundary failure is not generalized to these real queries.
+
+CABS selected K=1, B=13798 and m=167 in this realization. This does not establish
+that spherical routing helps this particular run. Query/candidate diagnostics,
+calibration stability and representative-query evaluation remain required.
+Raw timings, build costs and resources are retained, but no speedup ratio is
+computed from these unmatched four-query smoke points. No final evaluation query
+was used for this diagnostic. Public records are under
+`experiments/delivery/real_smoke/splade_0.1m_20261024/`.
 
 The historical source/record audit passed under WSL Python 3.10: 185 artifact
 members, 164 canonical source files and all 19 frozen production/default files.

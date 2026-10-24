@@ -1,0 +1,125 @@
+{
+  "status": "completed_smoke_only",
+  "scope": "Local real-data single-configuration smoke only; four selection queries; no parameter selection, matched-recall, IS or server-performance acceptance",
+  "host": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "commit": "44db1055f2c97486be07b53012215f09425b3343",
+  "binding": {
+    "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+    "queries_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "plan_sha256": "0127adddf1279fdcb780ab709bce888f5bc8867f698980e35cf030a9cc48f2ce",
+    "script_sha256": "cc9fc1ed241dd3850ef0281732b6b218e945dc6729e6a82c427e9c253eaf5557"
+  },
+  "freeze": {
+    "approval_baseline_commit": "fa2455ed83de47fec1de60563949e32eb1d34c6c",
+    "files_checked": 19,
+    "historical_baseline_files_checked": 19,
+    "normalization": "CRLF to LF only; no whitespace or code normalization"
+  },
+  "methods": {
+    "CABS": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-experiment/cabs_fixed_queries",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/calibration_ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/CABS",
+        "20261017",
+        "100",
+        "50",
+        "3",
+        "24",
+        "0.2",
+        "1",
+        "10"
+      ],
+      "binary_sha256": "11028d320d3445dd1d394e72ac895deb4a448672da53e3feaf5c13f247b75888",
+      "build_receipt_sha256": null,
+      "Recall": 0.965,
+      "audit_sha256": "e470acc158f605860067c3227624a232b3fe3ef76cb552cbff0900b5512c5830"
+    },
+    "SOSIA": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sosia-release-v3/sosia_fixed",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/SOSIA",
+        "20261017",
+        "4",
+        "16",
+        "1000",
+        "50",
+        "3"
+      ],
+      "binary_sha256": "61e5aac4127ab0de7dde056f9ff142e46c38fcd6c82df01312b0c7ee959a5c5c",
+      "build_receipt_sha256": "d3fd18779b9d6dcf8d53edad4c8a760cb43e9edc406ab45c6ba8e204aa65179d",
+      "Recall": 0.265,
+      "audit_sha256": "12d7d332ffdededce8ba08da810b3e7720720d432bf5355ca1bbd257b84b2396"
+    },
+    "SINDI": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-repaired-adapter-v2/sindi_fixed",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/SINDI",
+        "10000",
+        "1",
+        "1",
+        "1000",
+        "50",
+        "3",
+        "candidate-api-v1"
+      ],
+      "binary_sha256": "f58f9e52458edea3b1bc90670d2f603a2d9376f3fc4324dc329cbae10831d8dd",
+      "build_receipt_sha256": "71835f9eb347683cf5acd819f49785892c56d3d737530dc333328f169ac9c199",
+      "native_library_sha256": "1c01b159e5543f77d9cd15e425dea5c6a8c0524c7a04c19130cbc1cb9ab56a55",
+      "Recall": 1.0,
+      "audit_sha256": "42aff5968e67eff7cb3cec44c1ca001b90392bceeb07fd4b057876c9a8e14782"
+    },
+    "SEISMIC": {
+      "status": "SMOKE_AUDITED",
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/seismic-adapter-v1/target/release/cabs_fixed_queries",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/SEISMIC",
+        "20261017",
+        "50",
+        "3",
+        "1000",
+        "0.1",
+        "1",
+        "20",
+        "0.7"
+      ],
+      "binary_sha256": "2ec33e32e0aa5f4293248e43ce5303c3ff29f651f8c7510135bb8b09a9e24685",
+      "build_receipt_sha256": "dee738baa9ca355b088c534b118a8b135ddf43712e6e4236c92f7c93015f6770",
+      "Recall": 1.0,
+      "audit_sha256": "27477ea91160a5c0a4d6618e4fef135d1a5b83505470fdfc48482146173aa38a"
+    }
+  },
+  "selection_query_ids": [
+    966,
+    5380,
+    1447,
+    6577
+  ],
+  "calibration_query_ids": [
+    5163,
+    1472,
+    6597,
+    4480
+  ],
+  "resource_policy": {
+    "timeout_seconds_per_method": 600,
+    "address_space_limit_bytes": 8589934592,
+    "search_threads": 1,
+    "repeats": 3
+  }
+}

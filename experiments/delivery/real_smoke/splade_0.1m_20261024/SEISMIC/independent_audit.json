@@ -1,0 +1,40 @@
+{
+  "status": "MEASURED_RECORD_AUDIT_ONLY",
+  "method": "SEISMIC",
+  "role": "selection",
+  "query_ids": [
+    966,
+    5380,
+    1447,
+    6577
+  ],
+  "k": 50,
+  "repeats": 3,
+  "Recall": 1.0,
+  "QPS": 81.57686502949285,
+  "measured_records": 12,
+  "query_recalls": {
+    "966": 1.0,
+    "5380": 1.0,
+    "1447": 1.0,
+    "6577": 1.0
+  },
+  "binding": {
+    "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+    "queries_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "plan_sha256": "0127adddf1279fdcb780ab709bce888f5bc8867f698980e35cf030a9cc48f2ce",
+    "GT_complete_sha256": "d2c20ef5bb1974f28aa8eb0e822bf8a853071837f188a06c908d91c8ac440c41",
+    "result_artifacts": {
+      "summary.json": "f27fcad65990735dcbafe67e13aed1167b0a8c7649f8c559c9c25ce2e64896dd",
+      "retrieved.csv": "06d0bca07bb793e4ec0a3f05b3faeb91d32ec3d22de77cd4c0c05d5cdd7eb9a4",
+      "queries.csv": "35b09e12f50e0e09e677842426337ba38f68a9363fa1a981ef783e63d7b0a3ae"
+    },
+    "audit_sources": {
+      "audit_run.py": "075ab21cb2434b5b668469a107f5a678cd7712e40cdf104582e02ddf963b3ab4",
+      "oracle.py": "9ed007481da7f782b36c0997d50179208064426b7c56038bd38457d1c37ff582",
+      "prepare_gt.py": "0df6be938e9f8fdb62ca679b7e16033a5dbaeb750cbd64cd58008476e8629b41"
+    }
+  },
+  "IS_status": "NOT_YET_VALIDATED",
+  "scope": "Original-ID, exact-score and timing audit against separately generated role-bound GT; not source/binary provenance, parameter-selection, IS, fair-performance or server acceptance"
+}

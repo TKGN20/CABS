@@ -84,7 +84,38 @@ def main():
             for count in counts:
                 qid=int(count['query_id']);hits=[int(r['identifier']) for r in candidates if int(r['query_id'])==qid];returned=[int(r['identifier']) for r in references if int(r['query_id'])==qid]
                 if len(hits)!=int(count['exposed_slots']) or len(set(hits))!=int(count['unique_candidates']) or not set(returned).issubset(hits):raise ValueError('Diagnostic candidate accounting differs')
-    print(json.dumps(dict(status='PASS',receipts=len(registry),fixtures_recomputed=len(fixtures['methods']),native_smoke_bundles_hash_checked=len(fixtures.get('native_smokes',{})),native_GT_bundles_validated=valid_gt,known_invalid_GT_diagnostics_preserved=invalid_gt,failed_diagnostics_preserved=len(fixtures.get('diagnostics',{})),scope='Saved integrity and small-fixture/GT recomputation only; native returned-ID acceptance separate; not independent performance reproduction')))
+    for record in list(fixtures.get('integrity_bundles',{}).values())+list(fixtures.get('real_smokes',{}).values()):
+        folder=repository/record['path']
+        if not folder.resolve().is_relative_to(repository.resolve()):raise ValueError('Unsafe evidence bundle path')
+        if {p.relative_to(folder).as_posix() for p in folder.rglob('*') if p.is_file()}!=set(record['sha256']):raise ValueError('Evidence bundle inventory changed')
+        for name,wanted in record['sha256'].items():
+            if not (folder/name).resolve().is_relative_to(folder.resolve()) or hashlib.sha256((folder/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Evidence bundle changed: '+name)
+    real_methods=0
+    for record in fixtures.get('real_smokes',{}).values():
+        from prepare_gt import checked_gt
+        folder=repository/record['path'];manifest=json.loads((folder/'manifest.json').read_text());gt,rows=checked_gt(folder/'selection-gt');ids=manifest['selection_query_ids'];k=gt['k']
+        if manifest['status']!='completed_smoke_only' or gt['role']!='selection' or gt['query_ids']!=ids or set(ids).intersection(manifest['calibration_query_ids']):raise ValueError('Real smoke query scope differs')
+        truth={qid:{int(r['identifier']) for r in rows if int(r['query_id'])==qid} for qid in ids}
+        methods={name:folder/name for name in manifest['methods']};methods['SINDI_original_control']=folder/'SINDI_original_control'
+        for method,directory in methods.items():
+            with (directory/'retrieved.csv').open() as f:hits=list(csv.DictReader(f))
+            if [(int(r['query_id']),int(r['rank'])) for r in hits]!=[(qid,rank) for qid in ids for rank in range(1,k+1)]:raise ValueError('Real smoke result query IDs/ranks differ')
+            recalls={}
+            for qid in ids:
+                ranked=[(int(r['identifier']),float(r['score'])) for r in hits if int(r['query_id'])==qid]
+                if len(set(did for did,_ in ranked))!=k or any(did<0 or did>=gt['documents'] or not math.isfinite(value) or value<0 for did,value in ranked) or ranked!=sorted(ranked,key=lambda h:(-h[1],h[0])):raise ValueError('Real smoke ranked result invalid')
+                recalls[qid]=len(truth[qid].intersection(did for did,_ in ranked))/k
+            with (directory/'queries.csv').open() as f:timings=list(csv.DictReader(f))
+            expected={(repeat,qid) for repeat in range(3) for qid in ids}
+            if len(timings)!=len(expected) or {(int(r['repeat']),int(r['query_id'])) for r in timings}!=expected or any(not math.isfinite(float(r['seconds'])) or float(r['seconds'])<=0 for r in timings):raise ValueError('Real smoke timing scope differs')
+            audit_record=json.loads((directory/'independent_audit.json').read_text());recall=sum(recalls.values())/len(ids);elapsed=0.0
+            for row in timings:elapsed+=float(row['seconds'])
+            if not math.isclose(recall,audit_record['Recall'],rel_tol=1e-12,abs_tol=1e-12) or not math.isclose(len(timings)/elapsed,audit_record['QPS'],rel_tol=1e-12):raise ValueError('Real smoke saved audit differs from raw GT/timing')
+            for name,wanted in audit_record['binding']['result_artifacts'].items():
+                if Path(name).name!=name or hashlib.sha256((directory/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Real smoke audited record hash differs')
+            if method in manifest['methods'] and (manifest['methods'][method]['status']!='SMOKE_AUDITED' or not math.isclose(recall,manifest['methods'][method]['Recall'],abs_tol=1e-12)):raise ValueError('Real smoke manifest differs')
+            real_methods+=1
+    print(json.dumps(dict(status='PASS',receipts=len(registry),fixtures_recomputed=len(fixtures['methods']),native_smoke_bundles_hash_checked=len(fixtures.get('native_smokes',{})),native_GT_bundles_validated=valid_gt,known_invalid_GT_diagnostics_preserved=invalid_gt,failed_diagnostics_preserved=len(fixtures.get('diagnostics',{})),real_smoke_method_records_recomputed=real_methods,scope='Saved integrity, synthetic exact-score/GT and real-smoke saved GT/timing recomputation; real original-vector scores require dataset audit; not independent performance reproduction')))
 
 
 if __name__=='__main__':main()
