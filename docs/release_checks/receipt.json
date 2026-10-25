@@ -18,8 +18,8 @@
   "artifact_members": 185,
   "frozen_files": 19,
   "build_reuse": "Clean build at initial revision; fast-forward changes only documentation and Python tests. Both complete CTest suites and examples rerun. Production/default/build freeze is identical.",
-  "logs_normalization": "Replace literal and JSON-escaped checkout path with $REPO; no other content edits.",
-  "clean_log_sha256": "4026c0c28ae8c3052ee3d681a8ed0479ae88900b76452b1510abc06379b14c28",
+  "logs_normalization": "Replace literal and JSON-escaped checkout path with $REPO; normalize CRLF to LF. No other content edits.",
+  "clean_log_sha256": "865b75c03eb3c82479ccdee04b35b4fec52666c3ec60e61409be3e4420bc9e9a",
   "data_validation": "Three public HEAD 200; local corpus/query headers, sizes and hashes match configs/datasets.json; query gzip freshly downloaded/checked. No new corpus benchmark.",
   "scope": "CABS-only functional and saved-record verification; no baseline, server or paper performance acceptance"
 }
