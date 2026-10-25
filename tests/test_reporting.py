@@ -12,6 +12,7 @@ import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from evaluate import audit
 from calibration_pilot import common_metrics
+from verify_artifacts import aggregate_metrics_match
 
 
 class ReportingTests(unittest.TestCase):
@@ -41,6 +42,12 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual(audit(self.root)['QPS'],2)
         self.assertEqual(audit(self.root)['IS_bytes'],192)
         self.assertEqual(audit(self.root)['Recall@2'],1)
+    def test_cross_version_aggregate_roundoff(self):
+        measured=dict(query_ids=[1,2],queries=2,**{'Recall@50':0.96875,'QPS':123.45})
+        rounded=dict(measured,**{'Recall@50':0.96875+2e-16,'QPS':123.45+1e-12})
+        self.assertTrue(aggregate_metrics_match(measured,rounded))
+        for changed in (dict(rounded,queries=3),dict(rounded,queries=2.0),dict(rounded,query_ids=[2,1]),dict(rounded,**{'Recall@50':0.96}),dict(rounded,QPS=float('nan'))):
+            self.assertFalse(aggregate_metrics_match(measured,changed))
     def test_read_only_audit(self):
         audit(self.root)
         before={p.name:p.read_bytes() for p in self.root.iterdir()}

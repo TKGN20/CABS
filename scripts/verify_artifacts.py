@@ -4,6 +4,7 @@ import argparse
 import gzip
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 import subprocess
@@ -17,6 +18,18 @@ from approval_analysis import routing_summary, frozen_budget_analysis
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def aggregate_metrics_match(actual,expected):
+    if actual.keys()!=expected.keys():return False
+    floats={'QPS','mean_verified','mean_probed','IT_seconds','IS_GB'}
+    for name,value in actual.items():
+        recorded=expected[name]
+        if name in floats or re.fullmatch(r'Recall@\d+',name):
+            if type(value) not in (int,float) or type(recorded) not in (int,float):return False
+            if not math.isfinite(value) or not math.isfinite(recorded) or not math.isclose(value,recorded,rel_tol=1e-12,abs_tol=1e-12):return False
+        elif type(value) is not type(recorded) or value!=recorded:return False
+    return True
 
 
 def check_approval_baseline(root=ROOT,source_check=False):
@@ -84,7 +97,7 @@ def verify_approval_evidence(recorded_queries,complete_directory):
         directory=pilot/('nc'+str(nc)+'_kmax'+str(kmax))
         metrics=audit(directory,write_outputs=False)
         actual=common_metrics(directory,common,pool)
-        require(actual==json.loads((directory/'common_metrics.json').read_text()),'Pilot common metrics mismatch')
+        require(aggregate_metrics_match(actual,json.loads((directory/'common_metrics.json').read_text())),'Pilot common metrics mismatch')
         split=read_csv(directory/'query_split.csv')
         calibration=[int(r['query_id']) for r in split if r['role']=='calibration']
         evaluation=[int(r['query_id']) for r in split if r['role']=='evaluation']
@@ -94,7 +107,7 @@ def verify_approval_evidence(recorded_queries,complete_directory):
                       min_m=min(r['m'] for r in automatic['clusters']),max_m=max(r['m'] for r in automatic['clusters']),
                       IT_seconds=metrics['IT_seconds'],IS_GB=metrics['IS_GB'])
         expected.update({k:actual[k] for k in ('Recall@50','QPS','mean_verified','mean_probed')})
-        require(case==expected,'Pilot comparison mismatch')
+        require(aggregate_metrics_match(case,expected),'Pilot comparison mismatch')
         provenance=json.loads((directory/'manifest.json').read_text())
         require(provenance['status']=='completed' and provenance['source_commit']==manifest['git_commit'] and provenance['binary_sha256']==manifest['binary_sha256'],'Pilot provenance mismatch')
     routing=engineering/'routing_bounds_1m_20261022'

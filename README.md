@@ -5,6 +5,29 @@ search. It combines IDF-aware SOS encoding, spherical partitioning with
 spillover, and cluster-adaptive MinHash candidate generation. Candidates are
 ranked using their original sparse inner products with double accumulation.
 
+## Quick start without downloading data
+
+On Linux or WSL, after installing the dependencies listed below:
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel 2
+ctest --test-dir build --output-on-failure
+python3 examples/tiny.py --out results/tiny
+python3 examples/tiny.py --maintenance --out results/tiny-maintenance
+```
+
+The examples generate small synthetic CSR inputs, execute the production CABS
+algorithm with automatic K/m/B, and independently check GT and returned scores.
+The second also exercises insertion, deletion, update and refresh. Output folders
+must be new. These are functional examples; their timings are not benchmark
+claims. No baseline library, external vector dataset, server or validation-lock
+framework is needed. See [the CABS-only release checklist](CABS_RELEASE_CHECKLIST.md).
+
+The active release scope is CABS implementation and reproducibility only.
+Historical server proposals and third-party comparison notes are research
+background, not prerequisites for installing, using or accepting this release.
+
 ## Compilation
 
 Requirements: Linux or WSL, GCC 9 or later with OpenMP, CMake 3.16 or later,
