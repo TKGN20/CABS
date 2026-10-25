@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-25",
+  "status": "PASS",
+  "tested_main_merge": "4fa179b154d09fb922162b676a6f7916db472a86",
+  "approved_candidate": "a534b158ea87d60a43481c4eac5b81ef2b138509",
+  "production_baseline": "e26de385fe78d3589d6d861c3560c443e254f9cc",
+  "clone_url": "https://github.com/TKGN20/CABS.git",
+  "branch": "main (default)",
+  "tree_equals_approved_candidate": true,
+  "release_ctests": 5,
+  "static_example": "PASS: 16 independently checked exact-GT queries",
+  "maintenance_example": "PASS: 16 independently checked exact-GT queries and maintenance checkpoints",
+  "artifact_members_checked": 185,
+  "historical_source_checks": 164,
+  "current_frozen_files": 19,
+  "historical_baseline_frozen_files": 19,
+  "main_ci": "https://github.com/TKGN20/CABS/actions/runs/40175560510",
+  "main_ci_jobs": {
+    "Release": "success",
+    "Debug_ASan_UBSan": "success"
+  },
+  "log_sha256_lf": "4fc73f7c4530642fc97d8d18177140df6153f4ff0304bcf6bfa1daaae58ecb73",
+  "normalization": "Replace literal/JSON-escaped checkout path by $REPO and normalize CRLF to LF; retain terminal output including warnings.",
+  "scope": "CABS-only release; no new full-corpus/server/baseline benchmark; no production/default/build changes",
+  "publication": "PR #4 then PR #7 owner-approved and merged; PR #5 remains separate; following status commit is documentation/evidence only"
+}

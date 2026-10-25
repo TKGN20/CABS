@@ -12,18 +12,6 @@ On Linux or WSL, after installing the dependencies listed below:
 ```bash
 git clone https://github.com/TKGN20/CABS.git
 cd CABS
-```
-
-Until PR #7 is merged, check out the public delivery candidate before following
-the remaining commands:
-
-```bash
-git checkout codex/opensource-final-20261025
-```
-
-Then build and run:
-
-```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel 2
 ctest --test-dir build --output-on-failure
@@ -38,7 +26,7 @@ must be new. These are functional examples; their timings are not benchmark
 claims. No baseline library, external vector dataset, server or validation-lock
 framework is needed. See [the CABS-only release checklist](CABS_RELEASE_CHECKLIST.md).
 The [release acceptance report](docs/OPEN_SOURCE_ACCEPTANCE.md) records tested
-revisions, CI and remaining publication steps.
+revisions, CI and the completed owner-approved merges into main.
 
 The active release scope is CABS implementation and reproducibility only.
 Historical server proposals and third-party comparison notes are research

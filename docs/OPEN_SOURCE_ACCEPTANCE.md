@@ -9,8 +9,10 @@ reproduction tools are required. No baseline or server comparison is a gate.
 - Production baseline: `e26de385fe78d3589d6d861c3560c443e254f9cc` (PR #4).
 - Delivery: [PR #7](https://github.com/TKGN20/CABS/pull/7), branch
   `codex/opensource-final-20261025`, directly based on that baseline.
-- PR #5 remains separate experimental material. Neither PR #4 nor #5 is merged
-  by this delivery. Owner approval is still required for merges.
+- The owner approved the sequential merges on 2026-10-25. PR #4 merged as
+  `4899be960267cc8854d51c5d6ac5c035a35b11b7`, then PR #7 was retargeted to main,
+  checked and merged as `4fa179b154d09fb922162b676a6f7916db472a86`.
+  PR #5 remains separate experimental material and is not merged.
 - The 19-file production/default freeze remains enforced. The release work adds
   a public tiny example, reporting/input-validation tests and documentation;
   it does not change K/m/B, routing, scoring or default configurations.
@@ -95,11 +97,22 @@ minwise independence is not proved. Calibration does not guarantee every future
 query's Recall@50. Indexes are in memory; concurrent maintenance, crash recovery,
 serialization and native Windows builds are outside the supported interface.
 
-Code acceptance and merging are separate. The intended release route is owner
-approval of frozen PR #4, then retarget/review the small PR #7 delta against main.
-Do not merge PR #7 into the frozen review branch or merge PR #5 wholesale. No tag
-or GitHub Release is claimed to exist until the owner approves publication.
+## Completed publication on main
 
-Decision: **CABS-only technical acceptance passes at the tested code revision.**
-Owner merge/publication approval remains pending. The repository's default main
-branch is not relabeled as this candidate before the approved merges occur.
+The approved route is complete: PR #4 merged first; PR #7 was retargeted to main
+and its ten-file delta checked before merging. Main merge `4fa179b` has exactly
+the same tracked tree as approved candidate `a534b15`; production/default/build
+files remain identical to the frozen PR #4 implementation. PR #5 is not merged.
+
+[Main CI run 40175560510](https://github.com/TKGN20/CABS/actions/runs/40175560510)
+rebuilt Release and Debug ASan/UBSan successfully. A new default-branch public
+clone also built Release, passed all five CTests, ran static and maintenance
+examples, and verified all 185 artifact members, 164 historical source-file
+checks and 19 frozen files against current content and baseline Git blobs.
+See the [main receipt](release_checks/main_receipt.json) and
+[normalized main execution log](release_checks/main_clone.log).
+
+Decision: **CABS-only open-source delivery FINAL PASS.** The repository's default
+main now contains the accepted delivery. This final status synchronization adds
+documentation/evidence only. No tag, GitHub Release or additional performance
+experiment is needed or claimed for Issue #6.

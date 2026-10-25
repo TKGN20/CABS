@@ -1,0 +1,148 @@
+=== main-configure.log ===
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenMP_CXX: -fopenmp (found version "4.5") 
+-- Found OpenMP: TRUE (found version "4.5")  
+-- Found Python3: /usr/bin/python3.10 (found suitable version "3.10.12", minimum required is "3.8") found components: Interpreter 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: $REPO/build
+
+=== main-build.log ===
+gmake: Warning: File 'Makefile' has modification time 1 s in the future
+gmake[1]: Warning: File 'CMakeFiles/Makefile2' has modification time 1.1 s in the future
+gmake[2]: Warning: File 'CMakeFiles/cabs_mechanism_contract.dir/flags.make' has modification time 0.86 s in the future
+gmake[2]: Warning: File 'CMakeFiles/cabs.dir/flags.make' has modification time 0.83 s in the future
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[2]: Warning: File 'CMakeFiles/cabs.dir/flags.make' has modification time 0.8 s in the future
+gmake[2]: Warning: File 'CMakeFiles/cabs_mechanism_contract.dir/flags.make' has modification time 0.84 s in the future
+[ 33%] Building CXX object CMakeFiles/cabs.dir/src/main.cpp.o
+[ 33%] Building CXX object CMakeFiles/cabs_mechanism_contract.dir/tests/mechanism_contract.cpp.o
+[ 50%] Linking CXX executable cabs_mechanism_contract
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+[ 50%] Built target cabs_mechanism_contract
+[ 66%] Building CXX object CMakeFiles/cabs_calibration_audit.dir/benchmarks/calibration_audit.cpp.o
+In file included from $REPO/benchmarks/calibration_audit.cpp:1:
+$REPO/include/final_equivalence.hpp:63:13: warning: ‘void check_query(const cabs_index::Index&, cabs_index::Row, cabs_index::Id, size_t, bool, Trace*, Trace*)’ defined but not used [-Wunused-function]
+   63 | static void check_query(const Index& idx,Row q,Id qid,size_t k,bool stop,Trace* before_out=nullptr,Trace* after_out=nullptr){
+      |             ^~~~~~~~~~~
+[ 83%] Linking CXX executable cabs
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+[ 83%] Built target cabs
+[100%] Linking CXX executable cabs_calibration_audit
+[100%] Built target cabs_calibration_audit
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+
+=== main-tests.log ===
+Internal ctest changing into directory: $REPO/build
+Test project $REPO/build
+    Start 1: semantic
+1/5 Test #1: semantic .........................   Passed    0.01 sec
+    Start 2: end_to_end
+2/5 Test #2: end_to_end .......................   Passed    1.03 sec
+    Start 3: reporting_validation
+3/5 Test #3: reporting_validation .............   Passed    0.30 sec
+    Start 4: mechanism_contract
+4/5 Test #4: mechanism_contract ...............   Passed    0.01 sec
+    Start 5: calibration_audit
+5/5 Test #5: calibration_audit ................   Passed    0.50 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   1.87 sec
+
+=== main-tiny.log ===
+{
+  "status": "PASS",
+  "output": "$REPO/results/tiny",
+  "independent_GT_queries": 16,
+  "maintenance_checked": false,
+  "scope": "Functional example only; synthetic timing is not a dataset benchmark or paper result"
+}
+
+=== main-maintenance.log ===
+{
+  "status": "PASS",
+  "output": "$REPO/results/tiny-maintenance",
+  "independent_GT_queries": 16,
+  "maintenance_checked": true,
+  "scope": "Functional example only; synthetic timing is not a dataset benchmark or paper result"
+}
+
+=== main-artifacts.json ===
+{
+  "status": "PASS",
+  "artifact_members_checked": 185,
+  "canonical_source_files_checked": 164,
+  "approval_baseline": {
+    "approval_baseline_commit": "fa2455ed83de47fec1de60563949e32eb1d34c6c",
+    "files_checked": 19,
+    "historical_baseline_files_checked": 19,
+    "normalization": "CRLF to LF only; no whitespace or code normalization"
+  },
+  "full_runs": {
+    "measured/splade-0.1m": {
+      "Recall@50": 0.9954071100916889,
+      "QPS": 158.11887373599666,
+      "IS_bytes": 392970289,
+      "measured_queries": 20928
+    },
+    "measured/splade-1m": {
+      "Recall@50": 0.9957167431192104,
+      "QPS": 12.040261764554861,
+      "IS_bytes": 3461449469,
+      "measured_queries": 20928
+    },
+    "engineering/cache_20261022": {
+      "Recall@50": 0.9954071100916889,
+      "QPS": 185.5433190801514,
+      "IS_bytes": 209246838,
+      "measured_queries": 20928
+    },
+    "engineering/review_1m_20261022": {
+      "Recall@50": 0.9957167431192104,
+      "QPS": 17.471727307186487,
+      "IS_bytes": 1746098882,
+      "measured_queries": 20928
+    }
+  },
+  "complete_1m_non_timing_equivalence": true,
+  "diagnostics": {
+    "calibration_audit_small_20261022": {
+      "candidates": 10
+    },
+    "selected_profile_1m_20261022": {
+      "candidates": 1
+    }
+  },
+  "selected_final_index_query_matches": 16,
+  "approval_evidence": {
+    "pilot_cases": 4,
+    "common_queries_per_case": 64,
+    "common_timing_records_per_case": 192,
+    "routing": {
+      "queries": 16,
+      "trace_rows": 128,
+      "stop_events": 0,
+      "angular_factor_min": 0.9990278559362407,
+      "angular_factor_median": 0.9999683372354129,
+      "fraction_angular_factor_one": 0.359375,
+      "suffix_over_gamma_min": 4.097129363756321,
+      "suffix_over_gamma_median": 5.445249070171126,
+      "exact_cluster_maximum_checks": 32,
+      "upper_over_exact_max_min": 3.3258493977877115,
+      "upper_over_exact_max_median": 4.36041901136772,
+      "cover_radius_min": 1.5158551931858988,
+      "cover_radius_max": 1.5344948290132117,
+      "scope": "selected-index subset diagnostic; exact cluster scans and traces excluded from QPS"
+    },
+    "frozen_budget_combinations": 30
+  },
+  "scope": "read-only saved-record and optional historical-source verification; no new retrieval run or independent whole-corpus GT computation"
+}

@@ -9,10 +9,11 @@ Production baseline: `e26de385fe78d3589d6d861c3560c443e254f9cc` (frozen PR #4).
 Tested code: `7aa8c540e6b514481bcf48047bbfbd48af7f1b9f`.
 Delivery: [PR #7](https://github.com/TKGN20/CABS/pull/7), branch
 `codex/opensource-final-20261025`, based directly on the production baseline.
+Owner-approved main merge: `4fa179b154d09fb922162b676a6f7916db472a86`.
 
-**Decision: CABS-only technical acceptance PASS; owner merge/publication approval
-pending.** No production/default edits, PR merges, tag or Release publication
-are authorized by this checklist. PASS is limited to the named evidence.
+**Decision: CABS-only open-source delivery FINAL PASS.** The owner approved and
+PR #4 and PR #7 were merged sequentially on 2026-10-25. PR #5 remains separate.
+PASS is limited to the named evidence. No tag or GitHub Release is claimed.
 
 | Requirement | Status | Evidence |
 | --- | --- | --- |
@@ -21,7 +22,7 @@ are authorized by this checklist. PASS is limited to the named evidence.
 | Minimal example without external vectors | PASS | `examples/tiny.py`, static and maintenance; 16 independent GT queries in each, exact returned scores, overwrite refusal |
 | Clean Linux Release build/test | PASS | Public clone at c6d6956; all five CTests; rerun at 7aa8c54 with frozen C++/build files identical |
 | Clean Debug ASan/UBSan build/test | PASS | Same clean clone, all five CTests; leak and undefined-behavior halting enabled; rerun at 7aa8c54 |
-| Candidate GitHub CI | PASS at tested code | [Run 40174695971](https://github.com/TKGN20/CABS/actions/runs/40174695971), fresh Release and Debug ASan/UBSan builds/test; Release audits saved measurements |
+| GitHub CI | PASS | [Main merge run 40175560510](https://github.com/TKGN20/CABS/actions/runs/40175560510), Release and Debug ASan/UBSan successful; Release audits saved measurements; candidate runs retained in report |
 | Public data and CABS-only commands | PASS | Three download URLs respond 200; local 0.1M/1M/query headers, sizes and SHA-256 match; public query gzip downloaded/decompressed/verified; no new full-corpus benchmark |
 | Input/error regression tests | PASS | Eleven Python reporting/input tests; missing offline file, mismatched hash, truncated header/size, reporting integrity and cross-version rounding covered |
 | Existing CABS measurements recomputable | PASS, saved-record scope | 185 artifact members and 19 frozen files verified; Linux Python 3.10 and Python-only verifier under 3.14; historical measurements unchanged |
@@ -37,7 +38,9 @@ log are replaced by `$REPO`; original experimental bundles are not rewritten.
 Build logs retain an existing unused-function warning and WSL timestamp warnings;
 both builds and all executed checks completed successfully.
 
-Publication action remaining: owner approval of frozen PR #4, then retarget and
-review the small PR #7 delta against main. Do not merge PR #7 into the frozen
-PR #4 branch or merge PR #5 wholesale. Main is not yet the release candidate.
-There are no remaining baseline/server/paper experimental requirements.
+Publication completed: frozen PR #4 merged as `4899be9`; PR #7 was retargeted to
+main, its ten-file delta checked, then merged as `4fa179b`. That merge's tree is
+identical to approved candidate `a534b15`. The default-main clean-clone checks are
+recorded in `docs/release_checks/main_receipt.json` and `main_clone.log`.
+This status update changes documentation/evidence only. PR #5 is not merged;
+there are no remaining baseline/server/paper experimental requirements.
