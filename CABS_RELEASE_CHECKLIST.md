@@ -1,42 +1,43 @@
 # CABS open-source release checklist
 
-Scope authority: [Issue #6](https://github.com/TKGN20/CABS/issues/6), revision
-2026-10-25. This replaces the former TKDE/baseline/server delivery mission.
-Only CABS code, usability, tests, its own reproduction tools and documentation
-are release requirements. PR #5 remains separate experimental material.
+Scope authority: [Issue #6](https://github.com/TKGN20/CABS/issues/6), revised
+2026-10-25. Only CABS implementation, usability, tests, its own reproduction
+tools and documentation are acceptance requirements. PR #5 remains separate
+experimental material; no baseline, server or paper-speedup gate applies.
 
 Production baseline: `e26de385fe78d3589d6d861c3560c443e254f9cc` (frozen PR #4).
-Delivery branch: `codex/opensource-final-20261025`, based directly on that SHA.
-No production/default changes or PR merges are authorized by this checklist.
+Tested code: `7aa8c540e6b514481bcf48047bbfbd48af7f1b9f`.
+Delivery: [PR #7](https://github.com/TKGN20/CABS/pull/7), branch
+`codex/opensource-final-20261025`, based directly on the production baseline.
 
-PASS is limited to the evidence named in its row. FAIL includes work not yet
-executed; it does not mean an observed algorithm failure. BLOCKED requires a
-specific unavailable prerequisite. The final report will record exact candidate
-SHA, clean-clone logs and CI links before requesting release approval.
+**Decision: CABS-only technical acceptance PASS; owner merge/publication approval
+pending.** No production/default edits, PR merges, tag or Release publication
+are authorized by this checklist. PASS is limited to the named evidence.
 
-| Requirement | Status | Current evidence / work remaining |
+| Requirement | Status | Evidence |
 | --- | --- | --- |
-| Section IV-A–IV-E source present | PASS (mapped and tested) | `docs/PAPER_IMPLEMENTATION.md`, `docs/METHOD.md`; five CTests passed in local Release and ASan/UBSan builds; frozen production unchanged |
-| Automatic K/m/B and maintenance mechanisms | PASS (tested contract) | `tests/mechanism_contract.cpp`, `selftest`, and tiny maintenance execution passed; not a universal recall guarantee |
-| Minimal example without external vectors | PASS (local execution) | `examples/tiny.py` static and maintenance modes passed, including 16 independent GT queries and refusal to overwrite outputs; also exercised by end-to-end CTest |
-| Clean Linux Release build and CTest | FAIL | No clean-clone execution yet for this release candidate |
-| Clean ASan/UBSan build and CTest | FAIL | No clean-clone execution yet for this release candidate |
-| Current candidate CI | FAIL | Candidate has not yet been published; PR #4 CI is historical evidence only |
-| CABS SPLADE-0.1M/1M data and run instructions | PASS (existing entry points) | `configs/datasets.json`, `scripts/prepare_data.py`, `scripts/reproduce.sh`; verify checksums/commands and error paths |
-| Saved CABS measurements independently recomputable | PASS (saved-record scope) | `scripts/verify_artifacts.py`: 185 artifact members and 19 frozen files passed on Linux Python 3.10 and read-only Python 3.14; no full performance rerun claimed |
-| README, parameters, complexity, license and limitations | FAIL | Existing material is present; simplify release entry points and distinguish release scope from historical research plans |
-| Public-file, license and artifact-size audit | FAIL | Inventory tracked payloads and known historical path metadata; no original corpus or credentials may be added |
-| Fresh public clone follows README successfully | FAIL | Execute against the final published candidate; preserve exact revision and logs |
-| Final acceptance report / recommended revision | FAIL | Requires the above execution evidence; no self-merge or fabricated release claim |
+| Section IV-A–IV-E source present | PASS | `docs/PAPER_IMPLEMENTATION.md`, `docs/METHOD.md`, mechanism/production-path CTests; 19-file production/default freeze unchanged |
+| Automatic K/m/B and maintenance | PASS | Mechanism contract, selftest, maintenance example; insert/delete/update/refresh and cache lifecycle checks; no universal recall guarantee |
+| Minimal example without external vectors | PASS | `examples/tiny.py`, static and maintenance; 16 independent GT queries in each, exact returned scores, overwrite refusal |
+| Clean Linux Release build/test | PASS | Public clone at c6d6956; all five CTests; rerun at 7aa8c54 with frozen C++/build files identical |
+| Clean Debug ASan/UBSan build/test | PASS | Same clean clone, all five CTests; leak and undefined-behavior halting enabled; rerun at 7aa8c54 |
+| Candidate GitHub CI | PASS at tested code | [Run 40174695971](https://github.com/TKGN20/CABS/actions/runs/40174695971), fresh Release and Debug ASan/UBSan builds/test; Release audits saved measurements |
+| Public data and CABS-only commands | PASS | Three download URLs respond 200; local 0.1M/1M/query headers, sizes and SHA-256 match; public query gzip downloaded/decompressed/verified; no new full-corpus benchmark |
+| Input/error regression tests | PASS | Eleven Python reporting/input tests; missing offline file, mismatched hash, truncated header/size, reporting integrity and cross-version rounding covered |
+| Existing CABS measurements recomputable | PASS, saved-record scope | 185 artifact members and 19 frozen files verified; Linux Python 3.10 and Python-only verifier under 3.14; historical measurements unchanged |
+| README, parameters, complexity, license/citation, limits | PASS | Clone/build/examples, CLI/automatic configuration, metric definitions, API boundaries, `docs/COMPLEXITY.md`, MIT license and repository citation |
+| Public files and sizes | PASS with disclosed historical metadata | At tested code: 284 files, 66,551,985 payload bytes, largest 10,348,499; no tracked corpus/binary; common credential-pattern scan empty; 17 historical path-bearing records preserved |
+| Fresh public clone follows usage path | PASS | Exact revisions, environment and command outputs in `docs/release_checks/`; ordinary CABS build has no baseline dependency |
+| Final report and recommended revision | PASS | `docs/OPEN_SOURCE_ACCEPTANCE.md`; tested code 7aa8c54 plus final documentation/evidence commit recommended for owner review |
 
-Cancelled requirements: third-party baseline work, comparison infrastructure,
-matched-recall grids, new server runs, twelve-workload experiments and paper
-speedup targets. None may block or extend this CABS-only release.
+Execution evidence is in [the report](docs/OPEN_SOURCE_ACCEPTANCE.md),
+[normalized log](docs/release_checks/clean_clone.log) and
+[receipt](docs/release_checks/receipt.json). Absolute checkout paths in the new
+log are replaced by `$REPO`; original experimental bundles are not rewritten.
+Build logs retain an existing unused-function warning and WSL timestamp warnings;
+both builds and all executed checks completed successfully.
 
-Local checks completed before publication: five Release CTests, five Debug
-ASan/UBSan CTests, nine Python reporting tests, static/maintenance tiny examples
-and saved-record verification. The Python 3.14 aggregate-rounding mismatch was
-reproduced and fixed only for declared floating aggregate fields at 1e-12;
-record hashes, IDs, counts, source freeze and original measurement bytes remain
-strict. Windows-native CABS is still unsupported; Python-only record verification
-is a separate scope. Clean public-clone and candidate-CI acceptance remain open.
+Publication action remaining: owner approval of frozen PR #4, then retarget and
+review the small PR #7 delta against main. Do not merge PR #7 into the frozen
+PR #4 branch or merge PR #5 wholesale. Main is not yet the release candidate.
+There are no remaining baseline/server/paper experimental requirements.

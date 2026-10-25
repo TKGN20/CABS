@@ -32,10 +32,22 @@ Environment: Ubuntu 22.04 under WSL, GCC 11.4, Python 3.10.12, CMake/OpenMP.
 | Public data links | PASS on 2026-10-25 | Three HTTP HEAD responses were 200 |
 | Data content | PASS | Existing local 0.1M, 1M and query files match manifest headers, sizes and SHA-256; public query gzip independently downloaded/decompressed and verified |
 
-The following revision also adds explicit regression checks for missing offline
-inputs, wrong checksums and truncated CSR headers/sizes. Its final commit and
-CI evidence will be recorded after publication. The current checklist is the
-authoritative remaining-work list, not a claim that unexecuted checks passed.
+The final tested code revision is
+`7aa8c540e6b514481bcf48047bbfbd48af7f1b9f`. It adds regression checks for missing
+offline inputs, wrong checksums and truncated CSR headers/sizes. The clean public
+clone was fast-forwarded to this exact revision; both five-test CTest suites,
+all eleven Python reporting/input tests and both examples passed again. The
+production/default/build files are identical, so the clean-built C++ binaries
+remain applicable. GitHub also rebuilt this exact revision from scratch:
+[run 40174695971](https://github.com/TKGN20/CABS/actions/runs/40174695971), Release
+and Debug ASan/UBSan both successful.
+
+Public evidence: [normalized execution log](release_checks/clean_clone.log),
+[machine-readable receipt](release_checks/receipt.json), and
+[public payload audit](release_checks/public_files.json). The final documentation
+commit adds only this report, checklist and execution evidence. Recommend the
+tested code revision above for acceptance; include its subsequent documentation
+commit when merging. No release tag has been created.
 
 Builds emitted an existing unused-function warning in the diagnostic target and
 WSL mounted-filesystem clock-skew warnings. Both builds completed and their
@@ -57,7 +69,7 @@ executables passed the tests; these warnings are retained in the acceptance logs
 
 ## Public payload audit
 
-At `c6d6956`, 283 tracked files contain 66,543,714 payload bytes (not Git history
+At `7aa8c54`, 284 tracked files contain 66,551,985 payload bytes (not Git history
 or checkout disk allocation). The largest is a 10,348,499-byte compressed GT
 record. There are no tracked CSR corpora, executable binaries, object files or
 shared libraries. The ordinary build needs only the C++/Python standard tools.
@@ -87,3 +99,7 @@ Code acceptance and merging are separate. The intended release route is owner
 approval of frozen PR #4, then retarget/review the small PR #7 delta against main.
 Do not merge PR #7 into the frozen review branch or merge PR #5 wholesale. No tag
 or GitHub Release is claimed to exist until the owner approves publication.
+
+Decision: **CABS-only technical acceptance passes at the tested code revision.**
+Owner merge/publication approval remains pending. The repository's default main
+branch is not relabeled as this candidate before the approved merges occur.
