@@ -1,5 +1,6 @@
 #include "cabs.hpp"
 #include "cabs/reporting.hpp"
+#include "cabs_space.hpp"
 #include <iomanip>
 using namespace cabs_index;
 
@@ -18,7 +19,7 @@ static std::vector<Id> ids(const std::string& path,uint64_t count) {
 int main(int argc,char** argv) {
     try {
         if(argc!=14)throw std::runtime_error("Expected data queries calibration_ids measured_ids out index_seed kmax k repeats ell delta threads iterations");
-        double start=seconds();CSR docs(argv[1]),queries(argv[2]);
+        double build_start=seconds(),start=build_start;CSR docs(argv[1]),queries(argv[2]);
         if(docs.d!=queries.d)throw std::runtime_error("Dimension mismatch");
         Collection data(docs);double loading=seconds()-start;
         auto calibration=ids(argv[3],queries.n),measured=ids(argv[4],queries.n);
@@ -30,8 +31,8 @@ int main(int argc,char** argv) {
         omp_set_num_threads(o.threads);Calibration cal;start=seconds();
         for(auto id:calibration){cal.query_ids.push_back(id);cal.queries.push_back(queries.row(id));cal.targets.push_back(exact(data,queries.row(id),o.kmax));}
         double calibration_gt=seconds()-start;
-        Index index(data,o);index.rebuild(cal);start=seconds();index.release_sketch_cache();double release=seconds()-start;
-        double it=loading+calibration_gt+index.build_seconds+release;
+        Index index(data,o);index.rebuild(cal);uint64_t cache_before=index.sketches.bytes();start=seconds();index.release_sketch_cache();cal=Calibration{};double release=seconds()-start;
+        double it=seconds()-build_start,legacy_it=loading+calibration_gt+index.build_seconds+release;
         std::string out=argv[5];std::ofstream gt(out+"/ground_truth.csv"),hitsfile(out+"/retrieved.csv"),times(out+"/queries.csv");
         if(!gt || !hitsfile || !times)throw std::runtime_error("Cannot open output files");
         gt<<std::setprecision(17)<<"query_id,rank,identifier,score\n";hitsfile<<std::setprecision(17)<<"query_id,rank,identifier,score\n";
@@ -46,8 +47,9 @@ int main(int argc,char** argv) {
             for(size_t p=0;p<result.size();++p){auto h=result[p];if(!unique.insert(h.id).second || h.score!=dot(queries.row(id),data.row(h.id)) || (p && !better(result[p-1],h)))throw std::runtime_error("Invalid ranked result");matched+=wanted.count(h.id);if(!repeat)hitsfile<<id<<','<<p+1<<','<<h.id<<','<<h.score<<'\n';}
             double value=double(matched)/k;elapsed+=time;recall+=value;times<<repeat<<','<<id<<','<<value<<','<<time<<','<<stats.verified<<','<<stats.probed<<'\n';
         }
-        uint64_t payload=docs.bytes;for(auto entry:retained_index_bytes(index))payload+=entry.second;
-        std::ofstream summary(out+"/summary.json");summary<<std::setprecision(17)<<"{\"recall\":"<<recall/(repeats*measured.size())<<",\"qps\":"<<repeats*measured.size()/elapsed<<",\"IT_seconds\":"<<it<<",\"IS_bytes\":"<<payload<<",\"K\":"<<index.tables.size()<<",\"B\":"<<index.B<<",\"k\":"<<k<<",\"repeats\":"<<repeats<<",\"queries\":"<<measured.size()<<",\"clusters\":[";
+        auto inventory=cabs_space_inventory(index,docs,cal);uint64_t payload=write_cabs_space(out+"/index_space.json",inventory,docs,cache_before),legacy_payload=docs.bytes;
+        for(const auto& entry:inventory.legacy)legacy_payload+=entry.second;
+        std::ofstream summary(out+"/summary.json");summary<<std::setprecision(17)<<"{\"method\":\"CABS\",\"search_threads\":1,\"build_threads\":"<<o.threads<<",\"record_version\":\"fixed-query-retained-space-v2\",\"recall\":"<<recall/(repeats*measured.size())<<",\"qps\":"<<repeats*measured.size()/elapsed<<",\"IT_seconds\":"<<it<<",\"IT_legacy_stage_sum_seconds\":"<<legacy_it<<",\"IT_components_seconds\":{\"loading\":"<<loading<<",\"calibration_GT\":"<<calibration_gt<<",\"native_build\":"<<index.build_seconds<<",\"release\":"<<release<<",\"driver_setup\":"<<it-legacy_it<<"},\"IS_status\":\"REPORTED_NOT_COMMON_VALIDATED\",\"IS_bytes\":"<<payload<<",\"IS_legacy_bytes\":"<<legacy_payload<<",\"K\":"<<index.tables.size()<<",\"B\":"<<index.B<<",\"k\":"<<k<<",\"repeats\":"<<repeats<<",\"queries\":"<<measured.size()<<",\"clusters\":[";
         for(size_t i=0;i<index.partition.clusters.size();++i){if(i)summary<<',';summary<<"{\"m\":"<<index.partition.clusters[i].m<<",\"floor\":"<<index.partition.clusters[i].floor<<'}';}summary<<"]}\n";
         gt.flush();hitsfile.flush();times.flush();summary.flush();if(!gt || !hitsfile || !times || !summary)throw std::runtime_error("Output write failure");
         return 0;

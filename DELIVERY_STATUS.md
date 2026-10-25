@@ -50,7 +50,7 @@ branch. PR #4 and historical result bundles are preserved.
 The [baseline integration notes](experiments/baselines/README.md) distinguish
 native builds, disclosed seed/scoring adaptations and bounded fixture acceptance.
 Run `python3 experiments/delivery/verify_receipts.py` to check the saved receipts
-and independently recompute twenty saved synthetic fixture bundles without native binaries.
+and independently recompute twenty-two saved synthetic fixture bundles without native binaries.
 The full local milestone and remaining gaps are summarized in the
 [2026-10-23 checkpoint](docs/DELIVERY_CHECKPOINT_20261023.md).
 The [SINDI audit/erratum](docs/SINDI_INTEGRATION_AUDIT_20261023.md) supersedes the
@@ -61,6 +61,6 @@ The repaired candidate adapter passed its bounded fixture on 2026-10-24; see the
 [new checkpoint](docs/DELIVERY_CHECKPOINT_20261024.md) for executed checks and gaps.
 The [Chinese handoff report](docs/DELIVERY_REVIEW_ZH_20261024.md) summarizes the
 real-data smoke, clean CI and next acceptance work.
-All three baselines now have [checked retained-component inventories](docs/BASELINE_SPACE_AUDIT_20261024.md),
-with 33 receipts, 20 synthetic bundles and three real component records. CABS
-component export, common IS/timing policy and four-method selection remain unfinished.
+All four methods now have [checked components and unified cost records](docs/COMMON_COST_CHECKPOINT_20261025.md),
+with 39 receipts, 22 synthetic bundles, four real component records and 12 unified
+cost records. Full timing/IS fairness acceptance and four-method selection remain unfinished.

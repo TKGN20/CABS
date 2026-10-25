@@ -9,6 +9,7 @@ import tempfile
 from types import SimpleNamespace
 
 from protocol import plan,run,load,save,lock_runs,checked_run,checked_plan
+from baselines.space_inventory import audit_cabs_inventory
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tests'))
 from smoke_test import write_csr
@@ -33,6 +34,7 @@ def check(binary):
         reject(lambda:run(args('no-lock',role='evaluation')))
         run(args('validation'));run(args('other-index',index=32))
         m,s=checked_run(d/'validation');m2,_=checked_run(d/'other-index')
+        assert 'experiments/cabs_space.hpp' in m['binding']['source_sha256']
         assert m['calibration_ids']==m2['calibration_ids'] and m['query_ids']==p['selection']
         run(args('other-cal',cal=42));m3,_=checked_run(d/'other-cal');assert m3['calibration_ids']!=m['calibration_ids'] and m3['index_seed']==m['index_seed']
         selected=lock_runs([d/'validation',d/'other-index'],d/'lock.json',0,1)
@@ -51,6 +53,7 @@ def check(binary):
         config['ell']=8;(d/'config.json').write_text(json.dumps(config));reject(lambda:run(args('changed',role='evaluation',lock=d/'lock.json')))
         config['ell']=4.5;(d/'config.json').write_text(json.dumps(config));reject(lambda:run(args('fractional-config')))
         for name in ('validation','other-index','other-cal','final'):
+            audit_cabs_inventory(d/name,d/'data.csr')
             with (d/name/'ground_truth.csv').open() as f:truth=list(csv.DictReader(f))
             grouped={}
             for r in truth:grouped.setdefault(int(r['query_id']),[]).append((int(r['identifier']),float(r['score'])))
@@ -61,6 +64,9 @@ def check(binary):
                 for r in csv.DictReader(f):
                     q=queries[int(r['query_id'])];x=docs[int(r['identifier'])];assert float(r['score'])==sum(v*q.get(j,0) for j,v in x.items())
         raw=d/'validation/queries.csv';raw.write_bytes(raw.read_bytes()+b'changed');reject(lambda:checked_run(d/'validation'))
+        corrupt=d/'bad-space';corrupt.mkdir();save(corrupt/'summary.json',load(d/'final/summary.json'))
+        damaged=load(d/'final/index_space.json');damaged['counts']['minhash_postings_capacity']+=1;save(corrupt/'index_space.json',damaged)
+        reject(lambda:audit_cabs_inventory(corrupt,d/'data.csr'))
         malformed=load(d/'plan.json');malformed['selection'][0]=malformed['evaluation'][0];save(d/'bad-plan.json',malformed);reject(lambda:checked_plan(d/'bad-plan.json',d/'query.csr'))
         reject(lambda:lock_runs([],d/'empty.json',0,1))
         print(json.dumps(dict(status='PASS',independent_python_GT=True,original_query_ids=True,seed_isolation=True,evaluation_lock_enforced=True,heldout_selection=True,modified_artifact_rejected=True)))

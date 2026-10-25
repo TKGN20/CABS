@@ -31,7 +31,7 @@ def require(condition,message):
 
 
 def code_hashes():
-    paths=list((ROOT/'include').rglob('*.hpp'))+[Path(__file__),ROOT/'experiments/fixed_queries.cpp']
+    paths=list((ROOT/'include').rglob('*.hpp'))+list((ROOT/'experiments').glob('*.hpp'))+[Path(__file__),ROOT/'experiments/fixed_queries.cpp']
     return {p.relative_to(ROOT).as_posix():sha(p) for p in sorted(paths)}
 
 

@@ -1,7 +1,7 @@
-# Baseline cost accounting — source audit, not accepted IS measurements
+# Baseline cost accounting — component records, acceptance still open
 
-Scope: pinned sources and current experimental adapters. This audit does not
-provide missing index-space numbers or certify fair performance. The public
+Scope: pinned sources and current experimental adapters. Executed component
+records and final fair-performance acceptance are distinct. The public
 metric remains **index space (IS)**, using the existing VI-A/server-protocol
 definition: retained index payload plus required original-vector storage;
 report peak RSS and serialized bytes separately. Count shared storage once and
@@ -13,7 +13,7 @@ the current CABS inventory before comparing methods.
 
 | Method | Observed retained structures / interface | Required acceptance work |
 | --- | --- | --- |
-| CABS | `retained_index_bytes()` includes explicit headers, allocated capacities, encoding metadata, cardinalities, collection metadata, partition, MinHash tables and retained calibration buffers; fixed driver adds original CSR bytes and releases the sketch cache | Export the component inventory in the common benchmark record, retain the cache-release proof and check that current static-only restrictions hold |
+| CABS | Experimental exporter now splits 29 components, preserves the frozen nine-part aggregate, adds full stage-map node bookkeeping and verifies release of the sketch cache and temporary calibration input | Bounded and one-real-control checks passed; complete timer/warmup fairness and broader acceptance |
 | SOSIA | Original CSR, expanded SOS vectors, hash permutations, per-vector hash values, norm/cardinality ordering and nested bucket vectors remain alive; 16-component inventory now emitted and checked | Component/ABI/capacity tests and one real smoke passed; finalize common policy and broader acceptance; see the SOSIA space audit |
 | SINDI | Zero `GetMemoryUsage()` stub preserved. Registered read-only `GetStats()` now inventories lists, windows, native forward copies and retained mutexes; adapter originals/views counted separately | Component and independent serialization/reload checks plus one real control passed; complete common header/capacity and broader acceptance |
 | SEISMIC | Registered read-only traversal adds retained object headers, boxed payloads and compressed-structure capacity accounting; native `SpaceUsage` remains separately reported; forward vectors counted once and adapter offset map added | Component and serialization/reload checks plus one real control passed; finalize common forward-store/header convention and broader acceptance |
@@ -56,3 +56,6 @@ Continuation: [SOSIA component accounting](SOSIA_SPACE_AUDIT_20261024.md) and
 [three-baseline component checkpoint](BASELINE_SPACE_AUDIT_20261024.md) provide
 executed fixture and one-real-configuration evidence for each baseline. Missing
 baseline exporters are now implemented; the common four-method IS gate is open.
+The [2026-10-25 common cost checkpoint](COMMON_COST_CHECKPOINT_20261025.md) adds
+CABS's exporter, legacy reconciliation and twelve unified cost records. Timer,
+warmup, broader provenance and target-server acceptance remain outstanding.

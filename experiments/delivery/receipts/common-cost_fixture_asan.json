@@ -1,0 +1,122 @@
+{
+  "SOSIA": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "SOSIA",
+    "IT_seconds": 0.0020634870000009187,
+    "IT_source_field": "build_seconds_including_loading",
+    "IS_bytes": 147648,
+    "index_structure_bytes": 125856,
+    "original_vector_bytes": 21792,
+    "original_CSR_reference_bytes": 21792,
+    "original_storage_definition": "Original CSR arrays with one logical CSR-header allowance under the disclosed baseline policy",
+    "components_status": "SOSIA_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {
+      "ell": 4,
+      "m": 16
+    },
+    "binding": {
+      "data_sha256": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+      "artifacts_sha256": {
+        "summary.json": "4fc42570bb59f838cbaf866754b818e3657d4c9889ea671c6f9e7003985ef926",
+        "index_space.json": "7104eb8933966875438c6135a44c11b4b25b9398519a33e1e2fe2ed5a4e7cfec"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance"
+  },
+  "SINDI": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "SINDI",
+    "IT_seconds": 0.0031083569999736937,
+    "IT_source_field": "build_seconds_including_loading",
+    "IS_bytes": 73120,
+    "index_structure_bytes": 51328,
+    "original_vector_bytes": 21792,
+    "original_CSR_reference_bytes": 21792,
+    "original_storage_definition": "Adapter original CSR plus native forward copies separately counted in structure bytes",
+    "components_status": "SINDI_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {
+      "lambda": 10000,
+      "native_reordering": true
+    },
+    "binding": {
+      "data_sha256": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+      "artifacts_sha256": {
+        "summary.json": "158d5b4a520bb7998c1fe20e53b656b4bf91f696b2090082660d24e28ddc27af",
+        "index_space.json": "31215dd9439ce181dfbb457c909ce2397e2b56c00805a20c1b2fb2e211aac091",
+        "native_index.bin": "1fcd56353de84f6b62b277a20d39c0f725a12be27e7deae5a83af936ed2f1a4e"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance",
+    "serialized_bytes": 42000
+  },
+  "SEISMIC": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "SEISMIC",
+    "IT_seconds": 0.007173323,
+    "IT_source_field": "build_seconds_including_loading",
+    "IS_bytes": 76882,
+    "index_structure_bytes": 55114,
+    "original_vector_bytes": 21768,
+    "original_CSR_reference_bytes": 21792,
+    "original_storage_definition": "Full native plain u32/f32 forward heap; its original-vector payload is counted once",
+    "components_status": "SEISMIC_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {},
+    "binding": {
+      "data_sha256": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+      "artifacts_sha256": {
+        "summary.json": "522161d515ad38f61e2e49ab37fccf8f5f8a33f799e89531f78a623134bc9b3b",
+        "index_space.json": "8d0259596b3649d33ba33cf46cbcf5e22af7cadc5edaea1ecf3d48ab50428593",
+        "native_index.bin": "942773c57acbff1624593fa508e3f064e24f43560c03a78c64b8be7aa044bf30"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance",
+    "native_space_usage_bytes": 74882,
+    "serialized_bytes": 69936
+  },
+  "CABS": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "CABS",
+    "IT_seconds": 0.33321929699999986,
+    "IT_source_field": "IT_seconds",
+    "IS_bytes": 61513,
+    "index_structure_bytes": 39721,
+    "original_vector_bytes": 21792,
+    "original_CSR_reference_bytes": 21792,
+    "original_storage_definition": "Original mmap CSR, including its actual 24-byte file header",
+    "components_status": "CABS_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {},
+    "binding": {
+      "data_sha256": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+      "artifacts_sha256": {
+        "summary.json": "4ec455560fbf7abc1956ac459527aa854d8a7b06f5f282376cf2593e8c55e487",
+        "index_space.json": "2bfc32175bcbf74b0196a06850eb864ff2d06ac58ce4760caa39fbadfa7824ab"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance",
+    "legacy_IS_bytes": 61065
+  }
+}

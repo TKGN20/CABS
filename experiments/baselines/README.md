@@ -212,7 +212,7 @@ python3 experiments/baselines/prepare_gt.py --data base.csr --queries queries.cs
 python3 experiments/baselines/prepare_gt.py --data base.csr --queries queries.csr --plan plan.json --binary build-experiment/independent_exact_gt --out build-mission/evaluation-gt --role evaluation --k 50 --lock validation-lock.json
 ```
 
-Both Release and Debug ASan/UBSan experimental builds passed all six CTests
+Both Release and Debug ASan/UBSan experimental builds passed all seven CTests
 locally. This includes the independent GT and role/lock tests, not instrumentation
 of the SINDI native library. Four-method validation drivers, registered grids,
 real-data locks and scalable server execution are still required.
@@ -267,6 +267,28 @@ Add `--no-native-reordering` only for the disclosed SINDI diagnostic branch. Add
 `--roundtrip` only when the run explicitly saved the untimed native index/control.
 The original inputs are required for independently checking SINDI serialized
 postings and forward values. Saved-record audits alone do not rerun native search.
+
+## Unified cost records
+
+The CABS experimental driver now exports 29 detailed components, releases its
+temporary calibration input before queries, and preserves the frozen aggregate
+separately. Full libstdc++ map-node bookkeeping is a disclosed addition; historical
+IS and timing files are unchanged. The static exporter rejects dynamic/owned rows
+and unreleased cache/input storage. The [common cost checkpoint](../../docs/COMMON_COST_CHECKPOINT_20261025.md)
+documents these limits and the remaining timer/warmup fairness work.
+
+Write a parameters JSON containing `{}` for CABS/SEISMIC, `{"ell":4,"m":16}` for
+the shown SOSIA control, or `{"lambda":10000,"native_reordering":true}` for the
+shown SINDI control. These are component-audit parameters, not a tuning grid.
+
+```bash
+python3 experiments/baselines/cost_record.py --method CABS --directory method-run --base base.csr --parameters cost-parameters.json --out cost-record.json
+```
+
+The same command accepts all four method names. It checks component sums, positive
+reported IT, source/artifact hashes and optional resource/serialized records. RSS
+and serialized bytes remain separate from IS. Its audit-only status does not
+certify parameter selection, equivalent warmup/timer boundaries or server results.
 
 The CABS repository license does not replace upstream licenses or attribution.
 SINDI/VSAG preserves its Apache notices; SEISMIC's upstream citation requirements

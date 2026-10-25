@@ -52,7 +52,71 @@ def audit_sosia_inventory(directory,base,ell,m):
     return audit_sosia_inventory_header(directory,n,d,nnz,Path(base).stat().st_size,ell,m)
 
 
+def audit_cabs_inventory_header(directory,n,d,nnz,original_file_bytes):
+    import math
+    root=Path(directory);inventory=json.loads((root/'index_space.json').read_text());summary=json.loads((root/'summary.json').read_text())
+    require(inventory['schema']==1 and inventory['method']=='CABS' and inventory['status']=='REPORTED_NOT_COMMON_VALIDATED','Unsupported CABS inventory schema/status')
+    counts=inventory['counts'];abi=inventory['abi_bytes'];components=inventory['components_bytes'];legacy=inventory['legacy_components_bytes']
+    require(all(type(v) is int and v>=0 for group in (counts,abi,components,legacy) for v in group.values()),'Invalid CABS count/byte value')
+    require((counts['documents'],counts['dimensions'],counts['nnz'])==(n,d,nnz),'CABS original input differs')
+    vectors=('encoding_lengths','encoding_offsets','cached_sketch_row_headers','cached_sketch_slots','cardinalities','collection_records','collection_df',
+             'partition_cluster_headers','partition_primary','partition_secondary','partition_centroids','partition_memberships',
+             'minhash_cluster_headers','minhash_table_headers','minhash_keys','minhash_offsets','minhash_postings',
+             'calibration_query_ids','calibration_row_views','calibration_sketch_headers','calibration_target_headers','calibration_sketch_slots','calibration_target_hits','candidate_log')
+    scalars={'index_object_headers','collection_object_headers','allocation_label_external','stage_labels_external','stage_map_nodes'}
+    require(set(components)==set(vectors)|scalars,'Missing or extra CABS component')
+    for name in vectors:
+        size=counts[name+'_size'];capacity=counts[name+'_capacity'];element=abi[name+'_element']
+        require(capacity>=size and element>0 and components[name]==capacity*element,'Invalid CABS vector allocation: '+name)
+    for name in ('encoding_lengths','encoding_offsets','cached_sketch_slots','cardinalities','partition_primary','partition_secondary','partition_memberships','minhash_keys','minhash_offsets','minhash_postings','calibration_query_ids','calibration_sketch_slots'):
+        require(abi[name+'_element']==4,'CABS ID/slot/int ABI differs')
+    require(abi['collection_df_element']==abi['partition_centroids_element']==8 and abi['calibration_target_hits_element']==16,'CABS scalar/Hit ABI differs')
+    require(all(abi[name+'_element']==3*struct.calcsize('P') for name in ('cached_sketch_row_headers','minhash_cluster_headers','calibration_sketch_headers','calibration_target_headers','calibration_row_views')),'CABS view/vector header ABI differs')
+    require(components['index_object_headers']==abi['Index']>0 and components['collection_object_headers']==abi['Collection']>0,'CABS object headers differ')
+    require(abi['stage_map_node']>=abi['stage_map_value']>0 and components['stage_map_nodes']==counts['stage_map_nodes']*abi['stage_map_node'],'Stage map node allocation differs')
+    K=summary['K'];nc=counts['calibration_count'];kmax=counts['kmax']
+    require(1<=K<=n and 0<nc and summary['k']<=kmax<=n and counts['ell']>0 and counts['expanded_slot_capacity']==d*counts['ell'],'CABS configuration/expanded capacity differs')
+    expected_sizes={'encoding_lengths':d,'encoding_offsets':d+1,'cached_sketch_row_headers':0,'cached_sketch_slots':0,'cardinalities':n,'collection_records':n,'collection_df':d,
+        'partition_cluster_headers':K,'partition_primary':n,'partition_secondary':n,'partition_centroids':K*d,'minhash_cluster_headers':K,
+        'minhash_table_headers':counts['expected_hash_tables'],'minhash_postings':counts['expected_table_postings'],
+        'calibration_query_ids':nc,'calibration_row_views':nc,'calibration_sketch_headers':nc,'calibration_target_headers':nc,'calibration_target_hits':nc*kmax}
+    require(all(counts[name+'_size']==size for name,size in expected_sizes.items()),'CABS logical array shape differs')
+    require(counts['cached_sketch_row_headers_capacity']==counts['cached_sketch_slots_capacity']==0,'Document sketch capacity remains retained')
+    require(n<=counts['partition_memberships_size']<=2*n and counts['minhash_offsets_size']==counts['minhash_keys_size']+counts['expected_hash_tables'],'Membership/table offsets differ')
+    require(len(summary['clusters'])==K and sum(cluster['m'] for cluster in summary['clusters'])==counts['expected_hash_tables'],'Calibrated hash counts differ')
+    require(all(inventory[key] is True for key in ('document_sketch_cache_released','temporary_calibration_input_released','original_rows_borrowed','static_only')),'Static lifecycle/storage proof is missing')
+    expected_legacy={
+        'index_object_headers':components['index_object_headers'],
+        'encoding_metadata':components['encoding_lengths']+components['encoding_offsets'],
+        'cached_sketches':components['cached_sketch_row_headers']+components['cached_sketch_slots'],
+        'cardinalities':components['cardinalities'],
+        'collection_metadata':components['collection_object_headers']+components['collection_records']+components['collection_df'],
+        'partition':sum(components[name] for name in ('partition_cluster_headers','partition_primary','partition_secondary','partition_centroids','partition_memberships')),
+        'local_Minhash_indexes':sum(components[name] for name in ('minhash_cluster_headers','minhash_table_headers','minhash_keys','minhash_offsets','minhash_postings')),
+        'retained_calibration_buffers':sum(components[name] for name in ('calibration_query_ids','calibration_row_views','calibration_sketch_headers','calibration_target_headers','calibration_sketch_slots','calibration_target_hits','candidate_log')),
+        'retained_labels_payload':components['allocation_label_external']+components['stage_labels_external']+counts['stage_map_nodes']*abi['stage_map_value'],
+    }
+    require(legacy==expected_legacy,'Frozen aggregate differs from detailed arrays')
+    legacy_bytes=sum(legacy.values());structure=sum(components.values());original=24+8*(n+1)+8*nnz
+    extra=counts['stage_map_nodes']*(abi['stage_map_node']-abi['stage_map_value'])
+    require(structure==legacy_bytes+extra==inventory['index_structure_bytes'] and legacy_bytes==inventory['legacy_index_structure_bytes'],'CABS structure sum/bookkeeping delta differs')
+    require(original==original_file_bytes==inventory['original_vector_bytes'] and original+structure==inventory['index_plus_vectors_bytes']==summary['IS_bytes'],'CABS original vectors missing/duplicated or IS sum differs')
+    require(original+legacy_bytes==inventory['legacy_index_plus_vectors_bytes']==summary['IS_legacy_bytes'] and summary['IS_status']==inventory['status'],'Legacy CABS IS/status differs')
+    timing=summary['IT_components_seconds'];require(set(timing)=={'loading','calibration_GT','native_build','release','driver_setup'},'CABS IT scope differs')
+    require(all(type(v) in (int,float) and math.isfinite(v) and v>=0 for v in timing.values()) and timing['native_build']>0,'Invalid CABS construction timing')
+    require(math.isclose(sum(timing.values()),summary['IT_seconds'],rel_tol=1e-12) and math.isclose(summary['IT_seconds']-timing['driver_setup'],summary['IT_legacy_stage_sum_seconds'],rel_tol=1e-12),'CABS IT components do not sum')
+    return dict(status='CABS_COMPONENT_ACCOUNTING_PASS',index_structure_bytes=structure,original_vector_bytes=original,index_plus_vectors_bytes=original+structure,
+        legacy_index_plus_vectors_bytes=original+legacy_bytes,stage_node_bookkeeping_bytes=extra,document_sketch_cache_released=True,temporary_calibration_input_released=True,
+        scope='Detailed static capacities/counts/ABI and frozen aggregate crosscheck; full four-method fairness/server acceptance pending')
+
+
+def audit_cabs_inventory(directory,base):
+    with Path(base).open('rb') as f:n,d,nnz=struct.unpack('<QQQ',f.read(24))
+    return audit_cabs_inventory_header(directory,n,d,nnz,Path(base).stat().st_size)
+
+
 def audit_sindi_inventory_header(directory,n,d,nnz,original_file_bytes,lambda_,native_reordering,expected_postings=None):
+    require(type(lambda_) is int and 10000<=lambda_<=100000,'SINDI lambda is outside the registered native interface')
     root=Path(directory);inventory=json.loads((root/'index_space.json').read_text());summary=json.loads((root/'summary.json').read_text())
     require(inventory['schema']==1 and inventory['method']=='SINDI' and inventory['status']=='REPORTED_NOT_COMMON_VALIDATED','Unsupported SINDI inventory schema/status')
     counts=inventory['counts'];abi=inventory['abi_bytes'];components=inventory['components_bytes']
@@ -205,14 +269,15 @@ import hashlib
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--method',choices=['SOSIA','SINDI','SEISMIC'],default='SOSIA');p.add_argument('--directory',type=Path,required=True);p.add_argument('--base',type=Path,required=True);p.add_argument('--ell',type=int);p.add_argument('--m',type=int);p.add_argument('--lambda',dest='lambda_',type=int);p.add_argument('--no-native-reordering',action='store_true');p.add_argument('--roundtrip',action='store_true');p.add_argument('--out',type=Path,required=True);a=p.parse_args()
-    if a.method=='SOSIA':
+    p=argparse.ArgumentParser();p.add_argument('--method',choices=['CABS','SOSIA','SINDI','SEISMIC'],default='SOSIA');p.add_argument('--directory',type=Path,required=True);p.add_argument('--base',type=Path,required=True);p.add_argument('--ell',type=int);p.add_argument('--m',type=int);p.add_argument('--lambda',dest='lambda_',type=int);p.add_argument('--no-native-reordering',action='store_true');p.add_argument('--roundtrip',action='store_true');p.add_argument('--out',type=Path,required=True);a=p.parse_args()
+    if a.method=='CABS':result=audit_cabs_inventory(a.directory,a.base)
+    elif a.method=='SOSIA':
         require(a.ell is not None and a.ell>0 and a.m is not None and a.m>0,'SOSIA requires positive ell/m');result=audit_sosia_inventory(a.directory,a.base,a.ell,a.m)
     elif a.method=='SINDI':
         require(a.lambda_ is not None and a.lambda_>0,'SINDI requires positive lambda');result=audit_sindi_inventory(a.directory,a.base,a.lambda_,not a.no_native_reordering)
     else:result=audit_seismic_inventory(a.directory,a.base)
     if a.roundtrip:
-        require(a.method!='SOSIA','SOSIA roundtrip is not supported')
+        require(a.method in ('SINDI','SEISMIC'),'Roundtrip is supported only for the disclosed SINDI/SEISMIC diagnostics')
         result['roundtrip']=audit_sindi_serialization(a.directory,a.base) if a.method=='SINDI' else audit_seismic_roundtrip(a.directory)
     result['artifacts_sha256']={name:hashlib.sha256((a.directory/name).read_bytes()).hexdigest() for name in ('index_space.json','summary.json')}
     with a.out.open('x') as f:json.dump(result,f,indent=2)

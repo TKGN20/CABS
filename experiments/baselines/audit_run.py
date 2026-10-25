@@ -25,7 +25,10 @@ def audit_run(data,queries,plan,ground_truth,results,method,repeats,lock=None):
     else:require(lock is None,'Selection audit cannot consume evaluation lock')
     folder=Path(results);summary=load(folder/'summary.json')
     input_hashes={name:sha(path) for name,path in [('data',data),('queries',queries),('plan',plan),('GT_complete',Path(ground_truth)/'complete.json')]}
-    result_hashes={name:sha(folder/name) for name in ('summary.json','retrieved.csv','queries.csv')}
+    names=['summary.json','retrieved.csv','queries.csv']
+    if (folder/'index_space.json').is_file():names.append('index_space.json')
+    require(summary.get('IS_status')!='REPORTED_NOT_COMMON_VALIDATED' or 'index_space.json' in names,'Reported component status requires its bound inventory')
+    result_hashes={name:sha(folder/name) for name in names}
     require(summary.get('method',method)==method and summary.get('search_threads',1)==1,'Method or search-thread policy differs')
     if method!='CABS':require(summary.get('exact_binary64_reranking_in_timer') is True,'Baseline exact scoring is not declared inside query timing')
     expected_ids=gt['query_ids'];k=gt['k'];truth={qid:[] for qid in expected_ids};observed={qid:[] for qid in expected_ids}
@@ -62,7 +65,7 @@ def audit_run(data,queries,plan,ground_truth,results,method,repeats,lock=None):
     if gt['role']=='evaluation':require(gt['lock_sha256']==evaluation_lock(lock,plan,data,queries,k),'Evaluation lock changed during audit')
     sources={p.name:sha(p) for p in (Path(__file__),Path(__file__).with_name('oracle.py'),Path(__file__).with_name('prepare_gt.py'))}
     return dict(status='MEASURED_RECORD_AUDIT_ONLY',method=method,role=gt['role'],query_ids=expected_ids,k=k,repeats=repeats,Recall=recall,QPS=qps,measured_records=len(timings),query_recalls=recalls,
-                binding=dict(data_sha256=sha(data),queries_sha256=sha(queries),plan_sha256=sha(plan),GT_complete_sha256=sha(Path(ground_truth)/'complete.json'),result_artifacts={name:sha(folder/name) for name in ('summary.json','retrieved.csv','queries.csv')},audit_sources=sources),
+                binding=dict(data_sha256=sha(data),queries_sha256=sha(queries),plan_sha256=sha(plan),GT_complete_sha256=sha(Path(ground_truth)/'complete.json'),result_artifacts=result_hashes,audit_sources=sources),
                 IS_status=summary.get('IS_status','NOT_COMMON_BASELINE_VALIDATED'),scope='Original-ID, exact-score and timing audit against separately generated role-bound GT; not source/binary provenance, parameter-selection, IS, fair-performance or server acceptance')
 
 

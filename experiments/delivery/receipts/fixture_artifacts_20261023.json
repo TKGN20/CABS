@@ -426,6 +426,40 @@
       "seismic_space": {
         "postings": 2560
       }
+    },
+    "CABS_space_release": {
+      "path": "experiments/delivery/fixtures/cabs_space_release",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "calibration_ids.txt": "1ddb914da9135a2d6dfcc0ff179d68d23e7fd1e5364c088c183234d04a41bece",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/ground_truth.csv": "b98cec600ec7964781515ae4f2e55849ab1c90fb88ae55d890e995dfbe767017",
+        "run/index_space.json": "2bfc32175bcbf74b0196a06850eb864ff2d06ac58ce4760caa39fbadfa7824ab",
+        "run/queries.csv": "c1624ff3a95cf62f63399bb50ccecbc96de6a9c72c66cb2d7a29a98126d1fb21",
+        "run/retrieved.csv": "e14b929aa1878c6ac01eaa07c65fd331691576f7f4e5621e8a65357a005109b6",
+        "run/summary.json": "f4a5e1be7a13512e66da4dafa57aefd2a1147716f290496568ea87b2116cd15e"
+      },
+      "Recall": 0.97,
+      "cabs_space": true,
+      "scope": "Static CABS retained components, frozen aggregate reconciliation and saved exact-score fixture"
+    },
+    "CABS_space_asan": {
+      "path": "experiments/delivery/fixtures/cabs_space_asan",
+      "sha256": {
+        "base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+        "calibration_ids.txt": "1ddb914da9135a2d6dfcc0ff179d68d23e7fd1e5364c088c183234d04a41bece",
+        "ids.txt": "461451b4b6942928189d5db71e5ff02e54f0e17f4bbc7565d87814a2b06e4239",
+        "queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+        "run/ground_truth.csv": "b98cec600ec7964781515ae4f2e55849ab1c90fb88ae55d890e995dfbe767017",
+        "run/index_space.json": "2bfc32175bcbf74b0196a06850eb864ff2d06ac58ce4760caa39fbadfa7824ab",
+        "run/queries.csv": "532de908bf495678740a6815347a13e9d1f78db92b7daefcbd14944142d32467",
+        "run/retrieved.csv": "e14b929aa1878c6ac01eaa07c65fd331691576f7f4e5621e8a65357a005109b6",
+        "run/summary.json": "4ec455560fbf7abc1956ac459527aa854d8a7b06f5f282376cf2593e8c55e487"
+      },
+      "Recall": 0.97,
+      "cabs_space": true,
+      "scope": "Static CABS retained components, frozen aggregate reconciliation and saved exact-score fixture"
     }
   },
   "native_smokes": {
@@ -699,6 +733,65 @@
       "method": "SEISMIC",
       "preflight_input": "base_small.csr",
       "scope": "One fixed local component sum against registered input; original score re-audit requires dataset"
+    },
+    "CABS_real_0.1M": {
+      "path": "experiments/delivery/space_inventory/cabs_real_0.1m_20261024",
+      "sha256": {
+        "current_record_audit.json": "3e10161c285a4f1ed488fadd44e9f509e6923edf0b9da764d46c21d6345665fd",
+        "current_space_audit.json": "7854b283b7391b551595c636ddbb82cb1975d0115e2b9e47dea79f99c15ad5ff",
+        "driver.py": "54ca8b6317e328607a26db3bf339e0e0ba5d468c5e547fc36a2d58adb09eabea",
+        "ground_truth.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+        "independent_audit.json": "95a3405ab019267a7441d6d19993641023f6db77f82b352254e14b434a41fc4e",
+        "index_space.json": "72e9d6f346fa55f0d49d50502d66a9da2fae0620d5c1988121f950642b11008f",
+        "queries.csv": "03c1881ed942717a40d40d83fd3021e598543f23683e8fb2e1b8dd7b425814a4",
+        "receipt.json": "02bcd557871c789ccdb8abe2153f40dbf8c89035106cd24af008b1e086ec3b90",
+        "resource_usage.log": "30678b538a3bbb6c294885ead55f7756b745b33f4948ca0e49fd4408ba09a0e8",
+        "retrieved.csv": "504d0c1d4758a8135dfdfdbd9f8bea249d462802a9fc62da785e6932d9212602",
+        "run.log": "2aaa2bf18358ca896003603609ccad6b5785f1259abf56163d9aed0d7b308914",
+        "selection-gt/complete.json": "dcb2149f0484919230c7b94b35b1446598c34a426669a03d3187b3ae05374b6d",
+        "selection-gt/ground_truth.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+        "selection-gt/manifest.json": "af4efc6499783ace7994529fcffd546ac60af7b078bdf95041c2752474500fbf",
+        "selection-gt/measured_ids.txt": "76a1569e5e41e0b8a6c5911a9ca28c32b1b6f71e1b5a4d159d96a5ebd6c8eeea",
+        "selection-gt/producer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "selection-gt/summary.json": "fac195392f780dcde54b176c2ea04fdf7234f3d52adaf2c27052acebc60cc47d",
+        "space_audit.json": "2a2fcbce8b10424cee7c859b2a2a85e89fe06138608b4380ed8e9aa68d996e28",
+        "summary.json": "382ea4212b483f1c680277d3d4749499eec1172386c914c6c393cb830d57fa75"
+      },
+      "method": "CABS",
+      "preflight_input": "base_small.csr",
+      "scope": "One real static component/lifecycle control with source-bound independent GT; no matched performance acceptance"
+    }
+  },
+  "cost_record_receipts": {
+    "release": {
+      "receipt": "common-cost_fixture_release.json",
+      "data_sha256": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+      "methods": {
+        "CABS": "experiments/delivery/fixtures/cabs_space_release/run",
+        "SOSIA": "experiments/delivery/fixtures/sosia_space_release/run",
+        "SINDI": "experiments/delivery/fixtures/sindi_space/run",
+        "SEISMIC": "experiments/delivery/fixtures/seismic_space/run"
+      }
+    },
+    "asan": {
+      "receipt": "common-cost_fixture_asan.json",
+      "data_sha256": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+      "methods": {
+        "CABS": "experiments/delivery/fixtures/cabs_space_asan/run",
+        "SOSIA": "experiments/delivery/fixtures/sosia_space_release/run",
+        "SINDI": "experiments/delivery/fixtures/sindi_space/run",
+        "SEISMIC": "experiments/delivery/fixtures/seismic_space/run"
+      }
+    },
+    "real_0.1m": {
+      "receipt": "common-cost_real_0.1m.json",
+      "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+      "methods": {
+        "CABS": "experiments/delivery/space_inventory/cabs_real_0.1m_20261024",
+        "SOSIA": "experiments/delivery/space_inventory/sosia_real_0.1m_20261024",
+        "SINDI": "experiments/delivery/space_inventory/sindi_real_0.1m_20261024",
+        "SEISMIC": "experiments/delivery/space_inventory/seismic_real_0.1m_20261024"
+      }
     }
   }
 }

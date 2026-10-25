@@ -1,5 +1,8 @@
 # Baseline retained-space checkpoint — 2026-10-24
 
+后续进展：[2026-10-25 四方法共同成本记录](COMMON_COST_CHECKPOINT_20261025.md)
+已补齐 CABS 的分项导出和统一记录。本页保留此前三基线核验的范围与数据。
+
 本轮结论：SOSIA、SINDI、SEISMIC 三个基线均已有可执行的只读空间分项接口、
 计数检查及一组真实输入上的记录。**这关闭了缺少基线分项导出器的问题，尚未
 关闭四方法共同 IS 口径与正式性能验收。整体仍为 NOT FINAL PASS。**

@@ -1,0 +1,1 @@
+{"scope":"Independent unpruned exact reference; not a retrieval benchmark","documents":100000,"queries":4,"k":50,"preparation_seconds":0.64580445699999967,"scoring_and_csv_seconds":0.0064946539999999331,"summation":"Ascending coordinate binary64; float32 inputs; compiler ffp-contract=off required","tie_rule":"descending score then ascending original document ID"}

@@ -1,5 +1,11 @@
 {
-  "fixture_artifacts_20261023.json": "7e75614014990e4cc213f6c6b444fede19d78b3f3281e3f97c3119ad2da42452",
+  "cabs-space_build.json": "f1bb6662ab9f37fddc40376e697c05afce6a6a79f80c8ff404b262ec90b6e560",
+  "cabs-space_real_0.1m.json": "aff9d7a789c437945d7508ccf43e78dddd38b304c76e44316425a7bf92019f20",
+  "ci_space_a1bf4a2.json": "a999e36a92fb9c12f7e3a63f5df22c9761bedb467122152652668f1b01334f2d",
+  "common-cost_fixture_asan.json": "3ceeb8af8682c0f33fdd0207a92e7ddd131f988f1df7ad055d72ab97dfdb6837",
+  "common-cost_fixture_release.json": "929199452f7a8299639f0eef63e1879dc1158cb3d5eb6d570909cc97d45ab7e8",
+  "common-cost_real_0.1m.json": "a5ea426fc9a57d639276439d93e98fc9513d4fbffbd23135f3fe8a8f8aad3231",
+  "fixture_artifacts_20261023.json": "34ef5aef4abedf19296f3daa8228ab32ee1e9ba7bacc563272b92990bee9c0f0",
   "local_real_smoke_20261024.json": "b865bd5f47619aa485e4cef0cf731bc1c714f37a5844d5239f56d9375189d328",
   "preflight_20261023.json": "61928c677f6bbfee4add907a71df07105ca5dad7dfbceab815939724e08a1f96",
   "rust-toolchain_20261023.json": "33601353752372f8878db845ce9cce716d35419545b855c2336a93f9a6efe593",

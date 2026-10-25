@@ -42,6 +42,9 @@ def main():
             from space_inventory import audit_seismic_inventory,audit_seismic_roundtrip
             audit_seismic_inventory(folder/'run',folder/'base.csr',record['seismic_space'].get('postings'))
             audit_seismic_roundtrip(folder/'run')
+        if record.get('cabs_space'):
+            from space_inventory import audit_cabs_inventory
+            audit_cabs_inventory(folder/'run',folder/'base.csr')
         if 'candidate_pool_expected' in record:
             docs=CSR(folder/'base.csr');queries=CSR(folder/'queries.csr')
             try:
@@ -108,15 +111,36 @@ def main():
         for name,wanted in record['sha256'].items():
             if not (folder/name).resolve().is_relative_to(folder.resolve()) or hashlib.sha256((folder/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Evidence bundle changed: '+name)
     for record in fixtures.get('space_inventories',{}).values():
-        from space_inventory import audit_sosia_inventory_header,audit_sindi_inventory_header,audit_seismic_inventory_header
+        from space_inventory import audit_cabs_inventory_header,audit_sosia_inventory_header,audit_sindi_inventory_header,audit_seismic_inventory_header
         folder=repository/record['path'];preflight=json.loads((root/'preflight_20261023.json').read_text());header=next(item for item in preflight['inputs'] if item['file']==record['preflight_input'])
         arguments=(folder,header['n'],header['d'],header['nnz'],header['bytes'])
-        if record['method']=='SOSIA':observed=audit_sosia_inventory_header(*arguments,record['ell'],record['m'])
+        if record['method']=='CABS':observed=audit_cabs_inventory_header(*arguments)
+        elif record['method']=='SOSIA':observed=audit_sosia_inventory_header(*arguments,record['ell'],record['m'])
         elif record['method']=='SINDI':observed=audit_sindi_inventory_header(*arguments,record['lambda'],record['native_reordering'])
         elif record['method']=='SEISMIC':observed=audit_seismic_inventory_header(*arguments)
         else:raise ValueError('Unknown saved component inventory method')
         saved=json.loads((folder/'current_space_audit.json').read_text());audited=json.loads((folder/'independent_audit.json').read_text())
         if observed!=saved or audited['binding']['data_sha256']!=header['sha256']:raise ValueError('Saved real component accounting differs from input receipt')
+    cost_records=0
+    for group in fixtures.get('cost_record_receipts',{}).values():
+        records=json.loads((root/group['receipt']).read_text());data_hash=group['data_sha256']
+        if set(records)!=set(group['methods']):raise ValueError('Cost receipt method inventory differs')
+        for method,path in group['methods'].items():
+            directory=repository/path;record=records[method]
+            if not directory.resolve().is_relative_to(repository.resolve()):raise ValueError('Unsafe cost record path')
+            summary=json.loads((directory/'summary.json').read_text());inventory=json.loads((directory/'index_space.json').read_text())
+            key='IT_seconds' if method=='CABS' else 'build_seconds_including_loading'
+            if record['status']!='COST_COMPONENT_RECORD_AUDIT_ONLY' or record['method']!=method or record['IT_source_field']!=key or not math.isclose(record['IT_seconds'],summary[key],rel_tol=1e-12) or record['IT_seconds']<=0:raise ValueError('Cost IT scope/arithmetic differs')
+            if any(record[name]!=inventory[name] for name in ('index_structure_bytes','original_vector_bytes')) or record['IS_bytes']!=inventory['index_plus_vectors_bytes'] or record['IS_bytes']!=record['index_structure_bytes']+record['original_vector_bytes']:raise ValueError('Cost IS arithmetic differs')
+            expected={'summary.json','index_space.json'}|{name for name in ('resource_usage.log','native_index.bin') if (directory/name).is_file()}
+            if set(record['binding']['artifacts_sha256'])!=expected or record['binding']['data_sha256']!=data_hash:raise ValueError('Cost artifact/data binding differs')
+            for name,wanted in record['binding']['artifacts_sha256'].items():
+                if hashlib.sha256((directory/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Bound cost artifact changed')
+            if 'serialized_bytes' in record and record['serialized_bytes']!=(directory/'native_index.bin').stat().st_size:raise ValueError('Serialized bytes conflated with IS')
+            if 'peak_RSS_native_report' in record:
+                matches=re.findall(r'^\s*Maximum resident set size \(kbytes\): (\d+)\s*$',(directory/'resource_usage.log').read_text(),re.M)
+                if len(matches)!=1 or record['peak_RSS_native_report']['value']!=int(matches[0]):raise ValueError('Process RSS differs from native resource log')
+            cost_records+=1
     real_methods=0
     for record in fixtures.get('real_smokes',{}).values():
         from prepare_gt import checked_gt
@@ -142,7 +166,7 @@ def main():
                 if Path(name).name!=name or hashlib.sha256((directory/name).read_bytes()).hexdigest()!=wanted:raise ValueError('Real smoke audited record hash differs')
             if method in manifest['methods'] and (manifest['methods'][method]['status']!='SMOKE_AUDITED' or not math.isclose(recall,manifest['methods'][method]['Recall'],abs_tol=1e-12)):raise ValueError('Real smoke manifest differs')
             real_methods+=1
-    print(json.dumps(dict(status='PASS',receipts=len(registry),fixtures_recomputed=len(fixtures['methods']),native_smoke_bundles_hash_checked=len(fixtures.get('native_smokes',{})),native_GT_bundles_validated=valid_gt,known_invalid_GT_diagnostics_preserved=invalid_gt,failed_diagnostics_preserved=len(fixtures.get('diagnostics',{})),real_smoke_method_records_recomputed=real_methods,real_component_inventories_recomputed=len(fixtures.get('space_inventories',{})),scope='Saved integrity, synthetic exact-score/GT and real-smoke saved GT/timing/component arithmetic; real original-vector scores require dataset audit; not independent performance reproduction')))
+    print(json.dumps(dict(status='PASS',receipts=len(registry),fixtures_recomputed=len(fixtures['methods']),native_smoke_bundles_hash_checked=len(fixtures.get('native_smokes',{})),native_GT_bundles_validated=valid_gt,known_invalid_GT_diagnostics_preserved=invalid_gt,failed_diagnostics_preserved=len(fixtures.get('diagnostics',{})),real_smoke_method_records_recomputed=real_methods,real_component_inventories_recomputed=len(fixtures.get('space_inventories',{})),unified_cost_records_recomputed=cost_records,scope='Saved integrity, synthetic exact-score/GT and real-smoke saved GT/timing/component arithmetic; real original-vector scores require dataset audit; not independent performance reproduction')))
 
 
 if __name__=='__main__':main()

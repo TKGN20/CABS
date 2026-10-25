@@ -38,6 +38,9 @@ def main():
         command=[str(a.cabs_binary.resolve()),str(data),str(queries),str(root/'calibration_ids.txt'),str(root/'ids.txt'),str(cabs),'1031','100','50','3','24','0.2','1','2']
         subprocess.run(command,stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True)
         result=audit_run(data,queries,plan,gt,cabs,'CABS',3);reports.append(('CABS',result['Recall']))
+        assert 'index_space.json' in result['binding']['result_artifacts']
+        missing=root/'missing-inventory';shutil.copytree(cabs,missing);(missing/'index_space.json').unlink()
+        reject(lambda:audit_run(data,queries,plan,gt,missing,'CABS',3))
         corrupt=root/'corrupt';shutil.copytree(ROOT/'experiments/delivery/fixtures/sindi_repaired/run',corrupt)
         result_file=corrupt/'retrieved.csv'
         with result_file.open() as f:rows=list(csv.DictReader(f))

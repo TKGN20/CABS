@@ -1,0 +1,11 @@
+{
+  "status": "CABS_COMPONENT_ACCOUNTING_PASS",
+  "index_structure_bytes": 88913049,
+  "original_vector_bytes": 102639664,
+  "index_plus_vectors_bytes": 191552713,
+  "legacy_index_plus_vectors_bytes": 191552265,
+  "stage_node_bookkeeping_bytes": 448,
+  "document_sketch_cache_released": true,
+  "temporary_calibration_input_released": true,
+  "scope": "Detailed static capacities/counts/ABI and frozen aggregate crosscheck; full four-method fairness/server acceptance pending"
+}
