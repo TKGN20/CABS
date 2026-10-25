@@ -1,0 +1,55 @@
+{
+  "revision": "7aa8c540e6b514481bcf48047bbfbd48af7f1b9f",
+  "tracked_files": 284,
+  "tracked_payload_bytes": 66551985,
+  "largest_files": [
+    [
+      "results/engineering/review_1m_20261022/ground_truth.csv.gz",
+      10348499
+    ],
+    [
+      "results/measured/splade-1m/ground_truth.csv.gz",
+      10348499
+    ],
+    [
+      "results/engineering/cache_20261022/ground_truth.csv.gz",
+      10213750
+    ],
+    [
+      "results/measured/splade-0.1m/ground_truth.csv.gz",
+      10213750
+    ],
+    [
+      "results/engineering/review_1m_20261022/retrieved.csv.gz",
+      5343215
+    ]
+  ],
+  "corpus_or_executable_files": [],
+  "credential_pattern_hits": [],
+  "historical_path_metadata_file_count": 17,
+  "historical_path_metadata_files": [
+    "docs/approval_checks/release_build.log",
+    "docs/approval_checks/release_tests.log",
+    "docs/approval_checks/sanitize_build.log",
+    "docs/approval_checks/sanitize_tests.log",
+    "results/engineering/calibration_audit_small_20261022/manifest.json",
+    "results/engineering/calibration_pilot_20261022/build.log",
+    "results/engineering/calibration_pilot_20261022/nc4_kmax100/manifest.json",
+    "results/engineering/calibration_pilot_20261022/nc4_kmax100/resource_usage.log",
+    "results/engineering/calibration_pilot_20261022/nc4_kmax50/manifest.json",
+    "results/engineering/calibration_pilot_20261022/nc4_kmax50/resource_usage.log",
+    "results/engineering/calibration_pilot_20261022/nc8_kmax100/manifest.json",
+    "results/engineering/calibration_pilot_20261022/nc8_kmax100/resource_usage.log",
+    "results/engineering/calibration_pilot_20261022/nc8_kmax50/manifest.json",
+    "results/engineering/calibration_pilot_20261022/nc8_kmax50/resource_usage.log",
+    "results/engineering/routing_bounds_1m_20261022/build.log",
+    "results/engineering/routing_bounds_1m_20261022/manifest.json",
+    "results/engineering/selected_profile_1m_20261022/manifest.json"
+  ],
+  "downloaded_query_gzip_roundtrip": {
+    "bytes": 2797440,
+    "sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "status": "PASS"
+  },
+  "scan_scope": "Tracked content at tested_code_commit; common token/private-key patterns; gzip text decompressed. Not an exhaustive secret detector."
+}

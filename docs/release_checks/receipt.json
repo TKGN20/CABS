@@ -1,0 +1,25 @@
+{
+  "tested_code_commit": "7aa8c540e6b514481bcf48047bbfbd48af7f1b9f",
+  "initial_clean_build_commit": "c6d6956753505a42eb895f20976a444a6eda5428",
+  "production_baseline": "e26de385fe78d3589d6d861c3560c443e254f9cc",
+  "date": "2026-10-25",
+  "environment": {
+    "os": "Ubuntu 22.04 on WSL",
+    "compiler": "GCC 11.4.0",
+    "python": "3.10.12"
+  },
+  "clean_clone_url": "https://github.com/TKGN20/CABS.git",
+  "clone_branch": "codex/opensource-final-20261025",
+  "release_ctests": 5,
+  "sanitizer_ctests": 5,
+  "python_reporting_input_tests": 11,
+  "static_tiny_independent_gt_queries": 16,
+  "maintenance_tiny_independent_gt_queries": 16,
+  "artifact_members": 185,
+  "frozen_files": 19,
+  "build_reuse": "Clean build at initial revision; fast-forward changes only documentation and Python tests. Both complete CTest suites and examples rerun. Production/default/build freeze is identical.",
+  "logs_normalization": "Replace literal and JSON-escaped checkout path with $REPO; normalize CRLF to LF. No other content edits.",
+  "clean_log_sha256": "865b75c03eb3c82479ccdee04b35b4fec52666c3ec60e61409be3e4420bc9e9a",
+  "data_validation": "Three public HEAD 200; local corpus/query headers, sizes and hashes match configs/datasets.json; query gzip freshly downloaded/checked. No new corpus benchmark.",
+  "scope": "CABS-only functional and saved-record verification; no baseline, server or paper performance acceptance"
+}

@@ -67,8 +67,13 @@ def check(binary):
         bad=subprocess.run([str(binary),'inspect','--data',str(malformed),'--queries',str(directory/'queries.csr')],capture_output=True)
         if bad.returncode==0:
             raise ValueError('Truncated CSR was accepted')
+        for name,extra in [('tiny',[]),('tiny-maintenance',['--maintenance'])]:
+            example=[sys.executable,str(ROOT/'examples/tiny.py'),'--binary',str(binary),'--out',str(directory/name),*extra]
+            subprocess.run(example,stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True)
+            if subprocess.run(example,stdout=subprocess.PIPE,stderr=subprocess.PIPE).returncode==0:
+                raise ValueError('Example overwrote an existing output directory')
         print(json.dumps({'status':'passed','independent_GT_queries':len(truth),
-                          'measured_queries':metrics['measured_queries'],'production_path':True}))
+                          'measured_queries':metrics['measured_queries'],'production_path':True,'public_tiny_examples':2}))
 
 
 if __name__=='__main__':
