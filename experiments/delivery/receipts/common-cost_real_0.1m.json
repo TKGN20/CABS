@@ -1,0 +1,138 @@
+{
+  "CABS": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "CABS",
+    "IT_seconds": 347.993086517,
+    "IT_source_field": "IT_seconds",
+    "IS_bytes": 191552713,
+    "index_structure_bytes": 88913049,
+    "original_vector_bytes": 102639664,
+    "original_CSR_reference_bytes": 102639664,
+    "original_storage_definition": "Original mmap CSR, including its actual 24-byte file header",
+    "components_status": "CABS_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {},
+    "binding": {
+      "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+      "artifacts_sha256": {
+        "summary.json": "382ea4212b483f1c680277d3d4749499eec1172386c914c6c393cb830d57fa75",
+        "index_space.json": "72e9d6f346fa55f0d49d50502d66a9da2fae0620d5c1988121f950642b11008f",
+        "resource_usage.log": "30678b538a3bbb6c294885ead55f7756b745b33f4948ca0e49fd4408ba09a0e8"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance",
+    "legacy_IS_bytes": 191552265,
+    "peak_RSS_native_report": {
+      "value": 669936,
+      "unit": "kbytes as reported by GNU time; process peak, not retained index space"
+    }
+  },
+  "SOSIA": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "SOSIA",
+    "IT_seconds": 1.8228528969999997,
+    "IT_source_field": "build_seconds_including_loading",
+    "IS_bytes": 217615735,
+    "index_structure_bytes": 114976071,
+    "original_vector_bytes": 102639664,
+    "original_CSR_reference_bytes": 102639664,
+    "original_storage_definition": "Original CSR arrays with one logical CSR-header allowance under the disclosed baseline policy",
+    "components_status": "SOSIA_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {
+      "ell": 4,
+      "m": 16
+    },
+    "binding": {
+      "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+      "artifacts_sha256": {
+        "summary.json": "d3c6e059510977e87acb62cc30fbace1e0af915fb45c2cb4307944372a155b21",
+        "index_space.json": "71c6deb62ffaa24de5837107a12ac2645e0a8796fd9d8ddcac8a24bab10153eb",
+        "resource_usage.log": "897453fd655ee30e7dcd7a5223ad9c38999f15da8af2d11e2bf5fc2cbc0a83fb"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance",
+    "peak_RSS_native_report": {
+      "value": 224468,
+      "unit": "kbytes as reported by GNU time; process peak, not retained index space"
+    }
+  },
+  "SINDI": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "SINDI",
+    "IT_seconds": 1.2000545579999198,
+    "IT_source_field": "build_seconds_including_loading",
+    "IS_bytes": 314483572,
+    "index_structure_bytes": 211843908,
+    "original_vector_bytes": 102639664,
+    "original_CSR_reference_bytes": 102639664,
+    "original_storage_definition": "Adapter original CSR plus native forward copies separately counted in structure bytes",
+    "components_status": "SINDI_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {
+      "lambda": 10000,
+      "native_reordering": true
+    },
+    "binding": {
+      "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+      "artifacts_sha256": {
+        "summary.json": "8932125a9361bbab45263c8175cd950d64b1aca1f6ef20d4bf56a2fe3e7e69d3",
+        "index_space.json": "81786a362fa8f2506d1f95e5ac7b1eaa92543cc861b8b60fa561da6ce2feee12",
+        "resource_usage.log": "c7f8774ddc96d2be61cf3cd9445e369b4020722a1bdddc5cb408b7a40cf1edd8"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance",
+    "peak_RSS_native_report": {
+      "value": 450532,
+      "unit": "kbytes as reported by GNU time; process peak, not retained index space"
+    }
+  },
+  "SEISMIC": {
+    "schema": 1,
+    "status": "COST_COMPONENT_RECORD_AUDIT_ONLY",
+    "method": "SEISMIC",
+    "IT_seconds": 123.954234165,
+    "IT_source_field": "build_seconds_including_loading",
+    "IS_bytes": 1735722685,
+    "index_structure_bytes": 1633083045,
+    "original_vector_bytes": 102639640,
+    "original_CSR_reference_bytes": 102639664,
+    "original_storage_definition": "Full native plain u32/f32 forward heap; its original-vector payload is counted once",
+    "components_status": "SEISMIC_COMPONENT_ACCOUNTING_PASS",
+    "parameters": {},
+    "binding": {
+      "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+      "artifacts_sha256": {
+        "summary.json": "27d6f6d6522d702895d8306c7cf4be17e9b634e7ff1fe1ddfdab1dca938ac9a9",
+        "index_space.json": "69a1ab6b01fea44d1fb987d7e31e23a0d856cda4c0cbaecc1914a0cc1f117af7",
+        "resource_usage.log": "e9290df1eea5b32e4168c6f273d5c250cddca4f9826eec55adf89677eb3701d1"
+      },
+      "sources_sha256": {
+        "cost_record.py": "932db783930ee00dc1d9e64fda7d26223e5f00948c091ef64273941f7c7131da",
+        "space_inventory.py": "6a6e8be973ae96e70edf1dbb369e6412a88d7fc0539078370a0f8391a5664186"
+      }
+    },
+    "timing_scope": "Saved driver construction time; query evaluation and external GT utility excluded; complete fairness/thread/warmup acceptance remains separate",
+    "scope": "Unified record shape for independently checked component formulas and reported IT; not matched-recall, RSS-as-IS, parameter-selection or server-performance acceptance",
+    "native_space_usage_bytes": 1734644157,
+    "peak_RSS_native_report": {
+      "value": 1962844,
+      "unit": "kbytes as reported by GNU time; process peak, not retained index space"
+    }
+  }
+}

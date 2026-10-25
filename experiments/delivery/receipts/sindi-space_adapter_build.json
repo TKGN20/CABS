@@ -1,0 +1,118 @@
+{
+  "status": "BUILT_NOT_PARITY_ACCEPTED",
+  "upstream": {
+    "repository": "Roxanne0321/vsag",
+    "commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+    "archive_sha256": "3e18d0f46988fbbb04741c4f841935bad5f9f6993487e2e12b5fb50aad38a6e0",
+    "lineage": "sparse branch candidate"
+  },
+  "native_build_receipt_sha256": "e09c2a88505e6ce976aada2bfb66b2cf545422ebe4cac6e16c4ba4aa83e10287",
+  "native_library_sha256": "1c007494e143d4cf61b0015b6a37d06993792d56ed41863c57dd573a864d9127",
+  "adapter_sha256": "797c9ac8bdb59e6704974b4c29345bff298206e11a1e55653d75b65216c45725",
+  "compile_command": [
+    "/usr/bin/c++",
+    "-DENABLE_AVX2=1",
+    "-DENABLE_AVX512=1",
+    "-DENABLE_AVX=1",
+    "-DENABLE_SSE=1",
+    "-DFMT_HEADER_ONLY=1",
+    "-D_GLIBCXX_USE_CXX11_ABI=1",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/_deps/nlohmann_json-src/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/openblas/install/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/boost/install/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/source/extern/diskann/DiskANN/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/_deps/cpuinfo-src/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/_deps/thread_pool-src",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/spdlog/install/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/source/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/source/src",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/_deps/roaringbitmap-src/include",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/_deps/roaringbitmap-src/include/roaring",
+    "-I/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/_deps/roaringbitmap-src/cpp",
+    "-isystem",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/_deps/fmt-src/include",
+    "-ffp-contract=off",
+    "-fPIC",
+    "-fPIC",
+    "-fPIC",
+    "-Werror=suggest-override",
+    "-g",
+    "-O3",
+    "-O3",
+    "-DNDEBUG",
+    "-std=gnu++17",
+    "-o",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-adapter-v1/sindi_fixed.o",
+    "-c",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-adapter-v1/sindi_fixed.cpp",
+    "-std=c++17",
+    "-DCABS_SINDI_REPAIRED_NATIVE=1",
+    "-DCABS_SINDI_SPACE_INVENTORY=1"
+  ],
+  "link_command": [
+    "/usr/bin/c++",
+    "-ffp-contract=off",
+    "-fPIC",
+    "-fPIC",
+    "-fPIC",
+    "-Werror=suggest-override",
+    "-g",
+    "-O3",
+    "-O3",
+    "-DNDEBUG",
+    "-static-libstdc++",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-adapter-v1/sindi_fixed.o",
+    "-o",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-adapter-v1/sindi_fixed",
+    "-L/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/openblas/install/lib",
+    "-L/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/openblas/install/lib64",
+    "-Wl,-rpath,/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/openblas/install/lib:/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/openblas/install/lib64:/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-native-v1/build/src",
+    "../../src/libvsag.so",
+    "../../libdiskann.a",
+    "-lgomp",
+    "-Wl,-Bstatic",
+    "-lopenblas",
+    "-Wl,-Bdynamic",
+    "-lgfortran",
+    "-lpthread",
+    "-lm",
+    "-ldl",
+    "../../src/simd/libsimd.a",
+    "../../_deps/cpuinfo-build/libcpuinfo.a",
+    "../../_deps/roaringbitmap-build/src/libroaring.a"
+  ],
+  "scope": "Public API gamma-candidate adapter; supplied native library is unchanged during adapter build; native repairs separately disclosed; IS/common protocol acceptance pending",
+  "native_correctness_repairs": {
+    "upstream_commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+    "patch_sha256": "034505b9757042a3aecf433754800a652541938557c115d604ec2c84c5cf4d7e",
+    "files": {
+      "src/index/sindi.cpp": {
+        "before_sha256": "47bfaddc5e2e4ce5e57be1c353fe691531de26382510f40cd6b6a15632e3abd1",
+        "after_sha256": "0d81f9a3fd4822a422f56d2c16cdf66dab9f199641918dcc1920b8f7b652b941"
+      },
+      "src/index/sindi.h": {
+        "before_sha256": "8ba40a10716ee9ae43f5936caf673a2a3bf8b1636a2cbb1b9ad0e3808b2999f8",
+        "after_sha256": "9174f2eb356cc91e19b8dfc41ac37b9623c77d1550602a9dfaffb36e1c67c957"
+      }
+    },
+    "scope": "Disclosed bounded native prototype repairs; frozen CABS implementation unchanged"
+  },
+  "native_space_inventory": {
+    "upstream_commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+    "required_correctness_patch_sha256": "034505b9757042a3aecf433754800a652541938557c115d604ec2c84c5cf4d7e",
+    "patch_sha256": "1c61c46e0614cdae2e4ff59680f662e9cc61e83e4bb547c977a0352eaf899499",
+    "files": {
+      "src/index/sindi.h": {
+        "before_sha256": "9174f2eb356cc91e19b8dfc41ac37b9623c77d1550602a9dfaffb36e1c67c957",
+        "after_sha256": "48409db680575fbad2b155cc1a3a277c1fc03d82e3b556e0fee3f1300cea476c"
+      },
+      "src/index/sindi.cpp": {
+        "before_sha256": "0d81f9a3fd4822a422f56d2c16cdf66dab9f199641918dcc1920b8f7b652b941",
+        "after_sha256": "d8ed30022d99b867537d7e7a5d65c01cbc244edd7fcdac3776b9daa0f953e699"
+      }
+    },
+    "scope": "Read-only GetStats override; no native fields, build/search, serialization or memory-estimate policy changed"
+  },
+  "space_helper_sha256": "6a2fe0bd5acc25a7d87da6b072ff1ca8a37ba4a0aa5868f8daf7deac36fdf6dd",
+  "binary_sha256": "943503dbc388577ea217034cfde0710e80a18bd60ccd5e48fa63ee8e2335bd05"
+}

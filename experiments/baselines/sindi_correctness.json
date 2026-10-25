@@ -1,0 +1,15 @@
+{
+  "upstream_commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+  "patch_sha256": "034505b9757042a3aecf433754800a652541938557c115d604ec2c84c5cf4d7e",
+  "files": {
+    "src/index/sindi.cpp": {
+      "before_sha256": "47bfaddc5e2e4ce5e57be1c353fe691531de26382510f40cd6b6a15632e3abd1",
+      "after_sha256": "0d81f9a3fd4822a422f56d2c16cdf66dab9f199641918dcc1920b8f7b652b941"
+    },
+    "src/index/sindi.h": {
+      "before_sha256": "8ba40a10716ee9ae43f5936caf673a2a3bf8b1636a2cbb1b9ad0e3808b2999f8",
+      "after_sha256": "9174f2eb356cc91e19b8dfc41ac37b9623c77d1550602a9dfaffb36e1c67c957"
+    }
+  },
+  "scope": "Disclosed bounded native prototype repairs; frozen CABS implementation unchanged"
+}

@@ -1,0 +1,7 @@
+{
+  "status": "SOSIA_COMPONENT_FIXTURE_AUDIT_PASS",
+  "index_structure_bytes": 114976071,
+  "original_vector_bytes": 102639664,
+  "index_plus_vectors_bytes": 217615735,
+  "scope": "Analytic component/count/ABI and sum checks; common four-method IS and real-data acceptance pending"
+}

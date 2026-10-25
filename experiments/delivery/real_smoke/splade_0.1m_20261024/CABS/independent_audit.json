@@ -1,0 +1,40 @@
+{
+  "status": "MEASURED_RECORD_AUDIT_ONLY",
+  "method": "CABS",
+  "role": "selection",
+  "query_ids": [
+    966,
+    5380,
+    1447,
+    6577
+  ],
+  "k": 50,
+  "repeats": 3,
+  "Recall": 0.965,
+  "QPS": 196.70848350221993,
+  "measured_records": 12,
+  "query_recalls": {
+    "966": 1.0,
+    "5380": 1.0,
+    "1447": 0.86,
+    "6577": 1.0
+  },
+  "binding": {
+    "data_sha256": "a62edf752df97ecf44e3b94835342d9b3b6d8097d726c21c1509ad7da125a6be",
+    "queries_sha256": "4181fb0cf8e5e57c1134396bb2c9eec95670c910143e6d0daf546ceb436a81a5",
+    "plan_sha256": "0127adddf1279fdcb780ab709bce888f5bc8867f698980e35cf030a9cc48f2ce",
+    "GT_complete_sha256": "d2c20ef5bb1974f28aa8eb0e822bf8a853071837f188a06c908d91c8ac440c41",
+    "result_artifacts": {
+      "summary.json": "73dc548f0dfc5e31b46667d82d1edd1fa64f3e2c8794d4609eb31a7ea97fc285",
+      "retrieved.csv": "504d0c1d4758a8135dfdfdbd9f8bea249d462802a9fc62da785e6932d9212602",
+      "queries.csv": "e46662930c888aba1c83a3be6db5212bd7d3be201ff014557881d52c7343aea7"
+    },
+    "audit_sources": {
+      "audit_run.py": "075ab21cb2434b5b668469a107f5a678cd7712e40cdf104582e02ddf963b3ab4",
+      "oracle.py": "9ed007481da7f782b36c0997d50179208064426b7c56038bd38457d1c37ff582",
+      "prepare_gt.py": "0df6be938e9f8fdb62ca679b7e16033a5dbaeb750cbd64cd58008476e8629b41"
+    }
+  },
+  "IS_status": "NOT_COMMON_BASELINE_VALIDATED",
+  "scope": "Original-ID, exact-score and timing audit against separately generated role-bound GT; not source/binary provenance, parameter-selection, IS, fair-performance or server acceptance"
+}

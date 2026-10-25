@@ -1,0 +1,52 @@
+LOADING DATA...
+Load the sparse data from the file: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr
+N=     100000
+dim=   30109
+
+nnz=   12729954
+
+Spa.=  127.3
+
+Range= [9.31323e-09,3.4349]
+
+Load the sparse data from the file: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr
+N=     6980
+dim=   30109
+
+nnz=   342696
+
+Spa.=  49.0968
+
+Range= [8.56816e-07,3.57408]
+
+LOADING TIME: 0.848132s.
+
+SOS TRANSFORMING ...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+TRANSFORMING TIME: 0.348728 s.
+
+SETTING HASH PARAMETER...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+SETTING TIME: 0.020506s.
+
+COMPUTING HASH...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+COMPUTING TIME: 0.457446s.
+
+
+SOSIA INDEXING...
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+BUILDING TIME: 0.119194s.
+

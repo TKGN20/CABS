@@ -1,0 +1,32 @@
+{
+  "status": "LOCAL_REAL_SPACE_INVENTORY_CHECKED",
+  "method": "SINDI",
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-adapter-v1/sindi_fixed",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-space-real-0.1m-20261024",
+    "10000",
+    "1",
+    "1",
+    "1000",
+    "50",
+    "3",
+    "candidate-api-v1"
+  ],
+  "binary_sha256": "943503dbc388577ea217034cfde0710e80a18bd60ccd5e48fa63ee8e2335bd05",
+  "build_receipt_sha256": "51bf10c8ab384377a75e6152361a1a24fcebcf5060e470528f59cb7eaf58243a",
+  "driver_sha256": "3f8a92b3665b5e66fe5a88f024e85a19587ee4e86265c0eed818412f80ad2428",
+  "scope": "One fixed local component inventory and unchanged-ranking control; not native default, parameter tuning, common IS or fair server performance",
+  "Recall": 1.0,
+  "inventory": {
+    "status": "SINDI_COMPONENT_ACCOUNTING_PASS",
+    "index_structure_bytes": 211843908,
+    "original_vector_bytes": 102639664,
+    "index_plus_vectors_bytes": 314483572,
+    "native_forward_copy_bytes": 104239632,
+    "scope": "Analytic component/count/ABI checks only; common IS and server performance acceptance pending"
+  },
+  "prior_ranked_outputs_equal": true
+}

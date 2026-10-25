@@ -1,0 +1,8 @@
+{
+  "status": "SEISMIC_COMPONENT_ACCOUNTING_PASS",
+  "index_structure_bytes": 1633083045,
+  "original_vector_bytes": 102639640,
+  "index_plus_vectors_bytes": 1735722685,
+  "native_space_usage_bytes": 1734644157,
+  "scope": "Counts/ABI/sums and pinned compressed-storage MemSize capacity traversal; common IS and server performance acceptance pending"
+}

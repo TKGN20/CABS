@@ -1,0 +1,45 @@
+{
+  "status": "NATIVE_SMOKE_ONLY",
+  "scope": "Native CLI build/serialize/reload/search smoke on public synthetic fixture; printed QPS/recall not accepted as four-method evidence; no original-ID candidate adapter yet",
+  "commands": [
+    {
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-pinned-v2/build/sparse/scripts/sindi_index_build",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/base.csr",
+        "10000",
+        "1",
+        "1",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-smoke-recorded/index.bin"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-pinned-v2/build/sparse/scripts/sindi_index_search",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-smoke-recorded/index.bin",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/queries.csr",
+        "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-smoke-recorded/gt.bin",
+        "1",
+        "160",
+        "50",
+        "1"
+      ],
+      "returncode": 0
+    }
+  ],
+  "source_build_receipt_sha256": "56a2e199168ecd094323d5e0a4efe6e379b8fc40781870fb4db80179df0a209d",
+  "binary_sha256": {
+    "sindi_index_build": "74b7720c3a09fdd44f3acf8d66be1d458ea07f764a85a3e920d720fe26b6934a",
+    "sindi_index_search": "3781baf0b9c5117d38d98ada01929f0deafcebf5134acccebb05781e0c3c89ce"
+  },
+  "library_sha256": "c3c1d51fb4b7755447a2e20926b5e1f3a6d3bba576cf8088f1218767cfb2213c",
+  "avx512f_host_flag": true,
+  "artifact_sha256": {
+    "gt.bin": "e9a37b305a604552245ee120ec27fee1a0ec9aba9a4c5de5c27071ce459cce14",
+    "index.bin": "1fcd56353de84f6b62b277a20d39c0f725a12be27e7deae5a83af936ed2f1a4e",
+    "sindi_index_build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sindi_index_build.stdout.log": "baec111838c80c4acaa9ad51a5a065c46aa9ec387e86d91f6f9a10bb042b8b6a",
+    "sindi_index_search.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sindi_index_search.stdout.log": "1916a13b980eac03cfb65ec6964e8cf236c59e851cf928de1eb085e07cd5cbaf"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "IS_bytes": 73120,
+  "IS_status": "REPORTED_NOT_COMMON_VALIDATED",
+  "allocation_policy": "Native allocator and explicit native result initialization",
+  "build_seconds_including_loading": 0.0031083569999736937,
+  "candidate_policy": "native gamma pool exposed through KnnSearch(k=gamma); native gamma unchanged",
+  "disclosed_native_correctness_repairs": true,
+  "exact_binary64_reranking_in_timer": true,
+  "index_randomness": "deterministic native construction; no stochastic seed introduced",
+  "method": "SINDI",
+  "native_reranking": true,
+  "search_threads": 1,
+  "sentinel_byte": 255
+}

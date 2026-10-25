@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "queries": 4,
+  "k": 50,
+  "repeats": 3,
+  "Recall": 0.95,
+  "QPS": 64701.88606818167,
+  "scope": "SOSIA fixed-source small-fixture correctness only; no performance/IS/paper-parity acceptance",
+  "input_sha256": {
+    "/tmp/sosia-parity-3kd4dw6l/base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+    "/tmp/sosia-parity-3kd4dw6l/queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+    "/tmp/sosia-parity-3kd4dw6l/run/retrieved.csv": "ce00993a761cebc3fb0856f88a054a99b8c7fa91499916ec8887fd2410344b90",
+    "/tmp/sosia-parity-3kd4dw6l/run/queries.csv": "b51511063eeb4d45173d1b9c6395a31eeeb7bcd1dc96faa9fcd897b3d179548c"
+  },
+  "space_inventory": {
+    "status": "SOSIA_COMPONENT_ACCOUNTING_PASS",
+    "index_structure_bytes": 125856,
+    "original_vector_bytes": 21792,
+    "index_plus_vectors_bytes": 147648,
+    "scope": "Analytic component/count/ABI and sum checks only; common four-method IS and performance acceptance pending"
+  },
+  "previous_adapter_ranked_outputs_equal": true,
+  "same_seed_ranked_outputs_equal": true,
+  "positive_query_ties_and_unused_capacity_checked": true,
+  "partial_empty_expansion_space_checked": true,
+  "zero_query_rejected_without_fallback": true,
+  "corrupt_space_inventory_rejected": true,
+  "overflow_domain_rejected": true
+}

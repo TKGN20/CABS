@@ -1,0 +1,27 @@
+{
+  "path": "experiments/delivery/space_inventory/cabs_real_0.1m_20261024",
+  "sha256": {
+    "current_record_audit.json": "3e10161c285a4f1ed488fadd44e9f509e6923edf0b9da764d46c21d6345665fd",
+    "current_space_audit.json": "7854b283b7391b551595c636ddbb82cb1975d0115e2b9e47dea79f99c15ad5ff",
+    "driver.py": "54ca8b6317e328607a26db3bf339e0e0ba5d468c5e547fc36a2d58adb09eabea",
+    "ground_truth.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+    "independent_audit.json": "95a3405ab019267a7441d6d19993641023f6db77f82b352254e14b434a41fc4e",
+    "index_space.json": "72e9d6f346fa55f0d49d50502d66a9da2fae0620d5c1988121f950642b11008f",
+    "queries.csv": "03c1881ed942717a40d40d83fd3021e598543f23683e8fb2e1b8dd7b425814a4",
+    "receipt.json": "02bcd557871c789ccdb8abe2153f40dbf8c89035106cd24af008b1e086ec3b90",
+    "resource_usage.log": "30678b538a3bbb6c294885ead55f7756b745b33f4948ca0e49fd4408ba09a0e8",
+    "retrieved.csv": "504d0c1d4758a8135dfdfdbd9f8bea249d462802a9fc62da785e6932d9212602",
+    "run.log": "2aaa2bf18358ca896003603609ccad6b5785f1259abf56163d9aed0d7b308914",
+    "selection-gt/complete.json": "dcb2149f0484919230c7b94b35b1446598c34a426669a03d3187b3ae05374b6d",
+    "selection-gt/ground_truth.csv": "040557953ddf3cec22553f578dafbb4747e67afa81a5bdebebcb7dfa4b7c8712",
+    "selection-gt/manifest.json": "af4efc6499783ace7994529fcffd546ac60af7b078bdf95041c2752474500fbf",
+    "selection-gt/measured_ids.txt": "76a1569e5e41e0b8a6c5911a9ca28c32b1b6f71e1b5a4d159d96a5ebd6c8eeea",
+    "selection-gt/producer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "selection-gt/summary.json": "fac195392f780dcde54b176c2ea04fdf7234f3d52adaf2c27052acebc60cc47d",
+    "space_audit.json": "2a2fcbce8b10424cee7c859b2a2a85e89fe06138608b4380ed8e9aa68d996e28",
+    "summary.json": "382ea4212b483f1c680277d3d4749499eec1172386c914c6c393cb830d57fa75"
+  },
+  "method": "CABS",
+  "preflight_input": "base_small.csr",
+  "scope": "One real static component/lifecycle control with source-bound independent GT; no matched performance acceptance"
+}

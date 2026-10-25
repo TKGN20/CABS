@@ -1,0 +1,16 @@
+{
+  "upstream_commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+  "required_correctness_patch_sha256": "034505b9757042a3aecf433754800a652541938557c115d604ec2c84c5cf4d7e",
+  "patch_sha256": "1c61c46e0614cdae2e4ff59680f662e9cc61e83e4bb547c977a0352eaf899499",
+  "files": {
+    "src/index/sindi.h": {
+      "before_sha256": "9174f2eb356cc91e19b8dfc41ac37b9623c77d1550602a9dfaffb36e1c67c957",
+      "after_sha256": "48409db680575fbad2b155cc1a3a277c1fc03d82e3b556e0fee3f1300cea476c"
+    },
+    "src/index/sindi.cpp": {
+      "before_sha256": "0d81f9a3fd4822a422f56d2c16cdf66dab9f199641918dcc1920b8f7b652b941",
+      "after_sha256": "d8ed30022d99b867537d7e7a5d65c01cbc244edd7fcdac3776b9daa0f953e699"
+    }
+  },
+  "scope": "Read-only GetStats override; no native fields, build/search, serialization or memory-estimate policy changed"
+}

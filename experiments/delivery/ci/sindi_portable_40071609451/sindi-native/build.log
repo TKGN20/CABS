@@ -1,0 +1,364 @@
+[  0%] Building CXX object src/quantization/CMakeFiles/quantizer.dir/quantizer_parameter.cpp.o
+[  0%] Creating directories for 'openblas'
+[  0%] Performing download step (download, verify and extract) for 'openblas'
+-- Downloading...
+   dst='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/openblas/src/OpenBLAS-v0.3.23.tar.gz'
+   timeout='30 seconds'
+   inactivity timeout='5 seconds'
+-- Using src='https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.23/OpenBLAS-0.3.23.tar.gz'
+-- verifying file...
+       file='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/openblas/src/OpenBLAS-v0.3.23.tar.gz'
+-- Downloading... done
+-- extracting...
+     src='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/openblas/src/OpenBLAS-v0.3.23.tar.gz'
+     dst='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/openblas/source'
+-- extracting... [tar xfz]
+-- extracting... [analysis]
+-- extracting... [rename]
+-- extracting... [clean up]
+-- extracting... done
+[  0%] No update step for 'openblas'
+[  2%] No patch step for 'openblas'
+[  4%] No configure step for 'openblas'
+[  4%] Performing build step for 'openblas'
+[  6%] Building CXX object src/quantization/CMakeFiles/quantizer.dir/fp32_quantizer_parameter.cpp.o
+[  6%] Building CXX object src/quantization/CMakeFiles/quantizer.dir/scalar_quantization/sq8_quantizer_parameter.cpp.o
+[  6%] Building CXX object src/quantization/CMakeFiles/quantizer.dir/scalar_quantization/sq8_uniform_quantizer_parameter.cpp.o
+[  6%] Building CXX object src/quantization/CMakeFiles/quantizer.dir/scalar_quantization/sq4_quantizer_parameter.cpp.o
+[  8%] Building CXX object src/quantization/CMakeFiles/quantizer.dir/scalar_quantization/sq4_uniform_quantizer_parameter.cpp.o
+[  8%] Building CXX object src/quantization/CMakeFiles/quantizer.dir/scalar_quantization/scalar_quantization_trainer.cpp.o
+[  8%] Built target quantizer
+[  8%] Creating directories for 'boost'
+[  8%] Performing download step (download, verify and extract) for 'boost'
+-- Downloading...
+   dst='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/boost/src/boost_1_67_0.tar.gz'
+   timeout='90 seconds'
+   inactivity timeout='5 seconds'
+-- Using src='https://archives.boost.io/release/1.67.0/source/boost_1_67_0.tar.gz'
+-- [download 0% complete]
+-- [download 1% complete]
+-- [download 2% complete]
+-- [download 3% complete]
+-- [download 4% complete]
+-- [download 5% complete]
+-- [download 6% complete]
+-- [download 7% complete]
+-- [download 8% complete]
+-- [download 9% complete]
+-- [download 10% complete]
+-- [download 11% complete]
+-- [download 12% complete]
+-- [download 13% complete]
+-- [download 14% complete]
+-- [download 15% complete]
+-- [download 16% complete]
+-- [download 17% complete]
+-- [download 18% complete]
+-- [download 19% complete]
+-- [download 20% complete]
+-- [download 21% complete]
+-- [download 22% complete]
+-- [download 23% complete]
+-- [download 24% complete]
+-- [download 25% complete]
+-- [download 26% complete]
+-- [download 27% complete]
+-- [download 28% complete]
+-- [download 29% complete]
+-- [download 30% complete]
+-- [download 31% complete]
+-- [download 32% complete]
+-- [download 33% complete]
+-- [download 34% complete]
+-- [download 35% complete]
+-- [download 36% complete]
+-- [download 37% complete]
+-- [download 38% complete]
+-- [download 39% complete]
+-- [download 40% complete]
+-- [download 41% complete]
+-- [download 42% complete]
+-- [download 43% complete]
+-- [download 44% complete]
+-- [download 45% complete]
+-- [download 46% complete]
+-- [download 47% complete]
+-- [download 48% complete]
+-- [download 49% complete]
+-- [download 50% complete]
+-- [download 51% complete]
+-- [download 52% complete]
+-- [download 53% complete]
+-- [download 54% complete]
+-- [download 55% complete]
+-- [download 56% complete]
+-- [download 57% complete]
+-- [download 58% complete]
+-- [download 59% complete]
+-- [download 60% complete]
+-- [download 61% complete]
+-- [download 62% complete]
+-- [download 63% complete]
+-- [download 64% complete]
+-- [download 65% complete]
+-- [download 66% complete]
+-- [download 67% complete]
+-- [download 68% complete]
+-- [download 69% complete]
+-- [download 70% complete]
+-- [download 71% complete]
+-- [download 72% complete]
+-- [download 73% complete]
+-- [download 74% complete]
+-- [download 75% complete]
+-- [download 76% complete]
+-- [download 77% complete]
+-- [download 78% complete]
+-- [download 79% complete]
+-- [download 80% complete]
+-- [download 81% complete]
+-- [download 82% complete]
+-- [download 83% complete]
+-- [download 84% complete]
+-- [download 85% complete]
+-- [download 86% complete]
+-- [download 87% complete]
+-- [download 88% complete]
+-- [download 89% complete]
+-- [download 90% complete]
+-- [download 91% complete]
+-- [download 92% complete]
+-- [download 93% complete]
+-- [download 94% complete]
+-- [download 95% complete]
+-- [download 96% complete]
+-- [download 97% complete]
+-- [download 98% complete]
+-- [download 99% complete]
+-- [download 100% complete]
+-- verifying file...
+       file='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/boost/src/boost_1_67_0.tar.gz'
+-- Downloading... done
+-- extracting...
+     src='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/boost/src/boost_1_67_0.tar.gz'
+     dst='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/boost/source'
+-- extracting... [tar xfz]
+-- extracting... [analysis]
+-- extracting... [rename]
+-- extracting... [clean up]
+-- extracting... done
+[  8%] No update step for 'boost'
+[ 11%] No patch step for 'boost'
+[ 11%] Performing configure step for 'boost'
+-- boost configure command succeeded.  See also /home/runner/work/CABS/CABS/build-mission/sindi-native/build/boost/src/boost-stamp/boost-configure-*.log
+[ 11%] Built target boost-configure
+[ 13%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/api.c.o
+[ 13%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/cache.c.o
+[ 13%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/init.c.o
+[ 13%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/log.c.o
+[ 15%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/init.c.o
+[ 15%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/info.c.o
+[ 15%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/vendor.c.o
+[ 17%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/uarch.c.o
+[ 17%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/name.c.o
+[ 17%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/topology.c.o
+[ 17%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/isa.c.o
+[ 20%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/cache/init.c.o
+[ 20%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/cache/descriptor.c.o
+[ 20%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/cache/deterministic.c.o
+[ 20%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/linux/init.c.o
+[ 22%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/x86/linux/cpuinfo.c.o
+[ 22%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/linux/smallfile.c.o
+[ 22%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/linux/multiline.c.o
+[ 24%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/linux/cpulist.c.o
+[ 24%] Building C object _deps/cpuinfo-build/CMakeFiles/cpuinfo.dir/src/linux/processors.c.o
+[ 24%] Linking C static library libcpuinfo.a
+[ 24%] Built target cpuinfo
+[ 24%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/isadetection.c.o
+[ 24%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/array_util.c.o
+[ 26%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/bitset_util.c.o
+[ 26%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/art/art.c.o
+[ 26%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/bitset.c.o
+[ 28%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/array.c.o
+[ 28%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/bitset.c.o
+[ 28%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/containers.c.o
+[ 28%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/convert.c.o
+[ 31%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/mixed_intersection.c.o
+[ 31%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/mixed_union.c.o
+[ 31%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/mixed_equal.c.o
+[ 31%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/mixed_subset.c.o
+[ 33%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/mixed_negation.c.o
+[ 33%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/mixed_xor.c.o
+[ 33%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/mixed_andnot.c.o
+[ 35%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/containers/run.c.o
+[ 35%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/memory.c.o
+[ 35%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/roaring.c.o
+[ 35%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/roaring64.c.o
+[ 37%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/roaring_priority_queue.c.o
+[ 37%] Building C object _deps/roaringbitmap-build/src/CMakeFiles/roaring.dir/roaring_array.c.o
+[ 37%] Linking C static library libroaring.a
+[ 37%] Built target roaring
+[ 40%] Creating directories for 'spdlog'
+[ 40%] Performing download step (download, verify and extract) for 'spdlog'
+-- Downloading...
+   dst='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/spdlog/src/spdlog-1.12.0.tar.gz'
+   timeout='30 seconds'
+   inactivity timeout='5 seconds'
+-- Using src='https://github.com/gabime/spdlog/archive/refs/tags/v1.12.0.tar.gz'
+-- verifying file...
+       file='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/spdlog/src/spdlog-1.12.0.tar.gz'
+-- Downloading... done
+-- extracting...
+     src='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/spdlog/src/spdlog-1.12.0.tar.gz'
+     dst='/home/runner/work/CABS/CABS/build-mission/sindi-native/build/spdlog/source'
+-- extracting... [tar xfz]
+-- extracting... [analysis]
+-- extracting... [rename]
+-- extracting... [clean up]
+-- extracting... done
+[ 40%] No update step for 'spdlog'
+[ 40%] No patch step for 'spdlog'
+[ 40%] Performing configure step for 'spdlog'
+-- spdlog configure command succeeded.  See also /home/runner/work/CABS/CABS/build-mission/sindi-native/build/spdlog/src/spdlog-stamp/spdlog-configure-*.log
+[ 42%] Performing build step for 'spdlog'
+-- spdlog build command succeeded.  See also /home/runner/work/CABS/CABS/build-mission/sindi-native/build/spdlog/src/spdlog-stamp/spdlog-build-*.log
+[ 42%] No install step for 'spdlog'
+[ 42%] Completed 'spdlog'
+[ 42%] Built target spdlog
+fatal: not a git repository (or any of the parent directories): .git
+CMake Warning at /home/runner/work/CABS/CABS/build-mission/sindi-native/source/cmake/GenerateVersionHeader.cmake:20 (message):
+  Failed to determine VSAG_VERSION from Git tags.  Using default version
+  "v0.0.0-unknown".
+
+
+[ 42%] Built target version
+[ 42%] Building CXX object src/simd/CMakeFiles/simd.dir/generic.cpp.o
+[ 44%] Building CXX object src/simd/CMakeFiles/simd.dir/sse.cpp.o
+[ 44%] Building CXX object src/simd/CMakeFiles/simd.dir/avx.cpp.o
+[ 44%] Building CXX object src/simd/CMakeFiles/simd.dir/avx2.cpp.o
+[ 44%] Building CXX object src/simd/CMakeFiles/simd.dir/avx512.cpp.o
+[ 46%] Building CXX object src/simd/CMakeFiles/simd.dir/simd.cpp.o
+[ 46%] Building CXX object src/simd/CMakeFiles/simd.dir/basic_func.cpp.o
+[ 46%] Building CXX object src/simd/CMakeFiles/simd.dir/fp32_simd.cpp.o
+[ 48%] Building CXX object src/simd/CMakeFiles/simd.dir/sq8_simd.cpp.o
+[ 48%] Building CXX object src/simd/CMakeFiles/simd.dir/sq4_simd.cpp.o
+[ 48%] Building CXX object src/simd/CMakeFiles/simd.dir/sq4_uniform_simd.cpp.o
+[ 48%] Building CXX object src/simd/CMakeFiles/simd.dir/sq8_uniform_simd.cpp.o
+[ 51%] Building CXX object src/simd/CMakeFiles/simd.dir/normalize.cpp.o
+[ 51%] Linking CXX static library libsimd.a
+[ 51%] Built target simd
+[ 51%] Building CXX object src/io/CMakeFiles/io.dir/io_parameter.cpp.o
+[ 53%] Building CXX object src/io/CMakeFiles/io.dir/memory_io_parameter.cpp.o
+[ 53%] Building CXX object src/io/CMakeFiles/io.dir/memory_block_io_parameter.cpp.o
+[ 53%] Built target io
+[ 53%] Performing setup-compiler step for 'boost'
+[ 53%] Performing build step for 'boost'
+-- boost build command succeeded.  See also /home/runner/work/CABS/CABS/build-mission/sindi-native/build/boost/src/boost-stamp/boost-build-*.log
+[ 55%] No install step for 'boost'
+[ 55%] Completed 'boost'
+[ 55%] Built target boost
+-- openblas build command succeeded.  See also /home/runner/work/CABS/CABS/build-mission/sindi-native/build/openblas/src/openblas-stamp/openblas-build-*.log
+[ 55%] Performing install step for 'openblas'
+-- openblas install command succeeded.  See also /home/runner/work/CABS/CABS/build-mission/sindi-native/build/openblas/src/openblas-stamp/openblas-install-*.log
+[ 55%] Completed 'openblas'
+[ 55%] Built target openblas
+[ 55%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/abstract_data_store.cpp.o
+[ 55%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/ann_exception.cpp.o
+[ 57%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/disk_utils.cpp.o
+[ 57%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/distance.cpp.o
+[ 57%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/index.cpp.o
+[ 57%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/in_mem_graph_store.cpp.o
+[ 60%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/in_mem_data_store.cpp.o
+[ 60%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/local_file_reader.cpp.o
+[ 60%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/math_utils.cpp.o
+[ 60%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/natural_number_map.cpp.o
+[ 62%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/natural_number_set.cpp.o
+[ 62%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/memory_mapper.cpp.o
+[ 62%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/partition.cpp.o
+[ 64%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/pq.cpp.o
+[ 64%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/pq_flash_index.cpp.o
+[ 64%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/scratch.cpp.o
+[ 64%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/logger.cpp.o
+[ 66%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/utils.cpp.o
+[ 66%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/filter_utils.cpp.o
+[ 66%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/index_factory.cpp.o
+[ 66%] Building CXX object CMakeFiles/diskann.dir/extern/diskann/DiskANN/src/abstract_index.cpp.o
+[ 68%] Linking CXX static library libdiskann.a
+[ 68%] Built target diskann
+[ 68%] Building CXX object src/CMakeFiles/vsag.dir/bitset_impl.cpp.o
+[ 71%] Building CXX object src/CMakeFiles/vsag.dir/constants.cpp.o
+[ 71%] Building CXX object src/CMakeFiles/vsag.dir/dataset_impl.cpp.o
+[ 71%] Building CXX object src/CMakeFiles/vsag.dir/default_allocator.cpp.o
+[ 73%] Building CXX object src/CMakeFiles/vsag.dir/default_logger.cpp.o
+[ 73%] Building CXX object src/CMakeFiles/vsag.dir/default_thread_pool.cpp.o
+[ 73%] Building CXX object src/CMakeFiles/vsag.dir/distances.cpp.o
+[ 73%] Building CXX object src/CMakeFiles/vsag.dir/engine.cpp.o
+[ 75%] Building CXX object src/CMakeFiles/vsag.dir/footer.cpp.o
+[ 75%] Building CXX object src/CMakeFiles/vsag.dir/index_feature_list.cpp.o
+[ 75%] Building CXX object src/CMakeFiles/vsag.dir/options.cpp.o
+[ 75%] Building CXX object src/CMakeFiles/vsag.dir/parameter_check.cpp.o
+[ 77%] Building CXX object src/CMakeFiles/vsag.dir/parameter_generator.cpp.o
+[ 77%] Building CXX object src/CMakeFiles/vsag.dir/prefetch.cpp.o
+[ 77%] Building CXX object src/CMakeFiles/vsag.dir/resource.cpp.o
+[ 77%] Building CXX object src/CMakeFiles/vsag.dir/stream_reader.cpp.o
+[ 80%] Building CXX object src/CMakeFiles/vsag.dir/stream_writer.cpp.o
+[ 80%] Building CXX object src/CMakeFiles/vsag.dir/utils.cpp.o
+[ 80%] Building CXX object src/CMakeFiles/vsag.dir/vsag.cpp.o
+[ 82%] Building CXX object src/CMakeFiles/vsag.dir/vsag_ext.cpp.o
+[ 82%] Building CXX object src/CMakeFiles/vsag.dir/factory/factory.cpp.o
+[ 82%] Building CXX object src/CMakeFiles/vsag.dir/index/brute_force.cpp.o
+[ 82%] Building CXX object src/CMakeFiles/vsag.dir/index/brute_force_parameter.cpp.o
+[ 84%] Building CXX object src/CMakeFiles/vsag.dir/index/diskann.cpp.o
+[ 84%] Building CXX object src/CMakeFiles/vsag.dir/index/diskann_zparameters.cpp.o
+[ 84%] Building CXX object src/CMakeFiles/vsag.dir/index/hgraph_index.cpp.o
+[ 84%] Building CXX object src/CMakeFiles/vsag.dir/index/hgraph_index_zparameters.cpp.o
+[ 86%] Building CXX object src/CMakeFiles/vsag.dir/index/hnsw.cpp.o
+[ 86%] Building CXX object src/CMakeFiles/vsag.dir/index/hnsw_zparameters.cpp.o
+[ 86%] Building CXX object src/CMakeFiles/vsag.dir/index/index_common_param.cpp.o
+[ 88%] Building CXX object src/CMakeFiles/vsag.dir/index/pyramid.cpp.o
+[ 88%] Building CXX object src/CMakeFiles/vsag.dir/index/pyramid_zparameters.cpp.o
+[ 88%] Building CXX object src/CMakeFiles/vsag.dir/index/sindi.cpp.o
+[ 88%] Building CXX object src/CMakeFiles/vsag.dir/index/sindi_parameter.cpp.o
+[ 91%] Building CXX object src/CMakeFiles/vsag.dir/index/sparse_brute_force.cpp.o
+[ 91%] Building CXX object src/CMakeFiles/vsag.dir/index/sparse_brute_force_parameter.cpp.o
+[ 91%] Building CXX object src/CMakeFiles/vsag.dir/impl/basic_searcher.cpp.o
+[ 91%] Building CXX object src/CMakeFiles/vsag.dir/impl/conjugate_graph.cpp.o
+[ 93%] Building CXX object src/CMakeFiles/vsag.dir/impl/odescent_graph_builder.cpp.o
+[ 93%] Building CXX object src/CMakeFiles/vsag.dir/algorithm/hnswlib/algorithm_interface.cpp.o
+[ 93%] Building CXX object src/CMakeFiles/vsag.dir/algorithm/hnswlib/block_manager.cpp.o
+[ 95%] Building CXX object src/CMakeFiles/vsag.dir/algorithm/hnswlib/hnswalg.cpp.o
+[ 95%] Building CXX object src/CMakeFiles/vsag.dir/algorithm/sindi/utils.cpp.o
+[ 95%] Building CXX object src/CMakeFiles/vsag.dir/data_cell/flatten_datacell_parameter.cpp.o
+[ 95%] Building CXX object src/CMakeFiles/vsag.dir/data_cell/flatten_interface.cpp.o
+[ 97%] Building CXX object src/CMakeFiles/vsag.dir/data_cell/graph_datacell_parameter.cpp.o
+[ 97%] Building CXX object src/CMakeFiles/vsag.dir/data_cell/graph_interface.cpp.o
+[ 97%] Building CXX object src/CMakeFiles/vsag.dir/data_cell/graph_interface_parameter.cpp.o
+[ 97%] Building CXX object src/CMakeFiles/vsag.dir/data_cell/sparse_graph_datacell.cpp.o
+[100%] Building CXX object src/CMakeFiles/vsag.dir/algorithm/hgraph.cpp.o
+[100%] Building CXX object src/CMakeFiles/vsag.dir/algorithm/hgraph_parameter.cpp.o
+[100%] Linking CXX shared library libvsag.so
+[100%] Built target vsag
+[100%] Building CXX object sparse/scripts/CMakeFiles/sindi_index_build.dir/sindi_index_build.cpp.o
+[100%] Linking CXX executable sindi_index_build
+[100%] Built target sindi_index_build
+[  4%] Built target openblas
+[  6%] Built target boost-configure
+[ 10%] Built target quantizer
+[ 23%] Built target cpuinfo
+[ 28%] Built target spdlog
+fatal: not a git repository (or any of the parent directories): .git
+[ 41%] Built target roaring
+CMake Warning at /home/runner/work/CABS/CABS/build-mission/sindi-native/source/cmake/GenerateVersionHeader.cmake:20 (message):
+  Failed to determine VSAG_VERSION from Git tags.  Using default version
+  "v0.0.0-unknown".
+
+
+[ 41%] Built target version
+[ 43%] Built target io
+[ 52%] Built target simd
+[ 54%] Built target boost
+[ 67%] Built target diskann
+[ 97%] Built target vsag
+[100%] Building CXX object sparse/scripts/CMakeFiles/sindi_index_search.dir/sindi_index_search.cpp.o
+[100%] Linking CXX executable sindi_index_search
+[100%] Built target sindi_index_search

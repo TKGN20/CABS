@@ -1,0 +1,31 @@
+{
+  "status": "BUILT_NOT_PARITY_ACCEPTED",
+  "upstream": {
+    "repository": "tusKANNy/seismic",
+    "commit": "492de11c9b6fd0c46c2c7c274c30836353b882f0",
+    "archive_sha256": "350d576ebed8c2a02b48c3899473c11aecf9392bee9d930ff18b3820ea6b63da",
+    "lineage": "Candidate version, not yet asserted to be original paper implementation"
+  },
+  "archive_sha256": "350d576ebed8c2a02b48c3899473c11aecf9392bee9d930ff18b3820ea6b63da",
+  "rustc": "rustc 1.101.0-nightly (7189d39d9 2026-10-22)",
+  "toolchain_date": "2026-10-23",
+  "dependency_lock": "registered",
+  "adapter_sha256": "e761e546fe737b81e86b25f4588369a67e8c3582e06eedc902ce733d805dc1b0",
+  "adaptation_sha256": "fc6a763763a323a6caa054bf71d46c63ffd4b7bce10d37472a45216f13387920",
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/rust-nightly-20261023/cargo/bin/cargo",
+    "build",
+    "--manifest-path",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/seismic-adapter-v1/source/Cargo.toml",
+    "--locked",
+    "--release",
+    "--no-default-features",
+    "--bin",
+    "cabs_fixed_queries",
+    "-j2"
+  ],
+  "lock_sha256": "8fcf694d8f2c5d3faa97bdcf15ee9475dd4eff46f6f0eb8ce0927c105c844db1",
+  "binary_sha256": {
+    "cabs_fixed_queries": "2ec33e32e0aa5f4293248e43ce5303c3ff29f651f8c7510135bb8b09a9e24685"
+  }
+}

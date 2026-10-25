@@ -1,0 +1,30 @@
+{
+  "status": "EXPECTED_FAILURE_NATIVE_UNDERFILLED",
+  "returncode": 1,
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-unpatched-adapter-recorded-v4/sindi_fixed",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/base.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/queries.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/experiments/delivery/fixtures/seismic/ids.txt",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-unpatched-candidate-recorded-v4",
+    "10000",
+    "1",
+    "1",
+    "160",
+    "50",
+    "3",
+    "candidate-api-v1"
+  ],
+  "scope": "Original native SINDI source/library; full gamma exposure; failed diagnostic, not an accepted benchmark",
+  "artifact_sha256": {
+    "build_receipt.json": "255fc0a8b82f21824fb7d6daa41f4b5289f9b6922b20f45e0b5f8a5c8c04af38",
+    "candidate_counts.csv": "adb779b87c82837189283ba1452e59fc00dad174e03b6920bfa43e9ba2cdc65a",
+    "native_candidates.csv": "cd71903ebe55bfa184381ad3c21b323582eec86b77946392c6d48669a086d237",
+    "native_reference.csv": "7c79c5c3a407e31d3f959ef7e0952419401069f05c50042a274a760f8a1fd0c6",
+    "queries.csv": "80999d428855c715338f503f698007b3b35fb56ba83f90b922ee0ff24109037d",
+    "retrieved.csv": "2d46fbdfd308b63dd14197b8e10f75f80f1458b2217a69098019363545c9ed4e",
+    "sindi_fixed.cpp": "dcd53fadbe06089ea2972d711e9f30a0ca8162bcc187ccf136979e2570200c53",
+    "stderr.log": "a4f9a001911da13a6c3887e232e04429acce52a3b0fd1fa55ebf4170d900d815",
+    "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

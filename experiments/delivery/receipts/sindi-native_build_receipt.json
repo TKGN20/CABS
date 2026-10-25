@@ -1,0 +1,33 @@
+{
+  "status": "BUILT_NOT_PARITY_ACCEPTED",
+  "upstream": {
+    "repository": "Roxanne0321/vsag",
+    "commit": "93e034f920334ea9e0d92784bb1d8964fb7322fa",
+    "archive_sha256": "3e18d0f46988fbbb04741c4f841935bad5f9f6993487e2e12b5fb50aad38a6e0",
+    "lineage": "sparse branch candidate"
+  },
+  "thread_pool": {
+    "repository": "log4cplus/ThreadPool",
+    "commit": "3ffb60a33d0f295b11659926b7f52d460a7c8fef",
+    "archive_sha256": "740993b45873e101534a2a4c1d109b32489435fa4b808ec9ef376b21488190b8"
+  },
+  "command": [
+    "cmake",
+    "-S",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-pinned-v2/source",
+    "-B",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-pinned-v2/build",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "-DCMAKE_INSTALL_PREFIX=/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/sindi-pinned-v2/install",
+    "-DENABLE_INTEL_MKL=OFF",
+    "-DENABLE_TOOLS=OFF",
+    "-DENABLE_EXAMPLES=OFF",
+    "-DENABLE_TESTS=OFF",
+    "-DENABLE_WERROR=OFF",
+    "-DNUM_BUILDING_JOBS=2",
+    "-DCMAKE_CXX_FLAGS=-ffp-contract=off"
+  ],
+  "patch_sha256": "19040ada7797db2bcb9f8879a74f70a6a3e6d69e16bb88b6a9b6be016fda140e",
+  "compile_commands_sha256": "585f1b85139174407a8b3e50556a12c6da8096956a5500df07a030c6ebc45962"
+}

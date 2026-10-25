@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "queries": 4,
+  "k": 50,
+  "repeats": 3,
+  "Recall": 1.0,
+  "QPS": 23203.246907683948,
+  "scope": "SEISMIC fixed-source small-fixture correctness only; no performance/IS/paper-parity acceptance",
+  "input_sha256": {
+    "/tmp/seismic-parity-5hhjl5xv/base.csr": "4c8130d4e3d946e45260c83b1572efb817d20a6eb2cd579317d1bb9ed703872b",
+    "/tmp/seismic-parity-5hhjl5xv/queries.csr": "0ee883ce7c58c9fca157fd22be852f4bd8a763c3b4e0537dab44c2183a18f84f",
+    "/tmp/seismic-parity-5hhjl5xv/run/retrieved.csv": "6d02563131d9bade0c7320c84b37f6725a6f964906254065dfffa6ddc0baf51c",
+    "/tmp/seismic-parity-5hhjl5xv/run/queries.csv": "e85dd61096a450a5d7248d45b85170ec1443cf379d3727a99c98a7ddd617d2c3"
+  },
+  "same_seed_ranked_outputs_equal": true,
+  "native_candidate_rankings_checked": true,
+  "space_inventory": {
+    "status": "SEISMIC_COMPONENT_ACCOUNTING_PASS",
+    "index_structure_bytes": 55114,
+    "original_vector_bytes": 21768,
+    "index_plus_vectors_bytes": 76882,
+    "native_space_usage_bytes": 74882,
+    "scope": "Counts/ABI/sums and pinned compressed-storage MemSize capacity traversal; common IS and server performance acceptance pending"
+  },
+  "serialization": {
+    "status": "SEISMIC_SERIALIZATION_CROSSCHECK_PASS",
+    "serialized_bytes": 69936,
+    "all_index_fields_equal": true,
+    "native_candidates_and_exact_outputs_equal": true,
+    "runtime_capacity_before": 75570,
+    "runtime_capacity_after": 75570
+  },
+  "duplicate_original_storage_rejected": true,
+  "trailing_dimensions": {
+    "status": "PASS",
+    "queries": 4,
+    "k": 50,
+    "repeats": 3,
+    "Recall": 1.0,
+    "QPS": 23047.758797521597,
+    "scope": "Independent small-fixture exact-score/GT and raw timing audit; no performance claim",
+    "input_sha256": {
+      "/tmp/seismic-parity-5hhjl5xv/trailing/base.csr": "54085bd6b9b6cda582c707fd854abf4c567705192abea568a2fbff2b8bd3b638",
+      "/tmp/seismic-parity-5hhjl5xv/trailing/queries.csr": "434c4d6927d9baca7808182fa651beccc3568f9eabe1142189d8a0988f8fc686",
+      "/tmp/seismic-parity-5hhjl5xv/trailing/run/retrieved.csv": "6d02563131d9bade0c7320c84b37f6725a6f964906254065dfffa6ddc0baf51c",
+      "/tmp/seismic-parity-5hhjl5xv/trailing/run/queries.csv": "2f2069cb36ae6146152aaa63ec9609e9b4569fc63a7bf1fb10c5882d5bf4db56"
+    }
+  },
+  "trailing_space_inventory": {
+    "status": "SEISMIC_COMPONENT_ACCOUNTING_PASS",
+    "index_structure_bytes": 853514,
+    "original_vector_bytes": 21768,
+    "index_plus_vectors_bytes": 875282,
+    "native_space_usage_bytes": 873794,
+    "scope": "Counts/ABI/sums and pinned compressed-storage MemSize capacity traversal; common IS and server performance acceptance pending"
+  },
+  "trailing_serialization": {
+    "status": "SEISMIC_SERIALIZATION_CROSSCHECK_PASS",
+    "serialized_bytes": 537968,
+    "all_index_fields_equal": true,
+    "native_candidates_and_exact_outputs_equal": true,
+    "runtime_capacity_before": 873970,
+    "runtime_capacity_after": 873970
+  }
+}

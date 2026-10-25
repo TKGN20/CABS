@@ -1,0 +1,33 @@
+{
+  "status": "LOCAL_REAL_SPACE_INVENTORY_CHECKED",
+  "method": "SEISMIC",
+  "command": [
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/seismic-space-native-v2/target/release/cabs_fixed_queries",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/base_small.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/datasets/SPLADE/queries.dev.csr",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/local-real-smoke-20261024/ids.txt",
+    "/mnt/d/Obsidian/\u77e5\u8bc6\u5e93/Agent\u5b66\u4e60/CABS-reproducibility-20261021/build-mission/seismic-space-real-0.1m-20261024",
+    "20261017",
+    "50",
+    "3",
+    "1000",
+    "0.1",
+    "1",
+    "20",
+    "0.7"
+  ],
+  "binary_sha256": "f523cbe1e84e2ec90433665dd9816e54bbb59b6aa18a45e0dc468026cb72a0d8",
+  "build_receipt_sha256": "6bf74ba1f0c14b9e3d2763c8219a9f499d8bd767f3fd25fbb63c79d2ae29ab6b",
+  "driver_sha256": "3f8a92b3665b5e66fe5a88f024e85a19587ee4e86265c0eed818412f80ad2428",
+  "scope": "One fixed local component inventory and unchanged-ranking control; not native default, parameter tuning, common IS or fair server performance",
+  "Recall": 1.0,
+  "inventory": {
+    "status": "SEISMIC_COMPONENT_ACCOUNTING_PASS",
+    "index_structure_bytes": 1633083045,
+    "original_vector_bytes": 102639640,
+    "index_plus_vectors_bytes": 1735722685,
+    "native_space_usage_bytes": 1734644157,
+    "scope": "Counts/ABI/sums and pinned compressed-storage MemSize capacity traversal; common IS and server performance acceptance pending"
+  },
+  "prior_ranked_outputs_equal": true
+}

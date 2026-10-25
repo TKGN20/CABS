@@ -1,0 +1,13 @@
+{
+  "commit": "a1bf4a29db38ef60176316b9a319660a7e0a4398",
+  "retrieved_date": "2026-10-24",
+  "source": "GitHub connector fetch_commit_workflow_runs",
+  "runs": [
+    {"id": 40088955491, "name": "baseline-fixture-smoke", "status": "completed", "conclusion": "success"},
+    {"id": 40088955480, "name": "fixed-query-experiments", "status": "completed", "conclusion": "success"},
+    {"id": 40088955411, "name": "build-and-correctness", "status": "completed", "conclusion": "success"},
+    {"id": 40088955521, "name": "seismic-fixture-smoke", "status": "completed", "conclusion": "success"},
+    {"id": 40088955414, "name": "sindi-fixture-smoke", "status": "completed", "conclusion": "success"}
+  ],
+  "scope": "CI for the named baseline-space commit only; not new CABS instrumentation CI or server-performance acceptance"
+}

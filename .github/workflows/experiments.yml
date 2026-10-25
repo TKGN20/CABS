@@ -1,0 +1,31 @@
+name: fixed-query-experiments
+on:
+  push:
+    branches: ["codex/server-driver-*"]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  protocol:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - type: Release
+            sanitize: "OFF"
+          - type: Debug
+            sanitize: "ON"
+    env:
+      OMP_NUM_THREADS: "2"
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure independent experiment driver
+        run: cmake -S experiments -B build-experiment -DCMAKE_BUILD_TYPE=${{ matrix.type }} -DCABS_SANITIZE=${{ matrix.sanitize }}
+      - name: Build
+        run: cmake --build build-experiment --parallel 2
+      - name: Check query identity, isolation and validation locks
+        run: ctest --test-dir build-experiment --output-on-failure --timeout 180
