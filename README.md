@@ -10,6 +10,20 @@ ranked using their original sparse inner products with double accumulation.
 On Linux or WSL, after installing the dependencies listed below:
 
 ```bash
+git clone https://github.com/TKGN20/CABS.git
+cd CABS
+```
+
+Until PR #7 is merged, check out the public delivery candidate before following
+the remaining commands:
+
+```bash
+git checkout codex/opensource-final-20261025
+```
+
+Then build and run:
+
+```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel 2
 ctest --test-dir build --output-on-failure
@@ -23,6 +37,8 @@ The second also exercises insertion, deletion, update and refresh. Output folder
 must be new. These are functional examples; their timings are not benchmark
 claims. No baseline library, external vector dataset, server or validation-lock
 framework is needed. See [the CABS-only release checklist](CABS_RELEASE_CHECKLIST.md).
+The [release acceptance report](docs/OPEN_SOURCE_ACCEPTANCE.md) records tested
+revisions, CI and remaining publication steps.
 
 The active release scope is CABS implementation and reproducibility only.
 Historical server proposals and third-party comparison notes are research
@@ -218,6 +234,9 @@ The source includes static construction/search and the insertion, deletion,
 update and refresh APIs. Tests exercise these operations. The two public task
 scripts evaluate static CABS; full baseline comparisons, parameter sweeps,
 ablation, other encoders and dynamic benchmark tables are outside their scope.
+The public maintenance example above exercises the `dynamic` command. The
+production API is `cabs_index::Index::insert`, `erase`, `update` and `refresh`; see the
+[mechanism map](docs/PAPER_IMPLEMENTATION.md) and tests for usage and ID semantics.
 Indexes are built in memory; disk save/load and service deployment are not
 implemented. See [the repository comparison](docs/REPOSITORY_COMPARISON.md) and
 [implementation details](docs/METHOD.md).
@@ -244,8 +263,8 @@ python3 scripts/verify_artifacts.py
 For canonical historical source checks, use a full Git clone and add
 `--source-check`. A source archive without Git history supports the first command.
 This is saved-record verification, not a new whole-corpus retrieval experiment.
-The [server comparison proposal](docs/SERVER_VALIDATION_PROPOSAL.md) is a pending
-experiment plan, not a completed benchmark.
+The [server comparison proposal](docs/SERVER_VALIDATION_PROPOSAL.md) is a
+historical research plan outside this release's acceptance scope.
 
 The [review index](docs/REVIEW_INDEX.md) separates production changes, tests,
 reproducibility scripts, diagnostics and evidence. The immutable approval baseline
@@ -272,3 +291,32 @@ measurement of this candidate. IS payload reduction is separate from peak RSS.
 This repository accompanies *Adaptive Binary Sketching for Approximate Maximum
 Inner Product Search over Sparse Vectors*. Publication metadata will be added
 when available.
+
+Until a publication identifier is available, cite the repository and the exact
+commit used in the experiment; do not invent a venue, DOI or release tag:
+
+```bibtex
+@misc{cabs_code,
+  author = {{CABS contributors}},
+  title = {{CABS}: Sparse Approximate Maximum Inner Product Search},
+  year = {2026},
+  howpublished = {\url{https://github.com/TKGN20/CABS}},
+  note = {Source code; replace this note with the commit SHA used}
+}
+```
+
+## Common errors and limitations
+
+- A missing offline input requires downloading it first or correcting
+  `--data-directory`. A checksum mismatch means the file is not the manifest's
+  public input; do not bypass verification or replace the manifest hash.
+- Choose a new `--out` directory for every run. Existing directories are refused
+  to preserve earlier results. Interrupted downloads can leave ignored `.part`
+  files; rerunning the preparation command retries the download.
+- An index-memory guard failure is a resource error, not a completed result.
+  `--max-index-gib` changes the guard, not automatic K/m/B. Check available RAM
+  before increasing it. See [implementation complexity](docs/COMPLEXITY.md).
+- Indexes are in memory. Concurrent maintenance, crash recovery, persistence and
+  native Windows builds are not provided. Retrieval is approximate; calibration
+  is not a universal Recall@50 guarantee. Hardware-dependent QPS is not a release
+  acceptance threshold.

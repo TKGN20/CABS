@@ -4,6 +4,7 @@ import csv
 import gzip
 import hashlib
 import json
+import struct
 from pathlib import Path
 import sys
 import tempfile
@@ -13,6 +14,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from evaluate import audit
 from calibration_pilot import common_metrics
 from verify_artifacts import aggregate_metrics_match
+from prepare_data import inspect, prepare, verify
 
 
 class ReportingTests(unittest.TestCase):
@@ -42,6 +44,22 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual(audit(self.root)['QPS'],2)
         self.assertEqual(audit(self.root)['IS_bytes'],192)
         self.assertEqual(audit(self.root)['Recall@2'],1)
+    def test_public_input_validation(self):
+        path=self.root/'input.csr'
+        path.write_bytes(struct.pack('<QQQ',1,2,1)+struct.pack('<QQ',0,1)+struct.pack('<if',0,1.0))
+        expected=inspect(path)
+        self.assertEqual(verify(path,expected),expected)
+        with self.assertRaisesRegex(ValueError,'sha256 mismatch'):
+            verify(path,dict(expected,sha256='0'*64))
+        path.write_bytes(path.read_bytes()[:-1])
+        with self.assertRaisesRegex(ValueError,'Invalid CSR header/size'):
+            inspect(path)
+        path.write_bytes(b'')
+        with self.assertRaisesRegex(ValueError,'Truncated CSR'):
+            inspect(path)
+    def test_missing_offline_input(self):
+        with self.assertRaisesRegex(FileNotFoundError,'download with scripts/prepare_data.py'):
+            prepare('0.1M',self.root/'missing',offline=True)
     def test_cross_version_aggregate_roundoff(self):
         measured=dict(query_ids=[1,2],queries=2,**{'Recall@50':0.96875,'QPS':123.45})
         rounded=dict(measured,**{'Recall@50':0.96875+2e-16,'QPS':123.45+1e-12})
