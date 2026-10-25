@@ -1,0 +1,29 @@
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenMP_CXX: -fopenmp (found version "4.5") 
+-- Found OpenMP: TRUE (found version "4.5")  
+-- Found Python3: /usr/bin/python3.10 (found suitable version "3.10.12", minimum required is "3.8") found components: Interpreter 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build-audit
+gmake: Warning: File 'Makefile' has modification time 1.5 s in the future
+gmake[1]: Warning: File 'CMakeFiles/Makefile2' has modification time 1.6 s in the future
+gmake[2]: Warning: File 'CMakeFiles/Makefile2' has modification time 1.5 s in the future
+gmake[3]: Warning: File 'CMakeFiles/cabs_calibration_audit.dir/flags.make' has modification time 1.3 s in the future
+gmake[3]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[3]: Warning: File 'CMakeFiles/cabs_calibration_audit.dir/flags.make' has modification time 1.2 s in the future
+[ 50%] Building CXX object CMakeFiles/cabs_calibration_audit.dir/benchmarks/calibration_audit.cpp.o
+In file included from /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/benchmarks/calibration_audit.cpp:1:
+/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/include/final_equivalence.hpp:63:13: warning: ‘void check_query(const cabs_index::Index&, cabs_index::Row, cabs_index::Id, size_t, bool, Trace*, Trace*)’ defined but not used [-Wunused-function]
+   63 | static void check_query(const Index& idx,Row q,Id qid,size_t k,bool stop,Trace* before_out=nullptr,Trace* after_out=nullptr){
+      |             ^~~~~~~~~~~
+[100%] Linking CXX executable cabs_calibration_audit
+gmake[3]: warning:  Clock skew detected.  Your build may be incomplete.
+[100%] Built target cabs_calibration_audit
+gmake[2]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake: warning:  Clock skew detected.  Your build may be incomplete.

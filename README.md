@@ -95,6 +95,7 @@ runs. No prebuilt index or checked-in result is used to answer queries.
 | Lloyd iterations | 10 |
 | Build and GT threads / search threads | 4 / 1 |
 | Timing repeats / warm-up queries | 3 / 5 |
+| Static document-sketch cache retention | disabled in this candidate |
 
 These settings are recorded in [configs/](configs/). Internal `K`, local `m_i`,
 and global candidate-pool capacity `B` are automatically calibrated. The memory
@@ -130,6 +131,23 @@ single-threaded. Later source revisions and their validation are recorded in
 Hardware and software are part of each measurement. These local observations
 are not server measurements. The [server execution procedure](docs/EXPERIMENTS.md)
 uses the same algorithm, input checksums and metric definitions.
+
+The review branch additionally provides completed full-query candidate records:
+
+| Dataset | Source | Recall@50 | QPS | IT (s) | IS (GB) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| SPLADE-0.1M | `fd470db` | 0.995407 | 185.54 | 178.50 | 0.209247 |
+| SPLADE-1M | `b327ec35`, content-attested | 0.995717 | 17.47 | 747.44 | 1.746099 |
+
+Raw records are under [the cache candidate](results/engineering/cache_20261022/)
+and [the completed 1M review run](results/engineering/review_1m_20261022/).
+The latter's complete GT, ranked outputs, split and all 20,928 non-timing query
+records match the prior K=8/B=51385 realization. Its source/pipeline hashes match
+the detached b327ec35 snapshot; WSL could not resolve the Windows-created
+worktree's Git metadata path, so the original null Git field and the independent
+content attestation are both preserved. Later documentation/test revisions do
+not change the production source files. These separate full runs do not isolate
+the speedup of individual optimizations.
 
 New runs are saved in `results/DATASET/TIMESTAMP/`:
 
@@ -180,6 +198,47 @@ ablation, other encoders and dynamic benchmark tables are outside their scope.
 Indexes are built in memory; disk save/load and service deployment are not
 implemented. See [the repository comparison](docs/REPOSITORY_COMPARISON.md) and
 [implementation details](docs/METHOD.md).
+
+The [paper-to-code contract](docs/PAPER_IMPLEMENTATION.md) maps each mechanism to
+source and executable checks. [Implementation complexity](docs/COMPLEXITY.md)
+documents dense per-thread ID arrays, dense centroids, bucket lookup and the
+actual original-vector scorer. The [review response](docs/REVIEW_RESPONSE.md)
+separates algorithm validation from performance reproduction. GitHub Actions runs
+Release and ASan/UBSan checks; local reproduction does not require Actions.
+The optional [calibration audit](docs/CALIBRATION_AUDIT.md) measures the specified K
+objective and full query costs on the same temporary candidate indexes. Its
+instrumented subset diagnostics are kept separate from default QPS records.
+
+The [approval review](docs/APPROVAL_REVIEW_ZH.md) reports routing-bound diagnostics,
+the four-case full-recalibration pilot, and the remaining server validation scope.
+All evidence is available in this repository; no local handoff ZIP is required.
+Verify saved records without downloading the vector datasets:
+
+```bash
+python3 scripts/verify_artifacts.py
+```
+
+For canonical historical source checks, use a full Git clone and add
+`--source-check`. A source archive without Git history supports the first command.
+This is saved-record verification, not a new whole-corpus retrieval experiment.
+The [server comparison proposal](docs/SERVER_VALIDATION_PROPOSAL.md) is a pending
+experiment plan, not a completed benchmark.
+
+The [review index](docs/REVIEW_INDEX.md) separates production changes, tests,
+reproducibility scripts, diagnostics and evidence. The immutable approval baseline
+is `fa2455ed83de47fec1de60563949e32eb1d34c6c`; the current verifier also checks the
+[19-file production/default freeze](docs/approval_baseline.json). Local
+`--source-check` includes historical Git-source verification; Release CI omits
+that option. Neither audit independently rebuilds the complete 1M index or
+reproduces paper-server QPS.
+
+This review candidate releases per-document construction sketches after final
+hash-table construction for static tasks. Cardinalities and final tables remain
+available for search. The release cost is included in IT and a same-index byte
+inventory is saved as `sketch_cache_release.json`. `--keep-sketch-cache 1` on the
+core executable retains them; dataset task files use `retain_sketch_cache=false`.
+The existing full-run table remains versioned and is not relabeled as a new
+measurement of this candidate. IS payload reduction is separate from peak RSS.
 
 ## License
 

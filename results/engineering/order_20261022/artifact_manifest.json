@@ -1,0 +1,8 @@
+{
+  "sha256": {
+    "decision.json": "e37bf7c3323258e325a3b27d3bfff2192841f190fa304540ea872128fd668052",
+    "paired.csv": "1da5258b5ba129a33adef3125f564a3fdb79a8fa568d73de26389608bed9448a",
+    "provenance.json": "eac75a15a93cc820323005b2c886b5a27794b996c44514ee70c29bb885ef6c07",
+    "summary.json": "8df6dacc7d1a877750cd55c817bb1bef109d60d97d9675b87e9ca40ed53a8d84"
+  }
+}

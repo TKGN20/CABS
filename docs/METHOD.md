@@ -22,3 +22,8 @@ validation/logging. Retained vector capacities are inventoried separately from
 original CSR bytes and process peak RSS. No on-disk index persistence is claimed:
 the reproduction commands build a fresh in-memory index and persist its resolved
 configuration and measurements.
+
+The full source/test mapping is in PAPER_IMPLEMENTATION.md. COMPLEXITY.md records
+the actual dense workspace/centroid, binary bucket lookup and document-scanning
+scorer costs. CALIBRATION_AUDIT.md describes separate diagnostics that leave the
+paper's default calibration objective unchanged.

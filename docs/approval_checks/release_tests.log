@@ -1,0 +1,83 @@
+Internal ctest changing into directory: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build
+UpdateCTestConfiguration  from :/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build/DartConfiguration.tcl
+Test project /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: semantic
+
+1: Test command: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build/cabs "selftest"
+1: Test timeout computed to be: 10000000
+1: encoding_done slots=36 sketch_GiB=1.10269e-06 positive_targets=4
+1: calibrate_K=1
+1: K=1 floor=0.727273 m=1:1 build_bound_GiB=2.80142e-06 cost_s=3.71e-07
+1: calibrate_K=2
+1: K=2 floor=0.727273 m=1:1 build_bound_GiB=2.97278e-06 cost_s=3.0525e-07
+1: calibrate_K=4
+1: K=4 floor=0.727273 m=1:1 build_bound_GiB=3.30061e-06 cost_s=2.83e-07
+1: final_ready K=4 B=3 bytes=196 build_s=0.000450351
+1: encoding_done slots=36 sketch_GiB=1.49012e-06 positive_targets=4
+1: calibrate_K=1
+1: K=1 floor=0.6 m=1:1 build_bound_GiB=3.18885e-06 cost_s=3.3075e-07
+1: calibrate_K=2
+1: K=2 floor=0.6 m=1:1 build_bound_GiB=3.41982e-06 cost_s=1.805e-07
+1: calibrate_K=4
+1: K=4 floor=0.6 m=1:1 build_bound_GiB=3.83705e-06 cost_s=1.88e-07
+1: final_ready K=2 B=6 bytes=144 build_s=0.000121605
+1: encoding_done slots=36 sketch_GiB=1.14366e-06 positive_targets=0
+1: calibrate_K=1
+1: K=1 floor=0 m=1:1 build_bound_GiB=2.8424e-06 cost_s=0
+1: final_ready K=1 B=2 bytes=168 build_s=3.5628e-05
+1: All semantic self-tests passed
+1/5 Test #1: semantic .........................   Passed    0.01 sec
+test 2
+    Start 2: end_to_end
+
+2: Test command: /usr/bin/python3.10 "/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/tests/smoke_test.py" "--binary" "/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build/cabs"
+2: Test timeout computed to be: 10000000
+2: {"status": "passed", "independent_GT_queries": 16, "measured_queries": 24, "production_path": true}
+2/5 Test #2: end_to_end .......................   Passed    0.13 sec
+test 3
+    Start 3: reporting_validation
+
+3: Test command: /usr/bin/python3.10 "/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/tests/test_reporting.py"
+3: Test timeout computed to be: 10000000
+3: ........
+3: ----------------------------------------------------------------------
+3: Ran 8 tests in 0.030s
+3: 
+3: OK
+3/5 Test #3: reporting_validation .............   Passed    0.19 sec
+test 4
+    Start 4: mechanism_contract
+
+4: Test command: /mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build/cabs_mechanism_contract
+4: Test timeout computed to be: 10000000
+4: encoding_done slots=96 sketch_GiB=1.31726e-05 positive_targets=6
+4: calibrate_K=1
+4: K=1 floor=0.818182 m=1:1 build_bound_GiB=1.81235e-05 cost_s=6.71e-07
+4: calibrate_K=2
+4: K=2 floor=0.818182 m=1:1 build_bound_GiB=1.84588e-05 cost_s=5.61e-07
+4: calibrate_K=4
+4: K=4 floor=0.818182 m=1:1 build_bound_GiB=1.86563e-05 cost_s=8.97e-07
+4: calibrate_K=6
+4: K=6 floor=0.818182 m=1:1 build_bound_GiB=1.91368e-05 cost_s=6.11e-07
+4: final_ready K=2 B=10 bytes=444 build_s=0.000394793
+4: {"status":"PASS","fixture_clusters":3,"fallback_clusters":2,"secondary_memberships":6,"direct_signatures_checked":162,"query_reference_checks":78,"exhaustive_B":24}
+4/5 Test #4: mechanism_contract ...............   Passed    0.01 sec
+test 5
+    Start 5: calibration_audit
+
+5: Test command: /usr/bin/python3.10 "/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/tests/calibration_audit_smoke.py" "--binary" "/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build/cabs_calibration_audit" "--core-binary" "/mnt/d/Obsidian/知识库/Agent学习/CABS-reproducibility-20261021/build/cabs"
+5: Test timeout computed to be: 10000000
+5: {"status": "PASS", "candidate_configurations": 8, "profile_queries": 24, "B_and_query_records_recomputed": true, "selected_final_index_production_results_equal": true}
+5/5 Test #5: calibration_audit ................   Passed    0.47 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.85 sec

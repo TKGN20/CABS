@@ -1,0 +1,12 @@
+{
+  "baseline_measured_commit": "80b25cfe2acd5a60d30144a99d598e145c83ef31",
+  "candidate_measured_commit": "fd470db6010ccc5aa3c2b73564debb2073c699ed",
+  "hash_equal": {
+    "ground_truth.csv": true,
+    "retrieved.csv": true,
+    "query_split.csv": true
+  },
+  "query_measurements": 20928,
+  "non_timing_fields_equal": true,
+  "note": "This equality is an observed result for these two realized K=1/B=13976 indexes, not a requirement that automatic K be identical on every fresh build."
+}

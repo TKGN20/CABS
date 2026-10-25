@@ -1,0 +1,31 @@
+{
+  "sha256": {
+    "audit.json": "1672e6a481174d66f58bea0ed790d30a7587e08044d4ac868f03f0b6446f8cba",
+    "automatic_configuration.json": "0aa999f4650772b7a3590988d4be4658a751e1fbed0bcc7129e692ca987ef7a7",
+    "candidate_configurations.csv": "2e19969c7f64d46590e0f5c081e1e1dc6eaa39d4049ff4a5c9fc28f9d05a95d2",
+    "candidate_diagnostics.csv": "7addab604b306e2cf1362679f0a13ae3fdf07405f35f9042e3b172fb389701d1",
+    "common_metrics.json": "efc518299a6f3f533eb1c09179ab4a6c7ae69107cc226b79ca106536ebc054e0",
+    "complete.json": "b56bcc1a56699d4cf49eee01aef790d54b30304ac398b9f75a6aae2c68226358",
+    "config.json": "fa444cd53c2f0012666a817fcc5db2e8ab14d8fce07f030b31055d6d8596c479",
+    "dataset_statistics.json": "e8096a3e3ca9d4e555f73f2f03a0ac9a05b29a1bd13f21de19acd5c136b2367d",
+    "equivalence.csv": "c4d1c828607c4f5e2a65461c677de2b55c56dc8e9ba22221b545b51abd0e466b",
+    "exact_baseline.csv": "5b74db82c378d8a197620b61ecf071865a02754e39bcf5175bc90eada8cf4e64",
+    "ground_truth.csv.gz": "125b28c5d0567f78ded8e2a59a7b3b13623744f818abe5b7cba7c11ec2f3a3b3",
+    "index_space.json": "c7d0bab9a55c030c0847933e96b24c26b7d2285b61964c5149dbc77181bf32c4",
+    "manifest.json": "9cae238229d9fa605cffe555cf8f89b2c31f73a209a3eb8a9e9194787b182389",
+    "metrics.csv": "86494ee79f9c7b3c1cb0d01f3269dac7bd2bc344bb60f19fdc981fe2c0f1a528",
+    "metrics.json": "875b666a35173c5997cd7c17a58a878ebd62e04d2101cb775b466d2c9f0fb966",
+    "queries.csv.gz": "3e12e6d4d82a2c3f8078ef0e00e44854a52a21ddd16f58b5a92a1dca8d5c8c3f",
+    "query_split.csv": "0304987b948ea2210ffa89023ca557641e4e9b1a060092f2cb1de043ee9e6a0a",
+    "resource_usage.log": "efb3b9d7cf5e02cc60d3b052daf6f2c73ffd0942b3a24a8820efe63d88be99c3",
+    "retrieved.csv.gz": "1492a996f452247a80d174d823494d24d7e1283f66d682224662f4a403819971",
+    "run.log": "8c0031d602f3234c6d05aec88c8707e839adec25c8a9caed65b0a289f7528471",
+    "sketch_cache_release.json": "104c74283802114908b3687b1e30f5c2be5d2e409e9b3f7e335bc8c5a90281cd",
+    "summary.json": "97803c57e6cbe60064cfbd279202ffd7f61f661b765df20e80cb9821e25abe65"
+  },
+  "raw_uncompressed_csv_sha256": {
+    "ground_truth.csv": "975f50f32bc78f63140a1207b5f0167a7d618d81cf6a740a112d16af33a71319",
+    "queries.csv": "52be1a9e1c631948b91f1d3286721fdfaf664adafe6eb8c74225023a1ed5c29d",
+    "retrieved.csv": "bd788398f9d2e99bac8b94b8bc0688ca0f6d8ed00742e850ca563e807932c367"
+  }
+}

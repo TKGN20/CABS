@@ -1,0 +1,68 @@
+{
+  "scope": "frozen realized temporary index and existing prefix ranks only; no full recalibration, retrieval timing or confidence interval",
+  "rows": 30,
+  "full_four_queries": [
+    {
+      "calibration_count": 4,
+      "query_ids": "45;3157;5293;6279",
+      "target_kmax": 50,
+      "B_frozen_index": 28844,
+      "driver_query": 45,
+      "driver_id": 950496,
+      "driver_exact_rank": 24
+    },
+    {
+      "calibration_count": 4,
+      "query_ids": "45;3157;5293;6279",
+      "target_kmax": 100,
+      "B_frozen_index": 51385,
+      "driver_query": 45,
+      "driver_id": 242252,
+      "driver_exact_rank": 88
+    }
+  ],
+  "leave_one_out_kmax100": [
+    {
+      "calibration_count": 3,
+      "query_ids": "45;3157;5293",
+      "target_kmax": 100,
+      "B_frozen_index": 51385,
+      "driver_query": 45,
+      "driver_id": 242252,
+      "driver_exact_rank": 88
+    },
+    {
+      "calibration_count": 3,
+      "query_ids": "45;3157;6279",
+      "target_kmax": 100,
+      "B_frozen_index": 51385,
+      "driver_query": 45,
+      "driver_id": 242252,
+      "driver_exact_rank": 88
+    },
+    {
+      "calibration_count": 3,
+      "query_ids": "45;5293;6279",
+      "target_kmax": 100,
+      "B_frozen_index": 51385,
+      "driver_query": 45,
+      "driver_id": 242252,
+      "driver_exact_rank": 88
+    },
+    {
+      "calibration_count": 3,
+      "query_ids": "3157;5293;6279",
+      "target_kmax": 100,
+      "B_frozen_index": 30568,
+      "driver_query": 6279,
+      "driver_id": 445286,
+      "driver_exact_rank": 66
+    }
+  ],
+  "input_query_ids": [
+    45,
+    3157,
+    5293,
+    6279
+  ]
+}

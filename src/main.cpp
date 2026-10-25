@@ -63,6 +63,12 @@ static void selftest() {
         check(dot(q.row(),data.row(id))<=idx.partition.upper(q.row(),c),"safe angular bound");
     QueryStats before;auto result=idx.search(queries[0].row(),0,2,before);
     check(result.size()==2 && before.pool_peak<=idx.B,"search result size and pool limit");
+    idx.release_sketch_cache();check(idx.sketches.bytes()==0,"released sketch cache has zero retained payload");
+    QueryStats released;auto released_result=idx.search(queries[0].row(),0,2,released);same_hits(result,released_result);same_stats(before,released);
+    check_query(idx,queries[0].row(),0,2,true);
+    bool stale_rebuild_rejected=false;try{idx.build_tables(123);}catch(const std::runtime_error&){stale_rebuild_rejected=true;}check(stale_rebuild_rejected,"partial hash reconstruction requires a full sketch cache");
+    bool stale_floor_rejected=false;try{idx.configure_floors(idx.partition,.5);}catch(const std::runtime_error&){stale_floor_rejected=true;}check(stale_floor_rejected,"floor calibration requires a full sketch cache");
+    bool stale_pool_rejected=false;try{idx.calibrate_pool();}catch(const std::runtime_error&){stale_pool_rejected=true;}check(stale_pool_rejected,"pool calibration requires a full sketch cache");
     auto saved_norm=idx.partition.clusters[0].norm_bound,saved_cover=idx.partition.clusters[0].cover;
     idx.erase(0);check(idx.partition.clusters[0].norm_bound==saved_norm && idx.partition.clusters[0].cover==saved_cover,"deletion cannot shrink bounds");
     Id in=idx.insert(owned({{0,.5},{2,.25}}));check(!data.records[in].delta,"in-range insertion");
@@ -89,7 +95,7 @@ static void selftest() {
 struct Args {
     std::unordered_map<std::string,std::string> values;
     explicit Args(int argc,char** argv){
-        const std::set<std::string> known={"--data","--queries","--out","--ell","--delta-h","--kmax","--iterations","--threads","--max-index-gib","--seed","--allocation","--limit","--calibration-queries","--eval-queries","--k","--repeats","--ks","--diagnostic-queries","--dynamic-operations","--ground-truth","--benchmark-exact","--equivalence-queries","--warmup-queries"};
+        const std::set<std::string> known={"--data","--queries","--out","--ell","--delta-h","--kmax","--iterations","--threads","--max-index-gib","--seed","--allocation","--limit","--calibration-queries","--eval-queries","--k","--repeats","--ks","--diagnostic-queries","--dynamic-operations","--ground-truth","--benchmark-exact","--equivalence-queries","--warmup-queries","--keep-sketch-cache"};
         for(int i=2;i<argc;++i){std::string key=argv[i];if(!known.count(key) || i+1>=argc)throw std::runtime_error("Unknown option or missing value: "+key);values[key]=argv[++i];}
     }
     std::string get(const std::string& key,const std::string& fallback)const{auto it=values.find(key);return it==values.end()?fallback:it->second;}
@@ -165,6 +171,15 @@ static int experiment(const std::string& command,const Args& args) {
     try{index.rebuild(cal,command=="preflight");}catch(...){write_candidates(index,outdir+"/candidate_configurations.csv");throw;}
     write_candidates(index,outdir+"/candidate_configurations.csv");
     if(command=="preflight")return 0;
+    int keep_cache=args.integer("--keep-sketch-cache",0);if(keep_cache!=0 && keep_cache!=1)throw std::runtime_error("keep-sketch-cache must be 0 or 1");
+    if(command=="run" && !keep_cache){
+        auto cache_before=retained_index_bytes(index);uint64_t bytes_before=0;for(auto kv:cache_before)bytes_before+=kv.second;
+        uint64_t buckets_before=index.table_bytes();
+        double release_start=seconds();index.release_sketch_cache();double release_seconds=seconds()-release_start;
+        index.stage_seconds["sketch_cache_release"]=release_seconds;index.build_seconds+=release_seconds;
+        auto cache_after=retained_index_bytes(index);uint64_t bytes_after=0;for(auto kv:cache_after)bytes_after+=kv.second;
+        std::ofstream receipt(outdir+"/sketch_cache_release.json");receipt<<std::setprecision(17)<<"{\"before_IS_bytes\":"<<bytes_before+docs.bytes<<",\"after_IS_bytes\":"<<bytes_after+docs.bytes<<",\"released_sketch_payload_bytes\":"<<cache_before.at("cached_sketches")<<",\"retained_sketch_payload_bytes\":"<<index.sketches.bytes()<<",\"bucket_payload_before\":"<<buckets_before<<",\"bucket_payload_after\":"<<index.table_bytes()<<",\"cardinality_count\":"<<index.cardinal.size()<<",\"K\":"<<index.tables.size()<<",\"B\":"<<index.B<<",\"release_seconds\":"<<release_seconds<<",\"release_included_in_IT\":true}\n";
+    }
     std::ofstream equivalence(outdir+"/equivalence.csv");equivalence<<"query_id,exact_score_ID_order_equal,proxy_C_equal,per_cluster_pool_C_gamma_equal,routing_stopping_equal,all_semantic_counters_equal\n";
     for(int i=0;i<std::min(ne,args.integer("--equivalence-queries",100));++i){Id qid=query_ids[nc+i];check_query(index,queries.row(qid),qid,k,true);equivalence<<qid<<",1,1,1,1,1\n";equivalence.flush();}
     std::cerr<<"UNTIMED_EQUIVALENCE_PASS queries="<<std::min(ne,args.integer("--equivalence-queries",100))<<" original_vs_final full_Pool_C_proxies_routes_stops\n";

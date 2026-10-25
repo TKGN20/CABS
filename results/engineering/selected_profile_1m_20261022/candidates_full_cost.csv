@@ -1,0 +1,2 @@
+K,B,min_m,max_m,proxy_calibration_seconds,full_calibration_mean_seconds,full_evaluation_mean_seconds,evaluation_recall,mean_verified,mean_probed,mean_entries
+8,51385,46,111,0.0081489386249700146,0.051426954375074274,0.059743094281259346,0.99625000000000019,80924.75,8,199873.3125

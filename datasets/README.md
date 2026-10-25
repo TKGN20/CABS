@@ -21,6 +21,11 @@ building an index. The public 0.1M file contains 12,729,954 entries, while the 1
 file contains 126,320,094 entries. These identify specific published files, not
 arbitrary samples of the same size.
 
+The corresponding mean document nnz values are 127.29954 and 126.320094.
+The query file contains 342,696 entries over 6,980 rows, or 49.0968481 entries
+per query. These statistics belong to the fixed hashed files; a manuscript
+table describing another slice must identify that slice separately.
+
 Exact top-100 ground truth is freshly computed on the selected corpus; Recall@50
 uses the first 50 entries. The fixed shuffled split is saved as query IDs in each
 run. Four calibration queries are excluded from all 6,976 evaluation queries.

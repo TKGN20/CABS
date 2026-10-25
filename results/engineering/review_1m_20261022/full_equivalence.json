@@ -1,0 +1,29 @@
+{
+  "baseline_published_source": "ac178368b0c9da94e75331b5d124cc66a4bb408a",
+  "candidate_source_by_hash": "b327ec35d79b703f7513ec8acffc3a71d1682b3e",
+  "query_records": 20928,
+  "hash_equal": {
+    "ground_truth.csv": true,
+    "retrieved.csv": true,
+    "query_split.csv": true
+  },
+  "non_timing_field_difference_counts": {
+    "matched_entries": 0,
+    "recall": 0,
+    "delta": 0,
+    "bucket_accesses": 0,
+    "probed": 0,
+    "repeat": 0,
+    "empty": 0,
+    "query_id": 0,
+    "k": 0,
+    "touched": 0,
+    "verified": 0,
+    "fallback": 0,
+    "pool_peak": 0,
+    "admitted_unique": 0,
+    "admission_checks": 0
+  },
+  "non_timing_fields_equal": true,
+  "scope": "observed equality on realized K=8/B=51385 indexes; automatic timing-based K can differ on another build"
+}

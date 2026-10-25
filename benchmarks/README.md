@@ -22,3 +22,17 @@ The measured [engineering record](../results/engineering/scoring_20261021/)
 is a 200-query paired diagnostic, not a full-query default-result table or an
 independent-build variance experiment. Automatic K depends on measured
 calibration cost; record its actual value and B for each execution.
+
+## Ordered exact verification candidate
+
+```bash
+cmake --build build --target cabs_order_pair -j4
+mkdir -p results/order-check
+build/cabs_order_pair datasets/SPLADE/base_small.csr datasets/SPLADE/queries.dev.csr results/order-check/paired.csv
+```
+
+This compares the frozen `d091458` workspace with document-ID-ordered exact
+verification on one realized index. Untimed checks cover all 200 query results,
+complete candidates and per-cluster pool, gamma, suffix and stopping states.
+Four alternating timing repeats are retained. The measured 1.0259x speedup
+is a candidate observation on one 0.1M index, not a full-query/server result.

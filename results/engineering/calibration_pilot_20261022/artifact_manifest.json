@@ -1,0 +1,12 @@
+{
+  "sha256": {
+    "build.log": "6cc18affcc7efc6e8ef66f4600319f68a49d998c5d628e5ec772f5941611c8eb",
+    "comparison.csv": "872c150d17f587807205455ee91047078e23e6c18c0bdea72b8be17bb8630fbf",
+    "comparison.json": "c3fffb8dea7fd4d65143e168e23c690e1eba4fd4c822f4fd669a8e995dac3303",
+    "complete.json": "1ce058253095651d75799f87ac903c349e97ea8cd51f73109848c550244ec4ed",
+    "EXPERIMENT_PLAN.md": "119a5146b7364ce228190bb57a57b6f7e552c299dfd2e62c943ef43d05055ee0",
+    "manifest.json": "b9f22aba10fb5501faa74c1ae3c16f0b522ba2ae5b74a328719b7b7f1113c57b",
+    "source_attestation.json": "88bda1d786d22572cc381113100c1fb0aea7b1cbc3bafe81f6b9124110b011bd"
+  },
+  "raw_uncompressed_csv_sha256": {}
+}
