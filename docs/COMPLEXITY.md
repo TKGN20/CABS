@@ -16,7 +16,8 @@ cluster i. Let b_it be the number of keys in local table t of cluster i.
   in sorted key arrays, O(log(b_it+1)); it is not constant-time dictionary lookup.
   The additions dictionary used by maintenance has expected constant-time lookup.
 - Collision visits and heap maintenance have O(Z_q log(B+1)) upper bound.
-  Sorting admissions adds O(sum_i A_i log(A_i+1)) in the review candidate.
+  Sorting admissions adds O(sum_i A_i log(A_i+1)) in the current public CABS
+  implementation.
 - Exact scoring uses a dense query lookup vector and scans each document's sorted
   coordinates, stopping after the query's maximum coordinate. A safe bound is
   O(sum_{x in C} nnz(x) + |C| log(k+1)), not O(|C| nnz(q)) for this representation.

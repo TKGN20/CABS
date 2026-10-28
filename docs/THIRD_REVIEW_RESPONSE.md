@@ -1,5 +1,11 @@
 # PR #4 third-round revision — 2026-10-23
 
+> **Archived review record.** This document describes the review state at the
+> time it was written. PR #4 has since been merged into `main` (2026-10-25).
+> For current user instructions and measured-result provenance, see
+> [README](../README.md) and the [Reproducibility guide](REPRODUCIBILITY.md).
+> Historical decisions and raw evidence are preserved unchanged.
+
 The production and evidence approval baseline is
 `fa2455ed83de47fec1de60563949e32eb1d34c6c`.
 This revision addresses the third review's documentation and experiment-protocol

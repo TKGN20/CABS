@@ -1,4 +1,13 @@
-# Performance review candidate
+# Historical Performance Engineering Review (2026-10-22)
+
+> **Historical engineering review (2026-10-22).** This document records
+> experiments and review decisions made before PR #4 was merged into `main` on
+> 2026-10-25. References to a "candidate branch" or "not yet merged" describe the
+> status at that time, not the current repository state. The completed full-query
+> runs cited here are recorded measurements. Current instructions and measured
+> result provenance are in [README](../README.md) and the
+> [Reproducibility guide](REPRODUCIBILITY.md). The historical record below is
+> preserved unchanged.
 
 This branch is a review candidate based on stable main d091458. It has not
 replaced that release. A completed full 1M review run is now available below;

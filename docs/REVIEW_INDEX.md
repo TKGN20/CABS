@@ -1,5 +1,11 @@
 # PR #4 review index and frozen scope
 
+> **Archived review record.** This document describes the review state at the
+> time it was written. PR #4 has since been merged into `main` (2026-10-25).
+> For current user instructions and measured-result provenance, see
+> [README](../README.md) and the [Reproducibility guide](REPRODUCIBILITY.md).
+> Historical decisions and raw evidence are preserved unchanged.
+
 Approval baseline: [`fa2455ed83de47fec1de60563949e32eb1d34c6c`](https://github.com/TKGN20/CABS/commit/fa2455ed83de47fec1de60563949e32eb1d34c6c).
 Base main for this review: `d091458df71270f8bcd064d7997af9edaddec0e9`.
 The third-round revision changes review documentation and the saved-record verifier;

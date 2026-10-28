@@ -1,5 +1,11 @@
 # Response to the independent repository review
 
+> **Archived review record.** This document describes the review state at the
+> time it was written. PR #4 has since been merged into `main` (2026-10-25).
+> For current user instructions and measured-result provenance, see
+> [README](../README.md) and the [Reproducibility guide](REPRODUCIBILITY.md).
+> Historical decisions and raw evidence are preserved unchanged.
+
 Review received 2026-10-22. This response distinguishes method completeness,
 implementation validation and paper performance evidence. Journal acceptance is
 an editorial decision; passing the repository checks is not a TKDE certificate.

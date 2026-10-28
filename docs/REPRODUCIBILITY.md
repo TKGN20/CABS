@@ -5,6 +5,19 @@ This guide documents the CABS-only evaluation protocol, versioned measurements,
 output files, metric definitions and practical limits. Historical measurements
 remain associated with their original source revisions.
 
+For algorithm details, continue to the [mechanism-to-code map](PAPER_IMPLEMENTATION.md),
+then the [method](METHOD.md) and [complexity](COMPLEXITY.md) notes. The
+[acceptance report](OPEN_SOURCE_ACCEPTANCE.md) records the completed delivery.
+
+## Terminology
+
+| Term | Meaning |
+| --- | --- |
+| Measured | An actual index build and retrieval execution with collected outputs and timings, identified by its source revision and environment. |
+| Audited / Recomputed | Integrity checks or metric recomputation from saved measurement records; no new retrieval execution is implied. |
+| Re-executed / Rerun | A fresh index build and query execution using the specified source, inputs and configuration. |
+| Retained index space | The retained search payload inventory defined under IS below, including required original vectors; not process peak RSS. |
+
 ## Default configuration
 
 | Setting | Value |
@@ -44,7 +57,7 @@ measurements with raw query times, ranked IDs, exact GT and configuration hashes
 Each full-run record identifies its measured source version. Both were collected
 on an AMD Ryzen 7 8845H under WSL, GCC 11.4, using the protocol above. Search was
 single-threaded. Later source revisions and their validation are recorded in
-[docs/VERIFICATION.md](../docs/VERIFICATION.md).
+[verification history](VERIFICATION.md).
 
 | Dataset | Source | Recall@50 | QPS | IT (s) | IS (GB) |
 | --- | --- | ---: | ---: | ---: | ---: |
@@ -54,22 +67,31 @@ single-threaded. Later source revisions and their validation are recorded in
 Hardware and software are part of each measurement. These are local
 observations; no server measurements or assumed hardware speedups are claimed.
 
-Additional versioned full-query measurements are retained:
+**Additional completed full-query measurements** are preserved below. Each row
+corresponds to an actual CABS execution using its identified measured source
+revision. Raw query timing, rankings, ground truth, configuration and provenance
+are retained with the corresponding run.
 
 | Dataset | Source | Recall@50 | QPS | IT (s) | IS (GB) |
 | --- | --- | ---: | ---: | ---: | ---: |
 | SPLADE-0.1M | `fd470db` | 0.995407 | 185.54 | 178.50 | 0.209247 |
 | SPLADE-1M | `b327ec35`, content-attested | 0.995717 | 17.47 | 747.44 | 1.746099 |
 
-Raw records are under [the cache candidate](../results/engineering/cache_20261022/)
-and [the completed 1M review run](../results/engineering/review_1m_20261022/).
+The measurements are associated with the source revisions shown in the tables.
+The current `main` includes the reviewed CABS implementation, but saved-record
+audits and CI checks are not fresh full-corpus timing runs at the latest
+documentation commit.
+
+Raw records are under the [completed 0.1M measurement](../results/engineering/cache_20261022/)
+and [completed 1M measurement](../results/engineering/review_1m_20261022/).
 The latter's complete GT, ranked outputs, split and all 20,928 non-timing query
 records match the prior K=8/B=51385 realization. Its source/pipeline hashes match
 the detached b327ec35 snapshot; WSL could not resolve the Windows-created
 worktree's Git metadata path, so the original null Git field and the independent
-content attestation are both preserved. Later documentation/test revisions do
-not change the production source files. These separate full runs do not isolate
-the speedup of individual optimizations.
+content attestation are both preserved in the
+[source attestation](../results/engineering/review_1m_20261022/source_attestation.json).
+Later documentation/test revisions do not change the production source files.
+These separate full runs do not isolate the speedup of individual optimizations.
 
 New runs are saved in `results/DATASET/TIMESTAMP/`:
 
@@ -127,11 +149,11 @@ saved as `sketch_cache_release.json`. The core option `--keep-sketch-cache 1`
 retains the cache; public dataset configurations use `retain_sketch_cache=false`.
 IS payload reductions must not be equated with peak-RSS reductions.
 
-See the [mechanism-to-code map](../docs/PAPER_IMPLEMENTATION.md),
-[implementation contract](../docs/METHOD.md) and [implementation complexity](../docs/COMPLEXITY.md)
+See the [mechanism-to-code map](PAPER_IMPLEMENTATION.md),
+[implementation contract](METHOD.md) and [implementation complexity](COMPLEXITY.md)
 for automatic K/m/B, routing/stopping, dense workspaces/centroids, bucket lookup
 and the original-vector scorer. The optional
-[calibration audit](../docs/CALIBRATION_AUDIT.md) is separate from default QPS runs.
+[calibration audit](CALIBRATION_AUDIT.md) is separate from default QPS runs.
 Its instrumented subset diagnostics do not replace full-query measurements.
 
 ## Verify published records
@@ -150,7 +172,7 @@ python3 scripts/verify_artifacts.py --source-check
 
 The first command also works from a source archive. The second additionally
 checks the measured source revisions against Git blobs. Both check the
-[19-file production/default freeze](../docs/approval_baseline.json). Neither
+[19-file production/default freeze](approval_baseline.json). Neither
 command builds a new full-corpus index or collects new query timings.
 
 ## Common errors and limitations
@@ -163,18 +185,23 @@ command builds a new full-corpus index or collects new query timings.
   files; rerunning the preparation command retries the download.
 - An index-memory guard failure is a resource error, not a completed result.
   `--max-index-gib` changes the guard, not automatic K/m/B. Check available RAM
-  before increasing it. See [implementation complexity](../docs/COMPLEXITY.md).
+  before increasing it. See [implementation complexity](COMPLEXITY.md).
 - Indexes are in memory. Concurrent maintenance, crash recovery, persistence and
-  native Windows builds are not provided. Retrieval is approximate; calibration
-  is not a universal Recall@50 guarantee. Hardware-dependent QPS is not a release
-  acceptance threshold.
+  native Windows builds are not provided.
+- CABS is approximate MIPS. Exact scoring of retrieved candidates does not make
+  the overall retrieval globally exact top-k. Calibration is not a universal
+  Recall@50 guarantee; hardware-dependent QPS is not a release threshold.
+- Practical keyed pseudorandom MinHash ranks do not establish exact ideal
+  minwise independence or the ideal independent-random assumptions in analysis.
+- Routing/stopping checks establish implementation behavior; they do not
+  establish an early-termination speedup for every workload.
 
 ## Documentation and archived reviews
 
-The [final acceptance report](../docs/OPEN_SOURCE_ACCEPTANCE.md) and
+The [final acceptance report](OPEN_SOURCE_ACCEPTANCE.md) and
 [release checklist](../CABS_RELEASE_CHECKLIST.md) identify the accepted code,
-clean-clone records and CI. The [review index](../docs/REVIEW_INDEX.md),
-[review response](../docs/REVIEW_RESPONSE.md), [approval review](../docs/APPROVAL_REVIEW_ZH.md)
-and [verification history](../docs/VERIFICATION.md) preserve earlier evidence.
+clean-clone records and CI. The [review index](REVIEW_INDEX.md),
+[review response](REVIEW_RESPONSE.md), [approval review](APPROVAL_REVIEW_ZH.md)
+and [verification history](VERIFICATION.md) preserve earlier evidence.
 Server proposals and third-party comparison notes are historical research
 material, outside the completed CABS-only open-source delivery.

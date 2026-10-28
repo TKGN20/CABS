@@ -134,16 +134,17 @@ To check the saved records without downloading vectors:
 python3 scripts/verify_artifacts.py
 ```
 
-This recomputes stored results; it does not collect new query timings.
+This recomputes metrics from saved measurement records; it does not rerun
+retrieval or collect new timings.
 Metric definitions, output fields and troubleshooting are in
 [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
 
 ## Documentation
 
+- [Reproduction details, measurements and limitations](docs/REPRODUCIBILITY.md)
 - [Algorithm mechanisms and source mapping](docs/PAPER_IMPLEMENTATION.md)
 - [Implementation contract and maintenance](docs/METHOD.md)
 - [Implementation complexity](docs/COMPLEXITY.md)
-- [Reproduction details, measurements and limitations](docs/REPRODUCIBILITY.md)
 - [Final acceptance report and CI evidence](docs/OPEN_SOURCE_ACCEPTANCE.md)
 
 ## Reference
